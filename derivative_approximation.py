@@ -2,10 +2,12 @@
 Authors: Bressler_Marisa, Jeschke_Anne
 Date: 2019_10_23
 """
-import numpy as np
 from matplotlib import use
 use("qt4Agg")
-from matplotlib.pyplot import plot, show, legend, loglog, figure
+import matplotlib.pyplot as plt
+import numpy as np
+plt.rcParams['font.size'] = 12
+plt.rcParams['lines.linewidth'] = 2
 
 class FiniteDifference:
     """ Represents the first and second order finite difference approximation
@@ -131,20 +133,21 @@ class FiniteDifference:
         values_first_diff = [self.first_finite_diff(x) for x in domain]
         values_second_diff = [self.second_finite_diff(x) for x in domain]
 
-        plot(domain, values_f, label='$f$')
-        plot(domain, values_first_diff, label='$D_h^{(1)}f$')
-        plot(domain, values_second_diff, label='$D_h^{(2)}f$')
+        plt.plot(domain, values_f, label='$f$', color='orangered')
 
         if self.d_f is not None:
             values_d_f = [self.d_f(x) for x in domain]
-            plot(domain, values_d_f, label='$f\'$')
+            plt.plot(domain, values_d_f, label='$f\'$', color='lightgreen')
+        plt.plot(domain, values_first_diff, label='$D_h^{(1)}f$', color='green', linestyle='-.')
+
         if self.dd_f is not None:
             values_dd_f = [self.dd_f(x) for x in domain]
-            plot(domain, values_dd_f, label='$f\'\'$')
+            plt.plot(domain, values_dd_f, label='$f\'\'$', color='lightskyblue')
+        plt.plot(domain, values_second_diff, label='$D_h^{(2)}f$', color='blue', linestyle='-.')
 
-        legend(loc='lower right')
-        show()
-        figure()
+        plt.legend(loc='lower right')
+        plt.show()
+        plt.figure()
 
     def plot_errors(self, a, b, p, stepsizes): # pylint: disable=invalid-name
         """ Plots errors for first and second derivative for a given
@@ -162,23 +165,23 @@ class FiniteDifference:
         h_2 = [h**2 for h in stepsizes]
         h_3 = [h**3 for h in stepsizes]
 
-        loglog(stepsizes, stepsizes, label='$h$',
-               color='lightgray', linestyle='-')
-        loglog(stepsizes, h_2, label='$h^2$',
-               color='lightgray', linestyle='--')
-        loglog(stepsizes, h_3, label='$h^3$',
-               color='lightgray', linestyle=':')
-        loglog(stepsizes, errors_1, label='$e_f^{(1)}$')
-        loglog(stepsizes, errors_2, label='$e_f^{(2)}$')
+        plt.loglog(stepsizes, stepsizes, label='$h$',
+                   color='lightgray')
+        plt.loglog(stepsizes, h_2, label='$h^2$',
+                   color='lightgray', linestyle='--')
+        plt.loglog(stepsizes, h_3, label='$h^3$',
+                   color='lightgray', linestyle=':')
+        plt.loglog(stepsizes, errors_1, label='$e_f^{(1)}$', color='green')
+        plt.loglog(stepsizes, errors_2, label='$e_f^{(2)}$', color='blue')
 
-        legend(loc='lower right')
-        show()
-        figure()
+        plt.legend(loc='lower right')
+        plt.show()
+        plt.figure()
 
 def main():
     """ Presents a quick example.
     """
-    g_1 = FiniteDifference(np.pi/3, lambda x: np.sin(x)/x,
+    g_1 = FiniteDifference(0.5, lambda x: np.sin(x)/x,
                            lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
                            lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
     g_1.plot_functions(np.pi, 3*np.pi, 1000)
@@ -188,4 +191,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
