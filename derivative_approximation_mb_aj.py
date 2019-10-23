@@ -2,10 +2,12 @@
 Authors: Bressler_Marisa, Jeschke_Anne
 Date: 2019_10_22
 """
+
+# from matplotlib import use
+# use("qt4Agg")
 import numpy as np
 from matplotlib.pyplot import plot, show, legend, loglog, figure
-from matplotlib import use
-use("qt4Agg")
+
 
 class FiniteDifference:
     """ Represents the first and second order finite difference approximation
@@ -35,7 +37,7 @@ class FiniteDifference:
         self.d_f = d_f   # pylint: disable=invalid-name
         self.dd_f = dd_f # pylint: disable=invalid-name
 
-    def first_finite_diff(self, x): # pylint: disable=invalid-name
+    def first_finite_diff(self, x, h=None): # pylint: disable=invalid-name
         """ Calculates the value of the first finite difference of f.
 
         Parameters
@@ -48,9 +50,11 @@ class FiniteDifference:
         float
             The value of the first finite difference of f at x.
         """
-        return (self.f(x+self.h)-self.f(x))/self.h
+        if h is None:
+            h = self.h
+        return (self.f(x+h)-self.f(x))/h
 
-    def second_finite_diff(self, x): # pylint: disable=invalid-name
+    def second_finite_diff(self, x, h=None): # pylint: disable=invalid-name
         """ Calculates the value of the second finite difference of f.
 
         Parameters
@@ -63,9 +67,11 @@ class FiniteDifference:
         float
             The value of the second finite difference of f at x.
         """
-        return (self.f(x+self.h)-2*self.f(x)+self.f(x-self.h))/(self.h**2)
+        if h is None:
+            h = self.h
+        return (self.f(x+h)-2*self.f(x)+self.f(x-h))/(h**2)
 
-    def compute_errors(self, a, b, p, h=self.h):  # pylint: disable=invalid-name
+    def compute_errors(self, a, b, p, h=None):  # pylint: disable=invalid-name
         """ Calculates an approximation to the errors between an approximation
         and the exact derivative for first and second order derivatives in the
         maximum norm.
@@ -91,9 +97,11 @@ class FiniteDifference:
         """
         if self.d_f is None or self.dd_f is None:
             raise Exception('ValueError: No analytic derivative was provided.')
+        if h is None:
+            h = self.h
         domain = np.linspace(a, b, p)
-        first_diff = [abs(self.d_f(x)-self.first_finite_diff(x)) for x in domain]
-        second_diff = [abs(self.dd_f(x)-self.second_finite_diff(x)) for x in domain]
+        first_diff = [abs(self.d_f(x)-self.first_finite_diff(x, h)) for x in domain]
+        second_diff = [abs(self.dd_f(x)-self.second_finite_diff(x, h)) for x in domain]
 
         return (max(first_diff), max(second_diff))
 
@@ -138,8 +146,8 @@ class FiniteDifference:
         stepsizes: list
             Collection of stepsizes.
         """
-        errors_1 = [self.compute_errors(a, b, p)[0] for h in stepsizes]
-        errors_2 = [self.compute_errors(a, b, p)[1] for h in stepsizes]
+        errors_1 = [self.compute_errors(a, b, p, h)[0] for h in stepsizes]
+        errors_2 = [self.compute_errors(a, b, p, h)[1] for h in stepsizes]
         h_2 = [h**2 for h in stepsizes]
         h_3 = [h**3 for h in stepsizes]
         loglog(stepsizes, errors_1, label='$e_f^{(1)}$')
