@@ -1,11 +1,12 @@
 """
 Authors: Bressler_Marisa, Jeschke_Anne
-Date: 2019_10_23
+Date: 2019_10_24
 """
-from matplotlib import use
-use("qt4Agg")
-import matplotlib.pyplot as plt
+
 import numpy as np
+from matplotlib import use
+use("qt4agg")
+import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 plt.rcParams['lines.linewidth'] = 2
 
