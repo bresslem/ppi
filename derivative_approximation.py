@@ -5,7 +5,7 @@ Date: 2019_10_24
 
 import numpy as np
 from matplotlib import use
-use("qt4agg")
+use('qt4agg')
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 plt.rcParams['lines.linewidth'] = 2
@@ -17,19 +17,14 @@ class FiniteDifference:
 
     Parameters
     ----------
-    h : float
-        Stepsize of the approximation.
-    f : callable
-        Function to approximate the derivatives of.
-    d_f : callable, optional
-        The analytic first derivative of `f`.
-    dd_f : callable, optional
-        The analytic second derivative of `f`.
+    h (float): Stepsize of the approximation.
+    f (callable): Function to approximate the derivatives of.
+    d_f (callable, optional): The analytic first derivative of `f`.
+    dd_f (callable, optional): The analytic second derivative of `f`.
 
     Attributes
     ----------
-    h : float
-        Stepsize of the approximation.
+    h (float): Stepsize of the approximation.
     """
 
     def __init__(self, h, f, d_f=None, dd_f=None):
@@ -39,40 +34,34 @@ class FiniteDifference:
         self.dd_f = dd_f # pylint: disable=invalid-name
 
     def first_finite_diff(self, x, h=None): # pylint: disable=invalid-name
-        """ Calculates the value of the first finite difference of f.
+        """ Calculates the value of the first finite difference of f at x.
 
         Parameters
         ----------
-        x : float
-            Point at which to calculate the first finite difference.
-        h : float, optional
-            Stepsize of the approximation.
-            If h was not provided, use self.h.
+        x (float): Point at which to calculate the first finite difference.
+        h (float, optional): Stepsize of the approximation.
+                             If h was not provided, use self.h.
 
         Returns
         -------
-        float
-            The value of the first finite difference of f at x.
+        (float): The value of the first finite difference of f at x.
         """
         if h is None:
             h = self.h
         return (self.f(x+h)-self.f(x))/h
 
     def second_finite_diff(self, x, h=None): # pylint: disable=invalid-name
-        """ Calculates the value of the second finite difference of f.
+        """ Calculates the value of the second finite difference of f at x.
 
         Parameters
         ----------
-        x : float
-            Point at which to calculate the second finite difference.
-        h : float, optional
-            Stepsize of the approximation.
-            If h was not provided, use self.h.
+        x (float): Point at which to calculate the second finite difference.
+        h (float, optional): Stepsize of the approximation.
+                             If h was not provided, use self.h.
 
         Returns
         -------
-        float
-            The value of the second finite difference of f at x.
+        (float): The value of the second finite difference of f at x.
         """
         if h is None:
             h = self.h
@@ -85,21 +74,16 @@ class FiniteDifference:
 
         Parameters
         ----------
-        a, b : float
-            Start and end point of the interval.
-        p : int
-            Number of points plus 1 used in the approximation of the maximum norm.
-        h : float, optional
-            Stepsize of the approximation for first and second order derivatives.
-            If h was not provided, use self.h.
+        a, b (float): Start and end point of the interval.
+        p (int): Number of points plus 1 used in the approximation of the maximum norm.
+        h (float, optional): Stepsize of the approximation for first and second order
+                             derivatives. If h was not provided, use self.h.
 
         Returns
         -------
-        list of two floats:
-            float
-                Maximum of errors of the approximation of the first derivative.
-            float
-                Maximum of errors of the approximation of the second derivative.
+        (list of two floats):
+        [maximum of errors of the approximation of the first derivative,
+         maximum of errors of the approximation of the second derivative]
 
         Raises
         ------
@@ -112,21 +96,19 @@ class FiniteDifference:
         if self.d_f is None or self.dd_f is None:
             raise Exception('ValueError: No analytic derivative was provided.')
         domain = np.linspace(a, b, p+1)
-        first_diff = [abs(self.d_f(x)-self.first_finite_diff(x, h)) for x in domain]
-        second_diff = [abs(self.dd_f(x)-self.second_finite_diff(x, h)) for x in domain]
+        err_first_diff = [abs(self.d_f(x)-self.first_finite_diff(x, h)) for x in domain]
+        err_second_diff = [abs(self.dd_f(x)-self.second_finite_diff(x, h)) for x in domain]
 
-        return (max(first_diff), max(second_diff))
+        return (max(err_first_diff), max(err_second_diff))
 
     def plot_functions(self, a, b, p): # pylint: disable=invalid-name
-        """ Plots f, its first and second finite difference and first and second
-        analytic derivative on the interval [a,b].
+        """ Plots f, its first and second finite difference and its first and second
+        analytic derivative (if provided) on the interval [a,b].
 
         Parameters
         ----------
-        a, b : float
-            Start and end point of the interval.
-        p : int
-            Number of points plus 1 on the interval to plot.
+        a, b (float): Start and end point of the interval.
+        p (int): Number of points plus 1 on the interval to plot.
         """
         domain = np.linspace(a, b, p+1)
 
@@ -151,15 +133,13 @@ class FiniteDifference:
         plt.figure()
 
     def plot_errors(self, a, b, p, stepsizes): # pylint: disable=invalid-name
-        """ Plots errors for first and second derivative for a given
-        collection of stepsizes.
+        """ Plots maxima of errors for first and second derivative
+        for a given collection of stepsizes.
 
         Parameters
         ----------
-        a, b : float
-            Start and end point of the interval.
-        stepsizes: list of floats
-            Collection of stepsizes.
+        a, b (float): Start and end point of the interval.
+        stepsizes (list of floats): Collection of stepsizes.
         """
         errors_1 = [self.compute_errors(a, b, p, h)[0] for h in stepsizes]
         errors_2 = [self.compute_errors(a, b, p, h)[1] for h in stepsizes]
@@ -180,7 +160,7 @@ class FiniteDifference:
         plt.figure()
 
 def main():
-    """ Presents a quick example.
+    """ Main function to test the FiniteDiffernce class.
     """
     g_1 = FiniteDifference(0.5, lambda x: np.sin(x)/x,
                            lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
