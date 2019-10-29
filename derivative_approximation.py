@@ -88,7 +88,7 @@ class FiniteDifference:
         Raises
         ------
         ValueError
-            If no analytic derivative was provided by the user.
+            One of the analytic derivatives was provided.
         """
         if h is None:
             h = self.h
