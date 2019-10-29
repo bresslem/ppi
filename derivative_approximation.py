@@ -3,6 +3,8 @@ Authors: Bressler_Marisa, Jeschke_Anne
 Date: 2019_10_24
 """
 
+# Mit Frau Rabus besprochen: Wenn jetzt alles korrekt ist, kriegen wir 28 Punkte.
+
 import numpy as np
 from matplotlib import use
 use('qt4agg')
