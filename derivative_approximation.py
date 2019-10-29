@@ -94,7 +94,7 @@ class FiniteDifference:
             h = self.h
 
         if self.d_f is None or self.dd_f is None:
-            raise Exception('ValueError: No analytic derivative was provided.')
+            raise ValueError('One of the analytic derivatives was provided.')
         domain = np.linspace(a, b, p+1)
         err_first_diff = [abs(self.d_f(x)-self.first_finite_diff(x, h)) for x in domain]
         err_second_diff = [abs(self.dd_f(x)-self.second_finite_diff(x, h)) for x in domain]
