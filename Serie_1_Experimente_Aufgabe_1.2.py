@@ -195,7 +195,7 @@ def main():
     g_1.plot_functions(np.pi, 3*np.pi, 1000)
 
     g_1.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 10])
+                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
 
 
 if __name__ == "__main__":
