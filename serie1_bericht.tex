@@ -5,6 +5,7 @@
   germandbls={ß},
 }
 \usepackage[ngerman]{babel}
+\usepackage{amsmath}
 \begin{document}
 % ----------------------------------------------------------------------
 \title{PPI Bericht Serie 1}
@@ -19,12 +20,21 @@
 \section{Motivation}
 \label{sec:motivation}
 Hier kommt die Motivation.
+
 \section{Theorie}
 \label{sec:theorie}
-Theorie?
+- Approximation der Ableitung\\
+- Taylorentwicklung\\
+- 1. und 2. finite Differenz\\
+- Fehlerabschätzungen
+
 \section{Experimente}
 \label{sec:experiment}
-Dann die Experimente.
+- Untersuchen Konvergenzverhalten der Approximation der Ableitungen mit Finiten Differenzen\\
+- 1.: $g_1(x)=sin(x)/x$ auf $[\pi,3\pi]$ mit $p=1000$\\
+- Vergleich der exakten und approximierten ersten und zweiten Ableitungen von g1 für $h = \pi/3$, $h = \pi/4$, $h = \pi/5$ und $h = \pi/10$\\
+- Fehlerplots für verschiedene h, Vergleich erwartetes und actual Konvergenzverhalten\\
+
 \section{Auswertung}
 \label{sec:auswertung}
 Dann die Auswertung.
