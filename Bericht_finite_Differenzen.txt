@@ -1,4 +1,4 @@
-Vergleichen Sie die exakte und approximierte erste und zweite Ableitung von g1 für h = p/3, h = p/4, h = p/5 und h = p/10 graphisch:
+Vergleichen Sie die exakte und approximierte erste und zweite Ableitung von g1 für h = pi/3, h = pi/4, h = pi/5 und h = pi/10 graphisch:
 
 in diesem Bsp.:
 je kleiner die Schrittweite, desto besser die Approximation
