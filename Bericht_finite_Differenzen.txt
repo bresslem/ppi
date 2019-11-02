@@ -1,0 +1,59 @@
+Vergleichen Sie die exakte und approximierte erste und zweite Ableitung von g1 für h = p/3, h = p/4, h = p/5 und h = p/10 graphisch:
+
+in diesem Bsp.:
+je kleiner die Schrittweite, desto besser die Approximation
+schon gute Approximation mit gröbster Schrittweite bei zweiter Ableitung
+bei erster Ableitung erst mit kleinster Schrittweite ähnlich gute Approximation wie bei erster Ableitung mit gröbster Schrittweite
+bei kleinster Schrittweite liegt der Graph der finiten Differenz zweiter Ordnung bereits so gut wie auf dem Graphen der zweiten Ableitung
+
+Erklärungen:
+die Approximation der zweiten Ableitung mittels finiter Differenz zweiter Ordnung konvergiert quadratisch
+hingegen konvergiert die Approximation der ersten Ableitung mittels finiter Differenz erster Ordnung nur linear
+(sieht man an Formel: durch h^2 bzw. durch h)
+
+auch erkennbar im Konvergenz-/Fehlerplot:
+
+Zeichnen Sie die Fehlerplots in Abhängigkeit von h = 1, 0.1, . . . , 10^-l.
+Wählen Sie l jeweils so groß, dass das in der Theorie ermittelte und zunächst erwartete Konvergenzverhalten nicht für alle h beobachtet wird.
+
+zum einen ist der maximale Fehler bei der Approximation der zweiten Ableitung mittels finiter Differenz zweiter Ordnung
+in dem gewählten Bereich der Schrittweiten (pi/3 bis pi/10, also ca. 1 und 0,3) immer kleiner als der der
+Approximation der ersten Ableitung mittels finiter Differenz erster Ordnung
+zum anderen wird er schneller kleiner
+der Anstieg entspricht dem von h^2 bzw. h, also 2 bzw. 1
+(dessen Anstieg im doppeltlogarithmischen Plot mit dem geraden Graphen gut erfassbar ist)
+
+"zu kleine" Schrittweite:
+relativer Fehler bei Rundung sehr kleiner Zahlen sehr groß
+(Eingabe von nicht-Maschinenzahlen > Rundung zur nächstgelegenen Maschinenzahl,
+ Pseudoarithmetik: Menge der Maschinenzahlen bzgl. Operationen der Addition, Subtraktion, Multiplikation und Division nicht abgeschlossen
+ > Ergebnis wird wieder zur nächstgelegenen Maschinenzahl gerundet)
+Gefahr der Auslöschung: Subtraktion zweier betragsmäßig etwa gleich großer Zahlen > starke Verringerung der gültigen/signifikanten Stellen
+In der Computerarithmetik sind Addition und Multiplikation kommutativ, Assoziativ- und Distributivgesetze gelten aber i. A. nicht.
+ > Analytisch aquivalente Ausdrücke können auf dem Computer zu erheblich unterschiedlichen Ergebnissen führen.
+Fehler pflanzen sich fort: Rundungsfehler verstärken sich.
+
+
+Ausblick (noch interessant):
+Stichwort Effizienz > Wie viel Zeit benötigt Rechner zum Bereitstellen einer passablen Lösung?
+Stichwort Genauigkeit > Könnten wir die Formel analytisch so äquivalent umstellen, dass genauere Ergebnisse geliefert werden?
+
+
+Taylorentwicklung liefert Approximationsmöglichkeit für Ableitungen von Funktionen,
+numerisches Differenzieren
+
+
+Teil a: Stauchen in x-Richtung, Strecken in y-Richtung
+zwischenzeitlich Probleme mit Krümmung (2. Ableitung) > nicht mal lineare Konvergenz im Fehlerplot erkennbar (0,5 und 0,25)
+wird nicht besser, maximaler Fehler bleibt gleich groß
+Teil b: Strecken in x-Richtung, Stauchen in y-Richtung
+werden zunehmend beide schlechter (größere Fehler), behalten aber ihre Konvergenzordnung/-geschwindigkeit,
+bis j=475: 1. Ableitung verliert Konvergenz (weniger als linear)
+für j=500: beide wieder quadratische Konvergenz (find ich seltsam: da geht irgendwas ganz doll kaputt >
+vermutlich genügen auch die Stützstellen zum Plotten der Funktion nicht)
+
+
+Approximation der zweiten Ableitung konvergiert i. A. schneller und verursacht kleinere Fehler
+
+Problem der Differenzenquotienten ist Wahl der optimalen Schrittweite h:
+zu großes h führt zu Rundungsfehlern, zu kleines zu Auslöschung
