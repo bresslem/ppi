@@ -224,5 +224,23 @@ def main():
                                            1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
 
 
+    g_f = FiniteDifference(np.pi/5, lambda x: np.sin(0.05*x)/x,'$g_f$',
+                           lambda x: (0.05*x*np.cos(0.05*x)-np.sin(0.05*x))/x**2,
+                           lambda x: (2-0.0025*x**2)*np.sin(0.05*x)-0.1*x*np.cos(0.05*x)/x**3)
+    g_f.plot_functions(np.pi, 3*np.pi, 1000)
+
+    g_f.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+
+
+    g_g = FiniteDifference(np.pi/5, lambda x: np.sin(0.01*x)/x,'$g_g$',
+                           lambda x: (0.01*x*np.cos(0.01*x)-(np.sin(0.01*x)))/(x**2),
+                           lambda x: (2-0.0001*x**2)*np.sin(0.01*x)-0.2*x*np.cos(0.01*x)/x**3)
+    g_g.plot_functions(np.pi, 3*np.pi, 1000)
+
+    g_g.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+
+
 if __name__ == "__main__":
     main()
