@@ -1,11 +1,10 @@
 \documentclass{scrartcl}
-\usepackage{selinput}
-\SelectInputMappings{
-  adieresis={ä},
-  germandbls={ß},
-}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
 \usepackage{amsmath}
+\usepackage{graphicx}
+
 \begin{document}
 % ----------------------------------------------------------------------
 \title{PPI Bericht Serie 1}
@@ -35,6 +34,17 @@ Hier kommt die Motivation.
 - Vergleich der exakten und approximierten ersten und zweiten Ableitungen von g1 für $h = \pi/3$, $h = \pi/4$, $h = \pi/5$ und $h = \pi/10$\\
 - Fehlerplots für verschiedene h, Vergleich erwartetes und actual Konvergenzverhalten\\
 
+- 2.: $g_1(x)=sin(jx)/x$  Vergleich für kleinere j: \\
+- bei j=0.5, 0.25 e2 fast konstant, e1 lin\\
+- 0.1, 0.075 wie gewohnt\\
+- 0.05, 0.01 wieder konstant\\
+- 3.: Vergleich für größeres j:\\
+- j=2, 4, 10, 20: e1 fast linear, e2 minimum bei 10-4, fehler insgesamt immer größer\\
+- j=100-450: e2 minimum bei ca. 10-5, dann quadr , dann konstant?\\
+- j=475: e1 konstant\\
+- j=500 e2 fast gleich e1\\
+
+- Amplitude der exakten 2. Abl immer viel größer als der Appr.
 \section{Auswertung}
 \label{sec:auswertung}
 Dann die Auswertung.
