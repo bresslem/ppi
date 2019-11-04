@@ -1,6 +1,5 @@
 """
 Authors: Bressler_Marisa, Jeschke_Anne
-Date: 2019_10_31
 """
 
 import numpy as np
@@ -31,7 +30,7 @@ class FiniteDifference:
     def __init__(self, h, f, name, d_f=None, dd_f=None):
         self.h = h       # pylint: disable=invalid-name
         self.f = f       # pylint: disable=invalid-name
-        self.name = name       # pylint: disable=invalid-name
+        self.name = name # pylint: disable=invalid-name
         self.d_f = d_f   # pylint: disable=invalid-name
         self.dd_f = dd_f # pylint: disable=invalid-name
 
@@ -120,8 +119,8 @@ class FiniteDifference:
 
         plt.plot(domain, values_f, label='$g$', color='orangered')
         plt.xlabel('$x$')
-        plt.ylabel('$y$')
-        plt.title('Funktionenplot von ' + self.name +
+        plt.ylabel('$g(x)$')
+        plt.title('Funktionenplot von ' + str(self.name ) +
                   ',\nSchrittweite $h=$' + str(self.h))
 
         if self.d_f is not None:
@@ -135,6 +134,7 @@ class FiniteDifference:
         plt.plot(domain, values_second_diff, label='$D_h^{(2)}g$', color='blue', linestyle='-.')
 
         plt.legend(loc='lower right')
+        plt.grid()
         plt.show()
         plt.figure()
 
@@ -163,39 +163,30 @@ class FiniteDifference:
 
         plt.xlabel('$h$')
         plt.ylabel('$e_g(h)$')
-        plt.title('Fehlerplot von ' + self.name)
+        plt.title('Fehlerplot von ' + str(self.name))
         plt.legend(loc='lower right')
+        plt.grid()
         plt.show()
         plt.figure()
+
 
 def main():
     """ Main function to test the FiniteDiffernce class.
     """
 
-# Aufgabe 1.2
+# Aufgabe 1.3 Teil a
 
-    g_1 = FiniteDifference(np.pi/3, lambda x: np.sin(x)/x, '$g_1$',
-                           lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
-                           lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
-    g_1.plot_functions(np.pi, 3*np.pi, 1000)
+    js = [1, 0.75, 0.5, 0.25, 0.1, 0.075, 0.05, 0.01, 0.0075, 0.005, 0.0025,
+          0.001, 0.00075, 0.0005, 0.00025, 0.0001]
 
-    g_1 = FiniteDifference(np.pi/4, lambda x: np.sin(x)/x,'$g_1$',
-                           lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
-                           lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
-    g_1.plot_functions(np.pi, 3*np.pi, 1000)
+    for j in js:
+        g_j = FiniteDifference(np.pi/5, lambda x: np.sin(j*x)/x, '$g_j$ mit $j=$' + str(j),
+                               lambda x: (j*x*np.cos(j*x)-np.sin(j*x))/(x**2),
+                               lambda x: (-2*j*x*np.cos(j*x)+(2-j**2*x**2)*np.sin(j*x))/(x**3))
+        #g_j.plot_functions(np.pi, 3*np.pi, 1000)
 
-    g_1 = FiniteDifference(np.pi/5, lambda x: np.sin(x)/x,'$g_1$',
-                           lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
-                           lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
-    g_1.plot_functions(np.pi, 3*np.pi, 1000)
-
-    g_1 = FiniteDifference(np.pi/10, lambda x: np.sin(x)/x,'$g_1$',
-                           lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
-                           lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
-    g_1.plot_functions(np.pi, 3*np.pi, 1000)
-
-    g_1.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+        g_j.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+                                               1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
 
 
 if __name__ == "__main__":
