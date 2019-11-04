@@ -43,17 +43,15 @@ Taylorentwicklung liefert Approximationsmöglichkeit für Ableitungen von Funktion
 numerisches Differenzieren
 
 
-Teil a: Stauchen in x-Richtung, Strecken in y-Richtung
-zwischenzeitlich Probleme mit Krümmung (2. Ableitung) > nicht mal lineare Konvergenz im Fehlerplot erkennbar (0,5 und 0,25)
-wird nicht besser, maximaler Fehler bleibt gleich groß
-Teil b: Strecken in x-Richtung, Stauchen in y-Richtung
-werden zunehmend beide schlechter (größere Fehler), behalten aber ihre Konvergenzordnung/-geschwindigkeit,
-bis j=475: 1. Ableitung verliert Konvergenz (weniger als linear)
-für j=500: beide wieder quadratische Konvergenz (find ich seltsam: da geht irgendwas ganz doll kaputt >
-vermutlich genügen auch die Stützstellen zum Plotten der Funktion nicht)
+Teil a: Strecken in x-Richtung, Stauchen in y-Richtung
+Größenordnung des maximalen absoluten Fehlers nimmt ab, optimale Schrittweite h wird größer
+
+Teil b: Stauchen in x-Richtung, Strecken in y-Richtung
+Größenordnung des maximalen absoluten Fehlers nimmt zu, optimale Schrittweite h wird kleiner
 
 
 Approximation der zweiten Ableitung konvergiert i. A. schneller und verursacht kleinere Fehler
 
 Problem der Differenzenquotienten ist Wahl der optimalen Schrittweite h:
-zu großes h führt zu Rundungsfehlern, zu kleines zu Auslöschung
+zu großes h führt zu Verfahrensfehlern (Verfahren funktionieren nicht zuverlässig genug),
+zu kleines h führt zu Rundungsfehlern zu Auslöschung
