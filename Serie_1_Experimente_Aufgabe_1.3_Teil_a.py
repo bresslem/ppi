@@ -121,7 +121,7 @@ class FiniteDifference:
         plt.plot(domain, values_f, label='$g$', color='orangered')
         plt.xlabel('$x$')
         plt.ylabel('$g(x)$')
-        plt.title('Funktionenplot von ' + self.name +
+        plt.title('Funktionenplot von ' + str(self.name )+
                   ',\nSchrittweite $h=$' + str(self.h))
 
         if self.d_f is not None:
@@ -163,83 +163,96 @@ class FiniteDifference:
 
         plt.xlabel('$h$')
         plt.ylabel('$e_g(h)$')
-        plt.title('Fehlerplot von ' + self.name)
+        plt.title('Fehlerplot von ' + str(self.name))
         plt.legend(loc='lower right')
         plt.show()
         plt.figure()
+
 
 def main():
     """ Main function to test the FiniteDiffernce class.
     """
 
 # Aufgabe 1.3 Teil a
+    js = [1, 0.75, 0.5, 0.25, 0.1, 0.075, 0.05, 0.01]
 
-    g_1 = FiniteDifference(np.pi/5, lambda x: np.sin(x)/x,'$g_1$',
-                           lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
-                           lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
-    g_1.plot_functions(np.pi, 3*np.pi, 1000)
+    for j in js:
+        g_j = FiniteDifference(np.pi/5, lambda x: np.sin(j*x)/x,j,
+                               lambda x: (j*x*np.cos(j*x)-np.sin(j*x))/(x**2),
+                               lambda x: (-2*j*x*np.cos(j*x)+(2-j**2*x**2)*np.sin(j*x))/(x**3))
+        g_j.plot_functions(np.pi, 3*np.pi, 1000)
 
-    g_1.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+        g_j.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
                                            1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
 
-
-    g_a = FiniteDifference(np.pi/5, lambda x: np.sin(0.75*x)/x,'$g_a$',
-                           lambda x: (3*x*np.cos(0.75*x)-(4*np.sin(0.75*x)))/(4*(x**2)),
-                           lambda x: -(24*x*np.cos(0.75*x)+(-32+(9*(x**2)))*np.sin(0.75*x))/(16*(x**3)))
-    g_a.plot_functions(np.pi, 3*np.pi, 1000)
-
-    g_a.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
-
-    g_b = FiniteDifference(np.pi/5, lambda x: np.sin(0.5*x)/x,'$g_b$',
-                           lambda x: (x*np.cos(x/2)-(2*np.sin(x/2)))/(2*(x**2)),
-                           lambda x: -(x*np.cos(x/2)+(-8+(x**2))*np.sin(x/2))/(4*(x**3)))
-    g_b.plot_functions(np.pi, 3*np.pi, 1000)
-
-    g_b.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
-
-    g_c = FiniteDifference(np.pi/5, lambda x: np.sin(0.25*x)/x,'$g_c$',
-                           lambda x: (x*np.cos(x/4)-(4*np.sin(x/4)))/(4*(x**2)),
-                           lambda x: -(8*x*np.cos(x/4)+(-32+(x**4))*np.sin(x/4))/(16*(x**3)))
-    g_c.plot_functions(np.pi, 3*np.pi, 1000)
-
-    g_c.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
-
-    g_d = FiniteDifference(np.pi/5, lambda x: np.sin(0.1*x)/x,'$g_d$',
-                           lambda x: (x*np.cos(0.1*x)-(10*np.sin(0.1*x)))/(10*(x**2)),
-                           lambda x: -(20*x*np.cos(0.1*x)+(-200+(x**2))*np.sin(0.1*x))/(100*(x**3)))
-    g_d.plot_functions(np.pi, 3*np.pi, 1000)
-
-    g_d.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
-
-    g_e = FiniteDifference(np.pi/5, lambda x: np.sin(0.075*x)/x,'$g_e$',
-                           lambda x: (3*x*np.cos(0.075*x)-(40*np.sin(0.075*x)))/(40*(x**2)),
-                           lambda x: -(240*x*np.cos(0.075*x)+(-3200+(9*(x**2)))*np.sin(0.075*x))/(1600*(x**3)))
-    g_e.plot_functions(np.pi, 3*np.pi, 1000)
-
-    g_e.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
-
-
-    g_f = FiniteDifference(np.pi/5, lambda x: np.sin(0.05*x)/x,'$g_f$',
-                           lambda x: (0.05*x*np.cos(0.05*x)-np.sin(0.05*x))/x**2,
-                           lambda x: (2-0.0025*x**2)*np.sin(0.05*x)-0.1*x*np.cos(0.05*x)/x**3)
-    g_f.plot_functions(np.pi, 3*np.pi, 1000)
-
-    g_f.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
-
-
-    g_g = FiniteDifference(np.pi/5, lambda x: np.sin(0.01*x)/x,'$g_g$',
-                           lambda x: (0.01*x*np.cos(0.01*x)-(np.sin(0.01*x)))/(x**2),
-                           lambda x: (2-0.0001*x**2)*np.sin(0.01*x)-0.2*x*np.cos(0.01*x)/x**3)
-    g_g.plot_functions(np.pi, 3*np.pi, 1000)
-
-    g_g.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+    # g_1 = FiniteDifference(np.pi/5, lambda x: np.sin(x)/x,'$g_1$',
+    #                        lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
+    #                        lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
+    # g_1.plot_functions(np.pi, 3*np.pi, 1000)
+    #
+    # g_1.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+    #                                        1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+    #
+    #
+    # g_a = FiniteDifference(np.pi/5, lambda x: np.sin(0.75*x)/x,'$g_a$',
+    #                        lambda x: (3*x*np.cos(0.75*x)-(4*np.sin(0.75*x)))/(4*(x**2)),
+    #                        lambda x: -(24*x*np.cos(0.75*x)+(-32+(9*(x**2)))*np.sin(0.75*x))/(16*(x**3)))
+    # g_a.plot_functions(np.pi, 3*np.pi, 1000)
+    #
+    # g_a.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+    #                                        1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+    #
+    # g_b = FiniteDifference(np.pi/5, lambda x: np.sin(0.5*x)/x,'$g_b$',
+    #                        lambda x: (x*np.cos(x/2)-(2*np.sin(x/2)))/(2*(x**2)),
+    #                        lambda x: ((2-0.25*x**2)*np.sin(0.5*x)-x*np.cos(0.5*x))/x**3)
+    # g_b.plot_functions(np.pi, 3*np.pi, 10000)
+    #
+    # g_b.plot_errors(np.pi, 3*np.pi, 10000, [1e-8, 1e-7, 1e-6, 1e-5,
+    #                                        1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+    #
+    # g_c = FiniteDifference(np.pi/5, lambda x: np.sin(0.25*x)/x,'$g_c$',
+    #                        lambda x: (x*np.cos(x/4)-(4*np.sin(x/4)))/(4*(x**2)),
+    #                        lambda x: -(8*x*np.cos(x/4)+(-32+(x**4))*np.sin(x/4))/(16*(x**3)))
+    # g_c.plot_functions(np.pi, 3*np.pi, 1000)
+    #
+    # g_c.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+    #                                        1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+    #
+    # g_d = FiniteDifference(np.pi/5, lambda x: np.sin(0.1*x)/x,'$g_d$',
+    #                        lambda x: (x*np.cos(0.1*x)-(10*np.sin(0.1*x)))/(10*(x**2)),
+    #                        lambda x: -(20*x*np.cos(0.1*x)+(-200+(x**2))*np.sin(0.1*x))/(100*(x**3)))
+    # g_d.plot_functions(np.pi, 3*np.pi, 1000)
+    #
+    # g_d.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+    #                                        1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+    #
+    # g_e = FiniteDifference(np.pi/5, lambda x: np.sin(0.075*x)/x,'$g_e$',
+    #                        lambda x: (3*x*np.cos(0.075*x)-(40*np.sin(0.075*x)))/(40*(x**2)),
+    #                        lambda x: -(240*x*np.cos(0.075*x)+(-3200+(9*(x**2)))*np.sin(0.075*x))/(1600*(x**3)))
+    # g_e.plot_functions(np.pi, 3*np.pi, 1000)
+    #
+    # g_e.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+    #                                        1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+    #
+    #
+    # g_f = FiniteDifference(np.pi/5, lambda x: np.sin(0.05*x)/x,'$g_f$',
+    #                        lambda x: (0.05*x*np.cos(0.05*x)-np.sin(0.05*x))/x**2,
+    #                        lambda x: ((2-0.0025*x**2)*np.sin(0.05*x)-0.1*x*np.cos(0.05*x))/x**3)
+    #
+    # g_f.plot_functions(np.pi, 3*np.pi, 10000)
+    #
+    # g_f.plot_errors(np.pi, 3*np.pi, 10000, [1e-8, 1e-7, 1e-6, 1e-5,
+    #                                        1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+    #
+    #
+    # g_g = FiniteDifference(np.pi/5, lambda x: np.sin(0.01*x)/x,'$g_g$',
+    #                        lambda x: (0.01*x*np.cos(0.01*x)-(np.sin(0.01*x)))/(x**2),
+    #                        lambda x: ((2-0.0001*x**2)*np.sin(0.01*x)-0.02*x*np.cos(0.01*x))/x**3)
+    #
+    # g_g.plot_functions(np.pi, 3*np.pi, 10000)
+    #
+    # g_g.plot_errors(np.pi, 3*np.pi, 10000, [1e-8, 1e-7, 1e-6, 1e-5,
+    #                                        1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
 
 
 if __name__ == "__main__":
