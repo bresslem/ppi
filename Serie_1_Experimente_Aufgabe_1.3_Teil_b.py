@@ -121,7 +121,7 @@ class FiniteDifference:
         plt.plot(domain, values_f, label='$g$', color='orangered')
         plt.xlabel('$x$')
         plt.ylabel('$y$')
-        plt.title('Funktionenplot von ' + self.name +
+        plt.title('Funktionenplot von ' + str(self.name) +
                   ',\nSchrittweite $h=$' + str(self.h))
 
         if self.d_f is not None:
@@ -163,7 +163,7 @@ class FiniteDifference:
 
         plt.xlabel('$h$')
         plt.ylabel('$e_g(h)$')
-        plt.title('Fehlerplot von ' + self.name)
+        plt.title('Fehlerplot von ' + str(self.name))
         plt.legend(loc='lower right')
         plt.show()
         plt.figure()
