@@ -155,7 +155,7 @@ class FiniteDifference:
 
         plt.loglog(stepsizes, stepsizes, label='$h$',
                    color='lightgray')
-        plt.loglog(stepsizes, h_2, label='$h^2 $',
+        plt.loglog(stepsizes, h_2, label='$h^2$',
                    color='lightgray', linestyle='--')
         plt.loglog(stepsizes, h_3, label='$h^3$',
                    color='lightgray', linestyle=':')
