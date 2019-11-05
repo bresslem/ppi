@@ -17,6 +17,7 @@ class FiniteDifference:
     Parameters
     ----------
     h (float): Stepsize of the approximation.
+    h_string (string): Stepsize h as string.
     f (callable): Function to approximate the derivatives of.
     name (string): Name of function f.
     d_f (callable, optional): The analytic first derivative of `f`.
@@ -27,12 +28,13 @@ class FiniteDifference:
     h (float): Stepsize of the approximation.
     """
 
-    def __init__(self, h, f, name, d_f=None, dd_f=None):
-        self.h = h       # pylint: disable=invalid-name
-        self.f = f       # pylint: disable=invalid-name
-        self.name = name # pylint: disable=invalid-name
-        self.d_f = d_f   # pylint: disable=invalid-name
-        self.dd_f = dd_f # pylint: disable=invalid-name
+    def __init__(self, h, h_string, f, name, d_f=None, dd_f=None):
+        self.h = h                  # pylint: disable=invalid-name
+        self.h_string = h_string    # pylint: disable=invalid-name
+        self.f = f                  # pylint: disable=invalid-name
+        self.name = name            # pylint: disable=invalid-name
+        self.d_f = d_f              # pylint: disable=invalid-name
+        self.dd_f = dd_f            # pylint: disable=invalid-name
 
     def first_finite_diff(self, x, h=None): # pylint: disable=invalid-name
         """ Calculates the value of the first finite difference of f at x.
@@ -121,7 +123,7 @@ class FiniteDifference:
         plt.xlabel('$x$')
         plt.ylabel('$y$')
         plt.title('Funktionenplot von ' + self.name +
-                  ',\nSchrittweite $h=$' + str(self.h))
+                  ', Schrittweite $h=$' + self.h_string)
 
         if self.d_f is not None:
             values_d_f = [self.d_f(x) for x in domain]
@@ -153,7 +155,7 @@ class FiniteDifference:
 
         plt.loglog(stepsizes, stepsizes, label='$h$',
                    color='lightgray')
-        plt.loglog(stepsizes, h_2, label='$h^2$',
+        plt.loglog(stepsizes, h_2, label='$h^2 $',
                    color='lightgray', linestyle='--')
         plt.loglog(stepsizes, h_3, label='$h^3$',
                    color='lightgray', linestyle=':')
@@ -173,25 +175,32 @@ def main():
 
 # Aufgabe 1.2
 
-    g_1 = FiniteDifference(np.pi/3, lambda x: np.sin(x)/x, '$g_1$',
+# a) Funktionenplot für Schrittweiten h = pi/3, pi/4, pi/5, pi/10
+
+    g_1 = FiniteDifference(np.pi/3, '$\pi/3$', lambda x: np.sin(x)/x, '$g_1$',
                            lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
                            lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
     g_1.plot_functions(np.pi, 3*np.pi, 1000)
 
-    g_1 = FiniteDifference(np.pi/4, lambda x: np.sin(x)/x,'$g_1$',
+
+    g_1 = FiniteDifference(np.pi/4, '$\pi/4$', lambda x: np.sin(x)/x,'$g_1$',
                            lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
                            lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
     g_1.plot_functions(np.pi, 3*np.pi, 1000)
 
-    g_1 = FiniteDifference(np.pi/5, lambda x: np.sin(x)/x,'$g_1$',
+
+    g_1 = FiniteDifference(np.pi/5, '$\pi/5$', lambda x: np.sin(x)/x,'$g_1$',
                            lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
                            lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
     g_1.plot_functions(np.pi, 3*np.pi, 1000)
 
-    g_1 = FiniteDifference(np.pi/10, lambda x: np.sin(x)/x,'$g_1$',
+
+    g_1 = FiniteDifference(np.pi/10, '$\pi/10$', lambda x: np.sin(x)/x,'$g_1$',
                            lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
                            lambda x: -(2*x*np.cos(x)+(-2+x**2)*np.sin(x))/(x**3))
     g_1.plot_functions(np.pi, 3*np.pi, 1000)
+
+# b) Fehlerplot (max. abs. Fehler) für Schrittweiten h = 10^l mit l = 1, 0, -1, -2...
 
     g_1.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
                                            1e-4, 1e-3, 1e-2, 1e-1, 1, 10])
