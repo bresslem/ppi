@@ -189,10 +189,10 @@ def main():
                                lambda x: (j*x*np.cos(j*x)-np.sin(j*x))/(x**2),
                                lambda x: (-2*j*x*np.cos(j*x)+(2-j**2*x**2)*np.sin(j*x))/(x**3))
 
-        g_j.plot_functions(np.pi, 3*np.pi, 1000)
+        #g_j.plot_functions(np.pi, 3*np.pi, 1000)
 
-        #g_j.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-        #                                       1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+        g_j.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
+                                               1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
 
 
 if __name__ == "__main__":
