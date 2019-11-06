@@ -18,16 +18,33 @@
 % Gliederung und Text:
 \section{Motivation}
 \label{sec:motivation}
-Hier kommt die Motivation.
+Im Gegensatz zur Analysis bietet die Numerik praktikable Nährungen an Real- bzw. Idealbilder. Die Güte dieser Näherung ist im Minimum abschätzbar oder gegen eine Toleranz beweisbar. \\
+- Wozu müssen/wollen wir Ableitungen approximieren?\\
+−	Wieso ist es sinnvoll, dies auf die dargestellte Weise durchzuführen?\\
+Die Funktionen sind durch Formeln explizit bekannt, aber das exakte Differenzieren ist sehr aufwändig und das Ermitteln von Funktionswerten ist schwierig, weil die Ableitungen komplex sind.\\
+Eines der Hauptanwendungsgebiete ist die Verarbeitung von Messwerten, wenn die Funktion nicht explizit bekannt ist, bzw. nicht in analytischer Form vorliegt, sondern nur in Form von diskreten Punkten. Da die Funktionen hier immer nur lückenhaft vorhanden sind, ist eine Ableitung mit analytischen Methoden der Differentialrechnung nicht exakt bestimmbar. Man braucht numerische Verfahren, um die Ableitungen näherungsweise zu berechnen oder zu schätzen. Dies ist zum Beispiel möglich mithilfe der finiten Differenzen.\\
+- In Praxis 1. Ableitung oft wichtig.
 
 \section{Theorie}
 \label{sec:theorie}
-- Verfahrensfehler: rechts/links zusammen\\
-- Rundungsfehler\\
-- Approximation der Ableitung\\
-- Taylorentwicklung\\
-- 1. und 2. finite Differenz\\
-- Fehlerabschätzungen
+Die Fehler der numerischen Berechnung der Ableitungen gegenüber der exakten analytischen Berechnung setzen sich zusammen aus Verfahrensfehlern, d.h. Diskretisierungs- und Abbruchfehlern, und Rundungsfehlern.\\
+Beim Verfahrensfehler hält es sich im Wesentlichen um den Unterschied zwischen dem exakten Wert der Ableitung an der Stelle x und dem exakten Wert des Differenzenquotienten an der Stelle x. Man ersetzt den Differentialquotienten durch den Sekantenanstieg.\\
+- Computerarithmetik\\
+Die Rundungsfehler sind darauf zurückzuführen, dass die Zahlendarstellung auf dem Computer nur mit endlicher Genauigkeit, näherungsweise an die eigentliche Zahl herankommt.
+
+\subsection{Herleitung der Formeln}
+\label{ssec:herleitung}
+Zur Herleitung einer Formel für die Approximation der Ableitung sind zwei Ansätze möglich: Der geometrische Ansatz über die Derfinition der Ableitung mittels des Differentialquotienten, also den Anstieg der Tangente an die Funktion an der zu betrachtenden Stelle und der Ansatz über die Taylorentwicklung. Ersterer fordert, dass man h (DEFINITION AUFSCHREIBEN) gegen 0 laufen lässt. Dies ist numerisch nicht Möglich, da es im Rechner zu einem Overflow kömmen kann.\\
+Wenn Rundungsfehler vernachlässigt werden, geht der numerische Wert des Differenzenquotienten gegen den exakten Wert der Ableitung. \\
+Die Taylorentwicklung liefert eine Approximationsmöglichkeit für Ableitungen von Funktionen mittels der Taylorentwicklung von einer Funktion f um einen Wert x, also an Stellen x+h, x-h.\\
+Der Differenzenquotient misst die mittlere spezifische Veränderung von f zwischen den Stellen x und x+h, indem die Steigung der Sekante durch x und x+h berechnet wird. Man unterscheidet zwischen dem rechtsseitigem Differenzenquotienten, bei dem man die Steigung zwischen x und x+h betrachtet, und dem linksseitigem Differenzenquotienten, bei dem man die Steigung zwischen x und x-h betrachtet.\\
+Die Nutzung des links- oder rechtsseitigen Differenzenquotienten ist suboptimal vorallem für einseitig gekrümmte Funktionsgraphen, bei denen man oft eine sehr hohe Abweichung zwischen Sekanten- und Tangentesteigung beobachten kann. Deshalb kann es sinnvoll sein diesen Fehler durch Mittelung zu verkleinern und das arithmetische Mittel der beiden einseitigen Differenzenquotienten zu betrachten, d.h. die Sekantensteigung zwischen x-h und x+h. Dies bezeichnet man als symmetrischen Differenzenquotienten erster Ordnung.\\
+Um die zweite Ableitung zu approximieren, kann man analog den symmetrischen Differenzenquotienten zweiter Ordnung nutzen. (FORMELN)\\
+
+\subsection{Optimale Schrittweite finden}
+\label{ssec:schrittweite}
+Ein Problem bei der Approximation mit Differenzenquotienten ist die Wahl der optimalen Schrittweite h. Ein zu großes h führt zu Verfahrensfehlern, ein zu kleines h zu Auslöschung.\\
+Beim Vermindern der Schrittweite ist zu erwarten, dass der Fehler zunächst kleiner wird, da die Genauigkeit steigt. Da Maschinenzahlen jedoch nur eine endliche Genauigkeit bezitzen, muss man bei zu kleinen Schrittweiten mit Auslöschungen bei der Subtraktion rechnen und damit wieder mit einer sinkenden Genauigkeit.
 
 \section{Experimente}
 \label{sec:experiment}
