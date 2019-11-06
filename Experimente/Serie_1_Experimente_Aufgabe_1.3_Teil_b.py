@@ -190,8 +190,10 @@ def main():
 
         #g_j.plot_functions(np.pi, 3*np.pi, 1000)
 
-        g_j.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                               1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
+        g_j.plot_errors(np.pi, 3*np.pi, 1000,
+                        [1e-10, 5e-10, 1e-9, 5e-9, 1e-8, 5e-8, 1e-7, 5e-7,
+                         1e-6, 5e-6, 1e-5, 5e-5, 1e-4, 5e-4, 1e-3, 5e-3,
+                         1e-2, 5e-2, 1e-1, 1e-1, 5, 10])
 
 
 if __name__ == "__main__":
