@@ -47,8 +47,15 @@ Der Differenzenquotient misst also die mittlere spezifische Änderung von $f$ zw
 \subsection{Approximieren von Ableitungen via Taylorentwicklung}
 \label{ssec:herleitung2}
 Auch mithilfe der Taylorentwicklung einer Funktion lassen sich Formeln zur Approximation der Ableitungen dieser Funktion herleiten.\\
-Betrachtet man auf einem Intervall $[a,b]\in\mathbb{R}$ eine relle Funktion $f\in C^\infty([a,b])$, so kann man die Ableitung an einer Stelle $x\in(a,b)$ abschätzen, indem man sich zusätzlich eine Stelle $x_+ := x+h\in[a,b]$ mit $0<h\in\mathbb{R}$ hernimmt und den Funktionswert von $f$ an der Stelle $x_+$ mithilfe der Taylorentwicklung approximiert.
-\[f(x_+)=\sum_{n=0}^{\infty}\frac{f^(n)(x)}{n!}h^n=f(x)+f'(x)h+\frac{f''(x)}{2}h^2+...\]
+Betrachtet man auf einem Intervall $[a,b]\in\mathbb{R}$ eine relle Funktion $f\in C^\infty([a,b])$, so kann man die Ableitung an einer Stelle $x\in(a,b)$ abschätzen, indem man sich zusätzlich eine Stelle $x_+ := x+h\in[a,b]$ mit $0<h\in\mathbb{R}$ hernimmt und den Funktionswert von $f$ an der Stelle $x_+$ mithilfe der Taylorentwicklung
+\[f(x_+)=\sum_{n=0}^{\infty}\frac{f^{(n)}(x)}{n!}h^n=f(x)+f'(x)h+\frac{f''(x)}{2}h^2+...\]
+approximiert. Wenn man diese entsprechend umstellt erhält man die Formel für die \textit{erste finite Differenz}
+\[(D_h^{(1)}f)(x)=\frac{f(x_+)-f(x)}{h}=f'(x)+\sum_{n=2}^{\infty}\frac{f^(n)(x)}{n!}h^{n-1}\;.\]\\
+Auch die zweite Ableitung von $f$ an der Stelle $x$ möchten wir auf diese Weise nur mittels Funktionswerten von $f$ approximieren. Dies kann man jedoch nur mit der obigen Taylorentwicklung von $f$ an der Stelle $x_+$ nicht gut, da so die erste Ableitung zum Teil des Fehlers werden würde. Deshalb zieht man zusätzlich zur Taylorentwicklung an der Stelle $x_+$ die Taylorentwicklung von $f$ an der Stelle $x_-:=x-h\in[a,b]$
+\[f(x_-)=\sum_{n=0}^{\infty}\frac{f^{(n)}(x)}{n!}(-h)^n=f(x)-f'(x)h+\frac{f''(x)}{2}h^2+...\]
+in Betracht.\\
+Durch Summation der beiden Taylorentwicklungen erhält man die Formel für die \textit{zweite finite Differenz}
+\[(D_h^{(2)}f)(x)=\frac{f(x_+)-2f(x)+f(x_-)}{h^2}=f''(x)+\frac{f^{(4)}(x)h^2}{3*4}+...\;.\]
 
 \subsection{Fehler und Schrittweite}
 \label{ssec:schrittweite}
