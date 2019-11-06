@@ -17,6 +17,7 @@ class FiniteDifference:
     Parameters
     ----------
     h (float): Stepsize of the approximation.
+    h_string (string): Stepsize h as string.
     f (callable): Function to approximate the derivatives of.
     name (string): Name of function f.
     d_f (callable, optional): The analytic first derivative of `f`.
@@ -27,12 +28,13 @@ class FiniteDifference:
     h (float): Stepsize of the approximation.
     """
 
-    def __init__(self, h, f, name, d_f=None, dd_f=None):
-        self.h = h       # pylint: disable=invalid-name
-        self.f = f       # pylint: disable=invalid-name
-        self.name = name # pylint: disable=invalid-name
-        self.d_f = d_f   # pylint: disable=invalid-name
-        self.dd_f = dd_f # pylint: disable=invalid-name
+    def __init__(self, h, h_string, f, name, d_f=None, dd_f=None):
+        self.h = h                  # pylint: disable=invalid-name
+        self.h_string = h_string    # pylint: disable=invalid-name
+        self.f = f                  # pylint: disable=invalid-name
+        self.name = name            # pylint: disable=invalid-name
+        self.d_f = d_f              # pylint: disable=invalid-name
+        self.dd_f = dd_f            # pylint: disable=invalid-name
 
     def first_finite_diff(self, x, h=None): # pylint: disable=invalid-name
         """ Calculates the value of the first finite difference of f at x.
@@ -121,7 +123,7 @@ class FiniteDifference:
         plt.xlabel('$x$')
         plt.ylabel('$y$')
         plt.title('Funktionenplot von ' + str(self.name) +
-                  ',\nSchrittweite $h=$' + str(self.h))
+                  ', Schrittweite $h=$' + self.h_string)
 
         if self.d_f is not None:
             values_d_f = [self.d_f(x) for x in domain]
@@ -175,20 +177,18 @@ def main():
 
 # Aufgabe 1.3 Teil b
 
-    js = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384,
-          32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608]
+# b) Fehlerplot für in x-Richtung gestauchte und in y-Richtung gestreckte Funktion
+#    zur Veranschaulichung der Entwicklung des Graphen auch Funktionenplot
 
-    #js = [1, 2, 10, 20, 50, 100, 500, 1000, 5000, 10_000, 50_000, 100_000, 500_000,
-    #      1_000_000, 5_000_000, 10_000_000]
-    # FREAKY, mit der zweiten js-Liste spinnt das Ganze ab j=500,
-    # ich vermute, das hat iwas mit der Formel zu tun,
-    #die verträgt scheinbar manche Werte besser und andere schlechter
+    js = [1, 2, 4, 8, 16, 16**2, 16**3, 16**4, 16**5, 16**6, 16**7, 16**8]
 
     for j in js:
-        g_j = FiniteDifference(np.pi/5, lambda x: np.sin(j*x)/x, '$g_j$ mit $j=$' + str(j),
+        g_j = FiniteDifference(np.pi/10, '$\pi/10$', lambda x: np.sin(j*x)/x,
+                               '$g_j$ mit $j=$' + str(j),
                                lambda x: (j*x*np.cos(j*x)-np.sin(j*x))/(x**2),
                                lambda x: (-2*j*x*np.cos(j*x)+(2-j**2*x**2)*np.sin(j*x))/(x**3))
-        g_j.plot_functions(np.pi, 3*np.pi, 1000)
+
+        #g_j.plot_functions(np.pi, 3*np.pi, 1000)
 
         g_j.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
                                                1e-4, 1e-3, 1e-2, 1e-1, 1, 2, 3, 4])
