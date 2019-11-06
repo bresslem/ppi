@@ -7,7 +7,7 @@
 
 \begin{document}
 % ----------------------------------------------------------------------
-\title{PPI Bericht Serie 1}
+\title{Approximation von Ableitungen\\mittels finiter Differenzen}
 \author{Marisa Breßler und Anne Jeschke}
 \date{08.11.2019}
 \maketitle
@@ -16,16 +16,16 @@
 \tableofcontents
 % ----------------------------------------------------------------------------
 % Gliederung und Text:
-\section{Motivation}
-\label{sec:motivation}
-Im Gegensatz zur Analysis bietet die Numerik praktikable Nährungen an Real- bzw. Idealbilder. Die Güte dieser Näherung ist im Minimum abschätzbar oder gegen eine Toleranz beweisbar. \\
-- Wozu müssen/wollen wir Ableitungen approximieren?\\
-−	Wieso ist es sinnvoll, dies auf die dargestellte Weise durchzuführen?\\
-Die Funktionen sind durch Formeln explizit bekannt, aber das exakte Differenzieren ist sehr aufwändig und das Ermitteln von Funktionswerten ist schwierig, weil die Ableitungen komplex sind.\\
-Eines der Hauptanwendungsgebiete ist die Verarbeitung von Messwerten, wenn die Funktion nicht explizit bekannt ist, bzw. nicht in analytischer Form vorliegt, sondern nur in Form von diskreten Punkten. Da die Funktionen hier immer nur lückenhaft vorhanden sind, ist eine Ableitung mit analytischen Methoden der Differentialrechnung nicht exakt bestimmbar. Man braucht numerische Verfahren, um die Ableitungen näherungsweise zu berechnen oder zu schätzen. Dies ist zum Beispiel möglich mithilfe der finiten Differenzen.\\
-- In Praxis 1. Ableitung oft wichtig.
+\pagebreak \section{Einleitung}
+\label{sec:einleitung}
+Im Gegensatz zur Analysis bietet die Numerik praktikable Nährungen an Real- bzw. Idealbilder. Die Güte dieser Näherung ist im Minimum abschätzbar, bleibt also unterhalb einer beweisbaren Toleranzgrenze. \\
+Ableitungen von Funktionen spielen in der Praxis eine große Rolle. So dienen die erste und die zweite Ableitung in der Physik z.B. der Untersuchung von Bewegungsabläufen (Geschwindigkeit und Beschleunigung definiert als erste bzw. zweite Ableitung des Weges nach der Zeit). Änderungsprozesse müssen in ganz unterschiedlichen Kontexten erfasst und/oder vorausgesagt werden. Dabei ist es in einer Vielzahl von Praxisbeispielen notwendig, Ableitungen zu approximieren. U.U. ist eine Funktion zwar durch Formeln bekannt, doch das exakte Differenzieren gestaltet sich als aufwändig oder das Ermitteln von Funktionswerten als schwierig, weil die Ableitungsfunktion von sehr komplexer Natur ist. Das näherungsweise Differenzieren hat eines ihrer Hauptanwendungsgebiete bei der Verarbeitung von Messwerten. Hier ist die Funktion i.A. nicht explizit bekannt, d.h. sie liegt nicht in analytischer Form, sondern nur in Form von diskreten Punkten vor. Aufgrund der gegebenen lückenhaften Informationen ist die Ableitung mit analytischen Methoden der Differentialrechnung nicht exakt bestimmbar. An dieser Stelle werden numerische Verfahren verwendet, um die Ableitungen (bzw. die Werte der Ableitungen an bestimmten Stellen) mit einer gewissen Genauigkeit näherungsweise zu ermitteln. \\
+\linebreak 
+\textit{Numerik beantwortet die Frage: Was bleibt vom Ableitungsbegriff übrig, wenn alle Rechnungen in endlich vielen Schritten und mit endlich vielen Zahlen in endliche vielen Ziffern abgehandelt werden müssen?} (Schneebeli, S. 4)\\
+\linebreak 
+Numerisches Differenzieren ist z.B. mit den sogenannten finiten Differenzen möglich. Diese stellen eine überschaubares Verfahren zum Approximieren von Ableitungen zur Verfügung. Auf welche Weise und wie genau das im Detail funktioniert, soll im Folgenden erläutert werden.  \\
 
-\section{Theorie}
+\pagebreak \section{Theorie}
 \label{sec:theorie}
 Die Fehler der numerischen Berechnung der Ableitungen gegenüber der exakten analytischen Berechnung setzen sich zusammen aus Verfahrensfehlern, d.h. Diskretisierungs- und Abbruchfehlern, und Rundungsfehlern.\\
 Beim Verfahrensfehler hält es sich im Wesentlichen um den Unterschied zwischen dem exakten Wert der Ableitung an der Stelle x und dem exakten Wert des Differenzenquotienten an der Stelle x. Man ersetzt den Differentialquotienten durch den Sekantenanstieg.\\
@@ -41,12 +41,12 @@ Der Differenzenquotient misst die mittlere spezifische Veränderung von f zwisch
 Die Nutzung des links- oder rechtsseitigen Differenzenquotienten ist suboptimal vorallem für einseitig gekrümmte Funktionsgraphen, bei denen man oft eine sehr hohe Abweichung zwischen Sekanten- und Tangentesteigung beobachten kann. Deshalb kann es sinnvoll sein diesen Fehler durch Mittelung zu verkleinern und das arithmetische Mittel der beiden einseitigen Differenzenquotienten zu betrachten, d.h. die Sekantensteigung zwischen x-h und x+h. Dies bezeichnet man als symmetrischen Differenzenquotienten erster Ordnung.\\
 Um die zweite Ableitung zu approximieren, kann man analog den symmetrischen Differenzenquotienten zweiter Ordnung nutzen. (FORMELN)\\
 
-\subsection{Optimale Schrittweite finden}
+\subsection{Optimale Schrittweite $h$}
 \label{ssec:schrittweite}
 Ein Problem bei der Approximation mit Differenzenquotienten ist die Wahl der optimalen Schrittweite h. Ein zu großes h führt zu Verfahrensfehlern, ein zu kleines h zu Auslöschung.\\
 Beim Vermindern der Schrittweite ist zu erwarten, dass der Fehler zunächst kleiner wird, da die Genauigkeit steigt. Da Maschinenzahlen jedoch nur eine endliche Genauigkeit bezitzen, muss man bei zu kleinen Schrittweiten mit Auslöschungen bei der Subtraktion rechnen und damit wieder mit einer sinkenden Genauigkeit.
 
-\section{Experimente}
+\pagebreak \section{Experimente}
 \label{sec:experiment}
 - Untersuchen Konvergenzverhalten der Approximation der Ableitungen mit Finiten Differenzen\\
 - 1.: $g_1(x)=sin(x)/x$ auf $[\pi,3\pi]$ mit $p=1000$\\
@@ -64,12 +64,16 @@ Beim Vermindern der Schrittweite ist zu erwarten, dass der Fehler zunächst klei
 - j=500 e2 fast gleich e1\\
 
 - Amplitude der exakten 2. Abl immer viel größer als der Appr.
-\section{Auswertung}
+
+\pagebreak \section{Auswertung}
 \label{sec:auswertung}
 - Größenordunung des Fehlers bei 1. Abl größer, weil h, bei 2. kleiner, weil h hoch 2 für h<1\\
 - bei zu wenig auswertungspunkten ungenauer plot, etc.\\
 
-\section{Zusammenfassung}
+\pagebreak \section{Zusammenfassung}
 \label{sec:zusammenfassung}
 Dann die Zusammenfassung.
+
+\pagebreak \section{Literatur}
+\label{sec:literatur}
 \end{document}
