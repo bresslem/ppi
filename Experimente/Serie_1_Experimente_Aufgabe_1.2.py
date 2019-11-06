@@ -166,6 +166,7 @@ class FiniteDifference:
         plt.ylabel('$e_g(h)$')
         plt.title('Fehlerplot von ' + self.name)
         plt.legend(loc='lower right')
+        plt.grid()
         plt.show()
         plt.figure()
 
@@ -202,8 +203,10 @@ def main():
 
 # b) Fehlerplot (max. abs. Fehler) für Schrittweiten h = 10^l mit l = 1, 0, -1, -2...
 
-    g_1.plot_errors(np.pi, 3*np.pi, 1000, [1e-8, 1e-7, 1e-6, 1e-5,
-                                           1e-4, 1e-3, 1e-2, 1e-1, 1, 10])
+    g_1.plot_errors(np.pi, 3*np.pi, 1000, [1e-10, 5e-10, 1e-9, 5e-9, 1e-8, 5e-8,
+                                           1e-7, 5e-7, 1e-6, 5e-6, 1e-5, 5e-5,
+                                           1e-4, 5e-4, 1e-3, 5e-3, 1e-2, 5e-2,
+                                           1e-1, 1e-1, 5, 10])
 
 
 if __name__ == "__main__":
