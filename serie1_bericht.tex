@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
+\usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{graphicx}
 
@@ -23,6 +24,25 @@ Ableitungen von Funktionen spielen in der Praxis eine große Rolle. So dienen di
 \linebreak
 \textit{Numerik beantwortet die Frage: Was bleibt vom Ableitungsbegriff übrig, wenn alle Rechnungen in endlich vielen Schritten und mit endlich vielen Zahlen in endliche vielen Ziffern abgehandelt werden müssen?} (Schneebeli, S. 4)\\
 \linebreak
+Numerisches Differenzieren ist z.B. mit den sogenannten finiten Differenzen möglich. Diese stellen eine überschaubares Verfahren zum Approximieren von Ableitungen zur Verfügung. Auf welche Weise und wie gut, d.h. mit welcher Genauigkeit, das funktioniert, soll im Folgenden erläutert werden. \\
+
+\pagebreak \section{Theorie}
+\label{sec:theorie}
+Die Formeln der finiten Differenzen, auch Differenzenformeln genannt, lassen sich auf verschiedene Weisen herleiten. Im Folgenden wollen wir zwei Ansätze vorstellen: Zum einen ist das ein geometrischer Ansatz, der die Definition der Ableitung über den Differentialquotienten nutzt, d.h. den Anstieg der Tangente an der zu untersuchenden Funktion an der zu betrachtenden Stelle. Zum anderen ist es ein Ansatz, der sich die Eigenschaften der Taylorentwicklung zunutze macht.
+
+\subsection{Vom Differential- zum Differenzenquotienten und umgekehrt}
+\label{ssec:herleitung1}
+Der Ausgangspunkt unserer geometrischen Herleitung der Differenzenformeln bildet die Definition der Ableitung: \\
+\linebreak
+Eine Funktion $f:D \rightarrow \mathbb{R}$ (mit $D\subset \mathbb{R}$) heißt differenzierbar an der Stelle $x_0 \in D$, falls folgender Grenzwert existiert: \[f'(x_0) = \lim _{x\to x_0} {\frac {f(x)-f(x_0)}{x-x_{0}}} = \lim _{h\to 0} {\frac {f(x_0+h)-f(x_0)}{h}}\] Dieser Grenzwert heißt \textit{Differentialquotient} / \textit{Ableitung} von $f$ nach $x$ an der Stelle $x_0$.
+\linebreak
+
+Ersterer fordert, dass man h (DEFINITION AUFSCHREIBEN) gegen 0 laufen lässt. Dies ist numerisch nicht Möglich, da es im Rechner zu einem Overflow kömmen kann.\\
+Wenn Rundungsfehler vernachlässigt werden, geht der numerische Wert des Differenzenquotienten gegen den exakten Wert der Ableitung. \\
+Der Differenzenquotient misst die mittlere spezifische Veränderung von f zwischen den Stellen x und x+h, indem die Steigung der Sekante durch x und x+h berechnet wird. Man unterscheidet zwischen dem rechtsseitigem Differenzenquotienten, bei dem man die Steigung zwischen x und x+h betrachtet, und dem linksseitigem Differenzenquotienten, bei dem man die Steigung zwischen x und x-h betrachtet.\\
+Die Nutzung des links- oder rechtsseitigen Differenzenquotienten ist suboptimal vorallem für einseitig gekrümmte Funktionsgraphen, bei denen man oft eine sehr hohe Abweichung zwischen Sekanten- und Tangentesteigung beobachten kann. Deshalb kann es sinnvoll sein diesen Fehler durch Mittelung zu verkleinern und das arithmetische Mittel der beiden einseitigen Differenzenquotienten zu betrachten, d.h. die Sekantensteigung zwischen x-h und x+h. Dies bezeichnet man als symmetrischen Differenzenquotienten erster Ordnung.\\
+Um die zweite Ableitung zu approximieren, kann man analog den symmetrischen Differenzenquotienten zweiter Ordnung nutzen. (FORMELN)
+\linebreak
 Numerisches Differenzieren ist z.B. mit den sogenannten finiten Differenzen möglich. Diese stellen eine überschaubares Verfahren zum Approximieren von Ableitungen zur Verfügung. Auf welche Weise und wie gut, d.h. mit welcher Genauigkeit, das funktioniert, soll im Folgenden erläutert werden.  \\
 
 \pagebreak \section{Theorie}
@@ -41,13 +61,24 @@ Der Differenzenquotient misst die mittlere spezifische Veränderung von $f$ zwis
 Die Nutzung des links- oder rechtsseitigen Differenzenquotienten ist suboptimal vorallem für einseitig gekrümmte Funktionsgraphen, bei denen man oft eine sehr hohe Abweichung zwischen Sekanten- und Tangentesteigung beobachten kann. Deshalb kann es sinnvoll sein diesen Fehler durch Mittelung zu verkleinern und das arithmetische Mittel der beiden einseitigen Differenzenquotienten zu betrachten, d.h. die Sekantensteigung zwischen $x-h$ und $x+h$. Dies bezeichnet man als symmetrischen Differenzenquotienten erster Ordnung.\\
 Um die zweite Ableitung zu approximieren, kann man analog den symmetrischen Differenzenquotienten zweiter Ordnung nutzen. (FORMELN)\\
 
-\subsection{Optimale Schrittweite $h$}
+\subsection{Approximieren von Ableitungen via Taylorentwicklung}
+\label{ssec:herleitung2}
+Die Taylorentwicklung liefert eine Approximationsmöglichkeit für Ableitungen von Funktionen mittels der Taylorentwicklung von einer Funktion f um einen Wert x, also an Stellen x+h, x-h.
+
+\subsection{Fehler und Schrittweite}
 \label{ssec:schrittweite}
+Die Fehler der numerischen Berechnung der Ableitungen gegenüber der exakten analytischen Berechnung setzen sich zusammen aus Verfahrensfehlern, d.h. Diskretisierungs- und Abbruchfehlern, und Rundungsfehlern.\\
+Beim Verfahrensfehler hält es sich im Wesentlichen um den Unterschied zwischen dem exakten Wert der Ableitung an der Stelle x und dem exakten Wert des Differenzenquotienten an der Stelle x. Man ersetzt den Differentialquotienten durch den Sekantenanstieg.\\
+- Computerarithmetik\\
+Die Rundungsfehler sind darauf zurückzuführen, dass die Zahlendarstellung auf dem Computer nur mit endlicher Genauigkeit, näherungsweise an die eigentliche Zahl herankommt. \\
+
+Ein Problem bei der Approximation mit Differenzenquotienten ist die Wahl der optimalen Schrittweite h. Ein zu großes h führt zu Verfahrensfehlern, ein zu kleines h zu Auslöschung.\\
+Beim Vermindern der Schrittweite ist zu erwarten, dass der Fehler zunächst kleiner wird, da die Genauigkeit steigt. Da Maschinenzahlen jedoch nur eine endliche Genauigkeit bezitzen, muss man bei zu kleinen Schrittweiten mit Auslöschungen bei der Subtraktion rechnen und damit wieder mit einer sinkenden Genauigkeit. \\
 Ein Problem bei der Approximation mit Differenzenquotienten ist die Wahl der optimalen Schrittweite $h$. Ein zu großes $h$ führt zu Verfahrensfehlern, ein zu kleines $h$ zu Auslöschung.\\
 Beim Vermindern der Schrittweite ist zu erwarten, dass der Fehler zunächst kleiner wird, da die Genauigkeit steigt. Da Maschinenzahlen jedoch nur eine endliche Genauigkeit bezitzen, muss man bei zu kleinen Schrittweiten mit Auslöschungen bei der Subtraktion rechnen und damit wieder mit einer sinkenden Genauigkeit.
 
-\pagebreak \section{Experimente}
-\label{sec:experiment}
+\pagebreak \section{Experimente und Beobachtungen}
+\label{sec:experimente}
 - Untersuchen Konvergenzverhalten der Approximation der Ableitungen mit Finiten Differenzen\\
 - 1.: $g_1(x)=sin(x)/x$ auf $[\pi,3\pi]$ mit $p=1000$\\
 - Vergleich der exakten und approximierten ersten und zweiten Ableitungen von g1 für $h = \pi/3$, $h = \pi/4$, $h = \pi/5$ und $h = \pi/10$\\
