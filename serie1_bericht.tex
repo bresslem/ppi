@@ -62,9 +62,9 @@ Der Differenzenquotient misst also die mittlere spezifische Änderung von $f$ zw
 
 \subsection{Approximieren von Ableitungen via Taylorentwicklung}
 \label{ssec:herleitung2}
-Auch mit Hilfe der Taylorentwicklung einer Funktion lassen sich Formeln zur Approximation der Ableitungen einer Funktion herleiten. Betrachtet man auf einem Intervall $[a,b] \in \mathbb{R}$ eine reelle Funktion $f \in C^\infty([a,b])$, so kann man die Ableitung an einer Stelle $x \in (a,b)$ annähernd bestimmen, indem man zusätzlich eine in der Nähe liegende Stelle $(x+h) \in [a,b]$ mit $0<h \in \mathbb{R}$ betrachtet und den Funktionswert von $f$ an dieser Stelle $x+h$ mit Hilfe der Taylorentwicklung
+Auch mit Hilfe der Taylorentwicklung einer Funktion lassen sich Formeln zur Approximation der Ableitungen einer Funktion herleiten. Betrachtet man auf einem Intervall $[a,b] \in \mathbb{R}$ eine reelle Funktion $f \in C^\infty([a,b])$, so kann man die Ableitung an einer Stelle $x \in (a,b)$ annähernd bestimmen, indem man zusätzlich eine in der Nähe liegende Stelle $(x+h) \in [a,b]$ mit $0<h \in \mathbb{R}$ betrachtet und den Funktionswert von $f$ an dieser Stelle $x+h$ mit Hilfe der Taylorentwicklung approximiert:
 \[f(x+h) = \sum_{n=0}^{\infty}\frac{f^{(n)}(x)}{n!}h^n = f(x)+f'(x)h+\frac{f''(x)}{2}h^2+...\]
-approximiert. Wenn man diese Formel entsprechend äquivalent umformt, erhält man die Formel für die \textbf{\textit{erste finite Differenz}} von $f$ an der Stelle $x$:
+Wenn man diese Formel entsprechend äquivalent umformt, erhält man die Formel für die \textbf{\textit{erste finite Differenz}} von $f$ an der Stelle $x$:
 \begin{shaded}
 \[(D_h^{(1)}f)(x) = \frac{f(x+h)-f(x)}{h} = f'(x)+\sum_{n=2}^{\infty}\frac{f^{(n)}(x)}{n!}h^{n-1}=f'(x)+\mathcal{O}(h)\;\]
 \end{shaded}
