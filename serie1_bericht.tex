@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{framed}
 \usepackage{xcolor}
+\usepackage[nottoc]{tocbibind}
 \colorlet{shadecolor}{gray!25}
 \setlength{\parindent}{0pt}
 
@@ -28,7 +29,7 @@
 Im Gegensatz zur Analysis bietet die Numerik praktikable Näherungen an Real- bzw. Idealbilder. Die Güte dieser Näherung ist im Minimum abschätzbar, bleibt also unterhalb einer beweisbaren Toleranzgrenze. \\
 Ableitungen von Funktionen spielen in der Praxis eine große Rolle. So dienen die erste und die zweite Ableitung in der Physik zum Beispiel der Untersuchung von Bewegungsabläufen, wo die Geschwindigkeit und Beschleunigung definiert werden als erste und zweite Ableitung des Weges nach der Zeit. Änderungsprozesse müssen in ganz unterschiedlichen Kontexten erfasst und/oder vorausgesagt werden. Dabei ist es in einer Vielzahl von Praxisbeispielen notwendig, Ableitungen zu approximieren. Unter Umständen ist eine Funktion zwar durch Formeln bekannt, doch das exakte Differenzieren gestaltet sich als aufwändig oder das Ermitteln von Funktionswerten als schwierig, weil die Ableitungsfunktion von sehr komplexer Natur ist. Das näherungsweise Differenzieren hat eines ihrer Hauptanwendungsgebiete bei der Verarbeitung von Messwerten. Hier ist die Funktion im Allgemeinen nicht explizit bekannt, das heißt sie liegt nicht in analytischer Form, sondern nur in Form von diskreten Punkten vor. Aufgrund der gegebenen lückenhaften Informationen ist die Ableitung mit analytischen Methoden der Differentialrechnung nicht exakt bestimmbar. An dieser Stelle werden numerische Verfahren verwendet, um die Ableitungen beziehungsweise die Werte der Ableitungen an bestimmten Stellen mit einer gewissen Genauigkeit näherungsweise zu ermitteln. \\
 \linebreak
-\textit{Numerik beantwortet die Frage: Was bleibt vom Ableitungsbegriff übrig, wenn alle Rechnungen in endlich vielen Schritten und mit endlich vielen Zahlen in endliche vielen Ziffern abgehandelt werden müssen?} (Schneebeli, S. 4)\\
+\textit{Numerik beantwortet die Frage: Was bleibt vom Ableitungsbegriff übrig, wenn alle Rechnungen in endlich vielen Schritten und mit endlich vielen Zahlen in endliche vielen Ziffern abgehandelt werden müssen?}\cite{schneebeli}\\
 \linebreak
 Numerisches Differenzieren ist zum Beispiel mit den sogenannten finiten Differenzen möglich. Diese stellen eine überschaubares Verfahren zum Approximieren von Ableitungen zur Verfügung. Auf welche Weise und wie gut, das heißt mit welcher Genauigkeit, das funktioniert, soll im Folgenden erläutert werden. \\
 
@@ -141,15 +142,14 @@ Da wir hier durch $h^2$ teilen, wächst der Fehler hier quadratisch wieder an, w
 Betrachten wir nun die Funktionen $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j\cdot x)/x$.
 Da wir bei kleiner werdenden $j$'s auch mit immer kleiner werdenden Zahlen rechnen, werden auch die Größenordungen der absoluten Fehler immer kleiner.
 Die Funktion $g_j$ wird bei kleinerem $j$ immer weiter in $x$-Richtung gestaucht, weshalb auch ihre Steigung immer weiter gegen $0$ geht und damit auch ihre zweite Ableitung.
-Bei kleiner werdenden $j$'s befindet sich das "`optimale"' $h$, bei dem die Fehler am geringsten sind schon weiter rechts. Man braucht wegen der geringen Steigung kein sehr kleines $h$, um eine "`optimale"' Abschätzung zu erzielen.Da wir hier mit immer kleineren Zahlen hantieren, tritt die Auslöschung außerdem schon früher ein.
+Bei kleiner werdenden $j$'s befindet sich das "`optimale"' $h$, bei dem die Fehler am geringsten sind schon weiter rechts. Man braucht wegen der geringen Steigung kein sehr kleines $h$, um eine "`optimale"' Abschätzung zu erzielen. Da wir hier mit immer kleineren Zahlen hantieren, tritt die Auslöschung außerdem schon früher ein.
 Analog werden die absoluten Fehler bei größer werdenden $j$'s immer größer.
 Die Frequenz der Funktion steigt hier stark an und damit wirken sich auch bestimmte Verfahrensfehler mehr aus. So kann es sich zum Beispiel viel stärker auswirken an welchen Stellen die Funktion ausgewertet wird. Wählt man eine ungünstige Intervalllänge $p$, so kann es unter Umständen dazu kommen, dass man die Funktion immer genau da auswertet, wo ihre Steigung gerade denselben Wert hat.
 Man braucht also mehr Auswertungspunkte, um einen genaueren Plot zu zeichnen und ein kleineres $h$, um einen möglichst kleinen Fehler zu erzielen, der Wert für das "`optimale"' $h$ verschiebt sich also nach links.\\
 Bei sehr kleinen Werten von $j$ kann man beobachten, dass der
 
-\pagebreak \section{Zusammenfassung}
+\pagebreak \section{Zusammenfassung und Ausblick}
 \label{sec:zusammenfassung}
-Zusammenfassung und Ausblick \\
 - Vorteile: sehr überschaubare, leicht anwendbare Formel, einfaches Verfahren mit
 quadratischer Konvergenzgeschwindigkeit (zentrale Differenzenquotienten) \\
 - Nachteile: sehr kleine Zahlen und Schrittweiten problematisch \\
@@ -159,6 +159,7 @@ Effizienz > Wie viel Zeit benötigt Rechner zum Bereitstellen einer passablen L�
 Stichwort Genauigkeit > Könnten wir die Formel analytisch so äquivalent umstellen,
 dass genauere Ergebnisse geliefert werden? \\
 
-\pagebreak \section{Literatur}
-\label{sec:literatur}
+\bibliographystyle{unsrt}
+\bibliography{serie1_literatur}
+
 \end{document}
