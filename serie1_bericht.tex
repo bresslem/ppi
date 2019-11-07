@@ -135,15 +135,17 @@ Dies ist in der Theorie darauf zurückzuführen, dass der Fehler der ersten fini
 Da wir im Allgemeinen mit $h<1$ rechnen, konvergiert die zweite finite Differenz also schneller gegen die analytische Ableitung.\\
 Im Fehlerplot von $g_1$ zeigt sich wiederum, dass die Fehler erst wie erwartet bei kleiner werdendem $h$ linear bzw. quadratisch konvergiert, jedoch ab einer bestimmten Grenze wieder größer wird.
 Dies lässt sich mit der Auslöschung erklären, die auftritt, wenn man zwei Maschinenzahlen subtrahiert, die sehr nah beieinander liegen.
-Rechnet der Computer also mit der gegebenen Formel $(D_h^{(1)}f)(x) = \frac{f(x+h)-f(x)}{h}$ die erste finite Differenz aus und liegt $f(x+h)$ genügend nah an $f(x)$, dann reicht die Genauigkeit der Maschinenzahlen mit 52 Bit Mantisse nicht mehr aus, um den Unterschied zwischen beiden beliebig genau zu berechnen und die Genauigkeit der Rechnung sinkt wieder.
+Rechnet der Computer also mit der gegebenen Formel $(D_h^{(1)}g_1)(x) = \frac{g_1(x+h)-g_1(x)}{h}$ die erste finite Differenz aus und liegt $g_1(x+h)$ genügend nah an $g_1(x)$, dann reicht die Genauigkeit der Maschinenzahlen mit 52 Bit Mantisse nicht mehr aus, um den Unterschied zwischen beiden beliebig genau zu berechnen und die Genauigkeit der Rechnung sinkt wieder.
 Den gleichen Auslöschungseffekt sieht man auch bei der Formel $(D_h^{(2)}f)(x) = \frac{f(x+h)-2f(x)+f(x-h)}{h^2}$, mit der wir die zweite finite Differenz berechnen.
 Da wir hier durch $h^2$ teilen, wächst der Fehler hier quadratisch wieder an, während er bei der ersten finiten Differenz nur linear wieder wächst.\\\\
 Betrachten wir nun die Funktionen $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j\cdot x)/x$.
 Da wir bei kleiner werdenden $j$'s auch mit immer kleiner werdenden Zahlen rechnen, werden auch die Größenordungen der absoluten Fehler immer kleiner.
-Analog werden sie bei größer werdenden $j$'s immer größer.
-Bei kleiner werdenden $j$'s befindet sich das "`optimale"' $h$, bei dem die Fehler am geringsten sind schon weiter rechts, es ist also größer, da wir hier mit immer kleineren Zahlen hantieren, die Auslöschung tritt also schon früher ein.
-Genauso verschiebt sie sich bei großen Werten für $j$ nach links, da dort die Auslöschung erst später zu tragen kommt.
-- bei zu wenig Auswertungspunkten ungenauer Plot \\
+Die Funktion $g_j$ wird bei kleinerem $j$ immer weiter in $x$-Richtung gestaucht, weshalb auch ihre Steigung immer weiter gegen $0$ geht und damit auch ihre zweite Ableitung.
+Bei kleiner werdenden $j$'s befindet sich das "`optimale"' $h$, bei dem die Fehler am geringsten sind schon weiter rechts. Man braucht wegen der geringen Steigung kein sehr kleines $h$, um eine "`optimale"' Abschätzung zu erzielen.Da wir hier mit immer kleineren Zahlen hantieren, tritt die Auslöschung außerdem schon früher ein.
+Analog werden die absoluten Fehler bei größer werdenden $j$'s immer größer.
+Die Frequenz der Funktion steigt hier stark an und damit wirken sich auch bestimmte Verfahrensfehler mehr aus. So kann es sich zum Beispiel viel stärker auswirken an welchen Stellen die Funktion ausgewertet wird. Wählt man eine ungünstige Intervalllänge $p$, so kann es unter Umständen dazu kommen, dass man die Funktion immer genau da auswertet, wo ihre Steigung gerade denselben Wert hat.
+Man braucht also mehr Auswertungspunkte, um einen genaueren Plot zu zeichnen und ein kleineres $h$, um einen möglichst kleinen Fehler zu erzielen, der Wert für das "`optimale"' $h$ verschiebt sich also nach links.\\
+Bei sehr kleinen Werten von $j$ kann man beobachten, dass der
 
 \pagebreak \section{Zusammenfassung}
 \label{sec:zusammenfassung}
