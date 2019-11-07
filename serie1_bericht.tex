@@ -69,7 +69,7 @@ Wenn man diese Formel entsprechend äquivalent umformt, erhält man die Formel f
 \[(D_h^{(1)}f)(x) = \frac{f(x+h)-f(x)}{h} = f'(x)+\sum_{n=2}^{\infty}\frac{f^{(n)}(x)}{n!}h^{n-1}=f'(x)+\mathcal{O}(h)\;\]
 \end{shaded}
 Die erste finite Differenz von $f$ an der Stelle $x$ entspricht also bis auf einen linearen Fehlerterm der ersten Ableitung von $f$ an der Stelle $x$. \\
-Auch die zweite Ableitung von $f$ an der Stelle $x$ können wir auf ähnliche Weise mittels Funktionswerten von $f$ approximieren. Dazu benötigen wir zusätzlich die Taylorentwicklung von $f$ an der Stelle $(x-h) \in [a,b]$, das ebenfalls in der Nähe von $x$ liegt:
+Auch die zweite Ableitung von $f$ an der Stelle $x$ können wir auf ähnliche Weise mittels Funktionswerten von $f$ approximieren. Dazu benötigen wir zusätzlich die Taylorentwicklung von $f$ an der Stelle $(x-h) \in [a,b]$, die ebenfalls in der Nähe von $x$ liegt:
 \[f(x-h) = \sum_{n=0}^{\infty}\frac{f^{(n)}(x)}{n!}(-h)^n = f(x)-f'(x)h+\frac{f''(x)}{2}h^2+...\]
 Durch Aufsummieren der beiden Formel für die Taylorentwicklung um $x+h$ und $x-h$ und äquivalentes Umformen erhält man die Formel für die \textbf{\textit{zweite finite Differenz}} von $f$ an der Stelle $x$:
 \begin{shaded}
