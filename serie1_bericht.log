@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  8 NOV 2019 14:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  8 NOV 2019 15:49
 entering extended mode
 **./serie1_bericht.tex
 (serie1_bericht.tex
@@ -455,13 +455,13 @@ LaTeX Warning: Citation `westermann' on page 5 undefined on input line 85.
 LaTeX Warning: Citation `nla' on page 5 undefined on input line 85.
 
 
-LaTeX Warning: Citation `am' on page 5 undefined on input line 88.
+LaTeX Warning: Citation `am' on page 5 undefined on input line 86.
 
 
-LaTeX Warning: Citation `schneebeli' on page 5 undefined on input line 90.
+LaTeX Warning: Citation `schneebeli' on page 5 undefined on input line 88.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--93
+Underfull \hbox (badness 10000) in paragraph at lines 85--90
 
  []
 
@@ -470,49 +470,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--93
 File: Grafiken/Funktionenplot_Pi_Drittel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_Pi_Drittel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_Pi_Drittel.png  used on input 
-line 101.
+line 98.
 (pdftex.def)             Requested size: 209.12778pt x 156.84808pt.
 <Grafiken/Funktionenplot_Pi_Viertel.png, id=40, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_Pi_Viertel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_Pi_Viertel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_Pi_Viertel.png  used on input 
-line 101.
+line 98.
 (pdftex.def)             Requested size: 209.12778pt x 156.84808pt.
 <Grafiken/Funktionenplot_Pi_Funftel.png, id=41, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_Pi_Funftel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_Pi_Funftel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_Pi_Funftel.png  used on input 
-line 102.
+line 99.
 (pdftex.def)             Requested size: 209.12778pt x 156.84808pt.
 <Grafiken/Funktionenplot_Pi_Zehntel.png, id=42, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_Pi_Zehntel.png  used on input 
-line 102.
+line 99.
 (pdftex.def)             Requested size: 209.12778pt x 156.84808pt.
 
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 104.
+(caption)                outside box or environment on input line 101.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (2.42162pt too wide) in paragraph at lines 97--104
+Overfull \hbox (2.42162pt too wide) in paragraph at lines 94--101
 [] [] 
  []
 
 
-Overfull \hbox (2.42162pt too wide) in paragraph at lines 97--104
+Overfull \hbox (2.42162pt too wide) in paragraph at lines 94--101
 [] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--113
+Underfull \hbox (badness 10000) in paragraph at lines 103--110
 
  []
 
 
-Underfull \hbox (badness 1584) in paragraph at lines 106--113
+Underfull \hbox (badness 1584) in paragraph at lines 103--110
 \T1/cmr/m/n/10.95 Um das Kon-ver-genz-ver-hal-ten der Finite-Differenzen-Verfah
 ren ers-ter und zwei-ter
  []
@@ -524,44 +524,44 @@ _Pi_Zehntel.png>]
 File: Grafiken/Fehlerplot_Aufgabe2.png Graphic file (type png)
 <use Grafiken/Fehlerplot_Aufgabe2.png>
 Package pdftex.def Info: Grafiken/Fehlerplot_Aufgabe2.png  used on input line 1
-17.
+14.
 (pdftex.def)             Requested size: 313.69167pt x 235.27744pt.
  [8 <./Grafiken/Fehlerplot_Aufgabe2.png>]
 <Grafiken/Funktionenplot_j1_Pi_Zehntel.png, id=56, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_j1_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j1_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j1_Pi_Zehntel.png  used on inp
-ut line 129.
+ut line 126.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Funktionenplot_j075_Pi_Zehntel.png, id=57, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_j075_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j075_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j075_Pi_Zehntel.png  used on i
-nput line 130.
+nput line 127.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Funktionenplot_j05_Pi_Zehntel.png, id=58, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_j05_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j05_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j05_Pi_Zehntel.png  used on in
-put line 131.
+put line 128.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Funktionenplot_j025_Pi_Zehntel.png, id=59, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_j025_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j025_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j025_Pi_Zehntel.png  used on i
-nput line 132.
+nput line 129.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Funktionenplot_j01_Pi_Zehntel.png, id=60, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_j01_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j01_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j01_Pi_Zehntel.png  used on in
-put line 133.
+put line 130.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Funktionenplot_j001_Pi_Zehntel.png, id=61, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_j001_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j001_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j001_Pi_Zehntel.png  used on i
-nput line 134.
+nput line 131.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
  [9 <./Grafiken/Funktionenplot_j1_Pi_Zehntel.png> <./Grafiken/Funktionenplot_j0
 75_Pi_Zehntel.png> <./Grafiken/Funktionenplot_j05_Pi_Zehntel.png> <./Grafiken/F
@@ -570,25 +570,25 @@ unktionenplot_j025_Pi_Zehntel.png>]
 File: Grafiken/Funktionenplot_j2_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j2_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j2_Pi_Zehntel.png  used on inp
-ut line 139.
+ut line 136.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Funktionenplot_j4_Pi_Zehntel.png, id=70, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_j4_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j4_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j4_Pi_Zehntel.png  used on inp
-ut line 140.
+ut line 137.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Funktionenplot_j8_Pi_Zehntel.png, id=71, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_j8_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j8_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j8_Pi_Zehntel.png  used on inp
-ut line 141.
+ut line 138.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Funktionenplot_j16_Pi_Zehntel.png, id=72, 462.528pt x 346.896pt>
 File: Grafiken/Funktionenplot_j16_Pi_Zehntel.png Graphic file (type png)
 <use Grafiken/Funktionenplot_j16_Pi_Zehntel.png>
 Package pdftex.def Info: Grafiken/Funktionenplot_j16_Pi_Zehntel.png  used on in
-put line 142.
+put line 139.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
  [10 <./Grafiken/Funktionenplot_j01_Pi_Zehntel.png> <./Grafiken/Funktionenplot_
 j001_Pi_Zehntel.png> <./Grafiken/Funktionenplot_j2_Pi_Zehntel.png> <./Grafiken/
@@ -597,42 +597,42 @@ Funktionenplot_j4_Pi_Zehntel.png> <./Grafiken/Funktionenplot_j8_Pi_Zehntel.png>
 <Grafiken/Fehlerplot_j1.png, id=82, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j1.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j1.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j1.png  used on input line 153.
+Package pdftex.def Info: Grafiken/Fehlerplot_j1.png  used on input line 150.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Fehlerplot_j075.png, id=83, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j075.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j075.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j075.png  used on input line 154.
+Package pdftex.def Info: Grafiken/Fehlerplot_j075.png  used on input line 151.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Fehlerplot_j05.png, id=84, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j05.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j05.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j05.png  used on input line 155.
+Package pdftex.def Info: Grafiken/Fehlerplot_j05.png  used on input line 152.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Fehlerplot_j025.png, id=85, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j025.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j025.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j025.png  used on input line 156.
+Package pdftex.def Info: Grafiken/Fehlerplot_j025.png  used on input line 153.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Fehlerplot_j01.png, id=86, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j01.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j01.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j01.png  used on input line 157.
+Package pdftex.def Info: Grafiken/Fehlerplot_j01.png  used on input line 154.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Fehlerplot_j001.png, id=87, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j001.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j001.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j001.png  used on input line 158.
+Package pdftex.def Info: Grafiken/Fehlerplot_j001.png  used on input line 155.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Fehlerplot_j2.png, id=88, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j2.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j2.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j2.png  used on input line 163.
+Package pdftex.def Info: Grafiken/Fehlerplot_j2.png  used on input line 160.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Fehlerplot_j4.png, id=89, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j4.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j4.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j4.png  used on input line 164.
+Package pdftex.def Info: Grafiken/Fehlerplot_j4.png  used on input line 161.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
  [11 <./Grafiken/Fehlerplot_j1.png> <./Grafiken/Fehlerplot_j075.png> <./Grafike
 n/Fehlerplot_j05.png> <./Grafiken/Fehlerplot_j025.png> <./Grafiken/Fehlerplot_j
@@ -640,26 +640,26 @@ n/Fehlerplot_j05.png> <./Grafiken/Fehlerplot_j025.png> <./Grafiken/Fehlerplot_j
 <Grafiken/Fehlerplot_j8.png, id=99, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j8.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j8.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j8.png  used on input line 165.
+Package pdftex.def Info: Grafiken/Fehlerplot_j8.png  used on input line 162.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/Fehlerplot_j16.png, id=100, 462.528pt x 346.896pt>
 File: Grafiken/Fehlerplot_j16.png Graphic file (type png)
 <use Grafiken/Fehlerplot_j16.png>
-Package pdftex.def Info: Grafiken/Fehlerplot_j16.png  used on input line 166.
+Package pdftex.def Info: Grafiken/Fehlerplot_j16.png  used on input line 163.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
  [12 <./Grafiken/Fehlerplot_j2.png> <./Grafiken/Fehlerplot_j4.png> <./Grafiken/
 Fehlerplot_j8.png> <./Grafiken/Fehlerplot_j16.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 174--193
+Underfull \hbox (badness 10000) in paragraph at lines 171--190
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 196--200
+Underfull \hbox (badness 10000) in paragraph at lines 193--197
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--209
+Underfull \hbox (badness 10000) in paragraph at lines 198--206
 
  []
 
@@ -694,7 +694,7 @@ sers/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/AJ/MiKTeX/font
 s/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmsy10.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 ><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on serie1_bericht.pdf (14 pages, 2314087 bytes).
+Output written on serie1_bericht.pdf (14 pages, 2315065 bytes).
 PDF statistics:
  451 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
