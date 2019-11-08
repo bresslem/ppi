@@ -136,6 +136,7 @@ class FiniteDifference:
         plt.plot(domain, values_second_diff, label='$D_h^{(2)}g$', color='blue', linestyle='-.')
 
         plt.legend(loc='lower right')
+        plt.grid()
         plt.show()
         plt.figure()
 
