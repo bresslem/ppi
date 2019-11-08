@@ -181,7 +181,7 @@ def main():
 
     g_1 = FiniteDifference(np.pi/3, '$\pi/3$', lambda x: np.sin(x)/x, '$g_1$',
                            lambda x: (x*np.cos(x)-np.sin(x))/(x**2),
-                           lambda x: -2*x*np.cos(x)+(2-x**2)*np.sin(x)/(x**3))
+                           lambda x: (-2*x*np.cos(x)+(2-x**2)*np.sin(x))/(x**3))
     g_1.plot_functions(np.pi, 3*np.pi, 1000)
 
 
