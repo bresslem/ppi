@@ -1,0 +1,735 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  8 NOV 2019 17:41
+entering extended mode
+**./serie1_bericht.tex
+(serie1_bericht.tex
+LaTeX2e <2019-10-01> patch level 1
+(C:\Users\AJ\MiKTeX\tex/latex/koma-script\scrartcl.cls
+Document Class: scrartcl 2019/10/12 v3.27 KOMA-Script document class (article)
+(C:\Users\AJ\MiKTeX\tex/latex/koma-script\scrkbase.sty
+Package: scrkbase 2019/10/12 v3.27 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(C:\Users\AJ\MiKTeX\tex/latex/koma-script\scrbase.sty
+Package: scrbase 2019/10/12 v3.27 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(C:\Users\AJ\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(C:\Users\AJ\MiKTeX\tex/latex/koma-script\scrlfile.sty
+Package: scrlfile 2019/10/12 v3.27 KOMA-Script package (loading files)
+)))
+(C:\Users\AJ\MiKTeX\tex/latex/koma-script\tocbasic.sty
+Package: tocbasic 2019/10/12 v3.27 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip41
+\scr@dte@tocline@numbox=\box27
+)
+Package tocbasic Info: omitting babel extension for `toc'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `toc' on input line 137.
+Class scrartcl Info: File `scrsize11pt.clo' used instead of
+(scrartcl)           file `scrsize11.clo' to setup font sizes on input line 220
+8.
+
+(C:\Users\AJ\MiKTeX\tex/latex/koma-script\scrsize11pt.clo
+File: scrsize11pt.clo 2019/10/12 v3.27 KOMA-Script font size class option (11pt
+)
+)
+(C:\Users\AJ\MiKTeX\tex/latex/koma-script\typearea.sty
+Package: typearea 2019/10/12 v3.27 KOMA-Script package (type area)
+\ta@bcor=\skip42
+\ta@div=\count80
+\ta@hblk=\skip43
+\ta@vblk=\skip44
+\ta@temp=\skip45
+\footheight=\skip46
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 10
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 418.25555pt
+(typearea)              DIV departure   = -6%
+(typearea)              \evensidemargin = 17.3562pt
+(typearea)              \oddsidemargin  = 17.3562pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 595.80026pt
+(typearea)              \topmargin      = -25.16531pt
+(typearea)              \headheight     = 17.0pt
+(typearea)              \headsep        = 20.40001pt
+(typearea)              \topskip        = 11.0pt
+(typearea)              \footskip       = 47.6pt
+(typearea)              \baselineskip   = 13.6pt
+(typearea)              on input line 1716.
+)
+\c@part=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\scr@dte@section@maxnumwidth=\skip47
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\section on input line 4702.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\section on input line 4702.
+\scr@dte@part@maxnumwidth=\skip48
+Class scrartcl Info: using compatibility default `afterindent=false'
+(scrartcl)           for `\part on input line 4710.
+\scr@dte@subsection@maxnumwidth=\skip49
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsection on input line 4720.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsection on input line 4720.
+\scr@dte@subsubsection@maxnumwidth=\skip50
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsubsection on input line 4730.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsubsection on input line 4730.
+\scr@dte@paragraph@maxnumwidth=\skip51
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\paragraph on input line 4740.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\paragraph on input line 4740.
+\scr@dte@subparagraph@maxnumwidth=\skip52
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subparagraph on input line 4750.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subparagraph on input line 4750.
+\abovecaptionskip=\skip53
+\belowcaptionskip=\skip54
+\c@pti@nb@sid@b@x=\box28
+Package tocbasic Info: omitting babel extension for `lof'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lof' on input line 5969.
+\scr@dte@figure@maxnumwidth=\skip55
+\c@figure=\count87
+Package tocbasic Info: omitting babel extension for `lot'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lot' on input line 5981.
+\scr@dte@table@maxnumwidth=\skip56
+\c@table=\count88
+Class scrartcl Info: Redefining `\numberline' on input line 6145.
+\bibindent=\dimen102
+)
+(C:\Users\AJ\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+)
+(C:\Users\AJ\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
+
+(C:\Users\AJ\MiKTeX\tex/latex/base\t1enc.def
+File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+(C:\Users\AJ\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2019/10/15 3.35 The Babel package
+
+(C:\Users\AJ\MiKTeX\tex/generic/babel\switch.def
+File: switch.def 2019/10/15 3.35 Babel switching mechanism
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\AJ\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\AJ\MiKTeX\tex/latex/babel-german\ngerman.ldf
+Language: ngerman 2018/12/08 v2.11 German support for babel (post-1996 orthogra
+phy)
+
+(C:\Users\AJ\MiKTeX\tex/latex/babel-german\ngermanb.ldf
+Language: ngermanb 2018/12/08 v2.11 German support for babel (post-1996 orthogr
+aphy)
+
+(C:\Users\AJ\MiKTeX\tex/generic/babel\babel.def
+File: babel.def 2019/10/15 3.35 Babel common definitions
+\babel@savecnt=\count89
+\U@D=\dimen103
+
+(C:\Users\AJ\MiKTeX\tex/generic/babel\txtbabel.def)
+\bbl@dirlevel=\count90
+)
+Package babel Info: Making " an active character on input line 121.
+)))
+(C:\Users\AJ\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(C:\Users\AJ\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks17
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(C:\Users\AJ\MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2019/04/01 v2.17c AMS math features
+\@mathmargin=\skip57
+
+For additional information on amsmath, use the `?' option.
+(C:\Users\AJ\MiKTeX\tex/latex/amsmath\amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(C:\Users\AJ\MiKTeX\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks18
+\ex@=\dimen104
+))
+(C:\Users\AJ\MiKTeX\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen105
+)
+(C:\Users\AJ\MiKTeX\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count91
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count92
+\leftroot@=\count93
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count94
+\DOTSCASE@=\count95
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box29
+\strutbox@=\box30
+\big@size=\dimen106
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count96
+\c@MaxMatrixCols=\count97
+\dotsspace@=\muskip10
+\c@parentequation=\count98
+\dspbrk@lvl=\count99
+\tag@help=\toks19
+\row@=\count100
+\column@=\count101
+\maxfields@=\count102
+\andhelp@=\toks20
+\eqnshift@=\dimen107
+\alignsep@=\dimen108
+\tagshift@=\dimen109
+\tagwidth@=\dimen110
+\totwidth@=\dimen111
+\lineht@=\dimen112
+\@envbody=\toks21
+\multlinegap=\skip58
+\multlinetaggap=\skip59
+\mathdisplay@stack=\toks22
+LaTeX Info: Redefining \[ on input line 2855.
+LaTeX Info: Redefining \] on input line 2856.
+)
+(C:\Users\AJ\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\AJ\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2019/10/08 v1.3c Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\AJ\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(C:\Users\AJ\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(C:\Users\AJ\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen113
+\Gin@req@width=\dimen114
+)
+(C:\Users\AJ\MiKTeX\tex/latex/framed\framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip60
+\fb@frw=\dimen115
+\fb@frh=\dimen116
+\FrameRule=\dimen117
+\FrameSep=\dimen118
+)
+(C:\Users\AJ\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(C:\Users\AJ\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+
+Class scrartcl Warning: Usage of package `tocbibind' together
+(scrartcl)              with a KOMA-Script class is not recommended.
+(scrartcl)              I'd suggest to use options like `listof=totoc'
+(scrartcl)              or `bibliography=totoc', or commands like
+(scrartcl)              `\setuptoc{toc}{totoc}' instead of this package,
+(scrartcl)              because it breaks several KOMA-Script features of
+(scrartcl)              the list of figures, list of tables, bibliography,
+(scrartcl)              index and the running head.
+(scrartcl)              Nevertheless, using requested
+(scrartcl)              package `tocbibind' on input line 11.
+
+(C:\Users\AJ\MiKTeX\tex/latex/tocbibind\tocbibind.sty
+Package: tocbibind 2010/10/13 v1.5k extra ToC listings
+Package tocbibind Info: The document has section divisions on input line 50.
+
+
+Package tocbibind Note: Using section or other style headings.
+
+) (C:\Users\AJ\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2019/09/01 v3.3d Customizing captions (AR)
+
+(C:\Users\AJ\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2019/09/01 v1.8d caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen119
+\captionmargin@=\dimen120
+\captionwidth=\dimen121
+\caption@tempdima=\dimen122
+\caption@indent=\dimen123
+\caption@parindent=\dimen124
+\caption@hangindent=\dimen125
+)
+Package caption Info: KOMA-Script document class.
+\c@caption@flags=\count103
+\c@ContinuedFloat=\count104
+) (serie1_bericht.aux)
+\openout1 = `serie1_bericht.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+Package tocbasic Info: usage of `tocbibind' detected on input line 18.
+
+
+Package tocbasic Warning: `tocbibind' redefinition of `\listoffigures'
+(tocbasic)                detected.
+(tocbasic)                Note: Loading `tocbibind' without option `notlof'
+(tocbasic)                can break several features of `tocbasic'.
+
+
+Package tocbasic Warning: `tocbibind' redefinition of `\listoftables'
+(tocbasic)                detected.
+(tocbasic)                Note: Loading `tocbibind' without option `notlot'
+(tocbasic)                can break several features of `tocbasic'.
+
+(C:\Users\AJ\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count105
+\scratchdimen=\dimen126
+\scratchbox=\box31
+\nofMPsegments=\count106
+\nofMParguments=\count107
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count108
+\MPscratchDim=\dimen127
+\MPnumerator=\count109
+\makeMPintoPDFobject=\count110
+\everyMPtoPDFconversion=\toks24
+) (C:\Users\AJ\MiKTeX\tex/latex/oberdiek\epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(C:\Users\AJ\MiKTeX\tex/generic/oberdiek\infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(C:\Users\AJ\MiKTeX\tex/latex/oberdiek\grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(C:\Users\AJ\MiKTeX\tex/generic/oberdiek\kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(C:\Users\AJ\MiKTeX\tex/generic/oberdiek\ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(C:\Users\AJ\MiKTeX\tex/latex/oberdiek\kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(C:\Users\AJ\MiKTeX\tex/generic/oberdiek\kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(C:\Users\AJ\MiKTeX\tex/generic/oberdiek\etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(C:\Users\AJ\MiKTeX\tex/generic/oberdiek\ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+))))
+(C:\Users\AJ\MiKTeX\tex/generic/oberdiek\pdftexcmds.sty
+Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(C:\Users\AJ\MiKTeX\tex/generic/oberdiek\ifpdf.sty
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 2
+6.
+
+(C:\Users\AJ\MiKTeX\tex/latex/base\t1cmss.fd
+File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
+
+
+(C:\Users\AJ\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
+
+
+(C:\Users\AJ\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (serie1_bericht.toc)
+\tf@toc=\write3
+\openout3 = `serie1_bericht.toc'.
+
+ [1
+
+
+{C:/Users/AJ/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+
+LaTeX Warning: Citation `schneebeli' on page 2 undefined on input line 34.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--37
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--37
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--37
+
+ []
+
+[2]
+
+LaTeX Warning: Citation `westermann' on page 3 undefined on input line 50.
+
+[3] [4]
+
+LaTeX Warning: Citation `ppi' on page 5 undefined on input line 81.
+
+
+LaTeX Warning: Citation `westermann' on page 5 undefined on input line 85.
+
+
+LaTeX Warning: Citation `nla' on page 5 undefined on input line 85.
+
+
+LaTeX Warning: Citation `am' on page 5 undefined on input line 86.
+
+
+LaTeX Warning: Citation `schneebeli' on page 5 undefined on input line 88.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--90
+
+ []
+
+[5] [6]
+<Grafiken/Funktionenplot_Pi_Drittel.png, id=38, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_Pi_Drittel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_Pi_Drittel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_Pi_Drittel.png  used on input 
+line 100.
+(pdftex.def)             Requested size: 209.12778pt x 156.84808pt.
+<Grafiken/Funktionenplot_Pi_Viertel.png, id=40, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_Pi_Viertel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_Pi_Viertel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_Pi_Viertel.png  used on input 
+line 100.
+(pdftex.def)             Requested size: 209.12778pt x 156.84808pt.
+<Grafiken/Funktionenplot_Pi_Funftel.png, id=41, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_Pi_Funftel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_Pi_Funftel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_Pi_Funftel.png  used on input 
+line 101.
+(pdftex.def)             Requested size: 209.12778pt x 156.84808pt.
+<Grafiken/Funktionenplot_Pi_Zehntel.png, id=42, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_Pi_Zehntel.png  used on input 
+line 101.
+(pdftex.def)             Requested size: 209.12778pt x 156.84808pt.
+
+
+Package caption Warning: \captionsetup{type*=...} or \captionof
+(caption)                outside box or environment on input line 103.
+See the caption package documentation for explanation.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--103
+
+ []
+
+
+Overfull \hbox (2.42162pt too wide) in paragraph at lines 94--103
+[] [] 
+ []
+
+
+Overfull \hbox (2.42162pt too wide) in paragraph at lines 94--103
+[] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--112
+
+ []
+
+
+Underfull \hbox (badness 4660) in paragraph at lines 105--112
+\T1/cmr/m/n/10.95 Um das Kon-ver-genz-ver-hal-ten der Finite-Differenzen-Verfah
+ren ex-em-pla-risch für
+ []
+
+[7 <./Grafiken/Funktionenplot_Pi_Drittel.png> <./Grafiken/Funktionenplot_Pi_Vie
+rtel.png> <./Grafiken/Funktionenplot_Pi_Funftel.png> <./Grafiken/Funktionenplot
+_Pi_Zehntel.png>]
+<Grafiken/Fehlerplot_Aufgabe2.png, id=51, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_Aufgabe2.png Graphic file (type png)
+<use Grafiken/Fehlerplot_Aufgabe2.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_Aufgabe2.png  used on input line 1
+16.
+(pdftex.def)             Requested size: 271.86356pt x 203.90463pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--124
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--124
+
+ []
+
+[8 <./Grafiken/Fehlerplot_Aufgabe2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 124--127
+
+ []
+
+<Grafiken/Funktionenplot_j1_Pi_Zehntel.png, id=56, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j1_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j1_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j1_Pi_Zehntel.png  used on inp
+ut line 131.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+<Grafiken/Funktionenplot_j075_Pi_Zehntel.png, id=57, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j075_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j075_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j075_Pi_Zehntel.png  used on i
+nput line 132.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+<Grafiken/Funktionenplot_j05_Pi_Zehntel.png, id=58, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j05_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j05_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j05_Pi_Zehntel.png  used on in
+put line 133.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+<Grafiken/Funktionenplot_j025_Pi_Zehntel.png, id=59, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j025_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j025_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j025_Pi_Zehntel.png  used on i
+nput line 134.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+<Grafiken/Funktionenplot_j01_Pi_Zehntel.png, id=60, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j01_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j01_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j01_Pi_Zehntel.png  used on in
+put line 135.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+<Grafiken/Funktionenplot_j001_Pi_Zehntel.png, id=61, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j001_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j001_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j001_Pi_Zehntel.png  used on i
+nput line 136.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+[9 <./Grafiken/Funktionenplot_j1_Pi_Zehntel.png> <./Grafiken/Funktionenplot_j07
+5_Pi_Zehntel.png> <./Grafiken/Funktionenplot_j05_Pi_Zehntel.png> <./Grafiken/Fu
+nktionenplot_j025_Pi_Zehntel.png>]
+<Grafiken/Funktionenplot_j2_Pi_Zehntel.png, id=69, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j2_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j2_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j2_Pi_Zehntel.png  used on inp
+ut line 141.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+<Grafiken/Funktionenplot_j4_Pi_Zehntel.png, id=70, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j4_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j4_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j4_Pi_Zehntel.png  used on inp
+ut line 142.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+<Grafiken/Funktionenplot_j8_Pi_Zehntel.png, id=71, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j8_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j8_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j8_Pi_Zehntel.png  used on inp
+ut line 143.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+<Grafiken/Funktionenplot_j16_Pi_Zehntel.png, id=72, 462.528pt x 346.896pt>
+File: Grafiken/Funktionenplot_j16_Pi_Zehntel.png Graphic file (type png)
+<use Grafiken/Funktionenplot_j16_Pi_Zehntel.png>
+Package pdftex.def Info: Grafiken/Funktionenplot_j16_Pi_Zehntel.png  used on in
+put line 144.
+(pdftex.def)             Requested size: 167.29967pt x 125.4753pt.
+<Grafiken/Fehlerplot_j1.png, id=73, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j1.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j1.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j1.png  used on input line 155.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+<Grafiken/Fehlerplot_j075.png, id=74, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j075.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j075.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j075.png  used on input line 156.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+ [10 <./Grafiken/Funktionenplot_j01_Pi_Zehntel.png> <./Grafiken/Funktionenplot_
+j001_Pi_Zehntel.png> <./Grafiken/Funktionenplot_j2_Pi_Zehntel.png> <./Grafiken/
+Funktionenplot_j4_Pi_Zehntel.png> <./Grafiken/Funktionenplot_j8_Pi_Zehntel.png>
+ <./Grafiken/Funktionenplot_j16_Pi_Zehntel.png>]
+<Grafiken/Fehlerplot_j05.png, id=84, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j05.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j05.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j05.png  used on input line 157.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+<Grafiken/Fehlerplot_j025.png, id=85, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j025.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j025.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j025.png  used on input line 158.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+<Grafiken/Fehlerplot_j01.png, id=86, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j01.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j01.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j01.png  used on input line 159.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+<Grafiken/Fehlerplot_j001.png, id=87, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j001.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j001.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j001.png  used on input line 160.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+<Grafiken/Fehlerplot_j2.png, id=88, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j2.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j2.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j2.png  used on input line 165.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+<Grafiken/Fehlerplot_j4.png, id=89, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j4.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j4.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j4.png  used on input line 166.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+ [11 <./Grafiken/Fehlerplot_j1.png> <./Grafiken/Fehlerplot_j075.png> <./Grafike
+n/Fehlerplot_j05.png> <./Grafiken/Fehlerplot_j025.png> <./Grafiken/Fehlerplot_j
+01.png> <./Grafiken/Fehlerplot_j001.png>]
+<Grafiken/Fehlerplot_j8.png, id=99, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j8.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j8.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j8.png  used on input line 167.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+<Grafiken/Fehlerplot_j16.png, id=100, 462.528pt x 346.896pt>
+File: Grafiken/Fehlerplot_j16.png Graphic file (type png)
+<use Grafiken/Fehlerplot_j16.png>
+Package pdftex.def Info: Grafiken/Fehlerplot_j16.png  used on input line 168.
+(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
+ [12 <./Grafiken/Fehlerplot_j2.png> <./Grafiken/Fehlerplot_j4.png> <./Grafiken/
+Fehlerplot_j8.png> <./Grafiken/Fehlerplot_j16.png>]
+Underfull \hbox (badness 1158) in paragraph at lines 176--187
+\T1/cmr/m/n/10.95 Dass die Ap-pro-xi-ma-ti-on der Ab-lei-tun-gen der Funk-ti-on
+ $\OML/cmm/m/it/10.95 g[] \OT1/cmr/m/n/10.95 : [\OML/cmm/m/it/10.95 ; \OT1/cmr
+/m/n/10.95 3\OML/cmm/m/it/10.95 \OT1/cmr/m/n/10.95 ] \OMS/cmsy/m/n/10.95 ! \U/
+msb/m/n/10.95 R$ \T1/cmr/m/n/10.95 mit
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--187
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--187
+\T1/cmr/m/n/10.95 In wei-ter-füh-ren-den Ex-pe-ri-men-ten ha-ben wir die mo-di-
+fi-zier-ten Funk-tio-nen
+ []
+
+[13] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 199--203
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--212
+
+ []
+
+No file serie1_bericht.bbl.
+[15] (serie1_bericht.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 7940 strings out of 492453
+ 136959 string characters out of 3134037
+ 320820 words of memory out of 3000000
+ 12167 multiletter control sequences out of 15000+200000
+ 18462 words of font info for 53 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 51i,8n,55p,10102b,358s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecb
+i1095.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi
+600\ecsx1200.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen
+/ec/dpi600\ecbx1095.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/j
+knappen/ec/dpi600\ecti1095.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/l
+jfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecsx1095.pk> <C:\Users\AJ\AppData\Local\MiKTeX\
+2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx1440.pk> <C:\Users\AJ\AppData\Local\
+MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\AJ\AppData
+\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx2074.pk><C:/Users/AJ/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/AJ/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmmi10.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmmi8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/U
+sers/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/AJ/MiKTeX/font
+s/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on serie1_bericht.pdf (15 pages, 2316961 bytes).
+PDF statistics:
+ 455 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 126 words of extra memory for PDF output out of 10000 (max. 10000000)
+

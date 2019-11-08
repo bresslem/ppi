@@ -51,16 +51,16 @@ Der Differenzenquotient misst die mittlere spezifische Änderung von $f$ zwische
 \begin{shaded}
 \begin{center}
  rechtsseitiger Differenzenquotient / finite Differenz erster Ordnung:
- \end{center} \[ \frac {f(x+h) - f(x)}{h} \]
+ \end{center} \[ \frac {f(x_0 + h) - f(x_0)}{h} \]
 \begin{center}
  linkssseitiger Differenzenquotient / finite Differenz erster Ordnung:
- \end{center} \[ \frac {f(x) - f(x-h)}{h} \]
+ \end{center} \[ \frac {f(x_0) - f(x_0 - h)}{h} \]
 \begin{center}
  zentraler Differenzenquotient erster Ordnung:
- \end{center} \[ \frac {f(x+h) - f(x-h)}{2h} \]
+ \end{center} \[ \frac {f(x_0 + h) - f(x_0-h)}{2h} \]
 \begin{center}
  zentraler Differenzenquotient zweiter Ordnung / zweite finite Differenz:
- \end{center} \[ \frac{f(x+h)-2f(x)+f(x-h)}{h^2} \]
+ \end{center} \[ \frac{f(x_0+h) - 2f(x_0)+f(x_0-h)}{h^2} \]
 \end{shaded}
 
 \subsection{Approximieren von Ableitungen via Taylorentwicklung}
@@ -92,13 +92,15 @@ Ist das Ziel, möglichst genau zu approximieren, sollte man dieses "`optimale"' 
 \label{sec:experimente}
 
 Wir betrachten zunächst die Funktion $g_1:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1(x) = sin(x)/x$. Mit Hilfe eines in Python verfassten Programmes, das als (DATEINAME) zusammen mit diesem Bericht eingereicht wird, lassen wir folgende Graphen zeichnen:
-Den von $g_1$, den der exakten ersten und zweiten Ableitung $g_1': [\pi, 3\pi] \rightarrow \mathbb{R}, x \mapsto \frac{x \cdot cos(x) - sin(x)}{x_{2}}$ und $g_1'': [\pi, 3\pi] \rightarrow \mathbb{R}$, die wir nach den analytischen Methoden der Differentialrechnung ermittelt haben, sowie den der ersten finiten Differenz $D_h^{(1)}g$ und den der zweiten $D_h^{(2)}g$.
-Für die Auswertung der genannten Funktionen durch den Computer unterteilen wir den Definitionsbereich $[\pi, 3\pi]$ in $p = 1000$ äquidistante Intervalle; nur an den Intervallgrenzen soll ausgewertet werden.
+Den von $g_1$, den der exakten ersten und zweiten Ableitung $g_1': [\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1'$ und $g_1''$, die wir nach den analytischen Methoden der Differentialrechnung ermittelt haben, sowie den der ersten finiten Differenz $D_h^{(1)}g$ und den der zweiten $D_h^{(2)}g$.*
+Für die Auswertung der genannten Funktionen durch den Computer unterteilen wir den Definitionsbereich $[\pi, 3\pi]$ in $p = 1000$ äquidistante Intervalle; nur an den Intervallgrenzen $x_i$ (mit $i \in \lbrace 0, 1, 2, ..., p \rbrace$) soll ausgewertet werden. 
+(* $g_1'(x) = \frac{x \cdot cos(x) - sin(x)}{x^{2}}$, $g_1''(x) = \frac{-2x \cdot cos(x) + (2-x^{2}) sin(x)}{x^{3}}$) \\
+\\
 Nun wollen wir die exakte und die approximierte erste und zweite Ableitung von $g_1$ für die Schrittweiten $h = \pi/3$, $h = \pi/4$, $h = \pi/5$ und $h = \pi/10$ graphisch vergleichen. \\
 \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Drittel} \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Viertel}\\
 \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Funftel} \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Zehntel}\\
 \vspace{-0.5cm}
-\captionof{figure}{Funktionsplots für $g_1$ zu unterschiedlichen Schrittweiten.}
+\captionof{figure}{Funktionsplots von $g_1$ mit unterschiedlichen Schrittweiten}
 \vspace{0.5cm}
 Allgemein ist folgender Zusammenhang erkennbar: Je kleiner die Schrittweite, desto besser die Approximation.
 Darüber hinaus fällt auf, dass für alle $h$ die Näherung der jeweiligen Ableitung mittels zweiter finiter Differenz besser als die mittels erster finiter Differenz.
@@ -106,43 +108,46 @@ Bereits mit der gröbsten Schrittweite $h = \pi/3$ ist die Approximation der zwe
 Eine vergleichbar gute Approximation der ersten Ableitung erhalten wir erst mit der feinsten Schrittweite $h = \pi/10$.
 Bei dieser Schrittweite liegt der Graph der approximierten zweiten Ableitung bereits so gut wie auf dem Graphen der exakten. \\
  \\
-Um das Konvergenzverhalten der Finite-Differenzen-Verfahren erster und zweiter Ordnung graphisch zu untersuchen, lassen wir bei gleich bleibenden Parametern ($g_1$, $[\pi, 3\pi]$, $p = 1000$) die maximalen absoluten Fehler in Abhängigkeit von der Schrittweite $h$ in einem Fehlerplot ausgeben, wobei die Referenzwerte die exakten Ableitungen zur Verfügung stellen. Dabei bezeichne $e_g^{(1)}$ den Fehler bei der ersten finiten Differenz und $e_g^{(2)}$ den Fehler bei der zweitem finiten Differenz. Wir betrachten die Approximationsfehler in der Maximumnorm mit der Formel (wobei die $x_i$'s die Intervallgrenzen unserer äquidistanten Unterteilen sind):
-\[e_f^{(k)}(h):=\max_{i=0,..,p}\abs{f^{(k)}(x_i)-(D_h^{(k)}f)(x_i)} , k \in \lbrace1, 2\rbrace\]
-Folgende Werte für $h$ sollen ausgewertet werden: $10^{-10}$, $5 \cdot 10^{-10}$, $10^{-9}$, $5 \cdot 10^{-9}$, ... , $10^{-1}$, $5 \cdot 10^{-1}$, $1$, $5$, $10$.
+Um das Konvergenzverhalten der Finite-Differenzen-Verfahren exemplarisch für die erste und zweite Ableitung graphisch zu untersuchen, lassen wir bei gleich bleibenden Parametern ($g_1$, $[\pi, 3\pi]$, $p = 1000$) die maximalen absoluten Fehler in Abhängigkeit von der Schrittweite $h$ in einem Fehlerplot ausgeben, wobei die Referenzwerte die exakten Ableitungen zur Verfügung stellen. Dabei bezeichne $e_g^{(1)}$ den Fehler bei der ersten finiten Differenz und $e_g^{(2)}$ den Fehler bei der zweitem finiten Differenz. Wir betrachten die Approximationsfehler in der Maximumnorm mit der Formel (wobei die $x_i$'s die Intervallgrenzen unserer äquidistanten Unterteilen sind):
+\[e_g^{(k)}(h):=\max_{i=0,..,p}\abs{g^{(k)}(x_i)-(D_h^{(k)}g)(x_i)} , k \in \lbrace1, 2\rbrace\]
+Folgende Werte für $h$ sollen ausgewertet werden: $10^{-10}$, $5 \cdot 10^{-10}$, $10^{-9}$, $5 \cdot 10^{-9}$, ... , $10^{-1}$, \linebreak  $5 \cdot 10^{-1}$, $1$, $5$, $10$.
 Um in der Grafik erkennen zu können, mit welcher Geschwindigkeit sich die maximalen Approximationsfehler ändern, lassen wir zudem die Graphen von $h \mapsto h$, $h \mapsto h^{2}$ und $h \mapsto h^{3}$ zeichnen und wählen die Darstellung in einem doppeltlogarithmischen Plot.
 \begin{center}
-	\includegraphics[width=0.75\textwidth]{Grafiken/Fehlerplot_Aufgabe2}
+	\includegraphics[width=0.65\textwidth]{Grafiken/Fehlerplot_Aufgabe2}
   \vspace{-0.2cm}
-  \captionof{figure}{Fehlerplot für $g_1$.}
+  \captionof{figure}{Fehlerplot von $g_1$}
   \vspace{0.5cm}
 \end{center}
-Es lässt sich beobachten, dass sowohl der maximale Fehler der ersten finiten Differenz als auch der der zweiten finiten Differenz in einer Größenordnung von etwa $0.5$ starten (für eine sehr grobe Schrittweite $h \approx 5$). Mit zunehmend kleinem $h$ nimmt auch der Approximationsfehler ab. Dabei wird der Fehler bezüglich der ersten Ableitung linear kleiner und bezüglich der zweiten Ableitung quadratisch. Jedoch nimmt er ab einer gewissen Schrittweite $h$ wieder zu. Für die erste finite Differenz ist das ab $h = 5\cdot10^{-8}$ ($e_g(h) \approx  5 \cdot 10^{-9}$), für die zweite finite Differenz ist das bereits ab $h = 5 \cdot 10^{-4}$ der Fall ($e_g(h) \approx  5 \cdot 10^{-9}$). Nun nimmt der Fehler mit ähnlicher Geschwindigkeit zu, wie er vormals abgenommen hat. Mit der feinsten Schrittweite von $h = 10^{-10}$ liegt der maximale Fehler der erstem finiten Differenz immer noch gut bei $5 \cdot 10^{-7}$, während der maximale Fehler der zweiten finiten Differenz mit einer Größenordnung von $10^{4}$ sehr stark angewachsen ist.
-
-In weiterführenden Experimenten wollen wir die Funktion $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j\cdot x)/x$ zunächst für $j<1$ und anschließend für $j>1$ betrachten ($j \in \mathbb{R^{+}}$). Im Vergleich zu $j = 1$ bewirken kleinere $j$'s eine Streckung des ursprünglichen Graphen in $x$-Richtung. Größere $j$'s bewirken das Gegenteil, eine Stauchung des ursprünglichen Graphen in $x$-Richtung. Während immer kleinere $j$'s die Frequenz von $g_j$ verringern, kommt es bei immer größeren $j$'s zum Erhöhen der Frequenz. Das heißt, dass sich die Funktionswerte von $g_j$ auf demselben Intervall bei kleineren $j$'s langsamer und bei größeren $j$'s schneller ändern. Die folgenden Funktionenplots sollen die Veränderungen verdeutlichen.
+Es lässt sich beobachten, dass sowohl der maximale Fehler der ersten finiten Differenz als auch der der zweiten finiten Differenz in einer Größenordnung von etwa $0.5$ starten (für eine sehr grobe Schrittweite $h \approx 5$). Mit zunehmend kleinem $h$ nimmt auch der Approximationsfehler ab. Dabei wird der Fehler bezüglich der ersten Ableitung linear kleiner und bezüglich der zweiten Ableitung quadratisch. Jedoch nimmt er ab einer gewissen Schrittweite $h$ wieder zu. Für die erste finite Differenz ist das ab $h = 5\cdot10^{-8}$, für die zweite finite Differenz ist das bereits ab $h = 5 \cdot 10^{-4}$ der Fall (für beide: $e_g(h) \approx  5 \cdot 10^{-9}$). Nun nimmt der Fehler mit ähnlicher Geschwindigkeit zu, wie er vormals abgenommen hat. Mit der feinsten Schrittweite von $h = 10^{-10}$ liegt der maximale Fehler der erstem finiten Differenz immer noch gut bei $5 \cdot 10^{-7}$, während der maximale Fehler der zweiten finiten Differenz mit einer Größenordnung von $10^{4}$ sehr stark angewachsen ist. \\
+ \\
+In weiterführenden Experimenten wollen wir die Funktion $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j x)/x$. Wieder haben wir die erste und die zweite Ableitung mit analytischen Methoden der Differentialrechnung ermittelt: \\
+\[g_j'(x) = \frac{jx \cdot cos(jx) - sin(jx)}{x^{2}}, g_j''(x) = \frac{-2jx \cdot cos(jx) + (2-j^{2}x^{2}) sin(jx)}{x^{3}} \] \\
+\\
+Zunächst wählen wir $j<1$ und anschließend $j>1$ ($j \in \mathbb{R^{+}}$). Im Vergleich zu $j = 1$ bewirken kleinere $j$'s eine Streckung des ursprünglichen Graphen in $x$-Richtung. Größere $j$'s bewirken das Gegenteil, eine Stauchung des ursprünglichen Graphen in $x$-Richtung. Während immer kleinere $j$'s die Frequenz von $g_j$ verringern, kommt es bei immer größeren $j$'s zum Erhöhen der Frequenz. Das heißt, dass sich die Funktionswerte von $g_j$ auf demselben Intervall bei kleineren $j$'s langsamer und bei größeren $j$'s schneller ändern. Die folgenden Funktionenplots sollen die Veränderungen verdeutlichen.
 
 \vspace{0.4cm}
 {
   \centering
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j1_Pi_Zehntel}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j075_Pi_Zehntel}\\
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j05_Pi_Zehntel}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j025_Pi_Zehntel}\\
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j01_Pi_Zehntel}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j001_Pi_Zehntel}\\
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j1_Pi_Zehntel}
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j075_Pi_Zehntel}\\
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j05_Pi_Zehntel}
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j025_Pi_Zehntel}\\
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j01_Pi_Zehntel}
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j001_Pi_Zehntel}\\
     \vspace{-0.2cm}
-    \captionof{figure}{$g_1$ für $j<1$.}
+    \captionof{figure}{Funktionenplots von $g_j$ für $j<1$}
 
     \vspace{0.5cm}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j2_Pi_Zehntel}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j4_Pi_Zehntel}\\
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j8_Pi_Zehntel}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j16_Pi_Zehntel}\\
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j2_Pi_Zehntel}
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j4_Pi_Zehntel}\\
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j8_Pi_Zehntel}
+    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j16_Pi_Zehntel}\\
     \vspace{-0.2cm}
-    \captionof{figure}{$g_1$ für $j>1$.}
+    \captionof{figure}{Funktionenplots von $g_j$ für $j>1$}
     \vspace{0.5cm}
   }
 
-Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten. Während die Größenordnung des Approximationsfehlers bei immer kleineren $j$'s für die dargestellten Schrittweiten abnimmt, nimmt sie bei immer größeren $j$'s zu. Zudem verschiebt sich die Stelle, ab der der Fehler nicht weiter kleiner wird und die lineare bzw. quadratische Konvergenzgeschwindigkeit nicht mehr erkennbar ist: Bei immer kleineren $j$'s verschiebt sie sich nach rechts, d.h. ab immer gröberem $h$. Bei immer größeren $j$'s verschiebt sie sich nach links, d.h. ab immer feinerem $h$. Ebenso ist hier erkennbar, dass sich der Beginn des $h$-Intervalls nach links verschiebt. Durch dieses Verschieben verschwindet zunehmend der Bereich, in dem man die jeweilige Konvergenzgeschwindigkeit erkennen kann. Ins Blickfeld rückt bei immer kleineren $j$'s der Bereich links davon und bei immer größeren $j$'s der Bereich rechts davon.
+Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten. Während die Größenordnung des Approximationsfehlers bei immer kleineren $j$'s für die dargestellten Schrittweiten abnimmt, nimmt sie bei immer größeren $j$'s zu. Zudem verschiebt sich die Stelle, ab der der Fehler nicht weiter kleiner wird und die lineare bzw. quadratische Konvergenzgeschwindigkeit nicht mehr erkennbar ist: Bei immer kleineren $j$'s verschiebt sie sich nach rechts, d.h. ab immer gröberem $h$. Bei immer größeren $j$'s verschiebt sie sich nach links, d.h. ab immer feinerem $h$. Ebenso ist hier erkennbar, dass sich der Beginn des $h$-Intervalls, in dem die lineare bzw. quadratische Konvergenz des Verfahren sichtbar ist, nach rechts bzw. nach links verschiebt. Dieser Konvergenz-Bereich verschwindet zunehmend aus dem Blickfeld und sichtbar wird bei immer kleineren $j$'s der Bereich links davon und bei immer größeren $j$'s der Bereich rechts davon.
 
 \vspace{0.4cm}
 {
@@ -168,18 +173,19 @@ Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten.
 
 \pagebreak \section{Auswertung}
 \label{sec:auswertung}
-Für die Funktion $g_1:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1(x)= sin(x)/x$ war zu beobachten, dass für eine kleinere Schrittweite $h$ die Approximation der Ableitungen immer genauer wurde.
-Dies lässt sich so erklären, da die Stelle $x+h$ sich so immer weiter der zu untersuchenden Stelle $x$ nähert.
-Die Approximation mittels einer Sekantensteigung ähnelt also immer mehr der geunauen Tangentensteigung.
-Die zweite finite Differenz nähert sich dabei schneller der analytischen zweiten Ableitung, als die erste finite Differenz der analytischen ersten Ableitung.
-Dies ist in der Theorie darauf zurückzuführen, dass der Fehler der ersten finiten Differenz linear von $h$ abhängt un der Fehler der zweiten finiten Differenz quadratisch von $h$ abhängt.
-Da wir im Allgemeinen mit $h<1$ rechnen, konvergiert die zweite finite Differenz also schneller gegen die analytische Ableitung.\\
-Im Fehlerplot von $g_1$ zeigt sich wiederum, dass die Fehler erst wie erwartet bei kleiner werdendem $h$ linear bzw. quadratisch konvergiert, jedoch ab einer bestimmten Grenze wieder größer wird.
-Dies lässt sich mit der Auslöschung erklären, die auftritt, wenn man zwei Maschinenzahlen subtrahiert, die sehr nah beieinander liegen.
-Rechnet der Computer also mit der gegebenen Formel $(D_h^{(1)}g_1)(x) = \frac{g_1(x+h)-g_1(x)}{h}$ die erste finite Differenz aus und liegt $g_1(x+h)$ genügend nah an $g_1(x)$, dann reicht die Genauigkeit der Maschinenzahlen mit 52 Bit Mantisse nicht mehr aus, um den Unterschied zwischen beiden beliebig genau zu berechnen und die Genauigkeit der Rechnung sinkt wieder.
-Den gleichen Auslöschungseffekt sieht man auch bei der Formel $(D_h^{(2)}f)(x) = \frac{f(x+h)-2f(x)+f(x-h)}{h^2}$, mit der wir die zweite finite Differenz berechnen.
-Da wir hier durch $h^2$ teilen, wächst der Fehler hier quadratisch wieder an, während er bei der ersten finiten Differenz nur linear wieder wächst.\\\\
-Betrachten wir nun die Funktionen $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j\cdot x)/x$.
+Dass die Approximation der Ableitungen der Funktion $g_1:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1(x)=sin(x)/x$ für kleinere Schrittweiten $h$ immer genauer wurde, lässt sich damit erklären, dass sich die Stelle $x+h$ beim Verkleinern der Schrittweite $h$ immer weiter der zu untersuchenden Stelle $x$ nähert.
+Die Sekantensteigung kommt also der exakten Tangentensteigung immer näher.
+Dass sich die zweite finite Differenz dabei schneller der analytischen zweiten Ableitung als die erste finite Differenz der analytischen ersten Ableitung nähert, ist mittels der oben gemachten theoretischen Überlegungen darauf zurückzuführen, dass der Fehler der ersten finiten Differenz linear von $h$ abhängt, der Fehler der zweiten finiten Differenz allerdings sogar quadratisch von $h$ abhängt.
+Mit Wahl eines kleinen $h$'s ($h<1$) konvergiert die zweite finite Differenz also schneller gegen die analytische Ableitung. \\
+Dass es keinen Vorteil bringt, wenn man die Schrittweite $h$ beliebig weit verkleinert, zeigte der Fehlerplot von $g_1$. Ab sehr kleinen $h$-Werten, brach die lineare bzw. quadratische Konvergenz ab, der maximale absolute Fehler wurde wieder größer.
+Dieser Umstand ist der eingangs erwähnten Auslöschung geschuldet, die immer dann auftritt, wenn zwei etwa gleich große Zahlen subtrahiert werden.
+Rechnet der Computer also mit der gegebenen Formel $(D_h^{(1)}g_1)(x) = \frac{g_1(x+h)-g_1(x)}{h}$ die erste finite Differenz aus und liegt $g_1(x+h)$ genügend nah an $g_1(x)$, dann reicht die Genauigkeit der Maschinen und ihrer Zahlen nicht mehr aus, um den Unterschied zwischen beiden gut zu berechnen. Die Genauigkeit der Rechnung und damit unserer Approximation sinkt wieder.
+Auf denselben Auslöschungseffekt trifft man auch bei der Formel $(D_h^{(2)}g_1)(x) = \frac{g_1(x+h)-2g_1(x)+g_1(x-h)}{h^2}$, mit der man die zweite finite Differenz berechnet.
+Aufgrund der zweifachen Division von $h$ wächst der Fehler hier quadratisch wieder an, während er bei der ersten finiten Differenz nur linear wieder anwächst. \\
+ \\
+In weiterführenden Experimenten haben wir die modifizierten Funktionen $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j x)/x$ betrachtet.
+
+
 Da wir bei kleiner werdenden $j$'s auch mit immer kleiner werdenden Zahlen rechnen, werden auch die Größenordungen der absoluten Fehler immer kleiner.
 Die Funktion $g_j$ wird bei kleinerem $j$ immer weiter in $x$-Richtung gestaucht, weshalb auch ihre Steigung immer weiter gegen $0$ geht und damit auch ihre zweite Ableitung.
 Bei kleiner werdenden $j$'s befindet sich das "`optimale"' $h$, bei dem die Fehler am geringsten sind schon weiter rechts. Man braucht wegen der geringen Steigung kein sehr kleines $h$, um eine "`optimale"' Abschätzung zu erzielen. Da wir hier mit immer kleineren Zahlen hantieren, tritt die Auslöschung außerdem schon früher ein.
