@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  8 NOV 2019 19:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  8 NOV 2019 19:45
 entering extended mode
 **./serie1_bericht.tex
 (serie1_bericht.tex
@@ -731,15 +731,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 183--196
  []
 
 [13] [14]
-Underfull \hbox (badness 10000) in paragraph at lines 199--203
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--212
-
- []
-
 No file serie1_bericht.bbl.
 [15] (serie1_bericht.aux)
 
@@ -748,7 +739,7 @@ LaTeX Warning: There were undefined references.
  ) 
 Here is how much of TeX's memory you used:
  7980 strings out of 492453
- 138493 string characters out of 3134037
+ 138501 string characters out of 3134037
  324820 words of memory out of 3000000
  12202 multiletter control sequences out of 15000+200000
  18462 words of font info for 53 fonts, out of 3000000 for 9000
@@ -771,9 +762,9 @@ sers/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/AJ/MiKTeX/font
 s/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmsy10.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 ><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on serie1_bericht.pdf (15 pages, 2590969 bytes).
+Output written on serie1_bericht.pdf (15 pages, 2592404 bytes).
 PDF statistics:
- 465 PDF objects out of 1000 (max. 8388607)
+ 467 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  151 words of extra memory for PDF output out of 10000 (max. 10000000)
 

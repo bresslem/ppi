@@ -186,7 +186,7 @@ Dass sich die zweite finite Differenz dabei schneller der analytischen zweiten A
 Mit Wahl eines kleinen $h$'s ($h<1$) konvergiert die zweite finite Differenz also schneller gegen die analytische Ableitung. \\
 Dass es keinen Vorteil bringt, wenn man die Schrittweite $h$ beliebig weit verkleinert, zeigte der Fehlerplot von $g_1$. Ab sehr kleinen $h$-Werten, brach die lineare bzw. quadratische Konvergenz ab, der maximale absolute Fehler wurde wieder größer.
 Dieser Umstand ist der eingangs erwähnten Auslöschung geschuldet, die immer dann auftritt, wenn zwei etwa gleich große Zahlen subtrahiert werden.
-Rechnet der Computer also mit der gegebenen Formel $(D_h^{(1)}g_1)(x) = \frac{g_1(x+h)-g_1(x)}{h}$ die erste finite Differenz aus und liegt $g_1(x+h)$ genügend nah an $g_1(x)$, dann reicht die Genauigkeit der Maschinen und ihrer Zahlen nicht mehr aus, um den Unterschied zwischen beiden gut zu berechnen. Die Genauigkeit der Rechnung und damit unserer Approximation sinkt wieder.
+Rechnet der Computer also mit der gegebenen Formel $(D_h^{(1)}g_1)(x) = \frac{g_1(x+h)-g_1(x)}{h}$ die erste finite Differenz aus und liegt $g_1(x+h)$ genügend nah an $g_1(x)$, dann reicht die Genauigkeit der Maschine und ihrer Zahlen nicht mehr aus, um die Differenz zwischen beiden gut zu berechnen. Die Genauigkeit der Rechnung und damit unserer Approximation sinkt wieder.
 Auf denselben Auslöschungseffekt trifft man auch bei der Formel $(D_h^{(2)}g_1)(x) = \frac{g_1(x+h)-2g_1(x)+g_1(x-h)}{h^2}$, mit der man die zweite finite Differenz berechnet.
 Aufgrund der zweifachen Division von $h$ wächst der Fehler hier quadratisch wieder an, während er bei der ersten finiten Differenz nur linear wieder anwächst. \\
  \\
@@ -194,21 +194,19 @@ In weiterführenden Experimenten haben wir die modifizierten Funktionen $g_j:[\p
 Wie man bei immer größeren $j$'s am Stauchen des Graphen in $x$-Richtung erkennen kann, nimmt die Frequenz der Funktion zu und damit auch die Änderung auf dem untersuchten Intervall (das wir beibehalten). Die Änderung der Steigung (1. Ableitung) wird immer stärker. Deswegen benötigt man für immer größere $j$'s eine feinere Schrittweite, damit eine gute Approximation gelingt. Gleiches gilt für die Krümmung des Graphen. Mehr Änderung in der ersten Ableitung von $g_j$ bewirkt auch mehr Änderung in der zweiten Ableitung. Ebenso produzieren die immer größeren Zahlen immer größere Fehler. Das Verfahren ist für die modifizierten Funktionen immer angreifbarer. Und auch nach dem "`optimalen"' $h$ muss man länger suchen. Durch die höhere Größenordnung der vom Computer zu behandelten Zahlen tritt der oben angesprochene Auslöschungseffekt erst später auf. Das mag auf den ersten Blick positiv erscheinen, aber es bedeutet auch, dass man die Schrittweite für eine möglichst genaue Approximation ebenso sehr sehr stark verringern muss, was wiederum zum einem maschinenbedingt eine untere Grenze hat und zum anderen in der Praxis mit sehr viel Aufwand verbunden ist. Insgesamt kommt es also zum Verschieben des Konvergenz-Bereiches nach links. \\
 Für immer kleinere $j$'s ist das Szenario genau umgekehrt. Das Strecken des Graphen in $x$-Richtung bedeutet eine Abnahme der Frequenz und damit auch weniger Änderung auf dem betrachteten Intervall. Da die Änderung der Steigung (erste Ableitung) immer geringer wird, genügt für eine gute Approximation eine gröbere Schrittweite aus. Und auch hier gilt: \textit{more is more} oder eher \textit{less is less}. Weniger Änderung in der ersten Ableitung von $g_j$ verursacht auch weniger Änderung in der zweiten Ableitung. Da es nicht mehr viel zu tun gibt, funktioniert das Verfahren für kleinere $j$'s immer besser. Und auch hier gilt analog: Die durch die immer kleineren $j$'s kleiner werdenden Zahlen bewirken auch eine Abnahme der Größenordnung des maximalen absoluten Fehlers. Die Auslöschung setzt früher ein, das "`optimale"' $h$ ist günstig früher zu finden. Unterm Strich wird der $h$-Bereich, in dem die Konvergenz des Verfahrens erkennbar ist, nach rechts verschoben. \\
 
-\pagebreak \section{Schluss}
-\label{sec:schluss}
-Die Taylorentwicklung stellt überschaubare und leicht anwendbare Formeln bereit, um die Ableitungen einer Funktion zu approximieren.
-Mit linearer bis quadradratischer Konvergenz können hier unter Umständen sehr genaue Abschätzungen geliefert werden.
-Die Schwierigkeit ist hierbei einen Wert für $h$ zu finden, der weder zu groß ist, um eine genaue Approximation zu liefern, noch so klein, dass es bei der Subtraktion zu Auslöschungen kommt.
-So ist das Verfahren nicht geeignet für sehr kleine Zahlen und Schrittweiten.\\
-
-- Vorteile: sehr überschaubare, leicht anwendbare Formel, einfaches Verfahren mit
-quadratischer Konvergenzgeschwindigkeit (zentrale Differenzenquotienten) \\
-- Nachteile: sehr kleine Zahlen und Schrittweiten problematisch \\
-- Aufwand und Nutzen ins rechte Verhältnis bringen! \\
-- noch interessant: Experimente mit zentralen Differenzenquotienten, Stichwort
-Effizienz > Wie viel Zeit benötigt Rechner zum Bereitstellen einer passablen Lösung?,
-Stichwort Genauigkeit > Könnten wir die Formel analytisch so äquivalent umstellen,
-dass genauere Ergebnisse geliefert werden? \\
+\pagebreak \section{Zusammenfassung und Ausblick}
+\label{sec:zusammenfassung}
+Die finiten Differenzen stellen überschaubare und leicht anwendbare Formeln bereit, um die Ableitungen einer Funktion zu approximieren.
+Durch die lineare bis quadratische Konvergenz können hier mit nicht allzu großem Aufwand unter Umständen sehr genaue Näherungen geliefert werden.
+Die Schwierigkeit besteht allerdings darin, einen Wert für die Schrittweite $h$ zu finden, der weder zu groß ist, um eine gute, sprich eine relativ genaue Approximation zu liefern, noch so klein, dass es durch den maschinenbedingten Auslöschungseffekt zu Fehlergrößenordnungen kommt, die nicht wünschenswert sind.
+Eine Möglichkeit, das Verfahren für die erste Ableitung zu optimieren, ist der zentrale Differenzenquotient erster Ordnung, wie oben angegeben. Durch das Verwenden der Differenz von $f(x+h)$ und $f(x-h)$ verdoppelt sich der Abstand der beiden Funktionswerte, so dass die Gefahr der Auslöschung erst später, d.h. für kleinere $h$'s auftritt, weil die beiden Zahlen auch für den Computer weiter von einander entfernt sind.
+Weiterführende Experimente dahingehend wären sehr interessant.
+Ebenso könnte man testen, ob man die Differenzenformel analytisch äquivalent so umformen kann, dass genauere Ergebnisse erzielt werden. \\
+Folgender Zusammenhang wurde durch unsere Untersuchungen deutlich:
+Wie gut das Verfahren insgesamt funktioniert, hängt sehr von den zu approximierenden Funktionen und der Größenordnung der Zahlen ab.
+So muss auch im Detail geschaut werden, wie man Aufwand und Nutzen in ein rechtes und angenehmes Verhältnis bringt.
+Bei numerischen Berechnungen stellt sich in erster Linie zwar immer die Frage, wie genau die Lösungen sein müssen, welcher Toleranzgrenze sollen sie genügen, andererseits sollte man auch den Rechen- und Zeitaufwand im Blick behalten.
+Untersuchungen zur Effizienz (d.h. wie viel Zeit benötigt der Computer zum Bereitstellen einer passablen Lösung) konnten in diesem Rahmen leider nicht stattfinden, würden sich aber aufgrund der Praxisnähe für weitergehende Experimente anbieten.
 
 \bibliographystyle{plain}
 \bibliography{serie1_literatur}
