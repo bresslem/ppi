@@ -28,11 +28,11 @@ class FiniteDifference:
     h (float): Stepsize of the approximation.
     """
 
-    def __init__(self, h, h_string, f, name, d_f=None, dd_f=None):
+    def __init__(self, h, h_string, f, name_f, d_f=None, dd_f=None):
         self.h = h                  # pylint: disable=invalid-name
         self.h_string = h_string    # pylint: disable=invalid-name
         self.f = f                  # pylint: disable=invalid-name
-        self.name = name            # pylint: disable=invalid-name
+        self.name_f = name_f        # pylint: disable=invalid-name
         self.d_f = d_f              # pylint: disable=invalid-name
         self.dd_f = dd_f            # pylint: disable=invalid-name
 
@@ -122,7 +122,7 @@ class FiniteDifference:
         plt.plot(domain, values_f, label='$g$', color='orangered')
         plt.xlabel('$x$')
         plt.ylabel('$y$')
-        plt.title('Funktionenplot von ' + self.name +
+        plt.title('Funktionenplot von ' + str(self.name_f) +
                   ', Schrittweite $h=$' + self.h_string)
 
         if self.d_f is not None:
@@ -165,7 +165,7 @@ class FiniteDifference:
 
         plt.xlabel('$h$')
         plt.ylabel('$e_g(h)$')
-        plt.title('Fehlerplot von ' + self.name)
+        plt.title('Fehlerplot von ' + str(self.name_f))
         plt.legend(loc='lower right')
         plt.grid()
         plt.show()
@@ -207,7 +207,7 @@ def main():
     g_1.plot_errors(np.pi, 3*np.pi, 1000, [1e-10, 5e-10, 1e-9, 5e-9, 1e-8, 5e-8,
                                            1e-7, 5e-7, 1e-6, 5e-6, 1e-5, 5e-5,
                                            1e-4, 5e-4, 1e-3, 5e-3, 1e-2, 5e-2,
-                                           1e-1, 1e-1, 5, 10])
+                                           1e-1, 5e-1, 1, 5, 10])
 
 
 if __name__ == "__main__":
