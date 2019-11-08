@@ -1,0 +1,9 @@
+\babel@toc {ngerman}{}
+\contentsline {section}{\numberline {1}Einleitung}{2}% 
+\contentsline {section}{\numberline {2}Theorie}{3}% 
+\contentsline {subsection}{\numberline {2.1}Vom Differential- zum Differenzenquotienten und umgekehrt}{3}% 
+\contentsline {subsection}{\numberline {2.2}Approximieren von Ableitungen via Taylorentwicklung}{4}% 
+\contentsline {subsection}{\numberline {2.3}Fehler und Schrittweite}{5}% 
+\contentsline {section}{\numberline {3}Experimente und Beobachtungen}{7}% 
+\contentsline {section}{\numberline {4}Auswertung}{13}% 
+\contentsline {section}{\numberline {5}Schluss}{15}% 

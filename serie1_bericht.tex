@@ -122,7 +122,7 @@ Es lässt sich beobachten, dass sowohl der maximale Fehler der ersten finiten Di
  \\
 In weiterführenden Experimenten wollen wir die Funktion $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j x)/x$. Wieder haben wir die erste und die zweite Ableitung mit analytischen Methoden der Differentialrechnung ermittelt: \\
 \[g_j'(x) = \frac{jx \cdot cos(jx) - sin(jx)}{x^{2}}, g_j''(x) = \frac{-2jx \cdot cos(jx) + (2-j^{2}x^{2}) sin(jx)}{x^{3}} \] \\
-Zunächst wählen wir $j<1$ und anschließend $j>1$ ($j \in \mathbb{R^{+}}$). Im Vergleich zu $j = 1$ bewirken kleinere $j$'s eine Streckung des ursprünglichen Graphen in $x$-Richtung. Größere $j$'s bewirken das Gegenteil, eine Stauchung des ursprünglichen Graphen in $x$-Richtung. Während immer kleinere $j$'s die Frequenz von $g_j$ verringern, kommt es bei immer größeren $j$'s zum Erhöhen der Frequenz. Das heißt, dass sich die Funktionswerte von $g_j$ auf demselben Intervall bei kleineren $j$'s langsamer und bei größeren $j$'s schneller ändern. Die folgenden Funktionenplots sollen die Veränderungen verdeutlichen.
+Zunächst wählen wir $j>1$ und anschließend $j<1$ ($j \in \mathbb{R^{+}}$). Im Vergleich zu $j = 1$ bewirken größere $j$'s eine Stauchung des ursprünglichen Graphen in $x$-Richtung. Kleinere $j$'s bewirken das Gegenteil, eine Streckung des ursprünglichen Graphen in $x$-Richtung. Während immer größere $j$'s die Frequenz von $g_j$ erhöhen, kommt es bei immer kleineren $j$'s zum Vermindern der Frequenz. Das heißt, dass sich die Funktionswerte von $g_j$ auf demselben Intervall bei größeren $j$'s schneller und bei kleineren $j$'s langsamer ändern. Die folgenden Funktionenplots sollen die Veränderungen verdeutlichen.
 
 \vspace{0.4cm}
 {
@@ -147,7 +147,7 @@ Zunächst wählen wir $j<1$ und anschließend $j>1$ ($j \in \mathbb{R^{+}}$). Im
     \vspace{0.5cm}
   }
 
-Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten. Während die Größenordnung des Approximationsfehlers bei immer kleineren $j$'s für die dargestellten Schrittweiten abnimmt, nimmt sie bei immer größeren $j$'s zu. Zudem verschiebt sich die Stelle, ab der der Fehler nicht weiter kleiner wird und die lineare bzw. quadratische Konvergenzgeschwindigkeit nicht mehr erkennbar ist: Bei immer kleineren $j$'s verschiebt sie sich nach rechts, d.h. ab immer gröberem $h$. Bei immer größeren $j$'s verschiebt sie sich nach links, d.h. ab immer feinerem $h$. Ebenso ist hier erkennbar, dass sich der Beginn des $h$-Intervalls, in dem die lineare bzw. quadratische Konvergenz des Verfahren sichtbar ist, nach rechts bzw. nach links verschiebt. Dieser Konvergenz-Bereich verschwindet zunehmend aus dem Blickfeld und sichtbar wird bei immer kleineren $j$'s der Bereich links davon und bei immer größeren $j$'s der Bereich rechts davon.
+Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten. Während die Größenordnung des Approximationsfehlers bei immer größere $j$'s für die dargestellten Schrittweiten zunimmt, nimmt sie bei immer kleineren $j$'s ab. Zudem verschiebt sich die Stelle, ab der der Fehler nicht weiter kleiner wird und die lineare bzw. quadratische Konvergenzgeschwindigkeit nicht mehr erkennbar ist: Bei immer größeren $j$'s verschiebt sie sich nach links, d.h. ab immer feinerem $h$. Bei immer kleineren $j$'s verschiebt sie sich nach rechts, d.h. ab immer gröberem $h$. Ebenso ist hier erkennbar, dass sich der Beginn des $h$-Intervalls, in dem die lineare bzw. quadratische Konvergenz des Verfahren sichtbar ist, nach links bzw. nach rechts verschiebt. Dieser Konvergenz-Bereich verschwindet zunehmend aus dem Blickfeld und sichtbar wird bei immer größeren $j$'s der Bereich rechts davon und bei immer kleineren $j$'s der Bereich links davon.
 
 \vspace{0.4cm}
 {
@@ -161,7 +161,7 @@ Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten.
     \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j16777216}
     \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j268435456}\\
     \vspace{-0.2cm}
-    \captionof{figure}{Entwicklung der Fehler für $j>1$.}
+    \captionof{figure}{Fehlerplots von $g_j$ für verschiedene $j>1$}
 
     \vspace{0.5cm}
 
@@ -174,7 +174,7 @@ Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten.
     \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j0000001}
     \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j00000001}\\
     \vspace{-0.2cm}
-    \captionof{figure}{Entwicklung der Fehler für $j<1$.}
+    \captionof{figure}{Fehlerplots von $g_j$ für verschiedene $j<1$}
     \vspace{0.5cm}
   }
 
@@ -190,16 +190,9 @@ Rechnet der Computer also mit der gegebenen Formel $(D_h^{(1)}g_1)(x) = \frac{g_
 Auf denselben Auslöschungseffekt trifft man auch bei der Formel $(D_h^{(2)}g_1)(x) = \frac{g_1(x+h)-2g_1(x)+g_1(x-h)}{h^2}$, mit der man die zweite finite Differenz berechnet.
 Aufgrund der zweifachen Division von $h$ wächst der Fehler hier quadratisch wieder an, während er bei der ersten finiten Differenz nur linear wieder anwächst. \\
  \\
-In weiterführenden Experimenten haben wir die modifizierten Funktionen $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j x)/x$ betrachtet.
-
-
-Da wir bei kleiner werdenden $j$'s auch mit immer kleiner werdenden Zahlen rechnen, werden auch die Größenordungen der absoluten Fehler immer kleiner.
-Die Funktion $g_j$ wird bei kleinerem $j$ immer weiter in $x$-Richtung gestaucht, weshalb auch ihre Steigung immer weiter gegen $0$ geht und damit auch ihre zweite Ableitung.
-Bei kleiner werdenden $j$'s befindet sich das "`optimale"' $h$, bei dem die Fehler am geringsten sind schon weiter rechts. Man braucht wegen der geringen Steigung kein sehr kleines $h$, um eine "`optimale"' Abschätzung zu erzielen. Da wir hier mit immer kleineren Zahlen hantieren, tritt die Auslöschung außerdem schon früher ein.
-Analog werden die absoluten Fehler bei größer werdenden $j$'s immer größer.
-Die Frequenz der Funktion steigt hier stark an und damit wirken sich auch bestimmte Verfahrensfehler mehr aus. So kann es sich zum Beispiel viel stärker auswirken an welchen Stellen die Funktion ausgewertet wird. Wählt man eine ungünstige Intervalllänge $p$, so kann es unter Umständen dazu kommen, dass man die Funktion immer genau da auswertet, wo ihre Steigung gerade denselben Wert hat.
-Man braucht also mehr Auswertungspunkte, um einen genaueren Plot zu zeichnen und ein kleineres $h$, um einen möglichst kleinen Fehler zu erzielen, der Wert für das "`optimale"' $h$ verschiebt sich also nach links.\\
-Bei sehr kleinen Werten von $j$ kann man beobachten, dass der
+In weiterführenden Experimenten haben wir die modifizierten Funktionen $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j x)/x$ betrachtet. Zwei Faktoren sind maßgeblich für das beobachtete Verschieben des $h$-Bereiches, in dem die lineare bzw. quadratische Konvergenz erkennbar ist: Die Änderungsrate der Funktion auf dem untersuchten Intervall und die Größenordnung der mitspielenden Zahlen. \\
+Wie man bei immer größeren $j$'s am Stauchen des Graphen in $x$-Richtung erkennen kann, nimmt die Frequenz der Funktion zu und damit auch die Änderung auf dem untersuchten Intervall (das wir beibehalten). Die Änderung der Steigung (1. Ableitung) wird immer stärker. Deswegen benötigt man für immer größere $j$'s eine feinere Schrittweite, damit eine gute Approximation gelingt. Gleiches gilt für die Krümmung des Graphen. Mehr Änderung in der ersten Ableitung von $g_j$ bewirkt auch mehr Änderung in der zweiten Ableitung. Ebenso produzieren die immer größeren Zahlen immer größere Fehler. Das Verfahren ist für die modifizierten Funktionen immer angreifbarer. Und auch nach dem "`optimalen"' $h$ muss man länger suchen. Durch die höhere Größenordnung der vom Computer zu behandelten Zahlen tritt der oben angesprochene Auslöschungseffekt erst später auf. Das mag auf den ersten Blick positiv erscheinen, aber es bedeutet auch, dass man die Schrittweite für eine möglichst genaue Approximation ebenso sehr sehr stark verringern muss, was wiederum zum einem maschinenbedingt eine untere Grenze hat und zum anderen in der Praxis mit sehr viel Aufwand verbunden ist. Insgesamt kommt es also zum Verschieben des Konvergenz-Bereiches nach links. \\
+Für immer kleinere $j$'s ist das Szenario genau umgekehrt. Das Strecken des Graphen in $x$-Richtung bedeutet eine Abnahme der Frequenz und damit auch weniger Änderung auf dem betrachteten Intervall. Da die Änderung der Steigung (erste Ableitung) immer geringer wird, genügt für eine gute Approximation eine gröbere Schrittweite aus. Und auch hier gilt: \textit{more is more} oder eher \textit{less is less}. Weniger Änderung in der ersten Ableitung von $g_j$ verursacht auch weniger Änderung in der zweiten Ableitung. Da es nicht mehr viel zu tun gibt, funktioniert das Verfahren für kleinere $j$'s immer besser. Und auch hier gilt analog: Die durch die immer kleineren $j$'s kleiner werdenden Zahlen bewirken auch eine Abnahme der Größenordnung des maximalen absoluten Fehlers. Die Auslöschung setzt früher ein, das "`optimale"' $h$ ist günstig früher zu finden. Unterm Strich wird der $h$-Bereich, in dem die Konvergenz des Verfahrens erkennbar ist, nach rechts verschoben. \\
 
 \pagebreak \section{Schluss}
 \label{sec:schluss}
