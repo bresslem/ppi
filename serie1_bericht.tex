@@ -91,10 +91,10 @@ Ist das Ziel, möglichst genau zu approximieren, sollte man dieses "`optimale"' 
 \pagebreak \section{Experimente und Beobachtungen}
 \label{sec:experimente}
 
-Wir betrachten zunächst die Funktion $g_1:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1(x) = sin(x)/x$. Mit Hilfe eines in Python verfassten Programmes, das als (DATEINAME) zusammen mit diesem Bericht eingereicht wird, lassen wir folgende Graphen zeichnen:
-Den von $g_1$, den der exakten ersten und zweiten Ableitung $g_1': [\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1'$ und $g_1''$, die wir nach den analytischen Methoden der Differentialrechnung ermittelt haben, sowie den der ersten finiten Differenz $D_h^{(1)}g$ und den der zweiten $D_h^{(2)}g$.*
-Für die Auswertung der genannten Funktionen durch den Computer unterteilen wir den Definitionsbereich $[\pi, 3\pi]$ in $p = 1000$ äquidistante Intervalle; nur an den Intervallgrenzen $x_i$ (mit $i \in \lbrace 0, 1, 2, ..., p \rbrace$) soll ausgewertet werden.
-(* $g_1'(x) = \frac{x \cdot cos(x) - sin(x)}{x^{2}}$, $g_1''(x) = \frac{-2x \cdot cos(x) + (2-x^{2}) sin(x)}{x^{3}}$) \\
+Wir betrachten zunächst die Funktion $g_1:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1(x) = sin(x)/x$. Mit Hilfe eines in Python verfassten Programmes, das als "`serie1\_experimente.py"' zusammen mit diesem Bericht eingereicht wird, lassen wir folgende Graphen zeichnen:
+Den von $g_1$, den der exakten ersten und zweiten Ableitung $g_1': [\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1'(x) = \frac{x \cdot cos(x) - sin(x)}{x^{2}}$ und $g_1'': [\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1''(x) = \frac{-2x \cdot cos(x) + (2-x^{2}) sin(x)}{x^{3}}$, die wir nach den analytischen Methoden der Differentialrechnung ermittelt haben, sowie den der ersten finiten Differenz $D_h^{(1)}g$ und den der zweiten $D_h^{(2)}g$.
+Für die Auswertung der genannten Funktionen durch den Computer unterteilen wir den Definitionsbereich $[\pi, 3\pi]$ in $p = 1000$ äquidistante Intervalle.
+Nur an den Intervallgrenzen $x_i$ (mit $i \in \lbrace 0, 1, 2, ..., p \rbrace$) soll ausgewertet werden. \\
 \\
 Nun wollen wir die exakte und die approximierte erste und zweite Ableitung von $g_1$ für die Schrittweiten $h = \pi/3$, $h = \pi/4$, $h = \pi/5$ und $h = \pi/10$ graphisch vergleichen. \\
 \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Drittel} \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Viertel}\\
@@ -120,8 +120,12 @@ Um in der Grafik erkennen zu können, mit welcher Geschwindigkeit sich die maxim
 \end{center}
 Es lässt sich beobachten, dass sowohl der maximale Fehler der ersten finiten Differenz als auch der der zweiten finiten Differenz in einer Größenordnung von etwa $0.5$ starten (für eine sehr grobe Schrittweite $h \approx 5$). Mit zunehmend kleinem $h$ nimmt auch der Approximationsfehler ab. Dabei wird der Fehler bezüglich der ersten Ableitung linear kleiner und bezüglich der zweiten Ableitung quadratisch. Jedoch nimmt er ab einer gewissen Schrittweite $h$ wieder zu. Für die erste finite Differenz ist das ab $h = 5\cdot10^{-8}$, für die zweite finite Differenz ist das bereits ab $h = 5 \cdot 10^{-4}$ der Fall (für beide: $e_g(h) \approx  5 \cdot 10^{-9}$). Nun nimmt der Fehler mit ähnlicher Geschwindigkeit zu, wie er vormals abgenommen hat. Mit der feinsten Schrittweite von $h = 10^{-10}$ liegt der maximale Fehler der erstem finiten Differenz immer noch gut bei $5 \cdot 10^{-7}$, während der maximale Fehler der zweiten finiten Differenz mit einer Größenordnung von $10^{4}$ sehr stark angewachsen ist. \\
  \\
-In weiterführenden Experimenten wollen wir die Funktion $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j x)/x$. Wieder haben wir die erste und die zweite Ableitung mit analytischen Methoden der Differentialrechnung ermittelt: \\
-\[g_j'(x) = \frac{jx \cdot cos(jx) - sin(jx)}{x^{2}}, g_j''(x) = \frac{-2jx \cdot cos(jx) + (2-j^{2}x^{2}) sin(jx)}{x^{3}} \] \\
+In weiterführenden Experimenten wollen wir die Funktion $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j x)/x$. Wieder haben wir die erste und die zweite Ableitung mit analytischen Methoden der Differentialrechnung ermittelt:
+
+\begin{center}
+$g_j'(x) = \frac{jx \cdot cos(jx) - sin(jx)}{x^{2}}$ und $g_j''(x) = \frac{-2jx \cdot cos(jx) + (2-j^{2}x^{2}) sin(jx)}{x^{3}}$
+\end{center}
+
 Zunächst wählen wir $j>1$ und anschließend $j<1$ ($j \in \mathbb{R^{+}}$). Im Vergleich zu $j = 1$ bewirken größere $j$'s eine Stauchung des ursprünglichen Graphen in $x$-Richtung. Kleinere $j$'s bewirken das Gegenteil, eine Streckung des ursprünglichen Graphen in $x$-Richtung. Während immer größere $j$'s die Frequenz von $g_j$ erhöhen, kommt es bei immer kleineren $j$'s zum Vermindern der Frequenz. Das heißt, dass sich die Funktionswerte von $g_j$ auf demselben Intervall bei größeren $j$'s schneller und bei kleineren $j$'s langsamer ändern. Die folgenden Funktionenplots sollen die Veränderungen verdeutlichen.
 
 \vspace{0.4cm}
@@ -201,7 +205,8 @@ Durch die lineare bis quadratische Konvergenz können hier mit nicht allzu groß
 Die Schwierigkeit besteht allerdings darin, einen Wert für die Schrittweite $h$ zu finden, der weder zu groß ist, um eine gute, sprich eine relativ genaue Approximation zu liefern, noch so klein, dass es durch den maschinenbedingten Auslöschungseffekt zu Fehlergrößenordnungen kommt, die nicht wünschenswert sind.
 Eine Möglichkeit, das Verfahren für die erste Ableitung zu optimieren, ist der zentrale Differenzenquotient erster Ordnung, wie oben angegeben. Durch das Verwenden der Differenz von $f(x+h)$ und $f(x-h)$ verdoppelt sich der Abstand der beiden Funktionswerte, so dass die Gefahr der Auslöschung erst später, d.h. für kleinere $h$'s auftritt, weil die beiden Zahlen auch für den Computer weiter von einander entfernt sind.
 Weiterführende Experimente dahingehend wären sehr interessant.
-Ebenso könnte man testen, ob man die Differenzenformeln analytisch äquivalent so umformen kann, dass genauere Ergebnisse erzielt werden. Leider musste für dieses Projekt eine Auswahl an Punkten zum Untersuchen getroffen werden. \\
+Ebenso könnte man testen, ob man die Differenzenformeln analytisch äquivalent so umformen kann, dass genauere Ergebnisse erzielt werden.
+
 Folgender Zusammenhang wurde durch unsere Untersuchungen deutlich:
 Wie gut das Verfahren insgesamt funktioniert, hängt sehr von den zu approximierenden Funktionen und der Größenordnung der Zahlen ab.
 So muss auch im Detail geschaut werden, wie man Aufwand und Nutzen in ein rechtes und angenehmes Verhältnis bringt.
