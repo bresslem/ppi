@@ -47,7 +47,7 @@ Eine Funktion $f:D \rightarrow \mathbb{R}$ (mit $D\subset \mathbb{R}$) heißt di
 \end{shaded}
 Der Differentialquotient geht zurück auf die Sekantensteigung. Ist die Ableitung einer Funktion $f$ an einer Stelle $x_0$ gesucht, wird wie eingangs erwähnt nach der Steigung der Tangente am Graphen von $f$ im Punkt $(x_0 \mid f(x_0))$ gefragt. Die Tangentensteigung kann näherungsweise mit der Sekantensteigung durch die Punkte $(x_0 \mid f(x_0))$ und $(x_0 + \Delta x \mid f(x_0 + \Delta x))$ bestimmt werden. Die Formel der Sekantensteigung durch die Punkte $(x_0 \mid f(x_0))$ und $(x_0 + \Delta x \mid f(x_0 + \Delta x))$ ist der folgende Differenzenquotient: \[\frac {f(x_0 + \Delta x)-f(\Delta x)}{(x_0 + \Delta x) - x_0} = \frac {f(x_0 + \Delta x)-f(\Delta x)}{\Delta x}\]
 Setzt man $\Delta x =: h$ und lässt $h$ gegen $0$ laufen, erhält man die Formel für den Differentialquotienten, sprich für die Ableitung von $f$ an der Stelle $x_0$. Allerdings kann der Computer den Grenzübergang der sogenannten \textit{Schrittweite} $h$ gegen $0$ nicht leisten. Deswegen wählt man den Differenzenquotienten als Näherung der Ableitung. Werden Rundungsfehler vernachlässigt, die ein Computer immer aufgrund seiner begrenzten Genauigkeit in der Zahldarstellung verursacht, geht der numerische Wert des Differenzenquotienten gegen den exakten Wert der Ableitung. Aber auch in der Praxis gilt die Faustregel: Je kleiner die Schrittweite $h$ gewählt wird, desto genauer ist die numerische Näherung. \\
-Der Differenzenquotient misst also die mittlere spezifische Änderung von $f$ zwischen zwei Stellen. Man unterscheidet zwischen dem \textit{rechtsseitigem Differenzenquotienten}, bei dem die Steigung der Sekante durch $x$ und $x+h$ berechnet wird, und dem \textit{linksseitigen Differenzenquotienten}, bei dem wiederum die Steigung der Sekante durch $x-h$ und $x$ berechnet wird. Allerdings ist die Nutzung des links- oder des rechtsseitigen Differenzenquotienten, einer \textit{finiten Differenz erster Ordnung} suboptimal, vor allem für einseitig gekrümmte Funktionsgraphen, bei denen oft eine sehr hohe Abweichung zwischen Sekanten- und Tangentensteigung zu beobachten ist. Deshalb kann es unter Umständen sinnvoll sein, diesen Fehler durch Mittelung zu verkleinern und das arithmetische Mittel der beiden einseitigen (asymmetrischen) Differenzenquotienten zu betrachten, das heißt die Sekantensteigung zwischen $x-h$ und $x+h$. Dies bezeichnet man als \textit{zentralen} oder auch \textit{symmetrischen Differenzenquotienten erster Ordnung}. Durch erneutes Anwenden der symmetrischen Differenzenformel für die erste Ableitung lässt sich eine symmetrische Differenzenformel zur Approximation der zweiten Ableitung gewinnen: der \textit{symmetrische Differenzenquotient zweiter Ordnung} bzw. die \textit{zweite finite Differenz}. Für höhere Ableitungen geht man analog vor.
+Der Differenzenquotient misst also die mittlere spezifische Änderung von $f$ zwischen zwei Stellen. Man unterscheidet zwischen dem \textit{rechtsseitigem Differenzenquotienten}, bei dem die Steigung der Sekante durch $x$ und $x+h$ berechnet wird, und dem \textit{linksseitigen Differenzenquotienten}, bei dem wiederum die Steigung der Sekante durch $x-h$ und $x$ berechnet wird. Allerdings ist die Nutzung des links- oder des rechtsseitigen Differenzenquotienten, einer \textit{finiten Differenz erster Ordnung} suboptimal, vor allem für einseitig gekrümmte Funktionsgraphen, bei denen oft eine sehr hohe Abweichung zwischen Sekanten- und Tangentensteigung zu beobachten ist. Deshalb kann es unter Umständen sinnvoll sein, diesen Fehler durch Mittelung zu verkleinern und das arithmetische Mittel der beiden einseitigen (asymmetrischen) Differenzenquotienten zu betrachten, das heißt die Sekantensteigung zwischen $x-h$ und $x+h$. Dies bezeichnet man als \textit{zentralen} oder auch \textit{symmetrischen Differenzenquotienten erster Ordnung}. Durch erneutes Anwenden der symmetrischen Differenzenformel für die erste Ableitung lässt sich eine symmetrische Differenzenformel zur Approximation der zweiten Ableitung gewinnen: der \textit{symmetrische Differenzenquotient zweiter Ordnung} bzw. die \textit{zweite finite Differenz}. Für höhere Ableitungen geht man analog vor.\cite{westermann}
 \begin{shaded}
 \begin{center}
  rechtsseitiger Differenzenquotient / finite Differenz erster Ordnung:
@@ -78,25 +78,31 @@ Durch Aufsummieren der beiden Formel für die Taylorentwicklung um $x+h$ und $x-
 \begin{shaded}
 \[(D_h^{(2)}f)(x) = \frac{f(x+h)-2f(x)+f(x-h)}{h^2} = f''(x)+\frac{f^{(4)}(x)h^2}{3\cdot4}+...=f''(x)+\mathcal{O}(h^2)\;\]
 \end{shaded}
-Diese entspricht wiederum der zweiten Ableitung von $f$ an der Stelle $x$ bis auf einen quadratischen Fehlerterm.
+Diese entspricht wiederum der zweiten Ableitung von $f$ an der Stelle $x$ bis auf einen quadratischen Fehlerterm.\cite{ppi}
 
 \subsection{Fehler und Schrittweite}
 \label{ssec:schrittweite}
-Die Fehler numerischer Berechnungen gegenüber exakter analytischer setzen sich ganz allgemein zusammen aus \textit{Verfahrensfehlern} und \textit{Rundungsfehlern}. Der Verfahrensfehler gibt den Unterschied zwischen dem exakten Wert der Ableitung an der Stelle $x$ und dem exakten Wert des Differenzenquotienten an der Stelle $x$ an. Rundungsfehler sind hingegen darauf zurückzuführen, dass der Computer aufgrund eines begrenzten Speichers Zahlen nur mit endlicher Genauigkeit darstellen und verarbeiten kann. Er verfügt lediglich über einen endlichen Vorrat an sogenannten Maschinenzahlen. Gibt der Benutzer eine Zahl in den Computer ein, die keine Maschinenzahl ist, wird sie zur nächstgelegenen Maschinenzahl gerundet. So kommt es insbesondere in dem Bereich der reellen Zahlen bereits bei der Übergabe von Zahlen an den Computer zu Rundungsfehlern. Aber auch nach jeder Operation rundet die Maschine und produziert damit weitere Rundungsfehler. Die Verstärkung der Rundungsfehler wird als \textit{Fehlerfortpflanzung} bezeichnet. Wie problematisch diese Fehler sind, ist von den Zahlen, der Art und der Reihenfolge der ausgeführten Operationen abhängig. In der Computerarithmetik sind Addition und Multiplikation zwar kommutativ, jedoch gelten Assoziativ- und Distributivgesetze im Allgemeinen nicht. Demnach können analytisch äquivalente Ausdrücke auf dem Computer zu erheblich unterschiedlichen Ergebnissen führen. \\
+Die Fehler numerischer Berechnungen gegenüber exakter analytischer setzen sich ganz allgemein zusammen aus \textit{Verfahrensfehlern} und \textit{Rundungsfehlern}.\cite{westermann} Der Verfahrensfehler gibt den Unterschied zwischen dem exakten Wert der Ableitung an der Stelle $x$ und dem exakten Wert des Differenzenquotienten an der Stelle $x$ an. Rundungsfehler sind hingegen darauf zurückzuführen, dass der Computer aufgrund eines begrenzten Speichers Zahlen nur mit endlicher Genauigkeit darstellen und verarbeiten kann. Er verfügt lediglich über einen endlichen Vorrat an sogenannten Maschinenzahlen. Gibt der Benutzer eine Zahl in den Computer ein, die keine Maschinenzahl ist, wird sie zur nächstgelegenen Maschinenzahl gerundet. So kommt es insbesondere in dem Bereich der reellen Zahlen bereits bei der Übergabe von Zahlen an den Computer zu Rundungsfehlern. Aber auch nach jeder Operation rundet die Maschine und produziert damit weitere Rundungsfehler. Die Verstärkung der Rundungsfehler wird als \textit{Fehlerfortpflanzung} bezeichnet. Wie problematisch diese Fehler sind, ist von den Zahlen, der Art und der Reihenfolge der ausgeführten Operationen abhängig. In der Computerarithmetik sind Addition und Multiplikation zwar kommutativ, jedoch gelten Assoziativ- und Distributivgesetze im Allgemeinen nicht. Demnach können analytisch äquivalente Ausdrücke auf dem Computer zu erheblich unterschiedlichen Ergebnissen führen.\cite{nla} \\
 Ein heikler Punkt bei der Approximation der Ableitungen mit Differenzenquotienten ist die Wahl der Schrittweite $h$.
 Ein zu großes $h$ führt zu Verfahrensfehlern, ein zu kleines $h$ birgt die Gefahr der \textit{Auslöschung}.
-Die Subtraktion fast gleich großer Zahlen (die wir bei unseren Differenzenformeln für die erste und zweite Ableitung im Zählerterm finden) kann dazu führen, dass die Differenz zwischen den beiden Zahlen für den Computer nicht mehr erfassbar ist und signifikante Stellen \textit{ausgelöscht} werden.
+Die Subtraktion fast gleich großer Zahlen (die wir bei unseren Differenzenformeln für die erste und zweite Ableitung im Zählerterm finden) kann dazu führen, dass die Differenz zwischen den beiden Zahlen für den Computer nicht mehr erfassbar ist und signifikante Stellen \textit{ausgelöscht} werden.\cite{am}
 So wird der Approximationsfehler beim Vermindern der Schrittweite zunächst kleiner, da die Funktionalität des Verfahrens und damit die Genauigkeit der Näherung steigt.
-Allerdings macht sich im Laufe der Zeit die eben benannte Grenze bemerkbar. Bei sehr kleinen Schrittweiten muss mit Auslöschung gerechnet werden und damit wieder mit einer sinkenden Genauigkeit.
+Allerdings macht sich im Laufe der Zeit die eben benannte Grenze bemerkbar. Bei sehr kleinen Schrittweiten muss mit Auslöschung gerechnet werden und damit wieder mit einer sinkenden Genauigkeit.\cite{schneebeli}
 Ist das Ziel, möglichst genau zu approximieren, sollte man dieses "`optimale"' $h$ ausfindig machen.
-Unter Umständen genügen aber bereits gröbere Näherungen und andere Faktoren spielen eine wichtigere Rolle (siehe hierzu unsere Zusammenfassung). \\
+Unter Umständen genügen aber bereits gröbere Näherungen und andere Faktoren spielen eine wichtigere Rolle. \\
 
 \pagebreak \section{Experimente und Beobachtungen}
 \label{sec:experimente}
 
-Wir betrachten zunächst die Funktion $g_1:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1(x) = sin(x)/x$. Mit Hilfe eines in Python verfassten Programmes lassen wir folgende Graphen zeichnen (Funktionenplot): den von $g_1$, den der exakten ersten und zweiten Ableitung $g_1'$ und $g_1''$, die wir nach den analytischen Methoden der Differentialrechnung ermittelt haben, sowie den der ersten finiten Differenz $D_h^{(1)}g$ und den der zweiten $D_h^{(2)}g$. Für die Auswertung der genannten Funktionen durch den Computer unterteilen wir den Definitionsbereich $[\pi, 3\pi]$ in $p = 1000$ äquidistante Intervalle; nur an den Intervallgrenzen soll ausgewertet werden. Nun wollen wir die exakte und die approximierte erste und zweite Ableitung von $g_1$ für die Schrittweiten $h = \pi/3$, $h = \pi/4$, $h = \pi/5$ und $h = \pi/10$ graphisch vergleichen. \\
+Wir betrachten zunächst die Funktion $g_1:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1(x) = sin(x)/x$. Mit Hilfe eines in Python verfassten Programmes lassen wir folgende Graphen zeichnen:
+Den von $g_1$, den der exakten ersten und zweiten Ableitung $g_1'$ und $g_1''$, die wir nach den analytischen Methoden der Differentialrechnung ermittelt haben, sowie den der ersten finiten Differenz $D_h^{(1)}g$ und den der zweiten $D_h^{(2)}g$.
+Für die Auswertung der genannten Funktionen durch den Computer unterteilen wir den Definitionsbereich $[\pi, 3\pi]$ in $p = 1000$ äquidistante Intervalle; nur an den Intervallgrenzen soll ausgewertet werden.
+Nun wollen wir die exakte und die approximierte erste und zweite Ableitung von $g_1$ für die Schrittweiten $h = \pi/3$, $h = \pi/4$, $h = \pi/5$ und $h = \pi/10$ graphisch vergleichen. \\
 \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Drittel} \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Viertel}\\
-\includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Funftel} \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Zehntel} \\
+\includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Funftel} \includegraphics[width=0.5\textwidth]{Grafiken/Funktionenplot_Pi_Zehntel}\\
+\vspace{-0.5cm}
+\captionof{figure}{Funktionsplots für $g_1$ zu unterschiedlichen Schrittweiten.}
+\vspace{0.5cm}
 Allgemein ist folgender Zusammenhang erkennbar: Je kleiner die Schrittweite, desto besser die Approximation.
 Darüber hinaus fällt auf, dass für alle $h$ die Näherung der jeweiligen Ableitung mittels zweiter finiter Differenz besser als die mittels erster finiter Differenz.
 Bereits mit der gröbsten Schrittweite $h = \pi/3$ ist die Approximation der zweiten Ableitung gut.
@@ -109,6 +115,9 @@ Folgende Werte für $h$ sollen ausgewertet werden: $10^{-10}$, $5 \cdot 10^{-10}
 Um in der Grafik erkennen zu können, mit welcher Geschwindigkeit sich die maximalen Approximationsfehler ändern, lassen wir zudem die Graphen von $h \mapsto h$, $h \mapsto h^{2}$ und $h \mapsto h^{3}$ zeichnen und wählen die Darstellung in einem doppeltlogarithmischen Plot.
 \begin{center}
 	\includegraphics[width=0.75\textwidth]{Grafiken/Fehlerplot_Aufgabe2}
+  \vspace{-0.2cm}
+  \captionof{figure}{Fehlerplot für $g_1$.}
+  \vspace{0.5cm}
 \end{center}
 Es lässt sich beobachten, dass sowohl der maximale Fehler der ersten finiten Differenz als auch der der zweiten finiten Differenz in einer Größenordnung von etwa $0.5$ starten (für eine sehr grobe Schrittweite $h \approx 5$). Mit zunehmend kleinem $h$ nimmt auch der Approximationsfehler ab. Dabei wird der Fehler bezüglich der ersten Ableitung linear kleiner und bezüglich der zweiten Ableitung quadratisch. Jedoch nimmt er ab einer gewissen Schrittweite $h$ wieder zu. Für die erste finite Differenz ist das ab $h = 5\cdot10^{-8}$ ($e_g(h) \approx  5 \cdot 10^{-9}$), für die zweite finite Differenz ist das bereits ab $h = 5 \cdot 10^{-4}$ der Fall ($e_g(h) \approx  5 \cdot 10^{-9}$). Nun nimmt der Fehler mit ähnlicher Geschwindigkeit zu, wie er vormals abgenommen hat. Mit der feinsten Schrittweite von $h = 10^{-10}$ liegt der maximale Fehler der erstem finiten Differenz immer noch gut bei $5 \cdot 10^{-7}$, während der maximale Fehler der zweiten finiten Differenz mit einer Größenordnung von $10^{4}$ sehr stark angewachsen ist.
 
@@ -117,25 +126,48 @@ In weiterführenden Experimenten wollen wir die Funktion $g_j:[\pi, 3\pi] \right
 \vspace{0.4cm}
 {
   \centering
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j1_Pi_Zehntel}
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j075_Pi_Zehntel}
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j05_Pi_Zehntel}\\
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j025_Pi_Zehntel}
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j01_Pi_Zehntel}
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j001_Pi_Zehntel}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j1_Pi_Zehntel}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j075_Pi_Zehntel}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j05_Pi_Zehntel}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j025_Pi_Zehntel}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j01_Pi_Zehntel}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j001_Pi_Zehntel}\\
+    \vspace{-0.2cm}
     \captionof{figure}{$g_1$ für $j<1$.}
 
     \vspace{0.5cm}
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j1_Pi_Zehntel}
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j2_Pi_Zehntel}
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j4_Pi_Zehntel}\\
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j8_Pi_Zehntel}
-    \includegraphics[width=0.32\textwidth]{Grafiken/Funktionenplot_j16_Pi_Zehntel}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j2_Pi_Zehntel}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j4_Pi_Zehntel}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j8_Pi_Zehntel}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Funktionenplot_j16_Pi_Zehntel}\\
+    \vspace{-0.2cm}
     \captionof{figure}{$g_1$ für $j>1$.}
+    \vspace{0.5cm}
   }
 
-Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten. Während die Größenordnung des Approximationsfehlers bei immer kleineren $j$'s für die dargestellten Schrittweiten abnimmt, nimmt sie bei immer größeren $j$'s zu. Zudem verschiebt sich die Stelle, ab der der Fehler nicht weiter kleiner wird und die lineare bzw. quadratische Konvergenzgeschwindigkeit nicht mehr erkennbar ist: Bei immer kleineren $j$'s verschiebt sie sich nach rechts, d.h. ab immer gröberem $h$. Bei immer größeren $j$'s verschiebt sie sich nach links, d.h. ab immer feinerem $h$. Ebenso ist hier erkennbar, dass sich der Beginn des $h$-Intervalls nach links verschiebt. Durch dieses Verschieben verschwindet zunehmend der Bereich, in dem man die jeweilige Konvergenzgeschwindigkeit erkennen kann. Ins Blickfeld rückt bei immer kleineren $j$'s der Bereich links davon und bei immer größeren $j$'s der Bereich rechts davon. \\
-(FEHLERPLOTS) \\
+Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten. Während die Größenordnung des Approximationsfehlers bei immer kleineren $j$'s für die dargestellten Schrittweiten abnimmt, nimmt sie bei immer größeren $j$'s zu. Zudem verschiebt sich die Stelle, ab der der Fehler nicht weiter kleiner wird und die lineare bzw. quadratische Konvergenzgeschwindigkeit nicht mehr erkennbar ist: Bei immer kleineren $j$'s verschiebt sie sich nach rechts, d.h. ab immer gröberem $h$. Bei immer größeren $j$'s verschiebt sie sich nach links, d.h. ab immer feinerem $h$. Ebenso ist hier erkennbar, dass sich der Beginn des $h$-Intervalls nach links verschiebt. Durch dieses Verschieben verschwindet zunehmend der Bereich, in dem man die jeweilige Konvergenzgeschwindigkeit erkennen kann. Ins Blickfeld rückt bei immer kleineren $j$'s der Bereich links davon und bei immer größeren $j$'s der Bereich rechts davon.
+
+\vspace{0.4cm}
+{
+  \centering
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j1}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j075}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j05}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j025}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j01}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j001}\\
+    \vspace{-0.2cm}
+    \captionof{figure}{Entwicklung der Fehler für $j<1$.}
+
+    \vspace{0.5cm}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j2}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j4}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j8}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j16}\\
+    \vspace{-0.2cm}
+    \captionof{figure}{Entwicklung der Fehler für $j>1$.}
+    \vspace{0.5cm}
+  }
 
 \pagebreak \section{Auswertung}
 \label{sec:auswertung}
@@ -175,7 +207,7 @@ Effizienz > Wie viel Zeit benötigt Rechner zum Bereitstellen einer passablen L�
 Stichwort Genauigkeit > Könnten wir die Formel analytisch so äquivalent umstellen,
 dass genauere Ergebnisse geliefert werden? \\
 
-\bibliographystyle{unsrt}
+\bibliographystyle{plain}
 \bibliography{serie1_literatur}
 
 \end{document}
