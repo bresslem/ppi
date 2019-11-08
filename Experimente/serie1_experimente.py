@@ -4,7 +4,7 @@ Authors: Bressler_Marisa, Jeschke_Anne
 
 import numpy as np
 from matplotlib import use
-#use('qt4agg')
+use('qt4agg')
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 plt.rcParams['lines.linewidth'] = 2

@@ -93,7 +93,7 @@ Ist das Ziel, möglichst genau zu approximieren, sollte man dieses "`optimale"' 
 
 Wir betrachten zunächst die Funktion $g_1:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1(x) = sin(x)/x$. Mit Hilfe eines in Python verfassten Programmes, das als (DATEINAME) zusammen mit diesem Bericht eingereicht wird, lassen wir folgende Graphen zeichnen:
 Den von $g_1$, den der exakten ersten und zweiten Ableitung $g_1': [\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_1'$ und $g_1''$, die wir nach den analytischen Methoden der Differentialrechnung ermittelt haben, sowie den der ersten finiten Differenz $D_h^{(1)}g$ und den der zweiten $D_h^{(2)}g$.*
-Für die Auswertung der genannten Funktionen durch den Computer unterteilen wir den Definitionsbereich $[\pi, 3\pi]$ in $p = 1000$ äquidistante Intervalle; nur an den Intervallgrenzen $x_i$ (mit $i \in \lbrace 0, 1, 2, ..., p \rbrace$) soll ausgewertet werden. 
+Für die Auswertung der genannten Funktionen durch den Computer unterteilen wir den Definitionsbereich $[\pi, 3\pi]$ in $p = 1000$ äquidistante Intervalle; nur an den Intervallgrenzen $x_i$ (mit $i \in \lbrace 0, 1, 2, ..., p \rbrace$) soll ausgewertet werden.
 (* $g_1'(x) = \frac{x \cdot cos(x) - sin(x)}{x^{2}}$, $g_1''(x) = \frac{-2x \cdot cos(x) + (2-x^{2}) sin(x)}{x^{3}}$) \\
 \\
 Nun wollen wir die exakte und die approximierte erste und zweite Ableitung von $g_1$ für die Schrittweiten $h = \pi/3$, $h = \pi/4$, $h = \pi/5$ und $h = \pi/10$ graphisch vergleichen. \\
@@ -122,28 +122,28 @@ Es lässt sich beobachten, dass sowohl der maximale Fehler der ersten finiten Di
  \\
 In weiterführenden Experimenten wollen wir die Funktion $g_j:[\pi, 3\pi] \rightarrow \mathbb{R}$ mit $g_j(x) = sin(j x)/x$. Wieder haben wir die erste und die zweite Ableitung mit analytischen Methoden der Differentialrechnung ermittelt: \\
 \[g_j'(x) = \frac{jx \cdot cos(jx) - sin(jx)}{x^{2}}, g_j''(x) = \frac{-2jx \cdot cos(jx) + (2-j^{2}x^{2}) sin(jx)}{x^{3}} \] \\
-\\
 Zunächst wählen wir $j<1$ und anschließend $j>1$ ($j \in \mathbb{R^{+}}$). Im Vergleich zu $j = 1$ bewirken kleinere $j$'s eine Streckung des ursprünglichen Graphen in $x$-Richtung. Größere $j$'s bewirken das Gegenteil, eine Stauchung des ursprünglichen Graphen in $x$-Richtung. Während immer kleinere $j$'s die Frequenz von $g_j$ verringern, kommt es bei immer größeren $j$'s zum Erhöhen der Frequenz. Das heißt, dass sich die Funktionswerte von $g_j$ auf demselben Intervall bei kleineren $j$'s langsamer und bei größeren $j$'s schneller ändern. Die folgenden Funktionenplots sollen die Veränderungen verdeutlichen.
 
 \vspace{0.4cm}
 {
   \centering
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j1_Pi_Zehntel}
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j075_Pi_Zehntel}\\
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j05_Pi_Zehntel}
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j025_Pi_Zehntel}\\
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j01_Pi_Zehntel}
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j001_Pi_Zehntel}\\
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j2_Pi_Zehntel}
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j4_Pi_Zehntel}\\
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j8_Pi_Zehntel}
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j16_Pi_Zehntel}\\
+    \vspace{-0.2cm}
+    \captionof{figure}{Funktionenplots von $g_j$ für $j>1$}
+
+    \vspace{0.5cm}
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j075_Pi_Zehntel}
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j05_Pi_Zehntel}\\
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j025_Pi_Zehntel}
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j01_Pi_Zehntel}\\
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j001_Pi_Zehntel}
+    \includegraphics[width=0.42\textwidth]{Grafiken/Funktionenplot_j0001_Pi_Zehntel}\\
     \vspace{-0.2cm}
     \captionof{figure}{Funktionenplots von $g_j$ für $j<1$}
 
-    \vspace{0.5cm}
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j2_Pi_Zehntel}
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j4_Pi_Zehntel}\\
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j8_Pi_Zehntel}
-    \includegraphics[width=0.4\textwidth]{Grafiken/Funktionenplot_j16_Pi_Zehntel}\\
-    \vspace{-0.2cm}
-    \captionof{figure}{Funktionenplots von $g_j$ für $j>1$}
     \vspace{0.5cm}
   }
 
@@ -153,21 +153,28 @@ Auch bei den Fehlerplots lässt sich jeweils gegenteiliges Verhalten beobachten.
 {
   \centering
     \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j1}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j075}\\
-    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j05}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j025}\\
-    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j01}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j001}\\
-    \vspace{-0.2cm}
-    \captionof{figure}{Entwicklung der Fehler für $j<1$.}
-
-    \vspace{0.5cm}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j2}
-    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j4}\\
-    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j8}
     \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j16}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j256}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j4096}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j65536}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j1048576}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j16777216}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j268435456}\\
     \vspace{-0.2cm}
     \captionof{figure}{Entwicklung der Fehler für $j>1$.}
+
+    \vspace{0.5cm}
+
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j1}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j01}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j001}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j0001}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j00001}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j000001}\\
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j0000001}
+    \includegraphics[width=0.45\textwidth]{Grafiken/Fehlerplot_j00000001}\\
+    \vspace{-0.2cm}
+    \captionof{figure}{Entwicklung der Fehler für $j<1$.}
     \vspace{0.5cm}
   }
 
