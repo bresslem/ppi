@@ -1,6 +1,6 @@
 """
 
-Author:
+Author: Bressler_Marisa, Jeschke_Anne
 Date:
 """
 
@@ -52,3 +52,10 @@ class BlockMatrix:
         float
             relative number of zeros
         """
+
+
+def main():
+    A_d = BlockMatrix(2, 4)
+
+if __name__ == "__main__":
+    main()
