@@ -4,9 +4,8 @@ Author: Bressler_Marisa, Jeschke_Anne
 Date:
 """
 
+import numpy as np
 from scipy.sparse import csr_matrix
-from numpy import array
-from numpy import count_nonzero
 
 class BlockMatrix:
     """ Represents block matrices arising from finite difference approximations
