@@ -1,9 +1,10 @@
 """
-
 Author: Bressler_Marisa, Jeschke_Anne
 Date:
 """
 
+import scipy as sp
+import numoy as np
 
 class BlockMatrix:
     """ Represents block matrices arising from finite difference approximations
@@ -25,7 +26,8 @@ class BlockMatrix:
     """
 
     def __init__(self, d, n):
-        pass
+        self.d = d
+        self.n = n
 
     def get_sparse(self):
         """ Returns the block matrix as sparse matrix.
@@ -35,6 +37,25 @@ class BlockMatrix:
         scipy.sparse.csr_matrix
             block_matrix in a sparse data format
         """
+
+
+    def get_A_l(self, l):
+        """ Returns the matrix of index l as sparse matrix.
+
+        Returns
+        -------
+        scipy.sparse.csr_matrix
+            block_matrix in a sparse data format
+        """
+        if (l == 1):
+            data = np.array([-2*self.d,-1])
+
+            for i in range(n-3):
+                data = np.append(data, [-1, 2*self.d, -1])
+
+            data = np.append(data, [-1, 2*self.d])
+
+            return
 
     def eval_zeros(self):
         """ Returns the (absolute and relative) numbers of (non-)zero elements
