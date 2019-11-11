@@ -46,7 +46,7 @@ class BlockMatrix:
         row[-2] = self.n-2
         col = np.zeros(3*self.n-5)
         col[-1] = self.n-2
-        col[-2] = self.n-1
+        col[-2] = self.n-3
         col[1] = 1
 
         for i in range(3*self.n-5):
