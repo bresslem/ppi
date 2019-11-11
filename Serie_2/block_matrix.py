@@ -42,12 +42,13 @@ class BlockMatrix:
 
         data = np.full((3*self.n-5), -1)
         row = np.zeros(3*self.n-5)
-        row[-1] = self.n-2
-        row[-2] = self.n-2
         col = np.zeros(3*self.n-5)
+        row[-1] = self.n-2
         col[-1] = self.n-2
-        col[-2] = self.n-3
-        col[1] = 1
+        if self.n > 2:
+            row[-2] = self.n-2
+            col[-2] = self.n-3
+            col[1] = 1
 
         for i in range(3*self.n-5):
             if i%3 == 0:
