@@ -68,6 +68,12 @@ class BlockMatrix:
 
         A_1 = csr_matrix((data, (row, col)), shape=(self.n-1,self.n-1))
 
+        # Alternativ sollte auch viel kürzer folgendes funktionieren:
+
+#        k = np.array([-np.ones(self.n-2), np.full((self.n-1), 2*d), -np.ones(self.n-2)])
+#        offset = [-1,0,1]
+#        A_1 = csr_matrix(diags(k,offset).toarray())
+
         matrices.append(A_1)
 
 
