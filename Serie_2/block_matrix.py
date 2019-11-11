@@ -49,10 +49,10 @@ class BlockMatrix:
         col[-2] = self.n-1
         col[1] = 1
 
-        for i in range(3*self.n-4):
+        for i in range(3*self.n-5):
             if i%3 == 0:
                 data[i] = 2*self.d
-            if i%3 == 0 and i!=(3*self.n-5):
+            if i%3 == 0 and i!=(3*self.n-6) and i!= 0:
                 row[i-1] = i/3
                 row[i] = i/3
                 row[i+1] = i/3
@@ -60,9 +60,9 @@ class BlockMatrix:
                 col[i] = i/3
                 col[i+1] = i/3 + 1
 
-        #2d, -1, -1, 2d, -1, -1, 2d, -1, ...,  -1,  2d
-        # 0,  0,  1,  1,  1,  2,  2,  2, ..., n-2, n-2
-        # 0,  1,  0,  1,  2,  1,  2,  3, ..., n-1, n-2
+        #2d, -1, -1, 2d, -1, -1, 2d, -1, ...,  -1,  -1,  2d
+        # 0,  0,  1,  1,  1,  2,  2,  2, ..., n-3, n-2, n-2
+        # 0,  1,  0,  1,  2,  1,  2,  3, ..., n-2, n-3, n-2
 
         A_1 = csr_matrix((data, (row, col)), shape=(self.n-1,self.n-1))
 
