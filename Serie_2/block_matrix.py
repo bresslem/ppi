@@ -5,6 +5,7 @@ Date:
 """
 
 import numpy as np
+from scipy.sparse import diags
 from scipy.sparse import csr_matrix
 
 class BlockMatrix:
@@ -40,46 +41,44 @@ class BlockMatrix:
         """
         matrices = []
 
-        data = np.full((3*self.n-5), -1)
-        row = np.zeros(3*self.n-5)
-        col = np.zeros(3*self.n-5)
+        # data = np.full((3*self.n-5), -1)
+        # row = np.zeros(3*self.n-5)
+        # col = np.zeros(3*self.n-5)
 
-        if self.n > 2:
-            row[-2] = self.n-2
-            row[-1] = self.n-2
-            col[-2] = self.n-3
-            col[-1] = self.n-2
-            col[1] = 1
+       ##   if self.n > 2:
+        #     row[-2] = self.n-2
+        #     row[-1] = self.n-2
+        #     col[-2] = self.n-3
+        #     col[-1] = self.n-2
+        #     col[1] = 1
 
-        for i in range(3*self.n-5):
-            if i%3 == 0:
-                data[i] = 2*self.d
-            if i%3 == 0 and i!=(3*self.n-6) and i!= 0:
-                row[i-1] = i/3
-                row[i] = i/3
-                row[i+1] = i/3
-                col[i-1] = i/3 - 1
-                col[i] = i/3
-                col[i+1] = i/3 + 1
+       ##   for i in range(3*self.n-5):
+        #     if i%3 == 0:
+        #         data[i] = 2*self.d
+        #     if i%3 == 0 and i!=(3*self.n-6) and i!= 0:
+        #         row[i-1] = i/3
+        #         row[i] = i/3
+        #         row[i+1] = i/3
+        #         col[i-1] = i/3 - 1
+        #         col[i] = i/3
+        #         col[i+1] = i/3 + 1
 
         #2d, -1, -1, 2d, -1, -1, 2d, -1, ...,  -1,  -1,  2d
         # 0,  0,  1,  1,  1,  2,  2,  2, ..., n-3, n-2, n-2
         # 0,  1,  0,  1,  2,  1,  2,  3, ..., n-2, n-3, n-2
 
-        A_1 = csr_matrix((data, (row, col)), shape=(self.n-1,self.n-1))
+        #A_1 = csr_matrix((data, (row, col)), shape=(self.n-1,self.n-1))
 
-        # Alternativ sollte auch viel kürzer folgendes funktionieren:
 
-#        k = np.array([-np.ones(self.n-2), np.full((self.n-1), 2*d), -np.ones(self.n-2)])
-#        offset = [-1,0,1]
-#        A_1 = csr_matrix(diags(k,offset).toarray())
-
+        k = np.array([-np.ones(self.n-2), np.full((self.n-1), 2*d), -np.ones(self.n-2)])
+        offset = [-1,0,1]
+        A_1 = diags(k,offset).toarray()
         matrices.append(A_1)
 
 
 
 
-        return matrices[-1]
+        return csr_matrix(matrices[-1])
 
     def eval_zeros(self):
         """ Returns the (absolute and relative) numbers of (non-)zero elements
