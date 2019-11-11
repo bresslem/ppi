@@ -4,7 +4,7 @@ Date:
 """
 
 import scipy as sp
-import numoy as np
+import numpy as np
 
 class BlockMatrix:
     """ Represents block matrices arising from finite difference approximations
@@ -48,14 +48,13 @@ class BlockMatrix:
             block_matrix in a sparse data format
         """
         if (l == 1):
-            data = np.array([-2*self.d,-1])
-
-            for i in range(n-3):
-                data = np.append(data, [-1, 2*self.d, -1])
-
-            data = np.append(data, [-1, 2*self.d])
-
-#            return
+            dk = np.array([-np.ones(self.n-2), np.full((self.n-1), 2*self.d), -np.ones(self.n-2)])
+            offset = [-1,0,1]
+            A_1 = diags(k,offset).toarray()
+            return csr_matrix(A_1)
+        else:
+            A_prev = self.get_A_l(l-1)
+            # use hstack/vstack to create marix
 
     def eval_zeros(self):
         """ Returns the (absolute and relative) numbers of (non-)zero elements
