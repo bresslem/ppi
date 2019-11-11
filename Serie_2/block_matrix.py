@@ -75,9 +75,6 @@ class BlockMatrix:
         A_1 = diags(k,offset).toarray()
         matrices.append(A_1)
 
-
-
-
         return csr_matrix(matrices[-1])
 
     def eval_zeros(self):
@@ -100,6 +97,7 @@ class BlockMatrix:
 
 def main():
     A_d = BlockMatrix(2, 4)
+    print(A_d.get_sparse().toarray())
 
 if __name__ == "__main__":
     main()
