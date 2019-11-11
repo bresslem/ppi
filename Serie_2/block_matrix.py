@@ -55,7 +55,7 @@ class BlockMatrix:
 
             data = np.append(data, [-1, 2*self.d])
 
-            return
+#            return
 
     def eval_zeros(self):
         """ Returns the (absolute and relative) numbers of (non-)zero elements
