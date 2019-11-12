@@ -57,8 +57,8 @@ class BlockMatrix:
             dim = A_prev.shape[0]
             I_neg = -1*sps.identity(dim, format='csr')
             zeroes = sps.csr_matrix((dim, dim))
-            
-            
+
+
             A_l = sps.hstack([A_prev,I_neg], format = 'csr')
 
             for i in range(((self.n-1)**l) - 2):
@@ -102,7 +102,7 @@ class BlockMatrix:
 
 
 def main():
-    A_d = BlockMatrix(2, 4)
+    A_d = BlockMatrix(2, 2)
     print(A_d.get_A_l(2).toarray())
 
 if __name__ == "__main__":
