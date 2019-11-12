@@ -80,6 +80,7 @@ class BlockMatrix:
 
 def main():
     A_d = BlockMatrix(2, 4)
+    print(A_d.get_A_l(2).toarray())
 
 if __name__ == "__main__":
     main()
