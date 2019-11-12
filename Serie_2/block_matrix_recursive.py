@@ -54,9 +54,32 @@ class BlockMatrix:
             return sps.csr_matrix(A_1)
         else:
             A_prev = self.get_A_l(l-1)
-            I = sps.identity(l-1, format='csr')
-            A_l = sps.hstack([A_prev,I], format = 'csr'))
-            # use hstack/vstack to create marix
+            dim = A_prev.shape[0]
+            I_neg = -1*sps.identity(dim, format='csr')
+            zeroes = sps.csr_matrix((dim, dim))
+            
+            
+            A_l = sps.hstack([A_prev,I_neg], format = 'csr'))
+
+            for i in range(((self.n-1)**l) - 2):
+                A_l = sps.hstack([A_l,zeroes], format = 'csr'))
+
+            for i in range(((self.n-1)**l) - 2):
+                A_row = sps.csr_matrix((3, 0))
+                for j in range(i):
+                    A_row = sps.hstack([A_row, zeroes], format = 'csr'))
+                A_row = sps.hstack([A_row, I_neg, A_prev, I_neg], format = 'csr'))
+                for j in range((((self.n-1)**l) - 3) - i):
+                    A_row = sps.hstack([A_row, zeroes], format = 'csr'))
+                A_l = sps.vstack([A_l, A_row], format = 'csr'))
+
+            A_row = sps.csr_matrix((3, 0))
+
+            for i in range(((self.n-1)**l) - 2):
+                A_l = sps.hstack([A_l,zeroes], format = 'csr'))
+
+            A_row = sps.hstack([A_row, I_neg, A_prev], format = 'csr'))
+            A_l = sps.vstack([A_l, A_row], format = 'csr'))
 
             return A_l
 
