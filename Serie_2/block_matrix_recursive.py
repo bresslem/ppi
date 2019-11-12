@@ -29,16 +29,6 @@ class BlockMatrix:
         self.d = d
         self.n = n
 
-    def get_sparse(self):
-        """ Returns the block matrix as sparse matrix.
-
-        Returns
-        -------
-        scipy.sparse.csr_matrix
-            block_matrix in a sparse data format
-        """
-
-
     def get_A_l(self, l):
         """ Returns the matrix of index l as sparse matrix.
 
@@ -83,6 +73,16 @@ class BlockMatrix:
 
             return A_l
 
+    def get_sparse(self):
+        """ Returns the block matrix as sparse matrix.
+
+        Returns
+        -------
+        scipy.sparse.csr_matrix
+            block_matrix in a sparse data format
+        """
+        return self.get_A_l(self.d)
+
     def eval_zeros(self):
         """ Returns the (absolute and relative) numbers of (non-)zero elements
         of the matrix. The relative number of the (non-)zero elements are with
@@ -103,7 +103,8 @@ class BlockMatrix:
 
 def main():
     A_d = BlockMatrix(2, 2)
-    print(A_d.get_A_l(2).toarray())
+#    print(A_d.get_A_l(2).todense())
+    print(A_d.get_sparse().todense())
 
 if __name__ == "__main__":
     main()
