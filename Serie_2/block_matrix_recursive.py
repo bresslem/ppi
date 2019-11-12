@@ -65,7 +65,7 @@ class BlockMatrix:
                 A_l = sps.hstack([A_l,zeroes], format = 'csr')
 
             for i in range(((self.n-1)**l) - 2):
-                A_row = sps.csr_matrix((3, 0))
+                A_row = sps.csr_matrix((dim, 0))
                 for j in range(i):
                     A_row = sps.hstack([A_row, zeroes], format = 'csr')
                 A_row = sps.hstack([A_row, I_neg, A_prev, I_neg], format = 'csr')
@@ -73,7 +73,7 @@ class BlockMatrix:
                     A_row = sps.hstack([A_row, zeroes], format = 'csr')
                 A_l = sps.vstack([A_l, A_row], format = 'csr')
 
-            A_row = sps.csr_matrix((3, 0))
+            A_row = sps.csr_matrix((dim, 0))
 
             for i in range(((self.n-1)**l) - 2):
                 A_row = sps.hstack([A_row,zeroes], format = 'csr')
