@@ -3,7 +3,7 @@ Author: Bressler_Marisa, Jeschke_Anne
 Date:
 """
 
-import scipy as sp
+import scipy.sparse as sps
 import numpy as np
 
 class BlockMatrix:
@@ -48,14 +48,14 @@ class BlockMatrix:
             block_matrix in a sparse data format
         """
         if (l == 1):
-            dk = np.array([-np.ones(self.n-2), np.full((self.n-1), 2*self.d), -np.ones(self.n-2)])
+            k = np.array([-np.ones(self.n-2), np.full((self.n-1), 2*self.d), -np.ones(self.n-2)])
             offset = [-1,0,1]
-            A_1 = sp.sparse.diags(k,offset).toarray()
-            return sp.sparse.csr_matrix(A_1)
+            A_1 = sps.diags(k,offset).toarray()
+            return sps.csr_matrix(A_1)
         else:
             A_prev = self.get_A_l(l-1)
-            I_l = sp.sparse.identity(l, format='csr')
-            A_l = sp.sparse.hstack([A_l,I_l], format = 'csr'))
+            I = sps.identity(l-1, format='csr')
+            A_l = sps.hstack([A_prev,I], format = 'csr'))
             # use hstack/vstack to create marix
 
             return A_l
