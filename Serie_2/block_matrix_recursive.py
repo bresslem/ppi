@@ -50,8 +50,8 @@ class BlockMatrix:
         if (l == 1):
             dk = np.array([-np.ones(self.n-2), np.full((self.n-1), 2*self.d), -np.ones(self.n-2)])
             offset = [-1,0,1]
-            A_1 = diags(k,offset).toarray()
-            return csr_matrix(A_1)
+            A_1 = sp.sparse.diags(k,offset).toarray()
+            return sp.sparse.csr_matrix(A_1)
         else:
             A_prev = self.get_A_l(l-1)
             I_l = sp.sparse.identity(l, format='csr')
