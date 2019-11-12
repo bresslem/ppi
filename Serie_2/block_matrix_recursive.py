@@ -54,7 +54,11 @@ class BlockMatrix:
             return csr_matrix(A_1)
         else:
             A_prev = self.get_A_l(l-1)
+            I_l = sp.sparse.identity(l, format='csr')
+            A_l = sp.sparse.hstack([A_l,I_l], format = 'csr'))
             # use hstack/vstack to create marix
+
+            return A_l
 
     def eval_zeros(self):
         """ Returns the (absolute and relative) numbers of (non-)zero elements
