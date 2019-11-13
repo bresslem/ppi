@@ -1,6 +1,6 @@
 """
 Author: Bressler_Marisa, Jeschke_Anne
-Date:
+Date: 2019_11_13
 """
 # pylint: disable=invalid-name
 import scipy.sparse as sps
@@ -12,17 +12,13 @@ class BlockMatrix:
 
     Parameters
     ----------
-    d : int
-        Dimension of the space
-    n : int
-        Number of intervals in each dimension
+    d (int): Dimension of the space
+    n (int): Number of intervals in each dimension
 
     Attributes
     ----------
-    d : int
-        Dimension of the space
-    n : int
-        Number of intervals in each dimension
+    d (int): Dimension of the space
+    n (int): Number of intervals in each dimension
     """
 
     def __init__(self, d, n):
@@ -30,17 +26,15 @@ class BlockMatrix:
         self.n = n
 
     def get_A_l(self, l):
-        """ Returns the matrix at index l as sparse matrix.
+        """ Returns the block matrix at index l as sparse matrix.
 
         Parameters
         ----------
-        l : int
-            Index of the matrix
+        l (int): Index of the matrix
 
         Returns
         -------
-        scipy.sparse.csr_matrix
-            block_matrix in a sparse data format
+        (scipy.sparse.csr_matrix): block_matrix in a sparse data format
         """
         if l == 1:
             k = np.array([-np.ones(self.n-2), np.full((self.n-1), 2*self.d), -np.ones(self.n-2)])
@@ -85,8 +79,7 @@ class BlockMatrix:
 
         Returns
         -------
-        scipy.sparse.csr_matrix
-            block_matrix in a sparse data format
+        (scipy.sparse.csr_matrix): block_matrix in a sparse data format
         """
         return self.get_A_l(self.d)
 
@@ -97,14 +90,10 @@ class BlockMatrix:
 
         Returns
         -------
-        int
-            number of non-zeros
-        int
-            number of zeros
-        float
-            relative number of non-zeros
-        float
-            relative number of zeros
+        (int): number of non-zeros,
+        (int): number of zeros,
+        (float): relative number of non-zeros,
+        (float): relative number of zeros
         """
         sparse_matrix = self.get_sparse()
         abs_values = sparse_matrix.shape[0] * sparse_matrix.shape[1]
@@ -120,8 +109,9 @@ class BlockMatrix:
 def main():
     """ Main function to test the BlockMatrix class.
     """
-    A_d = BlockMatrix(2, 9)
+    A_d = BlockMatrix(3, 3)
     print(A_d.get_sparse().todense())
+    print(A_d.get_sparse())
     print(A_d.eval_zeros())
 
 if __name__ == "__main__":
