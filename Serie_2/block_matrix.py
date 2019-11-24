@@ -5,6 +5,11 @@ Date: 2019_11_13
 # pylint: disable=invalid-name
 import scipy.sparse as sps
 import numpy as np
+from matplotlib import use
+#use('qt4agg')
+import matplotlib.pyplot as plt
+plt.rcParams['font.size'] = 12
+plt.rcParams['lines.linewidth'] = 2
 
 class BlockMatrix:
     """ Represents block matrices arising from finite difference approximations
@@ -57,10 +62,10 @@ class BlockMatrix:
 
                 for i in range((self.n-1) - 2):
                     A_row = sps.csr_matrix((dim, 0))
-                    for j in range(i):     # pylint: disable=unused-variable
+                    for _ in range(i):
                         A_row = sps.hstack([A_row, zeroes], format='csr')
                     A_row = sps.hstack([A_row, I_neg, A_prev, I_neg], format='csr')
-                    for j in range(((self.n-1) - 3) - i):
+                    for _ in range(((self.n-1) - 3) - i):
                         A_row = sps.hstack([A_row, zeroes], format='csr')
                     A_l = sps.vstack([A_l, A_row], format='csr')
 
@@ -105,14 +110,34 @@ class BlockMatrix:
 
         return (abs_non_zero, abs_zero, rel_non_zero, rel_zero)
 
+def plot_zeros(n_array):
+
+    for d in [1, 2, 3]:
+        non_zeros = []
+        absolute_values = []
+        for n in n_array:
+            matrix = BlockMatrix(d, n)
+            non_zeros.append(matrix.eval_zeros()[0])
+            sparse_matrix = matrix.get_sparse()
+            absolute_values.append(sparse_matrix.shape[0] * sparse_matrix.shape[1])
+        plt.plot(n_array, non_zeros, "b.", label='absolute number of non zero values')
+        plt.plot(n_array, absolute_values, "c.", label='absolute number of values')
+        plt.xlabel('$n$')
+        plt.title('d = ' + str(d))
+        plt.legend()
+        plt.grid()
+        plt.show()
+        plt.figure()
+
 
 def main():
     """ Main function to test the BlockMatrix class.
     """
-    A_d = BlockMatrix(3, 3)
-    print(A_d.get_sparse().todense())
-    print(A_d.get_sparse())
-    print(A_d.eval_zeros())
+    # A_d = BlockMatrix(2, 10)
+    # print(A_d.get_sparse().todense())
+    # print(A_d.get_sparse())
+    # print(A_d.eval_zeros())
+    plot_zeros(range(2, 11))
 
 if __name__ == "__main__":
     main()
