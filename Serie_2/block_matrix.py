@@ -110,6 +110,7 @@ class BlockMatrix:
 
         return (abs_non_zero, abs_zero, rel_non_zero, rel_zero)
 
+
 def plot_zeros(n_array):
 
     for d in [1, 2, 3]:
@@ -126,9 +127,9 @@ def plot_zeros(n_array):
         plt.title('d = ' + str(d))
         plt.legend()
         plt.grid()
-        plt.show()
         plt.figure()
 
+    plt.show()
 
 def main():
     """ Main function to test the BlockMatrix class.
@@ -138,6 +139,9 @@ def main():
     # print(A_d.get_sparse())
     # print(A_d.eval_zeros())
     plot_zeros(range(2, 11))
+    # for n in range (2,11):
+    #     for d in [1, 2, 3]:
+    #         print("d=",d,"n=",n,"non_zeros=",BlockMatrix(d,n).eval_zeros()[0])
 
 if __name__ == "__main__":
     main()
