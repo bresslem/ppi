@@ -14,6 +14,7 @@
 \setlength{\parindent}{0pt}
 
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\R}{\mathbb{R}}
 
 \begin{document}
 
@@ -29,13 +30,20 @@
 
 \pagebreak \section{Theorie}
 \label{sec:theorie}
-- Lösung des Poisson-Problems: Suche nach der Lösung $u$ der Partiellen Differentialgleichung
+Im Allgemeinen betrachtet man bei der Lösung des Poisson-Problems ein Gebiet $\Omega\subset\R^d$ und dessen Rand $\partial\Omega$.
+Auf diesem Gebiet sind die zwei Funktionen $f\in C(\Omega ; \R)$ und $g\in C(\partial\Omega ; \R)$ gegeben.
+Das Poisson-Problem beschreibt die Suche nach der Lösung $u$ einer elliptischen partiellen Differentialgleichung (PDE) der Form
 \[\begin{split}
 -\Delta u &= f \textrm{ in } \Omega\\
         u &= g \textrm{ in } \partial\Omega
 \end{split}
 \]
+Hierbei beschreibt $\Delta u$ den Laplace-Operator, der für eine Funktion $u\in C^2(\R^d;\R)$ definiert ist durch \[\Delta u := \sum_{l=1}^{d} \frac{\partial^2 u}{\partial x^2_l}\]
+Das heißt für $d=1$ gilt $\Delta u = u''$ und für $d>1$ ist der Laplace-Operator die Summe aller partiellen Ableitungen von $u$ zweiter Ordnung, die zweimal nach der selben Variable ableiten.
 
+Im Rahmen dieses Praktikums werden wir uns konzentrieren auf den Fall $\Omega=(0,1)^d$, $g\equiv0$ und $d\in\{1, 2, 3\}$, wobei sich unsere Ergebnisse auch verallgemeinern lassen auf $d>3$.
+
+Um das Problem mit den Mitteln der Numerik lösen zu können, diskretisieren wir sowohl das Gebiet $\Omega$, als auch den Laplace-Operator.
 \pagebreak \section{Experimente und Beobachtungen}
 \label{sec:experimente}
 
