@@ -9,6 +9,8 @@
 \usepackage{xcolor}
 \usepackage[nottoc]{tocbibind}
 \usepackage{caption}
+\usepackage{setspace}
+\onehalfspacing
 
 \colorlet{shadecolor}{gray!25}
 \setlength{\parindent}{0pt}
@@ -70,6 +72,55 @@ Den diskreten Laplace-Operator, die Summe der zweiten finiten Differenzen in all
 Nach der Diskretisierung des Gebietes gilt $h=\frac{1}{n}$ und damit gilt für alle $x\in X_d$, dass $x\pm he_l$ entweder einer der benachbarten Diskretisierungspunkte ist, also $x\pm he_l\in X_d$, oder auf dem Rand des Gebietes $\partial\Omega$ liegt und dementsprechend gilt $u(x\pm he_l)=0$.
 Wir approximieren also den Laplace-Operator von $u$ an der Stelle $x$ mithilfe der Werte von $u$ an den zu $x$ benachbarten Diskretisierungspunkten.
 
+Für $d=2$ und $x:=(x_1,x_2)\in X_2$ gilt:
+\[\Delta_h u(x) = \frac{4u(x_1,x_2)-u(x_1-he_1,x_2)-u(x_1+he_1,x_2)-u(x_1,x_2-he_2)-u(x_1,x_2+he_2)}{h^2}\]
+
+Für $d=3$ steht im Zähler entsprechend der sechsfache Wert von $u(x)$ und man subtrahiert die Werte der beiden benachbarten Punkte in allen drei Dimensionen.
+
+\subsection{Aufstellen eines Linearen Gleichungssystems}
+Da wir $N=(n-1)^d$ verschiedene Diskretisierungspunkte gewählt haben erhalten wir ein Gleichungssystem mit $N$ Gleichungen und der Form $A^{(d)}\hat{u}=b$, wobei der Vektor $\hat{u}\in\R^n$ die Werte der Funktion $u$ an den $N$ Diskretisierungspunkten approximieren soll.
+
+Den diskreten Laplace-Operator stellen wir dar, indem wir den Vektor $\hat{u}$ mit der Matrix $A^{(d)}$ multiplizieren.
+
+Für $d=1$ gilt:
+\[A^{(d)}=
+\begin{pmatrix}
+   2 & -1 &  0 & \cdots & 0 \\
+  -1 &  2 & -1 & \cdots & 0 \\
+   \vdots & \ddots & \ddots & \ddots & \vdots \\
+   0 & \cdots & -1 &  2 & -1 \\
+   0 & 0 & \cdots & -1 &  2
+\end{pmatrix}
+\in\R^{N\times N}
+\]
+und dementsprechend enthält
+\[A^{(d)}\hat{u}=
+\begin{pmatrix}
+   2 & -1 &  0 & \cdots & 0 \\
+  -1 &  2 & -1 & \cdots & 0 \\
+   \vdots & \ddots & \ddots & \ddots & \vdots \\
+   0 & \cdots & -1 &  2 & -1 \\
+   0 & 0 & \cdots & -1 &  2
+\end{pmatrix}
+\begin{pmatrix}
+  u(x_1)\\
+  u(x_2)\\
+  \vdots\\
+  u(x_{N-1})\\
+  u(x_N)
+\end{pmatrix}
+=
+\begin{pmatrix}
+  2u(x_1)-u(x_2)\\
+  -u(x_1)+2u(x_2)-u(x_3)\\
+  \vdots\\
+  -u(x_{N-2})+2u(x_{N-1})-u(x_N)\\
+  2u(x_{N-1})-u(x_N)
+\end{pmatrix}
+\]
+die zweiten finiten Differenzen für alle $x\in X_1$.
+
+Für $d > 1$ mu
 \pagebreak
 \section{Experimente und Beobachtungen}
 
