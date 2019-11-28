@@ -43,7 +43,8 @@ Das heißt für $d=1$ gilt $\Delta u = u''$ und für $d>1$ ist der Laplace-Opera
 
 Im Rahmen dieses Praktikums werden wir uns konzentrieren auf den Fall $\Omega=(0,1)^d$, $g\equiv0$ und $d\in\{1, 2, 3\}$, wobei sich unsere Ergebnisse auch verallgemeinern lassen auf $d>3$.
 
-Um das Problem mit den Mitteln der Numerik lösen zu können, diskretisieren wir sowohl das Gebiet $\Omega$, durch eine Auswahl von endlich vielen Punkten $x_1$ bis $x_N$, an denen wir die Funktion approximieren wollen, als auch den Laplace-Operator, mithilfe von finiten Differenzen. Dadurch ergibt sich dann ein lineares Gleichungssystem $A^{(d)}\hat{u}=b$. Die linke Seite entspricht dann dem diskretisierten Laplace-Operator, wobei der Vektor $\hat{u}\in\R^N$ die gesuchte Funktion $u$ an den $N$ ausgewählten Diskretisierungspunkten approximiert.
+Um das Problem mit den Mitteln der Numerik lösen zu können, diskretisieren wir sowohl das Gebiet $\Omega$, durch eine Auswahl von endlich vielen Punkten $x_1$ bis $x_N$, an denen wir die Funktion approximieren wollen, als auch den Laplace-Operator, mithilfe von finiten Differenzen.
+Dadurch ergibt sich dann ein lineares Gleichungssystem $A^{(d)}\hat{u}=b$. Die linke Seite entspricht dann dem diskretisierten Laplace-Operator, wobei der Vektor $\hat{u}\in\R^N$ die gesuchte Funktion $u$ an den $N$ ausgewählten Diskretisierungspunkten approximiert.
 
 \subsection{Diskretisierung des Gebietes}
 Da wir nur endlich viele Punkte auswerten können, müssen wir zuerst das Gebiet, das wir untersuchen, diskretisieren und nur bestimmte Stellen bestimmen, mit deren Hilfe wir die Lösung des Problems approximieren.
@@ -54,9 +55,20 @@ Im mehrdimensionalen Fall $d>1$ untersuchen wir analog die Punkte des $d$-fachen
 
 Insgesamt erhalten wir in jeder Dimension $(n-1)^d$ Diskretisierungspunkte.
 
-\subsection{Diskretiesierung des Laplace-Operators}
-Wir wollen den Laplace-Operator mithilfe der schon bekannten zweiten finiten Differenz diskretisieren. Im eindimensionalen Fall lautet diese für einen Diskretisierungspunkt $x_i\in X_1$ mit $i \in \{1,...,N\}$:
-$(D_h^{(2)}f)(x) = \frac{f(x_i+h) - 2f(x_i)+f(x_i-h)}{h^2}$
+\subsection{Diskretisierung des Laplace-Operators}
+Wir wollen den Laplace-Operator für $u$ mithilfe der schon bekannten zweiten finiten Differenz diskretisieren. Im eindimensionalen Fall lautet diese für einen Diskretisierungspunkt $x_i\in X_1$ mit $i \in \{1,...,N\}$:
+$D_h^{(2)}u(x_i) = \frac{u(x_i+h) - 2u(x_i)+u(x_i-h)}{h^2}$ und entspricht dem diskreten Laplace-Operator für $u(x_i)$, den wir hier mit $\Delta_h u(x_i)$ bezeichnen.
+
+Im mehrdimensionalen Raum, das heißt für $d>1$ entspricht der diskrete Laplace-Operator der Summe der zweiten finiten Differenzen in alle Richtungen.
+
+Sei $e_l$ für $1\leq l \leq d$ der $l$-te Einheitsvektor in $\R^d$. Definiert man die Abbildung $u_{x,l}:\R\to\R$ als $u_{x,l}(t):=u(x+te_l)$, dann kann man die zweite finite Differenz von $u$ an der Stelle $x$ in Richtung $e_l$ schreiben als:
+\[\frac{\partial^2 u(x)}{\partial x_l^2}\approx D_h^{(2)}u_{x,l}(0)\]
+
+Den diskreten Laplace-Operator, die Summe der zweiten finiten Differenzen in alle Richtungen, definieren wir dementsprechend wie folgt:
+\[\Delta_h u(x):= \sum_{l=1}^{d} D_h^{(2)}u_{x,l}(0)\]
+
+Nach der Diskretisierung des Gebietes gilt $h=\frac{1}{n}$ und damit gilt für alle $x\in X_d$, dass $x\pm he_l$ entweder einer der benachbarten Diskretisierungspunkte ist, also $x\pm he_l\in X_d$, oder auf dem Rand des Gebietes $\partial\Omega$ liegt und dementsprechend gilt $u(x\pm he_l)=0$.
+Wir approximieren also den Laplace-Operator von $u$ an der Stelle $x$ mithilfe der Werte von $u$ an den zu $x$ benachbarten Diskretisierungspunkten.
 
 \pagebreak
 \section{Experimente und Beobachtungen}
