@@ -6,7 +6,7 @@ Date: 2019_11_13
 import scipy.sparse as sps
 import numpy as np
 from matplotlib import use
-#use('qt4agg')
+use('qt4agg')
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 plt.rcParams['lines.linewidth'] = 2

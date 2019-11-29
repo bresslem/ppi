@@ -96,10 +96,10 @@ Demzufolge können wir den Laplace-Operator von $u$ an der Stelle $x$ mithilfe d
 
 Für $d=2$ und $x:=(x_1,x_2)\in X_2$ gilt:
 \begin{align*}
--\Delta_h u(x) \\
-= \frac{-u(x_1-he_1,x_2)+2u(x_1,x_2)-u(x_1+he_1,x_2)}{h^2}\ \\
-+ \frac{-u(x_1,x_2-he_2)+2u(x_1,x_2)-u(x_1,x_2+he_2)}{h^2} \\
-= \frac{1}{h^2} (-u(x_1-he_1,x_2)-u(x_1,x_2-he_2)+4u(x_1,x_2)-u(x_1,x_2+he_2)-u(x_1+he_1,x_2))
+    -\Delta_h u(x)=\frac{1}{h^2}&(-u(x_1-he_1,x_2)+2u(x_1,x_2)-u(x_1+he_1,x_2)\\
+                   &-u(x_1,x_2-he_2)+2u(x_1,x_2)-u(x_1,x_2+he_2))\\
+                  =\frac{1}{h^2}&(-u(x_1-he_1,x_2)-u(x_1,x_2-he_2)+4u(x_1,x_2)\\
+                   &-u(x_1,x_2+he_2)-u(x_1+he_1,x_2))
 \end{align*}
 
 Für $d=3$ steht im Zähler entsprechend der sechsfache Wert von $u(x)$ ($x:=(x_1,x_2, x_3)\in X_3$) und man subtrahiert die Werte der beiden in allen drei Dimensionen benachbarten Punkte. Allgemein ergibt sich folglich die Differenz aus dem $2d$-fachen Wert von $u$ an der Stelle $x \in X_d$ und den sich sternförmig in jede Richtung befindlichen zwei benachbarten Diskretisierungspunkten.
