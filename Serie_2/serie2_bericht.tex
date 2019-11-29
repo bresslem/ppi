@@ -4,6 +4,8 @@
 \usepackage[ngerman]{babel}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
 \usepackage{graphicx}
 \usepackage{framed}
 \usepackage{xcolor}
@@ -66,12 +68,12 @@ Die Einträge des Vektors $b$ sind die bekannten Funktionswerte von $f$ an den $
 Da wir lediglich endlich viele Punkte auswerten können, müssen wir zunächst das zu untersuchende Gebiet  $\Omega$, diskretisieren.
 Nur an diesen bestimmten Stellen können wir die Funktionswerte von $u$ approximieren und folglich das Problem lösen.
 
-Im eindimensionalen Fall teilen wir das Intervall $\Omega=(0,1)$ äquidistant in 
-$n\in\mathbb{N}$ (mit $n>1$) Teilintervalle der Länge $h:=\frac{1}{n}$ und erhalten somit die $N=n-1$ Diskretisierungspunkte in 
+Im eindimensionalen Fall teilen wir das Intervall $\Omega=(0,1)$ äquidistant in
+$n\in\mathbb{N}$ (mit $n>1$) Teilintervalle der Länge $h:=\frac{1}{n}$ und erhalten somit die $N=n-1$ Diskretisierungspunkte in
 $X_1:=\{\frac{j}{n} | 1\leq j \leq n-1\}$.
 
 Im mehrdimensionalen Fall $d>1$ untersuchen wir analog die Punkte des $d$-fachen kartesischen Produktes dieser Menge $X_d := X_1^d$.
-Im zweidimensionalen Fall ergibt sich also das uniforme Gitter $X_2 := X_1^2 = \{(\frac{j}{n}, \frac{k}{n}) \: | \: 1\leq j,k \leq n-1\}$, 
+Im zweidimensionalen Fall ergibt sich also das uniforme Gitter $X_2 := X_1^2 = \{(\frac{j}{n}, \frac{k}{n}) \: | \: 1\leq j,k \leq n-1\}$,
 im dreidimensionalen Fall $X_3 := X_1^3 = \{(\frac{j}{n}, \frac{k}{n}, \frac{m}{n}) \: | \: 1\leq j,k,m \leq n-1\}$.
 
 Insgesamt erhalten wir in jeder Dimension $(n-1)$, also insgesamt $(n-1)^d$ Diskretisierungspunkte.
@@ -103,45 +105,59 @@ Für $d=2$ und $x:=(x_1,x_2)\in X_2$ gilt:
 Für $d=3$ steht im Zähler entsprechend der sechsfache Wert von $u(x)$ ($x:=(x_1,x_2, x_3)\in X_3$) und man subtrahiert die Werte der beiden in allen drei Dimensionen benachbarten Punkte. Allgemein ergibt sich folglich die Differenz aus dem $2d$-fachen Wert von $u$ an der Stelle $x \in X_d$ und den sich sternförmig in jede Richtung befindlichen zwei benachbarten Diskretisierungspunkten.
 
 \subsection{Aufstellen des linearen Gleichungssystems}
-Mit den $N=(n-1)^d$ Diskretisierungspunkten, der Definition des diskretisierten Laplace-Operators über die Formel der zweiten finiten Differenz und den Bedingungen 
+Mit den $N=(n-1)^d$ Diskretisierungspunkten, der Definition des diskretisierten Laplace-Operators über die Formel der zweiten finiten Differenz und den Bedingungen
 $-\Delta_h u(x) = f(x) \: \forall x \in \Omega = X_d$,
 $u(x) = g(x) = 0 \: \forall x \in \partial\Omega$
 erhalten wir $N$ lineare Gleichungen mit $N$ Unbekannten.
 Diese wollen wir in die Form eines linearen Gleichungssystems bringen, das die folgende Struktur aufweist: $A^{(d)}\hat{u}=b$.
 Dabei sind die Einträge des Vektors $\hat{u}\in\R^n$ die gesuchten Werte der Funktion $u$ an den $N$ Diskretisierungspunkten und die Einträge des Vektors $b$ die gegebenen Funktionswerte von $f$ an den $N$ ausgewählten Diskretisierungspunkten, multipliziert mit einem Faktor $h^2$, den wir als $\frac{1}{h^2}$ aus den Gleichungen der finiten Differenzen ausgeklammert und schließlich auf die rechte Seite der Gleichungen gebracht haben.
 
-Um die $N$ linearen Gleichungen mit Hilfe eines linearen Gleichungssystem lösen zu können, ist es notwendig, dass wir jedem Diskretisierungspunkt $x \in X_d$ eindeutig eine Nummer $S \in \lbrace1, 2, ..., N\rbrace$ zuordnen. Dazu definieren wir für je zwei Diskretisierungspunkte $x=(x_1, x_2, ..., x_d) \in X_d$ und $y=(y_1, y_2, ..., y_d) \in X_d$ die folgende Ordnungsrelation: 
-...
-Die Punkte (und damit die Gleichungen) werden dann aufsteigend nach $<_X$ geordnet. Der $m$-te Eintrag des Lösungsvektors $\hat{u}(x)$ ist die Approximation der exakten Lösung $u(x)$ am $m$-ten Diskretisierungspunkt ($m = 1, 2, ..., N$). Diese zeilenweise Nummerierung der Gitterpunkte von links nach rechts folgt der üblichen lexikographischen Ordnung. 
-Die von uns entwickelte bijektive Funktion $idx: \lbrace1, 2, ..., n-1\rbrace^d \to \lbrace1, 2, ..., N\rbrace$ berechnet zu einem Diskretisierungspunkt $x = (j_1/n, j_2/n, ..., j_d/n) \in X_d$ mit $j_l \in \lbrace1, 2, ..., n-1\rbrace$ und $l \in \lbrace1, 2, ..., d\rbrace$ die zugehörige (Gleichungs-)Nummer $S \in \lbrace1, 2, ..., N\rbrace$ wie folgt: 
+Um die $N$ linearen Gleichungen mit Hilfe eines linearen Gleichungssystem lösen zu können, ist es notwendig, dass wir jedem Diskretisierungspunkt $x \in X_d$ eindeutig eine Nummer $S \in \lbrace1, 2, ..., N\rbrace$ zuordnen. Dazu definieren wir für je zwei Diskretisierungspunkte $x=(x_1, x_2, ..., x_d) \in X_d$ und $y=(y_1, y_2, ..., y_d) \in X_d$ die folgende Ordnungsrelation:
+\[x <_X y \iff \sum_{l=1}^d x_l n^l < \sum_{l=1}^d y_l n^l\]
+
+Die Punkte (und damit die Gleichungen) werden dann aufsteigend nach $<_X$ geordnet. Der $m$-te Eintrag des Lösungsvektors $\hat{u}(x)$ ist die Approximation der exakten Lösung $u(x)$ am $m$-ten Diskretisierungspunkt ($m = 1, 2, ..., N$). Diese zeilenweise Nummerierung der Gitterpunkte von links nach rechts folgt der üblichen lexikographischen Ordnung.
+Die von uns entwickelte bijektive Funktion $idx: \lbrace1, 2, ..., n-1\rbrace^d \to \lbrace1, 2, ..., N\rbrace$ berechnet zu einem Diskretisierungspunkt $x = (j_1/n, j_2/n, ..., j_d/n) \in X_d$ mit $j_l \in \lbrace1, 2, ..., n-1\rbrace$ und $l \in \lbrace1, 2, ..., d\rbrace$ die zugehörige (Gleichungs-)Nummer $S \in \lbrace1, 2, ..., N\rbrace$ wie folgt:
 \[S=idx(x) = \sum_{l=2}^{d} (j_{d+2-l}-1)(n-1)^{l-1}+j_1 \]
 Die Funktion $idx$ addiert also sozusagen schichtweise in jeder Dimension auf.
 Deren Umkehrfunktion mit $idx^{-1}(S) = x = (j_1/n, j_2/n, ..., j_d/n)$ verfährt wiederum genau umgekehrt. Es wird schichtweise in jeder Dimension abgebaut. Wenn "`//"' die ganzzahlige Divison bezeichnet, dann gilt:
 
-\[S^{[d]}:=S\]
-\[j_d=\begin{cases}
-S^{[d]} // (n-1)^{d-1} + 1, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} > 0 \\
-S^{[d]} // (n-1)^{d-1}, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} = 0 \\
-\end{cases}\]
-\[S^{[d-1]}:=\begin{cases}
-S^{[d]} \, mod(n-1)^{d-1}, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} > 0 \\
-(n-1)^{d-1}, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} = 0 \\
-\end{cases}\]
+\begin{algorithmic}
+  \For{$l:= d,...,2$}
+    \If {$S \, mod(n-1)^{l-1} == 0$}
+      \State $j_l=S//(n-1)^{l-1}$
+      \State $S = (n-1)^{l-1}$
+    \Else
+      \State $j_l=S//(n-1)^{l-1} + 1$
+      \State $S = S \, mod(n-1)^{l-1}$
+    \EndIf
+  \EndFor
+  \State $j_1 = S$
+\end{algorithmic}
 
-\[j_{d-1}=\begin{cases}
-S^{[d-1]} // (n-1)^{d-2} + 1, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} > 0 \\
-S^{[d-1]} // (n-1)^{d-2}, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} = 0 \\
-\end{cases}\]
-\[S^{[d-2]}:=\begin{cases}
-S^{[d-1]} \, mod(n-1)^{d-2}, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} > 0 \\
-(n-1)^{d-2}, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} = 0 \\
-\end{cases}\]
-
-\begin{center}
-$\vdots$
-\end{center}
-
-\[j_{1}=S^{[1]}\]
+% \[S^{[d]}:=S\]
+% \[j_d=\begin{cases}
+% S^{[d]} // (n-1)^{d-1} + 1, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} > 0 \\
+% S^{[d]} // (n-1)^{d-1}, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} = 0 \\
+% \end{cases}\]
+% \[S^{[d-1]}:=\begin{cases}
+% S^{[d]} \, mod(n-1)^{d-1}, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} > 0 \\
+% (n-1)^{d-1}, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} = 0 \\
+% \end{cases}\]
+%
+% \[j_{d-1}=\begin{cases}
+% S^{[d-1]} // (n-1)^{d-2} + 1, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} > 0 \\
+% S^{[d-1]} // (n-1)^{d-2}, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} = 0 \\
+% \end{cases}\]
+% \[S^{[d-2]}:=\begin{cases}
+% S^{[d-1]} \, mod(n-1)^{d-2}, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} > 0 \\
+% (n-1)^{d-2}, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} = 0 \\
+% \end{cases}\]
+%
+% \begin{center}
+% $\vdots$
+% \end{center}
+%
+% \[j_{1}=S^{[1]}\]
 
 Nach der Nummerierung der gewählten Diskretisierungspunkte können wir die numerische Lösung des Poisson-Problems mittels Finite-Differenzen-Diskretisierung auf das Lösen eines linearen Gleichungssystems der Form $A^{(d)}\hat{u}=b$ zurückführen.
 Den diskretisierten Laplace-Operator stellen wir dar, indem wir den Vektor $\hat{u}$ mit der Matrix $A^{(d)}$ multiplizieren ($\frac{1}{h^2}$ haben wir wie bereits erwähnt ausgeklammert und auf die rechte Seite der Gleichungen gebracht).
@@ -226,18 +242,22 @@ h^2
 
 \pagebreak
 \section{Untersuchungen zum Speicherplatz}
-Für eine höhere Genauigkeit unserer numerischen Lösung der Poisson-Gleichung muss die Intervalllänge $h=\frac{1}{n}$ verkleinert werden. 
-Damit vergrößert sich aber gleichzeitig die Anzahl der Diskretisierungspunkte $N=(n-1)^d$. 
-Dies bedeutet wiederum auch eine größere Anzahl von Gleichungen bzw. eine höhere Dimension des linearen Gleichungssystems $A^{(d)}\hat{u}=b$. 
-Der Speicherplatzbedarf (für $N\times N$-Matrizen wie $A^{(d)}$ im Allgemeinen in der Größenordnung $O(N^2)$) nimmt rapide zu. 
-Da allerdings die konkrete Matrix $A^{(d)}$ nur dünn besetzt ist, das heißt, dass nur wenige Einträge ungleich Null sind, bietet sich das Abspeichern dieser Matrix im Computer im sogenannten \textit{sparse}-Format an. 
-Dieses speichert lediglich die Matrixeinträge, die ungleich Null sind, indem es sich zu jedem Wert ungleich Null die Koordinaten merkt. 
+Für eine höhere Genauigkeit unserer numerischen Lösung der Poisson-Gleichung muss die Intervalllänge $h=\frac{1}{n}$ verkleinert werden.
+Damit vergrößert sich aber gleichzeitig die Anzahl der Diskretisierungspunkte $N=(n-1)^d$.
+Dies bedeutet wiederum auch eine größere Anzahl von Gleichungen bzw. eine höhere Dimension des linearen Gleichungssystems $A^{(d)}\hat{u}=b$.
+Der Speicherplatzbedarf (für $N\times N$-Matrizen wie $A^{(d)}$ im Allgemeinen in der Größenordnung $O(N^2)$) nimmt rapide zu.
+Da allerdings die konkrete Matrix $A^{(d)}$ nur dünn besetzt ist, das heißt, dass nur wenige Einträge ungleich Null sind, bietet sich das Abspeichern dieser Matrix im Computer im sogenannten \textit{sparse}-Format an.
+Dieses speichert lediglich die Matrixeinträge, die ungleich Null sind, indem es sich zu jedem Wert ungleich Null die Koordinaten merkt.
 Auf diese Weise lässt sich der Speicherplatzbedarf stark reduzieren.
 
-Wie stark sich der Speicherplatzbedarf für die Matrix als vollbesetzte gegenüber der als \textit{sparse}-Matrix unterscheidet, wollen wir im Folgenden exemplarisch demonstrieren. 
+Wie stark sich der Speicherplatzbedarf für die Matrix als vollbesetzte gegenüber der als \textit{sparse}-Matrix unterscheidet, wollen wir im Folgenden exemplarisch demonstrieren.
 Hierzu haben wir uns zunächst eine Formel hergeleitet, die es ermöglicht, die Anzahl der nicht-Null-Einträge in Abhängigkeit von der Dimension $d$ und der Intervallanzahl $n$ zu berechnen. Dabei sind wir so vorgegangen, dass wir die Anzahl der Matrixeinträge ungleich Null zeilen- bzw. spaltenweise ermittelt haben.
 
-Als Erstes betrachten wir unabhängig von $d$ die Matrix $A^{(d)}_1$. Sie hat in ihrer ersten und letzten Zeile je zwei nicht-Null-Einträge und in allen Zwischenzeilen je drei nicht-Null-Einträge, z.B. für $n=3$ zeilenweise also $2+2$ Einträge, für $n=4$ zeilenweise also $2 + 3 + 2$ Einträge, für $n=5$ zeilenweise also $2+3+3+2$ Einträge, für $n=6$ zeilenweise also $2+3+3+3+2$ Einträge. Mit diesen Überlegungen ergibt sich folgende Formel für die nicht-Null-Einträge von $A^{(d)}_1$: $nz((1,n)) = 2\cdot2+(n-3)\cdot3 = 3n-5$. Für den Fall $d=1$ wären wir an dieser Stelle fertig, denn dann gilt $A^{(1)}_1=A^{(1)}$. Für $d>1$ muss $A^{(d)}$ blockweise zusammengesetzt werden. Dabei erhöht sich in jeder Zeile die Anzahl der nicht-Null-Einträge um 1 oder 2, je nachdem, ob zwei oder nur ein benachbarter Diskretisierungspunkt vorhanden ist bzw. ob einer der beiden Nachbarn Element des Gebietes oder des Randes ist. So ergibt sich beispielsweise für $n=4$ und $d=1$ zeilenweise $2+3+2$ Einträge, für $d=2$ zeilenweise $(3+4+3) + (4+5+4) + (3+4+3)$ Einträge und für $d=3$ schließlich zeilenweise $((4+5+4) + (5+6+5) + (4+5+4)) + ((5+6+5) + (6+7+6) + (5+6+5)) + ((4+5+4) + (5+6+5) + (4+5+4))$ Einträge. Mit jedem Rekursionsschritt (Erhöhen der Dimension $d$ um Eins) werden zu der Anzahl der bisherigen nicht-Null-Einträge zunächst $(n+1)^{d-1}$ dazu addiert (alle plus Eins), dieses Ergebnis mit $(n-1)$ multipliziert (Erhöhen der Dimension der Matrix um den Faktor $(n-1)$) und schließlich noch $(n-3)(n-1)^{d-1}$ hinzuaddiert (für alle Diskretisierungspunkte, deren Nachbarn innerhalb des Gebietes liegen und nicht auf dem Rand). Überführt man dieses rekursive Vorgehen zur Berechnung der Matrixeinträge ungleich Null in eine explizite Formel, erhält man:
+Als Erstes betrachten wir unabhängig von $d$ die Matrix $A^{(d)}_1$.
+Sie hat in ihrer ersten und letzten Zeile je zwei nicht-Null-Einträge und in allen Zwischenzeilen je drei nicht-Null-Einträge, z.B. für $n=3$ zeilenweise also $2+2$ Einträge, für $n=4$ zeilenweise also $2 + 3 + 2$ Einträge, für $n=5$ zeilenweise also $2+3+3+2$ Einträge, für $n=6$ zeilenweise also $2+3+3+3+2$ Einträge.
+Mit diesen Überlegungen ergibt sich folgende Formel für die nicht-Null-Einträge von $A^{(d)}_1$: $nz((1,n)) = 2\cdot2+(n-3)\cdot3 = 3n-5$.
+Für den Fall $d=1$ wären wir an dieser Stelle fertig, denn dann gilt $A^{(1)}_1=A^{(1)}$. Für $d>1$ muss $A^{(d)}$ blockweise zusammengesetzt werden.
+Dabei erhöht sich in jeder Zeile die Anzahl der nicht-Null-Einträge um 1 oder 2, je nachdem, ob zwei oder nur ein benachbarter Diskretisierungspunkt vorhanden ist bzw. ob einer der beiden Nachbarn Element des Gebietes oder des Randes ist. So ergibt sich beispielsweise für $n=4$ und $d=1$ zeilenweise $2+3+2$ Einträge, für $d=2$ zeilenweise $(3+4+3) + (4+5+4) + (3+4+3)$ Einträge und für $d=3$ schließlich zeilenweise $((4+5+4) + (5+6+5) + (4+5+4)) + ((5+6+5) + (6+7+6) + (5+6+5)) + ((4+5+4) + (5+6+5) + (4+5+4))$ Einträge. Mit jedem Rekursionsschritt (Erhöhen der Dimension $d$ um Eins) werden zu der Anzahl der bisherigen nicht-Null-Einträge zunächst $(n+1)^{d-1}$ dazu addiert (alle plus Eins), dieses Ergebnis mit $(n-1)$ multipliziert (Erhöhen der Dimension der Matrix um den Faktor $(n-1)$) und schließlich noch $(n-3)(n-1)^{d-1}$ hinzuaddiert (für alle Diskretisierungspunkte, deren Nachbarn innerhalb des Gebietes liegen und nicht auf dem Rand). Überführt man dieses rekursive Vorgehen zur Berechnung der Matrixeinträge ungleich Null in eine explizite Formel, erhält man:
 \[nz((d,n)) = (3n-5)(n-1)^{d-1}+(d-1)(n-1)^d+(d-1)(n-3)(n-1)^{d-1}\]
 Durch Äquivalenzumformungen, die vor allem auf dem Ausklammern des Termes $(n-1)^{d-1}$ beruhen, haben wir unsere Formel in die folgende überschaubarere Form gebracht:
 \[nz((d,n)) = (n-1)^d+2d(n-2)(n-1)^{d-1}\]
@@ -253,6 +273,7 @@ Wie geht es weiter? Appetizer für nächsten Bericht (Juhu!)
 Lösen linearer Gleichungssysteme mit direkten und mit iterativen Verfahren
 
 \pagebreak
+\nocite{*}
 \bibliographystyle{plain}
 \bibliography{serie2_literatur}
 
