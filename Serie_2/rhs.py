@@ -1,6 +1,8 @@
 """
 Author: Bressler_Marisa, Jeschke_Anne
 Date: 2019_11_26
+
+Module to implement the right hand side vector of the system to solve the Poisson-Problem.
 """
 # pylint: disable=invalid-name
 import numpy as np
@@ -37,7 +39,7 @@ def rhs(d, n, f):
         for i in range(1, ((n-1)**d)+1):
             x = np.zeros(d)
             s = i
-            for l in range (d, 1, -1):
+            for l in range(d, 1, -1):
                 if s%((n-1)**(l-1)) == 0:
                     x[l-1] = (s//((n-1)**(l-1)))/n
                     s = (n-1)**(l-1)
