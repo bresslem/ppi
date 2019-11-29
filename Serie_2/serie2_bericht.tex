@@ -289,9 +289,13 @@ Demzufolge sollte man für sehr große $d$ und $n$, die insbesondere durch das S
 
 \pagebreak
 \section{Zusammenfassung und Ausblick}
-Im Rahmen dieser Arbeit haben wir das Poisson-Problem vorgestellt und einen Lösungsansatz aufgezeigt. Dabei haben wir es mittels einer Diskretisierung des Gebietes und des Laplace-Operators in ein lineares Gleichungssystem überführt, das eine spezielle Struktur aufweist, die bei der Entwicklung eines schnellen Lösungsalgorithmus ausgenutzt werden kann. Darüber hinaus bietet das \textit{sparse}-Format...
-Wie geht es weiter? Appetizer für nächsten Bericht (Juhu!)
-Lösen linearer Gleichungssysteme mit direkten und mit iterativen Verfahren
+Im Rahmen dieser Arbeit haben wir das Poisson-Problem vorgestellt und einen Lösungsansatz aufgezeigt.
+Dabei haben wir es mittels einer Diskretisierung des Gebietes und des Laplace-Operators in das Lösen eines linearen Gleichungssystem überführt, das eine spezielle Struktur aufweist, die bei der Entwicklung eines schnellen Lösungsalgorithmus ausgenutzt werden kann.
+Da es bei Prolemen in der Praxis, die mit einer hinreichend großen Genauigkeit gelöst werden sollen, zu einer sehr großen Anzahl von zu lösenden Gleichungen kommt, kann an dieser Stelle nicht per Hand verfahren werden -- eine Maschine muss übernehmen.\\
+Wir haben demonstriert, dass das Speicherformat der \textit{sparse}-Matrizen sinnvoll ist, um den Aufwand hinsichtlich des Speicherplatzbedarfes bei der Lösung des Poisson-Problem mittels Finite-Differenzen-Diskretisierung gering zu halten.
+Denn die Matrizen des aufgestellten linearen Gleichungssystems sind nur dünn besetzt, weisen also eine Vielzahl an Null-Einträgen auf.\\
+Wie man schließlich lineare Gleichungssysteme mit dem Computer lösen kann, wollen wir in den nächsten Berichten untersuchen.
+Hierbei werden wir sowohl direkte als auch iterative Verfahren beleuchten.
 
 \pagebreak
 \nocite{*}
