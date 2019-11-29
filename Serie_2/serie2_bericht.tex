@@ -70,7 +70,7 @@ Nur an diesen bestimmten Stellen können wir die Funktionswerte von $u$ approxim
 
 Im eindimensionalen Fall teilen wir das Intervall $\Omega=(0,1)$ äquidistant in
 $n\in\mathbb{N}$ (mit $n>1$) Teilintervalle der Länge $h:=\frac{1}{n}$ und erhalten somit die $N=n-1$ Diskretisierungspunkte in
-$X_1:=\{\frac{j}{n} | 1\leq j \leq n-1\}$.
+$X_1:=\{\frac{j}{n} \: | \: 1\leq j \leq n-1\}$.
 
 Im mehrdimensionalen Fall $d>1$ untersuchen wir analog die Punkte des $d$-fachen kartesischen Produktes dieser Menge $X_d := X_1^d$.
 Im zweidimensionalen Fall ergibt sich also das uniforme Gitter $X_2 := X_1^2 = \{(\frac{j}{n}, \frac{k}{n}) \: | \: 1\leq j,k \leq n-1\}$,
@@ -99,7 +99,7 @@ Für $d=2$ und $x:=(x_1,x_2)\in X_2$ gilt:
 -\Delta_h u(x) \\
 = \frac{-u(x_1-he_1,x_2)+2u(x_1,x_2)-u(x_1+he_1,x_2)}{h^2}\ \\
 + \frac{-u(x_1,x_2-he_2)+2u(x_1,x_2)-u(x_1,x_2+he_2)}{h^2} \\
-= \frac{1}{h^2} (-u(x_1-he_1,x_2)-u(x_1,x_2-he_2)+4u(x_1,x_2)-u(x_1,x_2+he_2))-u(x_1+he_1,x_2)
+= \frac{1}{h^2} (-u(x_1-he_1,x_2)-u(x_1,x_2-he_2)+4u(x_1,x_2)-u(x_1,x_2+he_2)-u(x_1+he_1,x_2))
 \end{align*}
 
 Für $d=3$ steht im Zähler entsprechend der sechsfache Wert von $u(x)$ ($x:=(x_1,x_2, x_3)\in X_3$) und man subtrahiert die Werte der beiden in allen drei Dimensionen benachbarten Punkte. Allgemein ergibt sich folglich die Differenz aus dem $2d$-fachen Wert von $u$ an der Stelle $x \in X_d$ und den sich sternförmig in jede Richtung befindlichen zwei benachbarten Diskretisierungspunkten.
@@ -115,11 +115,14 @@ Dabei sind die Einträge des Vektors $\hat{u}\in\R^n$ die gesuchten Werte der Fu
 Um die $N$ linearen Gleichungen mit Hilfe eines linearen Gleichungssystem lösen zu können, ist es notwendig, dass wir jedem Diskretisierungspunkt $x \in X_d$ eindeutig eine Nummer $S \in \lbrace1, 2, ..., N\rbrace$ zuordnen. Dazu definieren wir für je zwei Diskretisierungspunkte $x=(x_1, x_2, ..., x_d) \in X_d$ und $y=(y_1, y_2, ..., y_d) \in X_d$ die folgende Ordnungsrelation:
 \[x <_X y \iff \sum_{l=1}^d x_l n^l < \sum_{l=1}^d y_l n^l\]
 
-Die Punkte (und damit die Gleichungen) werden dann aufsteigend nach $<_X$ geordnet. Der $m$-te Eintrag des Lösungsvektors $\hat{u}(x)$ ist die Approximation der exakten Lösung $u(x)$ am $m$-ten Diskretisierungspunkt ($m = 1, 2, ..., N$). Diese zeilenweise Nummerierung der Gitterpunkte von links nach rechts folgt der üblichen lexikographischen Ordnung.
-Die von uns entwickelte bijektive Funktion $idx: \lbrace1, 2, ..., n-1\rbrace^d \to \lbrace1, 2, ..., N\rbrace$ berechnet zu einem Diskretisierungspunkt $x = (j_1/n, j_2/n, ..., j_d/n) \in X_d$ mit $j_l \in \lbrace1, 2, ..., n-1\rbrace$ und $l \in \lbrace1, 2, ..., d\rbrace$ die zugehörige (Gleichungs-)Nummer $S \in \lbrace1, 2, ..., N\rbrace$ wie folgt:
+Die Punkte (und damit die Gleichungen) werden dann aufsteigend nach $<_X$ geordnet. Der $m$-te Eintrag des Lösungsvektors $\hat{u}(x)$ ist die Approximation der exakten Lösung $u(x)$ am $m$-ten Diskretisierungspunkt ($m = 1, 2, ..., N$). Diese zeilenweise Nummerierung der Gitterpunkte von links nach rechts (von vorn nach hinten, von unten nach oben) folgt der üblichen lexikographischen Ordnung.
+Die von uns entwickelte bijektive Funktion $idx: \lbrace1, 2, ..., n-1\rbrace^d \to \lbrace1, 2, ..., N\rbrace$ berechnet zu einem Diskretisierungspunkt
+$x = (\frac{j_1}{n}, \frac{j_2}{n}, ..., \frac{j_d}{n}) \in X_d$ mit $j_l \in \lbrace1, 2, ..., n-1\rbrace$ und $l \in \lbrace1, 2, ..., d\rbrace$ die zugehörige (Gleichungs-)Nummer $S \in \lbrace1, 2, ..., N\rbrace$ wie folgt:
 \[S=idx(x) = \sum_{l=2}^{d} (j_{d+2-l}-1)(n-1)^{l-1}+j_1 \]
 Die Funktion $idx$ addiert also sozusagen schichtweise in jeder Dimension auf.
-Deren Umkehrfunktion mit $idx^{-1}(S) = x = (j_1/n, j_2/n, ..., j_d/n)$ verfährt wiederum genau umgekehrt. Es wird schichtweise in jeder Dimension abgebaut. Wenn "`//"' die ganzzahlige Divison bezeichnet, dann gilt:
+
+Deren Umkehrfunktion mit $idx^{-1}(S) = x = (\frac{j_1}{n}, \frac{j_2}{n}, ..., \frac{j_d}{n})$ verfährt wiederum genau umgekehrt. Es wird schichtweise in jeder Dimension abgebaut. Wenn "`//"' die ganzzahlige Divison bezeichnet, dann gilt:
+
 \begin{shaded}
   \begin{algorithmic}
     \For{$l:= d,...,2$}
@@ -134,6 +137,7 @@ Deren Umkehrfunktion mit $idx^{-1}(S) = x = (j_1/n, j_2/n, ..., j_d/n)$ verfähr
     \State $j_1 = S$
   \end{algorithmic}
 \end{shaded}
+
 % \[S^{[d]}:=S\]
 % \[j_d=\begin{cases}
 % S^{[d]} // (n-1)^{d-1} + 1, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} > 0 \\
@@ -162,7 +166,7 @@ Deren Umkehrfunktion mit $idx^{-1}(S) = x = (j_1/n, j_2/n, ..., j_d/n)$ verfähr
 Nach der Nummerierung der gewählten Diskretisierungspunkte können wir die numerische Lösung des Poisson-Problems mittels Finite-Differenzen-Diskretisierung auf das Lösen eines linearen Gleichungssystems der Form $A^{(d)}\hat{u}=b$ zurückführen.
 Den diskretisierten Laplace-Operator stellen wir dar, indem wir den Vektor $\hat{u}$ mit der Matrix $A^{(d)}$ multiplizieren ($\frac{1}{h^2}$ haben wir wie bereits erwähnt ausgeklammert und auf die rechte Seite der Gleichungen gebracht).
 
-Im eindimensionalen Fall ($d=1$) mit den durchnummerierten Diskretisierungspunkten $u_1$, $u_2$, ..., $u_N$ ist die Matrix $A^{(d)}$ von folgender Struktur:
+Im eindimensionalen Fall ($d=1$) mit den Werten von $u$ der durchnummerierten Diskretisierungspunkte $u_1$, $u_2$, ..., $u_N$ ist die Matrix $A^{(d)}$ von folgender Struktur:
 
 \[A^{(d)}=
 \begin{pmatrix}
@@ -251,7 +255,7 @@ Dieses speichert lediglich die Matrixeinträge, die ungleich Null sind, indem es
 Auf diese Weise lässt sich der Speicherplatzbedarf stark reduzieren.
 
 Wie stark sich der Speicherplatzbedarf für die Matrix als vollbesetzte gegenüber der als \textit{sparse}-Matrix unterscheidet, wollen wir im Folgenden exemplarisch demonstrieren.
-Hierzu haben wir uns zunächst eine Formel hergeleitet, die es ermöglicht, die Anzahl der nicht-Null-Einträge in Abhängigkeit von der Dimension $d$ und der Intervallanzahl $n$ zu berechnen. Dabei sind wir so vorgegangen, dass wir die Anzahl der Matrixeinträge ungleich Null zeilen- bzw. spaltenweise ermittelt haben.
+Hierzu haben wir zunächst eine Formel hergeleitet, die es ermöglicht, die Anzahl der nicht-Null-Einträge in Abhängigkeit von der Dimension $d$ und der Intervallanzahl $n$ zu berechnen. Dabei sind wir so vorgegangen, dass wir die Anzahl der Matrixeinträge ungleich Null zeilen- bzw. spaltenweise ermittelt haben.
 
 Als Erstes betrachten wir unabhängig von $d$ die Matrix $A^{(d)}_1$.
 Sie hat in ihrer ersten und letzten Zeile je zwei nicht-Null-Einträge und in allen Zwischenzeilen je drei nicht-Null-Einträge, z.B. für $n=3$ zeilenweise also $2+2$ Einträge, für $n=4$ zeilenweise also $2 + 3 + 2$ Einträge, für $n=5$ zeilenweise also $2+3+3+2$ Einträge, für $n=6$ zeilenweise also $2+3+3+3+2$ Einträge.
@@ -261,7 +265,7 @@ Dabei erhöht sich in jeder Zeile die Anzahl der nicht-Null-Einträge um 1 oder 
 \[nz((d,n)) = (3n-5)(n-1)^{d-1}+(d-1)(n-1)^d+(d-1)(n-3)(n-1)^{d-1}\]
 Durch Äquivalenzumformungen, die vor allem auf dem Ausklammern des Termes $(n-1)^{d-1}$ beruhen, haben wir unsere Formel in die folgende überschaubarere Form gebracht:
 \[nz((d,n)) = (n-1)^d+2d(n-2)(n-1)^{d-1}\]
-Anhand dieser kann man die Struktur von $A^{(d)}$ wiedererkennen. Der erste Term steht für die vollbesetzte Diagonale mit $(n-1)^d$ Einträgen, die alle ungleich Null sind. Der zweite Term verweist mit seinem Vorfaktor $2$ auf die symmetrische Gestalt der Matrix. Es folgt die Anzahl der nicht-Null-Einträge ober- bzw. unterhalb der Hauptdiagonalen, d.h. der Nebendiagonalen und der Einheitsmatrizen, die im Grunde ja auch Nebendiagonalen darstellen, nur in anderen Dimensionen.
+Anhand dieser kann man die Struktur von $A^{(d)}$ wiedererkennen. Der erste Term steht für die vollbesetzte Diagonale mit $(n-1)^d$ Einträgen, die alle ungleich Null sind. Der zweite Term verweist mit seinem Vorfaktor $2$ auf die symmetrische Gestalt der Matrix. Es folgt die Anzahl der nicht-Null-Einträge ober- bzw. unterhalb der Hauptdiagonalen, d.h. der Nebendiagonalen und der Einheitsmatrizen, die im Grunde ja auch Nebendiagonalen darstellen, nur in anderen Dimensionen.\\
 In den folgenden Grafiken ist die Abhängigkeit der Anzahl der nicht-Null-Einträge von $d$ und $n$ illustriert. Um den eingangs in diesem Kapitel angesprochenen Vorteil des \textit{sparse}-Formates gegenüber der Speicherung von vollbesetzten Matrizen zu verdeutlichen, wurde auch die jeweilige Anzahl aller Einträge der Matrix, d.h. $(n-1)^d$, eingezeichnet.\\
 GRAFIKEN\\
 Grundsätzlich lässt sich beobachten, dass die Speicherung der Matrix im \textit{sparse}-Format immer mindestens genauso viel Speicherplatz benötigt wie die einer vollbesetzten Matrix. Für größere $d$ und $n$ nimmt der Unterschied sehr stark zu. Demzufolge sollte man für sehr große $d$ und $n$, die insbesondere durch das Streben nach einer besseren Genauigkeit unserer numerischen Lösung auftreten, das günstige \textit{sparse}-Format der Matrix nutzen.
