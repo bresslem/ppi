@@ -263,7 +263,7 @@ Mit diesen Überlegungen ergibt sich folgende Formel für die nicht-Null-Einträ
 Für den Fall $d=1$ wären wir an dieser Stelle fertig, denn dann gilt $A^{(1)}_1=A^{(1)}$. Für $d>1$ muss $A^{(d)}$ blockweise zusammengesetzt werden.
 Dabei erhöht sich in jeder Zeile die Anzahl der nicht-Null-Einträge um 1 oder 2, je nachdem, ob zwei oder nur ein benachbarter Diskretisierungspunkt vorhanden ist bzw. ob einer der beiden Nachbarn Element des Gebietes oder des Randes ist.
 So ergibt sich beispielsweise für $n=4$ und $d=1$ zeilenweise $2+3+2$ Einträge, für $d=2$ zeilenweise $(3+4+3) + (4+5+4) + (3+4+3)$ Einträge und für $d=3$ schließlich zeilenweise $((4+5+4) + (5+6+5) + (4+5+4)) + ((5+6+5) + (6+7+6) + (5+6+5)) + ((4+5+4) + (5+6+5) + (4+5+4))$ Einträge.
-Mit jedem Rekursionsschritt (Erhöhen der Dimension $d$ um Eins) werden zu der Anzahl der bisherigen nicht-Null-Einträge zunächst $(n+1)^{d-1}$ dazu addiert (alle plus Eins), dieses Ergebnis mit $(n-1)$ multipliziert (Erhöhen der Dimension der Matrix um den Faktor $(n-1)$) und schließlich noch $(n-3)(n-1)^{d-1}$ hinzuaddiert (für alle Diskretisierungspunkte, deren Nachbarn innerhalb des Gebietes liegen und nicht auf dem Rand).
+Mit jedem Rekursionsschritt (Erhöhen der Dimension $d$ um Eins) werden zu der Anzahl der bisherigen nicht-Null-Einträge zunächst $(n-1)^{d-1}$ dazu addiert (alle plus Eins), dieses Ergebnis mit $(n-1)$ multipliziert (Erhöhen der Dimension der Matrix um den Faktor $(n-1)$) und schließlich noch $(n-3)(n-1)^{d-1}$ hinzuaddiert (für alle Diskretisierungspunkte, deren Nachbarn innerhalb des Gebietes liegen und nicht auf dem Rand).
 Überführt man dieses rekursive Vorgehen zur Berechnung der Matrixeinträge ungleich Null in eine explizite Formel, erhält man:
 \[nz(d,n) = (3n-5)(n-1)^{d-1}+(d-1)(n-1)^d+(d-1)(n-3)(n-1)^{d-1}\]
 Durch Äquivalenzumformungen, die vor allem auf dem Ausklammern des Termes $(n-1)^{d-1}$ beruhen, haben wir unsere Formel in die folgende überschaubarere Form gebracht:
@@ -272,18 +272,20 @@ Anhand dieser kann man die Struktur von $A^{(d)}$ wiedererkennen. Der erste Term
 
 In den folgenden Grafiken ist die Abhängigkeit der Anzahl der nicht-Null-Einträge von $d$ und $n$ illustriert. Um den eingangs in diesem Kapitel angesprochenen Vorteil des \textit{sparse}-Formates gegenüber der Speicherung von vollbesetzten Matrizen zu verdeutlichen, wurde auch die jeweilige Anzahl aller Einträge der Matrix, d.h. $(n-1)^d$, eingezeichnet.
 
-\vspace{0.5cm}
+\pagebreak
 {
   \centering
-    \includegraphics[width=0.48\textwidth]{Figure_1}
-    \includegraphics[width=0.48\textwidth]{Figure_2}\\
-    \includegraphics[width=0.48\textwidth]{Figure_3}
+    \includegraphics[width=0.6\textwidth]{Figure_1}
+    \includegraphics[width=0.6\textwidth]{Figure_2}
+    \includegraphics[width=0.6\textwidth]{Figure_3}
     \vspace{-0.2cm}
     \captionof{figure}{Anzahl von Gesamteinträgen der Matrix und der nicht-Null-Einträge für $d\in\{1, 2, 3\}$}
 }
 \vspace{0.5cm}
 
-Grundsätzlich lässt sich beobachten, dass die Speicherung der Matrix im \textit{sparse}-Format immer mindestens genauso viel Speicherplatz benötigt wie die einer vollbesetzten Matrix. Für größere $d$ und $n$ nimmt der Unterschied sehr stark zu. Demzufolge sollte man für sehr große $d$ und $n$, die insbesondere durch das Streben nach einer besseren Genauigkeit unserer numerischen Lösung auftreten, das günstige \textit{sparse}-Format der Matrix nutzen.
+Das \textit{sparse}-Format muss zwar für jeden nicht-Null-Eintrag der Matrix bis zu drei Werte speichern, während bei einer vollbesetzten Matrix nur der Eintrag selbst gespeichert wird, jedoch kann dies trotzdem zu einer Speicherersparnis führen, wenn weniger als ein Drittel der Einträge der Matrix ungleich Null sind.
+Für $d=1$ ist dies ab $n=10$ zu beobachten, wenn die vollbesetzte Matrix 81 Einträge hat, wovon aber nur 25 nicht Null sind. Für höhere $d$ tritt dieser Fall noch früher ein. Bei $d=2$ sind es schon bei $n=5$ nur noch 64 nicht-Null-Einträge in einer Matrix mit insgesamt 256 Einträgen und bei $d=3$ enthält schon bei $n=4$ die Matrix mit 19683 Einträgen nur noch 135 nicht-Null-Einträge.
+Demzufolge sollte man für sehr große $d$ und $n$, die insbesondere durch das Streben nach einer besseren Genauigkeit unserer numerischen Lösung auftreten, das günstige \textit{sparse}-Format der Matrix nutzen.
 
 \pagebreak
 \section{Zusammenfassung und Ausblick}

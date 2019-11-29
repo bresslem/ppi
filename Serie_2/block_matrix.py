@@ -121,8 +121,23 @@ def plot_zeros(n_array):
             non_zeros.append(matrix.eval_zeros()[0])
             sparse_matrix = matrix.get_sparse()
             absolute_values.append(sparse_matrix.shape[0] * sparse_matrix.shape[1])
-        plt.plot(n_array, non_zeros, "b.", label='absolute number of non zero values')
-        plt.plot(n_array, absolute_values, "g.", label='absolute number of values')
+        plt.plot(n_array, non_zeros, "bo", label='absolute number of non zero values')
+        plt.plot(n_array, absolute_values, "go", label='absolute number of values')
+        plt.xlabel('$n$')
+        plt.title('d = ' + str(d))
+        plt.legend()
+        plt.grid()
+        plt.show()
+
+def plot_relative_zeroes(n_array):
+
+    for d in [1, 2, 3]:
+        rel_non_zeros = []
+        for n in n_array:
+            matrix = BlockMatrix(d, n)
+            rel_non_zeros.append(matrix.eval_zeros()[2])
+            print("d:", d, "; n:", n, ":", matrix.eval_zeros()[2], matrix.eval_zeros()[0])
+        plt.plot(n_array, rel_non_zeros, "bo", label='relative number of non zero values')
         plt.xlabel('$n$')
         plt.title('d = ' + str(d))
         plt.legend()
@@ -133,6 +148,7 @@ def main():
     """ Main function to test the BlockMatrix class.
     """
     plot_zeros(range(2, 11))
+    plot_relative_zeroes(range(2,11))
 
 if __name__ == "__main__":
     main()
