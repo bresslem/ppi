@@ -40,7 +40,7 @@ In der Wissenschaft wird man häufig mit (partiellen) Differentialgleichungen ko
 \item Auslenkung einer gespannten Membran oder Saite, die einer äußeren Belastung standhalten muss (Dimension $d=1$)
 \item ein Dach unter einer Schneelast o.ä. (Dimension $d=3$)
 \end{itemize}
-Bereits hier wird deutlich, dass die Poisson-Gleichung Probleme in eine, zwei, drei oder mehr Richtungen beschreiben kann. Durch Diskretisieren der Problemstellung und das Abbilden der partiellen Differentialgleichung auf lineare algebraische Gleichungen ist es möglich, das Poisson-Problem näherungsweise (d.h. mit einem gewissen Fehler) zu lösen. Im Speziellen approximiert die Finite-Differenzen-Methode die exakte Lösung auf einem Gitter der Schrittweite $h$. Dazu müssen alle in der partiellen Differentialgleichung auftretenden Funktionswerte und Ableitungen durch finite Ausdrücke ersetzt werden. Wie das möglich ist und wie uns das bei der Lösung des Poisson-Problems helfen kann, wollen wir im Folgenden näher erläutern.
+Bereits hier wird deutlich, dass die Poisson-Gleichung Probleme in eine, zwei, drei oder mehr Richtungen beschreiben kann. Durch Diskretisieren der Problemstellung und das Abbilden der partiellen Differentialgleichung auf lineare algebraische Gleichungen ist es möglich, das Poisson-Problem näherungsweise (d.h. mit einem gewissen Fehler) zu lösen. Im Speziellen approximiert die Finite-Differenzen-Methode die exakte Lösung auf einem Gitter der Schrittweite $h$. Dazu müssen alle in der partiellen Differentialgleichung auftretenden Funktionswerte und Ableitungen durch finite Ausdrücke ersetzt werden. Wie das möglich ist und wie uns das bei der Lösung des Poisson-Problems helfen kann, wollen wir im Folgenden näher erläutern.\cite{schwedt2016, tischendorf2019}
 
 
 \pagebreak
@@ -62,7 +62,7 @@ Im Rahmen dieser Arbeit wollen wir uns auf den Fall $\Omega=(0,1)^d$, $d\in\{1, 
 Um das Problem mit den Mitteln der Numerik zu lösen, diskretisieren wir sowohl das Gebiet $\Omega$, durch eine Auswahl von endlich vielen Punkten $x_1$ bis $x_N$ ($N\in\mathbb{N}$), an denen wir die Funktion $u$ approximieren wollen, als auch den Laplace-Operator, mithilfe der zweiten finiten Differenz, die wir in unserem Bericht vom 08.11.2019 ausführlich vorgestellt haben.
 Dies führt schließlich zu einem linearen Gleichungssystem $A^{(d)}\hat{u}=b$.
 Die linke Seite der Gleichung entspricht im Wesentlichen dem diskretisierten Laplace-Operator, wobei die Einträge des Vektors $\hat{u}\in\R^N$ die Funktionswerte von $u$ an den $N$ ausgewählten Diskretisierungspunkten approximiert.
-Die Einträge des Vektors $b$ sind die bekannten Funktionswerte von $f$ an den $N$ ausgewählten Diskretisierungspunkten, skaliert mit einem Faktor $h^2$.
+Die Einträge des Vektors $b$ sind die bekannten Funktionswerte von $f$ an den $N$ ausgewählten Diskretisierungspunkten, skaliert mit einem Faktor $h^2$.\cite{rheinbach2015, rabus2019}
 
 \subsection{Diskretisierung des Gebietes}
 Da wir lediglich endlich viele Punkte auswerten können, müssen wir zunächst das zu untersuchende Gebiet  $\Omega$, diskretisieren.
@@ -76,7 +76,7 @@ Im mehrdimensionalen Fall $d>1$ untersuchen wir analog die Punkte des $d$-fachen
 Im zweidimensionalen Fall ergibt sich also das uniforme Gitter $X_2 := X_1^2 = \{(\frac{j}{n}, \frac{k}{n}) \: | \: 1\leq j,k \leq n-1\}$,
 im dreidimensionalen Fall $X_3 := X_1^3 = \{(\frac{j}{n}, \frac{k}{n}, \frac{m}{n}) \: | \: 1\leq j,k,m \leq n-1\}$.
 
-Insgesamt erhalten wir in jeder Dimension $(n-1)$, also insgesamt $(n-1)^d$ Diskretisierungspunkte.
+Insgesamt erhalten wir in jeder Dimension $(n-1)$, also insgesamt $(n-1)^d$ Diskretisierungspunkte.\cite{rabus2019}
 
 \subsection{Diskretisierung des Laplace-Operators}
 Um das Poisson-Problem lösen zu können, müssen wir zudem den Laplace-Operator für $u$ diskretisieren.
@@ -102,7 +102,7 @@ Für $d=2$ und $x:=(x_1,x_2)\in X_2$ gilt:
                    &-u(x_1,x_2+he_2)-u(x_1+he_1,x_2))
 \end{align*}
 
-Für $d=3$ steht im Zähler entsprechend der sechsfache Wert von $u(x)$ ($x:=(x_1,x_2, x_3)\in X_3$) und man subtrahiert die Werte der beiden in allen drei Dimensionen benachbarten Punkte. Allgemein ergibt sich folglich die Differenz aus dem $2d$-fachen Wert von $u$ an der Stelle $x \in X_d$ und den sich sternförmig in jede Richtung befindlichen zwei benachbarten Diskretisierungspunkten.
+Für $d=3$ steht im Zähler entsprechend der sechsfache Wert von $u(x)$ ($x:=(x_1,x_2, x_3)\in X_3$) und man subtrahiert die Werte der beiden in allen drei Dimensionen benachbarten Punkte. Allgemein ergibt sich folglich die Differenz aus dem $2d$-fachen Wert von $u$ an der Stelle $x \in X_d$ und den sich sternförmig in jede Richtung befindlichen zwei benachbarten Diskretisierungspunkten.\cite{schwedt2016, rabus2019}
 
 \subsection{Aufstellen des linearen Gleichungssystems}
 Mit den $N=(n-1)^d$ Diskretisierungspunkten, der Definition des diskretisierten Laplace-Operators über die Formel der zweiten finiten Differenz und den Bedingungen
@@ -115,7 +115,7 @@ Dabei sind die Einträge des Vektors $\hat{u}\in\R^n$ die gesuchten Werte der Fu
 Um die $N$ linearen Gleichungen mit Hilfe eines linearen Gleichungssystem lösen zu können, ist es notwendig, dass wir jedem Diskretisierungspunkt $x \in X_d$ eindeutig eine Nummer $S \in \lbrace1, 2, ..., N\rbrace$ zuordnen. Dazu definieren wir für je zwei Diskretisierungspunkte $x=(x_1, x_2, ..., x_d) \in X_d$ und $y=(y_1, y_2, ..., y_d) \in X_d$ die folgende Ordnungsrelation:
 \[x <_X y \iff \sum_{l=1}^d x_l n^l < \sum_{l=1}^d y_l n^l\]
 
-Die Punkte (und damit die Gleichungen) werden dann aufsteigend nach $<_X$ geordnet. Der $m$-te Eintrag des Lösungsvektors $\hat{u}(x)$ ist die Approximation der exakten Lösung $u(x)$ am $m$-ten Diskretisierungspunkt ($m = 1, 2, ..., N$). Diese zeilenweise Nummerierung der Gitterpunkte von links nach rechts (von vorn nach hinten, von unten nach oben) folgt der üblichen lexikographischen Ordnung.
+Die Punkte (und damit die Gleichungen) werden dann aufsteigend nach $<_X$ geordnet. Der $m$-te Eintrag des Lösungsvektors $\hat{u}(x)$ ist die Approximation der exakten Lösung $u(x)$ am $m$-ten Diskretisierungspunkt ($m = 1, 2, ..., N$). Diese zeilenweise Nummerierung der Gitterpunkte von links nach rechts (von vorn nach hinten, von unten nach oben) folgt der üblichen lexikographischen Ordnung.\cite{vogt2006}
 Die von uns entwickelte bijektive Funktion $idx: \lbrace1, 2, ..., n-1\rbrace^d \to \lbrace1, 2, ..., N\rbrace$ berechnet zu einem Diskretisierungspunkt
 $x = (\frac{j_1}{n}, \frac{j_2}{n}, ..., \frac{j_d}{n}) \in X_d$ mit $j_l \in \lbrace1, 2, ..., n-1\rbrace$ und $l \in \lbrace1, 2, ..., d\rbrace$ die zugehörige (Gleichungs-)Nummer $S \in \lbrace1, 2, ..., N\rbrace$ wie folgt:
 \[S=idx(x) = \sum_{l=2}^{d} (j_{d+2-l}-1)(n-1)^{l-1}+j_1 \]
@@ -138,35 +138,10 @@ Deren Umkehrfunktion mit $idx^{-1}(S) = x = (\frac{j_1}{n}, \frac{j_2}{n}, ..., 
   \end{algorithmic}
 \end{shaded}
 
-% \[S^{[d]}:=S\]
-% \[j_d=\begin{cases}
-% S^{[d]} // (n-1)^{d-1} + 1, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} > 0 \\
-% S^{[d]} // (n-1)^{d-1}, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} = 0 \\
-% \end{cases}\]
-% \[S^{[d-1]}:=\begin{cases}
-% S^{[d]} \, mod(n-1)^{d-1}, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} > 0 \\
-% (n-1)^{d-1}, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} = 0 \\
-% \end{cases}\]
-%
-% \[j_{d-1}=\begin{cases}
-% S^{[d-1]} // (n-1)^{d-2} + 1, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} > 0 \\
-% S^{[d-1]} // (n-1)^{d-2}, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} = 0 \\
-% \end{cases}\]
-% \[S^{[d-2]}:=\begin{cases}
-% S^{[d-1]} \, mod(n-1)^{d-2}, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} > 0 \\
-% (n-1)^{d-2}, & \text{falls } S^{[d-1]} \, mod(n-1)^{d-2} = 0 \\
-% \end{cases}\]
-%
-% \begin{center}
-% $\vdots$
-% \end{center}
-%
-% \[j_{1}=S^{[1]}\]
-
 Nach der Nummerierung der gewählten Diskretisierungspunkte können wir die numerische Lösung des Poisson-Problems mittels Finite-Differenzen-Diskretisierung auf das Lösen eines linearen Gleichungssystems der Form $A^{(d)}\hat{u}=b$ zurückführen.
 Den diskretisierten Laplace-Operator stellen wir dar, indem wir den Vektor $\hat{u}$ mit der Matrix $A^{(d)}$ multiplizieren ($\frac{1}{h^2}$ haben wir wie bereits erwähnt ausgeklammert und auf die rechte Seite der Gleichungen gebracht).
 
-Im eindimensionalen Fall ($d=1$) mit den Werten von $u$ der durchnummerierten Diskretisierungspunkte $u_1$, $u_2$, ..., $u_N$ ist die Matrix $A^{(d)}$ von folgender Struktur:
+Im eindimensionalen Fall ($d=1$) mit den Werten von $u$ der durchnummerierten Diskretisierungspunkte $u_1$, $u_2$, ..., $u_N$ ist die Matrix $A^{(d)}$ von folgender Struktur\cite{vogt2006, rabus2019}:
 
 \[A^{(d)}=
 \begin{pmatrix}
@@ -221,7 +196,7 @@ Da der negative diskretisierte Laplace-Operator eine Subtraktion sämtlicher ben
 \in\R^{N^l \times N^l}
 \]
 
-Dann ist $A^{(d)} := A^{(d)}_d$ die für das lineare Gleichungssystem gesuchte Matrix. $A^{(d)}$ ist eine tridiagonale Block-Matrix (mit triag($-1, 2d, -1$)). Sie ist diagonaldominant und irreduzibel. Diese Eigenschaften garantieren uns die eindeutige Lösbarkeit des Systems:
+Dann ist $A^{(d)} := A^{(d)}_d$ die für das lineare Gleichungssystem gesuchte Matrix. $A^{(d)}$ ist eine tridiagonale Block-Matrix (mit triag($-1, 2d, -1$)). Sie ist diagonaldominant und irreduzibel. Diese Eigenschaften garantieren uns die eindeutige Lösbarkeit des Systems\cite{rabus2019, rheinbach2015, tischendorf2019}:
 
 \[A^{(d)}\hat{u}=
 A^{(d)}
@@ -252,7 +227,7 @@ Dies bedeutet wiederum auch eine größere Anzahl von Gleichungen bzw. eine höh
 Der Speicherplatzbedarf (für $N\times N$-Matrizen wie $A^{(d)}$ im Allgemeinen in der Größenordnung $O(N^2)$) nimmt rapide zu.
 Da allerdings die konkrete Matrix $A^{(d)}$ nur dünn besetzt ist, das heißt, dass nur wenige Einträge ungleich Null sind, bietet sich das Abspeichern dieser Matrix im Computer im sogenannten \textit{sparse}-Format an.
 Dieses speichert lediglich die Matrixeinträge, die ungleich Null sind, indem es sich zu jedem Wert ungleich Null die Koordinaten merkt.
-Auf diese Weise lässt sich der Speicherplatzbedarf stark reduzieren.
+Auf diese Weise lässt sich der Speicherplatzbedarf stark reduzieren.\cite{rabus2019}
 
 Wie stark sich der Speicherplatzbedarf für die Matrix als vollbesetzte gegenüber der als \textit{sparse}-Matrix unterscheidet, wollen wir im Folgenden exemplarisch demonstrieren.
 Hierzu haben wir zunächst eine Formel hergeleitet, die es ermöglicht, die Anzahl der nicht-Null-Einträge in Abhängigkeit von der Dimension $d$ und der Intervallanzahl $n$ zu berechnen. Dabei sind wir so vorgegangen, dass wir die Anzahl der Matrixeinträge ungleich Null zeilen- bzw. spaltenweise ermittelt haben.
@@ -298,7 +273,7 @@ Wie man schließlich lineare Gleichungssysteme mit dem Computer lösen kann, wol
 Hierbei werden wir sowohl direkte als auch iterative Verfahren beleuchten.
 
 \pagebreak
-\nocite{*}
+
 \bibliographystyle{plain}
 \bibliography{serie2_literatur}
 
