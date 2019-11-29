@@ -122,26 +122,17 @@ def plot_zeros(n_array):
             sparse_matrix = matrix.get_sparse()
             absolute_values.append(sparse_matrix.shape[0] * sparse_matrix.shape[1])
         plt.plot(n_array, non_zeros, "b.", label='absolute number of non zero values')
-        plt.plot(n_array, absolute_values, "c.", label='absolute number of values')
+        plt.plot(n_array, absolute_values, "g.", label='absolute number of values')
         plt.xlabel('$n$')
         plt.title('d = ' + str(d))
         plt.legend()
         plt.grid()
-        plt.figure()
-
-    plt.show()
+        plt.show()
 
 def main():
     """ Main function to test the BlockMatrix class.
     """
-    # A_d = BlockMatrix(2, 10)
-    # print(A_d.get_sparse().todense())
-    # print(A_d.get_sparse())
-    # print(A_d.eval_zeros())
     plot_zeros(range(2, 11))
-    # for n in range (2,11):
-    #     for d in [1, 2, 3]:
-    #         print("d=",d,"n=",n,"non_zeros=",BlockMatrix(d,n).eval_zeros()[0])
 
 if __name__ == "__main__":
     main()

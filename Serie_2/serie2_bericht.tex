@@ -120,20 +120,20 @@ Die von uns entwickelte bijektive Funktion $idx: \lbrace1, 2, ..., n-1\rbrace^d 
 \[S=idx(x) = \sum_{l=2}^{d} (j_{d+2-l}-1)(n-1)^{l-1}+j_1 \]
 Die Funktion $idx$ addiert also sozusagen schichtweise in jeder Dimension auf.
 Deren Umkehrfunktion mit $idx^{-1}(S) = x = (j_1/n, j_2/n, ..., j_d/n)$ verfährt wiederum genau umgekehrt. Es wird schichtweise in jeder Dimension abgebaut. Wenn "`//"' die ganzzahlige Divison bezeichnet, dann gilt:
-
-\begin{algorithmic}
-  \For{$l:= d,...,2$}
-    \If {$S \, mod(n-1)^{l-1} == 0$}
-      \State $j_l=S//(n-1)^{l-1}$
-      \State $S = (n-1)^{l-1}$
-    \Else
-      \State $j_l=S//(n-1)^{l-1} + 1$
-      \State $S = S \, mod(n-1)^{l-1}$
-    \EndIf
-  \EndFor
-  \State $j_1 = S$
-\end{algorithmic}
-
+\begin{shaded}
+  \begin{algorithmic}
+    \For{$l:= d,...,2$}
+      \If {$S \, mod(n-1)^{l-1} == 0$}
+        \State $j_l=S//(n-1)^{l-1}$
+        \State $S = (n-1)^{l-1}$
+      \Else
+        \State $j_l=S//(n-1)^{l-1} + 1$
+        \State $S = S \, mod(n-1)^{l-1}$
+      \EndIf
+    \EndFor
+    \State $j_1 = S$
+  \end{algorithmic}
+\end{shaded}
 % \[S^{[d]}:=S\]
 % \[j_d=\begin{cases}
 % S^{[d]} // (n-1)^{d-1} + 1, & \text{falls } S^{[d]} \, mod(n-1)^{d-1} > 0 \\
