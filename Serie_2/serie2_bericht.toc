@@ -1,8 +1,0 @@
-\babel@toc {ngerman}{}
-\contentsline {section}{\numberline {1}Einleitung}{2}% 
-\contentsline {section}{\numberline {2}Theoretische Grundlagen}{3}% 
-\contentsline {subsection}{\numberline {2.1}Diskretisierung des Gebietes}{3}% 
-\contentsline {subsection}{\numberline {2.2}Diskretisierung des Laplace-Operators}{4}% 
-\contentsline {subsection}{\numberline {2.3}Aufstellen des linearen Gleichungssystems}{5}% 
-\contentsline {section}{\numberline {3}Untersuchungen zum Speicherplatz}{8}% 
-\contentsline {section}{\numberline {4}Zusammenfassung und Ausblick}{10}% 
