@@ -234,7 +234,7 @@ Hierzu haben wir zunächst eine Formel hergeleitet, die es ermöglicht, die Anza
 
 Als Erstes betrachten wir unabhängig von $d$ die Matrix $A^{(d)}_1$.
 Sie hat in ihrer ersten und letzten Zeile je zwei nicht-Null-Einträge und in allen Zwischenzeilen je drei nicht-Null-Einträge, z.B. für $n=3$ zeilenweise also $2+2$ Einträge, für $n=4$ zeilenweise also $2 + 3 + 2$ Einträge, für $n=5$ zeilenweise also $2+3+3+2$ Einträge, für $n=6$ zeilenweise also $2+3+3+3+2$ Einträge.
-Mit diesen Überlegungen ergibt sich folgende Formel für die nicht-Null-Einträge von $A^{(d)}_1$: $nz((1,n)) = 2\cdot2+(n-3)\cdot3 = 3n-5$.
+Mit diesen Überlegungen ergibt sich folgende Formel für die nicht-Null-Einträge von $A^{(d)}_1$: $nz(1,n) = 2\cdot2+(n-3)\cdot3 = 3n-5$.
 Für den Fall $d=1$ wären wir an dieser Stelle fertig, denn dann gilt $A^{(1)}_1=A^{(1)}$. Für $d>1$ muss $A^{(d)}$ blockweise zusammengesetzt werden.
 Dabei erhöht sich in jeder Zeile die Anzahl der nicht-Null-Einträge um 1 oder 2, je nachdem, ob zwei oder nur ein benachbarter Diskretisierungspunkt vorhanden ist bzw. ob einer der beiden Nachbarn Element des Gebietes oder des Randes ist.
 So ergibt sich beispielsweise für $n=4$ und $d=1$ zeilenweise $2+3+2$ Einträge, für $d=2$ zeilenweise $(3+4+3) + (4+5+4) + (3+4+3)$ Einträge und für $d=3$ schließlich zeilenweise $((4+5+4) + (5+6+5) + (4+5+4)) + ((5+6+5) + (6+7+6) + (5+6+5)) + ((4+5+4) + (5+6+5) + (4+5+4))$ Einträge.
