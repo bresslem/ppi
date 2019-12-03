@@ -1,4 +1,11 @@
+"""
+Author: Bressler_Marisa, Jeschke_Anne
+Date: 2019_12_03
+
+Solves the given linear system.
+"""
 import scipy.linalg as lina
+#import scipy.sparse.linalg as splina
 import numpy as np
 import block_matrix
 
@@ -16,6 +23,8 @@ def solve_lu(pr, l, u, pc, b):
         upper triangular matrix of LU-decomposition
     pc : scipy.sparse.csr_matrix
         column permutation matrix of LU-decomposition
+    b : numpy.ndarray
+       rhs of the linear system
 
     Returns
     -------
@@ -23,6 +32,7 @@ def solve_lu(pr, l, u, pc, b):
        solution of the linear system
     """
 
-    y = lina.solve_triangular(l, np.matmul(np.matmul(pr, b),pc),lower=True, unit_diagonal=True)
-
-    return lina.solve_triangular(u, y)
+    z = lina.solve_triangular(l.toarray(), pr.dot(b), lower=True, unit_diagonal=True)
+    y = lina.solve_triangular(u.toarray(), z)
+    x = pc.dot(y)
+    return x

@@ -1,18 +1,19 @@
 """
 Author: Bressler_Marisa, Jeschke_Anne
-Date: 2019_11_13
+Date: 2019_12_03
 
 Creates the block matrix required to solve the discrete Poisson-Problem using
 finite differences and analyzes the amount of space needed.
+Also calculates and analyzes its LU decomposition.
 """
 import scipy.sparse as sps
 import scipy.sparse.linalg as splina
+import scipy.linalg as lina
 import numpy as np
 from matplotlib import use
 #use('qt4agg')
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
-plt.rcParams['lines.linewidth'] = 2
 
 class BlockMatrix:
     """ Represents block matrices arising from finite difference approximations
@@ -196,7 +197,7 @@ class BlockMatrix:
             condition number with respect to max-norm
         """
         sparse_matrix = self.get_sparse().tocsc()
-        return splina.norm(sparse_matrix, np.inf)*splina.norm(splina.inv(sparse_matrix), np.inf)
+        return splina.norm(sparse_matrix, np.inf)*lina.norm(lina.inv(sparse_matrix.todense()), np.inf)
 
 
 def plot_non_zeros(n_array):
@@ -248,16 +249,3 @@ def plot_cond(n_array):
         plt.legend()
         plt.grid()
         plt.show()
-
-
-
-def main():
-    """ Main function to use the BlockMatrix class.
-    """
-    print(BlockMatrix(2, 3).get_sparse().todense(), "\n")
-
-    for i in range(4):
-        print(BlockMatrix(2, 3).get_lu()[i].todense(), "\n")
-
-if __name__ == "__main__":
-    main()

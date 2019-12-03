@@ -1,11 +1,17 @@
 """
 Author: Bressler_Marisa, Jeschke_Anne
-Date: 2019_11_26
+Date: 2019_12_03
 
 Module to implement the right hand side vector of the system to solve the Poisson-Problem.
 """
 # pylint: disable=invalid-name
 import numpy as np
+import block_matrix
+import linear_solvers
+from matplotlib import use
+#use('qt4agg')
+import matplotlib.pyplot as plt
+plt.rcParams['font.size'] = 12
 
 def rhs(d, n, f):
     """ Computes the right-hand side vector `b` for a given function `f`.
@@ -74,29 +80,40 @@ def compute_error(d, n, hat_u, u):
        maximal absolute error at the disretization points
     """
     actual_u = rhs(d, n, u)/((1/n)**2)
-    err = [abs(actual_u[i]-hat_u[i]) for i in range(len(actual_u)+1)]
+    err = [abs(actual_u[i]-hat_u[i]) for i in range(len(actual_u))]
     return max(err)
 
-def plot_error(n_array, hat_u, u):
+def plot_error(u, f, d, n_array):
     """ Plots errors of solution of Poisson Problem for a given array of
-    Ns.
+    n's.
 
     Parameters
     ----------
     n_array: list of ints
         The n's for which to plot the errors.
+    u : callable
+        Solution of the Possion problem
+        The calling signature is ’u(x)’. Here ’x’ is a scalar
+        or array_like of ’numpy’. The return value is a scalar.
+    f : callable
+        Input function of the Possion problem
+        The calling signature is ’f(x)’. Here ’x’ is a scalar
+        or array_like of ’numpy’. The return value is a scalar.
     """
+    numbers_of_points = []
+    errors = []
+    for n in n_array:
+        A = block_matrix.BlockMatrix(d, n)
+        b = rhs(d, n, f)
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
 
-    for d in [1, 2, 3]:
-        numbers_of_points = []
-        errors = []
-        for n in n_array:
-            errors.append(compute_error(d, n, hat_u, u))
-            numbers_of_points.append((n-1)**d)
-        plt.plot(numbers_of_points, errors, "r.")
-        plt.xlabel('$N$')
-        plt.ylabel('maximum error')
-        plt.title('Maximum errors for d = ' + str(d))
-        plt.legend()
-        plt.grid()
-        plt.show()
+        errors.append(compute_error(d, n, hat_u, u))
+        numbers_of_points.append((n-1)**d)
+    plt.plot(numbers_of_points, errors, "r.-")
+    plt.xlabel('$N$')
+    plt.ylabel('maximum error')
+    plt.title('Maximum errors for d = ' + str(d))
+    plt.legend()
+    plt.grid()
+    plt.show()
