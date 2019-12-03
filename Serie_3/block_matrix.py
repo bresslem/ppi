@@ -6,6 +6,7 @@ Creates the block matrix required to solve the discrete Poisson-Problem using
 finite differences and analyzes the amount of space needed.
 """
 import scipy.sparse as sps
+import scipy.sparse.linalg as lina
 import numpy as np
 from matplotlib import use
 #use('qt4agg')
@@ -165,32 +166,35 @@ class BlockMatrix:
         float
             condition number with respect to max-norm
         """
+        sparse_matrix = self.get_sparse().tocsc()
+        return lina.norm(sparse_matrix, np.inf)*lina.norm(lina.inv(sparse_matrix), np.inf)
+
 
 def plot_non_zeros(n_array):
     """
-    Plots the amount of non zeros values contained in the block matrix for each dimension
-    and a given array of n's.
+    Plots the amount of non zeros values contained in the block matrix and its LU-decomposition
+    for a given array of n's.
 
     Parameters
     ----------
     n_array (list of ints): The n's for which to plot the non-zeroes and total values.
     """
     # pylint: disable=invalid-name
-    for d in [1, 2, 3]:
-        non_zeros = []
-        absolute_values = []
-        for n in n_array:
-            matrix = BlockMatrix(d, n)
-            non_zeros.append(matrix.eval_zeros()[0])
-            sparse_matrix = matrix.get_sparse()
-            absolute_values.append(sparse_matrix.shape[0] * sparse_matrix.shape[1])
-        plt.plot(n_array, non_zeros, "b.", label='absolute number of non zero values')
-        plt.plot(n_array, absolute_values, "g.", label='absolute number of values')
-        plt.xlabel('$n$')
-        plt.title('d = ' + str(d))
-        plt.legend()
-        plt.grid()
-        plt.show()
+    # for d in [1, 2, 3]:
+    #     non_zeros = []
+    #     absolute_values = []
+    #     for n in n_array:
+    #         matrix = BlockMatrix(d, n)
+    #         non_zeros.append(matrix.eval_zeros()[0])
+    #         sparse_matrix = matrix.get_sparse()
+    #         absolute_values.append(sparse_matrix.shape[0] * sparse_matrix.shape[1])
+    #     plt.plot(n_array, non_zeros, "b.", label='absolute number of non zero values')
+    #     plt.plot(n_array, absolute_values, "g.", label='absolute number of values')
+    #     plt.xlabel('$n$')
+    #     plt.title('d = ' + str(d))
+    #     plt.legend()
+    #     plt.grid()
+    #     plt.show()
 
 
 def plot_cond(n_array):
@@ -206,6 +210,8 @@ def plot_cond(n_array):
 def main():
     """ Main function to use the BlockMatrix class.
     """
+    print(BlockMatrix(2, 3).get_sparse().todense())
+    print(BlockMatrix(2, 3).get_cond())
 
 if __name__ == "__main__":
     main()
