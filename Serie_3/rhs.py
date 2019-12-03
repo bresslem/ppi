@@ -77,12 +77,26 @@ def compute_error(d, n, hat_u, u):
     err = [abs(actual_u[i]-hat_u[i]) for i in range(len(actual_u)+1)]
     return max(err)
 
-def plot_error(n_array):
+def plot_error(n_array, hat_u, u):
     """ Plots errors of solution of Poisson Problem for a given array of
     Ns.
 
     Parameters
     ----------
-    n_array: list
-        List of N
+    n_array: list of ints
+        The n's for which to plot the errors.
     """
+
+    for d in [1, 2, 3]:
+        numbers_of_points = []
+        errors = []
+        for n in n_array:
+            errors.append(compute_error(d, n, hat_u, u))
+            numbers_of_points.append((n-1)**d)
+        plt.plot(numbers_of_points, errors, "r.")
+        plt.xlabel('$N$')
+        plt.ylabel('maximum error')
+        plt.title('Maximum errors for d = ' + str(d))
+        plt.legend()
+        plt.grid()
+        plt.show()

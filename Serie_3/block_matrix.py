@@ -209,21 +209,22 @@ def plot_non_zeros(n_array):
     n_array (list of ints): The n's for which to plot the non-zeroes and total values.
     """
     # pylint: disable=invalid-name
-    # for d in [1, 2, 3]:
-    #     non_zeros = []
-    #     absolute_values = []
-    #     for n in n_array:
-    #         matrix = BlockMatrix(d, n)
-    #         non_zeros.append(matrix.eval_zeros()[0])
-    #         sparse_matrix = matrix.get_sparse()
-    #         absolute_values.append(sparse_matrix.shape[0] * sparse_matrix.shape[1])
-    #     plt.plot(n_array, non_zeros, "b.", label='absolute number of non zero values')
-    #     plt.plot(n_array, absolute_values, "g.", label='absolute number of values')
-    #     plt.xlabel('$n$')
-    #     plt.title('d = ' + str(d))
-    #     plt.legend()
-    #     plt.grid()
-    #     plt.show()
+    for d in [1, 2, 3]:
+        numbers_of_points = []
+        non_zeros = []
+        non_zeros_lu = []
+        for n in n_array:
+            matrix = BlockMatrix(d, n)
+            non_zeros.append(matrix.eval_zeros()[0])
+            non_zeros_lu.append(matrix.eval_zeros_lu()[0])
+            numbers_of_points.append((n-1)**d)
+        plt.plot(numbers_of_points, non_zeros, "b.", label='number of non zero values of $A^{(d)}$')
+        plt.plot(numbers_of_points, non_zeros_lu, "g.", label='number of non zero values of the LU decomposition')
+        plt.xlabel('$N$')
+        plt.title('Non zeroes for d = ' + str(d))
+        plt.legend()
+        plt.grid()
+        plt.show()
 
 
 def plot_cond(n_array):
@@ -232,8 +233,22 @@ def plot_cond(n_array):
 
     Parameters
     ----------
-    n_array (list of ints): The n's for which to plot the non-zeroes and total values.
+    n_array (list of ints): The n's for which to plot the condition.
     """
+    for d in [1, 2, 3]:
+        numbers_of_points = []
+        conditions = []
+        for n in n_array:
+            conditions.append(BlockMatrix(d, n).get_cond())
+            numbers_of_points.append((n-1)**d)
+        plt.plot(numbers_of_points, conditions, "m.")
+        plt.xlabel('$N$')
+        plt.ylabel('condition of $A^{(d)}$')
+        plt.title('Condition of $A^{(d)}$ for d = ' + str(d))
+        plt.legend()
+        plt.grid()
+        plt.show()
+
 
 
 def main():
