@@ -1,3 +1,7 @@
+import scipy.linalg as lina
+import numpy as np
+import block_matrix
+
 def solve_lu(pr, l, u, pc, b):
     """ Solves the linear system Ax = b via forward and backward substitution
     given the decomposition pr * A * pc = l * u.
@@ -18,3 +22,7 @@ def solve_lu(pr, l, u, pc, b):
     x : numpy.ndarray
        solution of the linear system
     """
+
+    y = lina.solve_triangular(l, np.matmul(np.matmul(pr, b),pc),lower=True, unit_diagonal=True)
+
+    return lina.solve_triangular(u, y)

@@ -6,7 +6,7 @@ Creates the block matrix required to solve the discrete Poisson-Problem using
 finite differences and analyzes the amount of space needed.
 """
 import scipy.sparse as sps
-import scipy.sparse.linalg as lina
+import scipy.sparse.linalg as splina
 import numpy as np
 from matplotlib import use
 #use('qt4agg')
@@ -140,6 +140,22 @@ class BlockMatrix:
         pc : scipy.sparse.csr_matrix
             column permutation matrix of LU-decomposition
         """
+        sparse_matrix = self.get_sparse().tocsc()
+        lu_decomp = splina.splu(sparse_matrix)
+
+        n = lu_decomp.shape[0]
+        pr = np.zeros((n, n))
+        pr[lu_decomp.perm_r, np.arange(n)] = 1
+
+        pc = np.zeros((n, n))
+        pc[np.arange(n), lu_decomp.perm_c] = 1
+
+        l = lu_decomp.L.tocsr()
+        u = lu_decomp.U.tocsr()
+
+        return sps.csr_matrix(pr), l, u, sps.csr_matrix(pc)
+
+
 
     def eval_zeros_lu(self):
         """ Returns the absolute and relative numbers of (non-)zero elements of
@@ -167,7 +183,7 @@ class BlockMatrix:
             condition number with respect to max-norm
         """
         sparse_matrix = self.get_sparse().tocsc()
-        return lina.norm(sparse_matrix, np.inf)*lina.norm(lina.inv(sparse_matrix), np.inf)
+        return splina.norm(sparse_matrix, np.inf)*splina.norm(splina.inv(sparse_matrix), np.inf)
 
 
 def plot_non_zeros(n_array):
@@ -210,8 +226,10 @@ def plot_cond(n_array):
 def main():
     """ Main function to use the BlockMatrix class.
     """
-    print(BlockMatrix(2, 3).get_sparse().todense())
-    print(BlockMatrix(2, 3).get_cond())
+    print(BlockMatrix(2, 3).get_sparse().todense(), "\n")
+
+    for i in range(4):
+        print(BlockMatrix(2, 3).get_lu()[i].todense(), "\n")
 
 if __name__ == "__main__":
     main()

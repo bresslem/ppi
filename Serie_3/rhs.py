@@ -76,3 +76,13 @@ def compute_error(d, n, hat_u, u):
     actual_u = rhs(d, n, u)/((1/n)**2)
     err = [abs(actual_u[i]-hat_u[i]) for i in range(len(actual_u)+1)]
     return max(err)
+
+def plot_error(n_array):
+    """ Plots errors of solution of Poisson Problem for a given array of
+    Ns.
+
+    Parameters
+    ----------
+    n_array: list
+        List of N
+    """
