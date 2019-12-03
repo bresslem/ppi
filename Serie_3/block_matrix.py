@@ -162,6 +162,9 @@ class BlockMatrix:
         the LU-Decomposition. The relative quantities are with respect to the
         total number of elements of the represented matrix.
 
+        We count as if L and U were represented within the same matrix, disregarding
+        the ones on the main diagonal of L.
+
         Returns
         -------
         int
@@ -173,6 +176,16 @@ class BlockMatrix:
         float
             Relative number of zeros
         """
+        l_non_zeros = self.get_lu()[1].count_nonzero()
+        u_non_zeros = self.get_lu()[2].count_nonzero()
+        abs_values = (self.n - 1)**2*self.d
+
+        abs_non_zero = l_non_zeros+u_non_zeros-(self.n - 1)**self.d
+        abs_zero = abs_values - (l_non_zeros+u_non_zeros-(self.n - 1)**self.d)
+        rel_non_zero = abs_non_zero/abs_values
+        rel_zero = abs_zero/abs_values
+
+        return abs_non_zero, abs_zero, rel_non_zero, rel_zero
 
     def get_cond(self):
         """ Computes the condition number of the represented matrix.
