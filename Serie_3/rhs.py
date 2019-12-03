@@ -62,7 +62,7 @@ def compute_error(d, n, hat_u, u):
         Number of intersections in each dimension
     hat_u : array_like of ’numpy’
        Finite difference approximation of the solution of the Poisson problem
-       at the disretization points
+       at the discretization points
     u : callable
         Solution of the Possion problem
         The calling signature is ’u(x)’. Here ’x’ is a scalar
@@ -73,4 +73,6 @@ def compute_error(d, n, hat_u, u):
     float
        maximal absolute error at the disretization points
     """
-
+    actual_u = rhs(d, n, u)/((1/n)**2)
+    err = [abs(actual_u[i]-hat_u[i]) for i in range(len(actual_u)+1)]
+    return max(err)
