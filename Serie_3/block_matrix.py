@@ -255,7 +255,7 @@ def plot_non_zeros(n_array):
             numbers_of_points.append((n-1)**d)
         plt.plot(numbers_of_points, non_zero, "ro", label='number for $A^{(d)}$')
         plt.plot(numbers_of_points, non_zero_lu, "bx",
-                 label='number for $A^{(d)} = P_r \, L \, U \, P_c$')
+                 label='number for $LU$')
         plt.xlabel('$N$')
         plt.title('Number of non-zero elements of $A^{(d)}$ for d = ' + str(d))
         plt.legend()
