@@ -1,8 +1,10 @@
 """
 Author: Bressler_Marisa, Jeschke_Anne
-Date: 2019_12_03
+Date: 2019_12_04
 
-Module to implement the right hand side vector of the system to solve the Poisson-Problem.
+Implements the right hand side vector of the system to solve the Poisson-problem.
+Also calculates and plots the error of the numerical solution of the Poisson-problem
+with respect to the row sum norm.
 """
 # pylint: disable=invalid-name
 import numpy as np
@@ -57,20 +59,20 @@ def rhs(d, n, f):
     return rhs_vector
 
 def compute_error(d, n, hat_u, u):
-    """ Computes the error of the numerical solution of the Poisson problem
-    with respect to the max-norm.
+    """ Computes the error of the numerical solution of the Poisson-problem
+    with respect to the max norm.
 
     Parameters
     ----------
     d : int
-       Dimension of the space
+        Dimension of the space
     n : int
         Number of intersections in each dimension
     hat_u : array_like of ’numpy’
-       Finite difference approximation of the solution of the Poisson problem
-       at the discretization points
+            Finite difference approximation of the solution of the Poisson-problem
+            at the discretization points
     u : callable
-        Solution of the Possion problem
+        Solution of the Poisson-problem
         The calling signature is ’u(x)’. Here ’x’ is a scalar
         or array_like of ’numpy’. The return value is a scalar.
 
@@ -79,24 +81,25 @@ def compute_error(d, n, hat_u, u):
     float
        maximal absolute error at the disretization points
     """
-    actual_u = rhs(d, n, u)/((1/n)**2)
+    actual_u = rhs(d, n, u)*(n**2)
     err = [abs(actual_u[i]-hat_u[i]) for i in range(len(actual_u))]
     return max(err)
 
+
 def plot_error(u, f, d, n_array):
-    """ Plots errors of solution of Poisson Problem for a given array of
-    n's.
+    """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
+    for a given array of n-values. N = (n-1)^d is the dimension of the block matrix.
 
     Parameters
     ----------
     n_array: list of ints
-        The n's for which to plot the errors.
+             The n-values for which to plot the errors.
     u : callable
-        Solution of the Possion problem
+        Solution of the Poisson-problem
         The calling signature is ’u(x)’. Here ’x’ is a scalar
         or array_like of ’numpy’. The return value is a scalar.
     f : callable
-        Input function of the Possion problem
+        Input function of the Poisson-problem
         The calling signature is ’f(x)’. Here ’x’ is a scalar
         or array_like of ’numpy’. The return value is a scalar.
     """
@@ -110,10 +113,10 @@ def plot_error(u, f, d, n_array):
 
         errors.append(compute_error(d, n, hat_u, u))
         numbers_of_points.append((n-1)**d)
-    plt.plot(numbers_of_points, errors, "r.-")
+    plt.plot(numbers_of_points, errors, "go--")
     plt.xlabel('$N$')
-    plt.ylabel('maximum error')
-    plt.title('Maximum errors for d = ' + str(d))
-    plt.legend()
+    plt.ylabel('maximum of absolute error')
+    plt.title('Maxima of absolute errors for d = ' + str(d))
     plt.grid()
     plt.show()
+    plt.figure()
