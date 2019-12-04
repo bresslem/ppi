@@ -7,7 +7,6 @@ given the LU-decomposition with full pivoting pr * A * pc = l * u.
 """
 import scipy.linalg as lina
 import numpy as np
-import block_matrix
 
 def solve_lu(pr, l, u, pc, b): #pylint: disable=invalid-name
     """ Solves the linear system Ax = b via forward and backward substitution
@@ -32,7 +31,8 @@ def solve_lu(pr, l, u, pc, b): #pylint: disable=invalid-name
        solution of the linear system
     """
 
-    z = lina.solve_triangular(l.toarray(), np.dot(pr.toarray(),b), lower=True, unit_diagonal=True)
-    y = lina.solve_triangular(u.toarray(), z)
-    x = np.dot(pc.toarray(), y)
+    z = lina.solve_triangular(l.toarray(), np.dot(pr.toarray(), b), #pylint: disable=invalid-name
+                              lower=True, unit_diagonal=True)
+    y = lina.solve_triangular(u.toarray(), z) #pylint: disable=invalid-name
+    x = np.dot(pc.toarray(), y) #pylint: disable=invalid-name
     return x

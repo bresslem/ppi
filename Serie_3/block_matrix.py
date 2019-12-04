@@ -148,15 +148,15 @@ class BlockMatrix:
         sparse_matrix = self.get_sparse().tocsc()
         lu_decomp = splina.splu(sparse_matrix)
 
-        N = lu_decomp.shape[0]
-        pr = np.zeros((N, N))
+        N = lu_decomp.shape[0] #pylint: disable=invalid-name
+        pr = np.zeros((N, N)) #pylint: disable=invalid-name
         pr[lu_decomp.perm_r, np.arange(N)] = 1
 
-        pc = np.zeros((N, N))
+        pc = np.zeros((N, N)) #pylint: disable=invalid-name
         pc[np.arange(N), lu_decomp.perm_c] = 1
 
-        l = lu_decomp.L.tocsr()
-        u = lu_decomp.U.tocsr()
+        l = lu_decomp.L.tocsr() #pylint: disable=invalid-name
+        u = lu_decomp.U.tocsr() #pylint: disable=invalid-name
 
         return sps.csr_matrix(pr), l, u, sps.csr_matrix(pc)
 
@@ -202,7 +202,8 @@ class BlockMatrix:
             condition number with respect to the row sum norm
         """
         sparse_matrix = self.get_sparse().tocsc()
-        return splina.norm(sparse_matrix, np.inf)*lina.norm(lina.inv(sparse_matrix.todense()), np.inf)
+        return (splina.norm(sparse_matrix, np.inf)
+                *lina.norm(lina.inv(sparse_matrix.todense()), np.inf))
 
 
 
@@ -216,10 +217,10 @@ def plot_cond(n_array):
     ----------
     n_array (list of ints): The n-values for which to plot the condition.
     """
-    for d in [1, 2, 3]:
+    for d in [1, 2, 3]: #pylint: disable=invalid-name
         numbers_of_points = []
         conditions = []
-        for n in n_array:
+        for n in n_array: #pylint: disable=invalid-name
             conditions.append(BlockMatrix(d, n).get_cond())
             numbers_of_points.append((n-1)**d)
         plt.plot(numbers_of_points, conditions, "mo")
@@ -253,7 +254,8 @@ def plot_non_zeros(n_array):
             non_zero_lu.append(matrix.eval_zeros_lu()[0])
             numbers_of_points.append((n-1)**d)
         plt.plot(numbers_of_points, non_zero, "ro", label='number for $A^{(d)}$')
-        plt.plot(numbers_of_points, non_zero_lu, "bx", label='number for $A^{(d)} = P_r \, L \, U \, P_c$')
+        plt.plot(numbers_of_points, non_zero_lu, "bx",
+                 label='number for $A^{(d)} = P_r \, L \, U \, P_c$')
         plt.xlabel('$N$')
         plt.title('Number of non-zero elements of $A^{(d)}$ for d = ' + str(d))
         plt.legend()

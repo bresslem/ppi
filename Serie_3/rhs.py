@@ -15,7 +15,7 @@ from matplotlib import use
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 
-def rhs(d, n, f):
+def rhs(d, n, f): #pylint: disable=invalid-name
     """ Computes the right-hand side vector `b` for a given function `f`.
     Parameters
     ----------
@@ -58,7 +58,7 @@ def rhs(d, n, f):
             rhs_vector[i-1] = ((1/n)**2)*f(x)
     return rhs_vector
 
-def compute_error(d, n, hat_u, u):
+def compute_error(d, n, hat_u, u): #pylint: disable=invalid-name
     """ Computes the error of the numerical solution of the Poisson-problem
     with respect to the max norm.
 
@@ -86,7 +86,7 @@ def compute_error(d, n, hat_u, u):
     return max(err)
 
 
-def plot_error(u, f, d, n_array):
+def plot_error(u, f, d, n_array): #pylint: disable=invalid-name
     """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
     for a given array of n-values. N = (n-1)^d is the dimension of the block matrix.
 
