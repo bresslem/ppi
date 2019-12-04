@@ -116,7 +116,7 @@ def plot_error(u, f, d, n_array): #pylint: disable=invalid-name
     plt.plot(numbers_of_points, errors, "go--")
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
-    plt.title('Maxima of absolute errors for d = ' + str(d))
+    plt.title('Maxima of absolute errors for $d$ = ' + str(d))
     plt.grid()
     plt.show()
     plt.figure()

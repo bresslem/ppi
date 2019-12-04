@@ -226,7 +226,7 @@ def plot_cond(n_array):
         plt.plot(numbers_of_points, conditions, "mo")
         plt.xlabel('$N$')
         plt.ylabel('condition of $A^{(d)}$')
-        plt.title('Condition of $A^{(d)}$ for d = ' + str(d))
+        plt.title('Condition of $A^{(d)}$ for $d$ = ' + str(d))
         plt.grid()
         plt.show()
         plt.figure()
@@ -257,7 +257,8 @@ def plot_non_zeros(n_array):
         plt.plot(numbers_of_points, non_zero_lu, "bx",
                  label='number for $LU$')
         plt.xlabel('$N$')
-        plt.title('Number of non-zero elements of $A^{(d)}$ for d = ' + str(d))
+        plt.title('Number of non-zero elements of $A^{(d)}$\n' +
+                  'and its $LU$-decomposition for $d$ = ' + str(d))
         plt.legend()
         plt.grid()
         plt.show()
