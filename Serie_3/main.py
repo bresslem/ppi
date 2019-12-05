@@ -8,10 +8,14 @@ import block_matrix
 import rhs
 import numpy as np
 
-def f1(x):
+def f1(x): #pylint: disable=invalid-name
+    """Function f of the Poisson-problem for d = 1
+    """
     return -1*(np.pi*(2*np.cos(np.pi*x) - np.pi*x*np.sin(np.pi*x)))
 
-def u1(x):
+def u1(x): #pylint: disable=invalid-name
+    """Function u of the Poisson-problem for d = 1
+    """
     return x*np.sin(np.pi*x)
 
 def f2(x): #pylint: disable=invalid-name
@@ -26,7 +30,9 @@ def u2(x): #pylint: disable=invalid-name
     """
     return x[0]*np.sin(np.pi*x[0])*x[1]*np.sin(np.pi*x[1])
 
-def f3(x):
+def f3(x): #pylint: disable=invalid-name
+    """Function f of the Poisson-problem for d = 3
+    """
     return -1*(np.pi*x[1]*x[2]*(2*np.cos(np.pi*x[0])
              - np.pi*x[0]*np.sin(np.pi*x[0]))*np.sin(np.pi*x[1])*np.sin(np.pi*x[2])+
                np.pi*x[0]*x[2]*(2*np.cos(np.pi*x[1])
@@ -34,18 +40,20 @@ def f3(x):
                np.pi*x[1]*x[0]*(2*np.cos(np.pi*x[2])
              - np.pi*x[2]*np.sin(np.pi*x[2]))*np.sin(np.pi*x[1])*np.sin(np.pi*x[0]))
 
-def u3(x):
+def u3(x): #pylint: disable=invalid-name
+    """Function u of the Poisson-problem for d = 3
+    """
     return x[0]*np.sin(np.pi*x[0])*x[1]*np.sin(np.pi*x[1])*x[2]*np.sin(np.pi*x[2])
 
 
 def main():
     """ Main function to demonstrate the functionality of our modules.
     """
-    rhs.plot_error(u1, f1, 1, range(2, 101))
-    rhs.plot_error(u2, f2, 2, range(2, 101))
-    rhs.plot_error(u3, f3, 3, range(2, 101))
-    block_matrix.plot_non_zeros(range(2, 101))
-    block_matrix.plot_cond(range(2, 101))
+    rhs.plot_error(u1, f1, 1, range(2, 11))
+    rhs.plot_error(u2, f2, 2, range(2, 11))
+    rhs.plot_error(u3, f3, 3, range(2, 11))
+    block_matrix.plot_non_zeros(range(2, 11))
+    block_matrix.plot_cond(range(2, 11))
 
 if __name__ == "__main__":
     main()
