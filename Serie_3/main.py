@@ -34,11 +34,14 @@ def f3(x): #pylint: disable=invalid-name
     """Function f of the Poisson-problem for d = 3
     """
     return -1*(np.pi*x[1]*x[2]*(2*np.cos(np.pi*x[0])
-             - np.pi*x[0]*np.sin(np.pi*x[0]))*np.sin(np.pi*x[1])*np.sin(np.pi*x[2])+
+                                - np.pi*x[0]*np.sin(np.pi*x[0]))
+               *np.sin(np.pi*x[1])*np.sin(np.pi*x[2])+
                np.pi*x[0]*x[2]*(2*np.cos(np.pi*x[1])
-             - np.pi*x[1]*np.sin(np.pi*x[1]))*np.sin(np.pi*x[0])*np.sin(np.pi*x[2])+
+                                - np.pi*x[1]*np.sin(np.pi*x[1]))
+               *np.sin(np.pi*x[0])*np.sin(np.pi*x[2])+
                np.pi*x[1]*x[0]*(2*np.cos(np.pi*x[2])
-             - np.pi*x[2]*np.sin(np.pi*x[2]))*np.sin(np.pi*x[1])*np.sin(np.pi*x[0]))
+                                - np.pi*x[2]*np.sin(np.pi*x[2]))
+               *np.sin(np.pi*x[1])*np.sin(np.pi*x[0]))
 
 def u3(x): #pylint: disable=invalid-name
     """Function u of the Poisson-problem for d = 3
