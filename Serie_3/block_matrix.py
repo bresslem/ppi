@@ -11,7 +11,7 @@ import scipy.sparse.linalg as splina
 import scipy.linalg as lina
 import numpy as np
 from matplotlib import use
-use('qt4agg')
+#use('qt4agg')
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 
@@ -208,7 +208,7 @@ class BlockMatrix:
 
 
 
-def plot_cond(n_array):
+def plot_cond(n_array, d):
     """
     Plots the condition of the block matrix for a given array of n-values
     for the dimension d = 1, 2, 3. N = (n-1)^d is the dimension of the block matrix.
@@ -216,20 +216,21 @@ def plot_cond(n_array):
     Parameters
     ----------
     n_array (list of ints): The n-values for which to plot the condition.
+    d (int): dimension of the space
     """
-    for d in [1, 2, 3]: #pylint: disable=invalid-name
-        numbers_of_points = []
-        conditions = []
-        for n in n_array: #pylint: disable=invalid-name
-            conditions.append(BlockMatrix(d, n).get_cond())
-            numbers_of_points.append((n-1)**d)
-        plt.plot(numbers_of_points, conditions, "mo")
-        plt.xlabel('$N$')
-        plt.ylabel('condition of $A^{(d)}$')
-        plt.title('Condition of $A^{(d)}$ for $d$ = ' + str(d))
-        plt.grid()
-        plt.show()
-        plt.figure()
+    #pylint: disable=invalid-name
+    numbers_of_points = []
+    conditions = []
+    for n in n_array: #pylint: disable=invalid-name
+        conditions.append(BlockMatrix(d, n).get_cond())
+        numbers_of_points.append((n-1)**d)
+    plt.plot(numbers_of_points, conditions, "mo")
+    plt.xlabel('$N$')
+    plt.ylabel('condition of $A^{(d)}$')
+    plt.title('Condition of $A^{(d)}$ for $d$ = ' + str(d))
+    plt.grid()
+    plt.show()
+    plt.figure()
 
 
 def plot_non_zeros(n_array):

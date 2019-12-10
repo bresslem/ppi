@@ -7,11 +7,13 @@ Also calculates and plots the error of the numerical solution of the Poisson-pro
 with respect to the row sum norm.
 """
 # pylint: disable=invalid-name
+
 import numpy as np
 import block_matrix
 import linear_solvers
 from matplotlib import use
-use('qt4agg')
+#use('qt4agg')
+from mpl_toolkits import mplot3d
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 
@@ -93,7 +95,7 @@ def plot_error(u, f, d, n_array): #pylint: disable=invalid-name
     Parameters
     ----------
     n_array: list of ints
-             The n-values for which to plot the errors.
+        The n-values for which to plot the errors.
     u : callable
         Solution of the Poisson-problem
         The calling signature is ’u(x)’. Here ’x’ is a scalar
@@ -120,3 +122,52 @@ def plot_error(u, f, d, n_array): #pylint: disable=invalid-name
     plt.grid()
     plt.show()
     plt.figure()
+
+def plot_functions(u, f, n): #pylint: disable=invalid-name
+    """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
+    for a given array of n-values. N = (n-1)^d is the dimension of the block matrix.
+
+    Parameters
+    ----------
+    u : callable
+        Solution of the Poisson-problem
+        The calling signature is ’u(x)’. Here ’x’ is a scalar
+        or array_like of ’numpy’. The return value is a scalar.
+    f : callable
+        Input function of the Poisson-problem
+        The calling signature is ’f(x)’. Here ’x’ is a scalar
+        or array_like of ’numpy’. The return value is a scalar.
+    n:  int
+        The n-value for which to plot the functions.
+    """
+    x = np.linspace(0, 1, n+1)
+    y = np.linspace(0, 1, n+1)
+    X, Y = np.meshgrid(x, y)
+
+    exact = u((X,Y))
+
+    A = block_matrix.BlockMatrix(2, n)
+    b = rhs(2, n, f)
+    lu = A.get_lu()
+    hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+    approx = np.reshape(hat_u, (-1,n-1))
+
+    vzeroes = []
+    for _ in range(n-1):
+        vzeroes.append([0])
+    hzeroes = np.zeros(n+1)
+
+    approx = np.hstack((vzeroes, approx, vzeroes))
+    approx = np.vstack((hzeroes, approx, hzeroes))
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(121, projection='3d')
+    ax2 = fig.add_subplot(122, projection='3d')
+
+    ax1.plot_surface(X, Y, approx, cmap='viridis', edgecolor='none')
+    ax1.set_title('Approximate solution')
+
+    ax2.plot_surface(X, Y, exact, cmap='viridis', edgecolor='none')
+    ax2.set_title('Exact solution')
+
+    plt.show()
