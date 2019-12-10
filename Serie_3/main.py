@@ -53,11 +53,11 @@ def main():
     """ Main function to demonstrate the functionality of our modules.
     """
 #    rhs.plot_error(u1, f1, 1, range(2, 51))
-#    rhs.plot_error(u2, f2, 2, range(2, 11))
+    # rhs.plot_error(u2, f2, 2, range(2, 11))
 #    rhs.plot_error(u3, f3, 3, range(2, 11))
 #    block_matrix.plot_non_zeros(range(2, 11))
 #    block_matrix.plot_cond(range(2, 11), 3)
-    rhs.plot_functions(u2, f2, 51)
+    rhs.plot_functions(u2, f2, 11)
 
 if __name__ == "__main__":
     main()
