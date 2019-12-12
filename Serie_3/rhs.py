@@ -88,13 +88,13 @@ def compute_error(d, n, hat_u, u): #pylint: disable=invalid-name
     return max(err)
 
 
-def plot_error(u, f, d, n_array): #pylint: disable=invalid-name
+def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
     """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
-    for a given array of n-values. N = (n-1)^d is the dimension of the block matrix.
+    for a given list of n-values. N = (n-1)^d is the dimension of the block matrix.
 
     Parameters
     ----------
-    n_array: list of ints
+    n_list: list of ints
         The n-values for which to plot the errors.
     u : callable
         Solution of the Poisson-problem
@@ -107,7 +107,7 @@ def plot_error(u, f, d, n_array): #pylint: disable=invalid-name
     """
     numbers_of_points = []
     errors = []
-    for n in n_array:
+    for n in n_list:
         A = block_matrix.BlockMatrix(d, n)
         b = rhs(d, n, f)
         lu = A.get_lu()
@@ -115,7 +115,7 @@ def plot_error(u, f, d, n_array): #pylint: disable=invalid-name
 
         errors.append(compute_error(d, n, hat_u, u))
         numbers_of_points.append((n-1)**d)
-    plt.plot(numbers_of_points, errors, "go--")
+    plt.plot(numbers_of_points, errors, 'go--')
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
     plt.title('Maxima of absolute errors for $d$ = ' + str(d))
@@ -123,9 +123,73 @@ def plot_error(u, f, d, n_array): #pylint: disable=invalid-name
     plt.show()
     plt.figure()
 
-def plot_functions(u, f, n): #pylint: disable=invalid-name
+
+def plot_error_list(u_list, f_list, n_list): #pylint: disable=invalid-name
     """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
-    for a given array of n-values. N = (n-1)^d is the dimension of the block matrix.
+    for a given list of n-values and for the dimension d = 1, 2, 3.
+
+    Parameters
+    ----------
+    n_list: list of ints
+        The n-values for which to plot the errors.
+    u_list : list of callable functions
+        Solution of the Poisson-problem
+        The calling signature is ’u(x)’. Here ’x’ is a scalar
+        or array_like of ’numpy’. The return value is a scalar.
+    f_list : list of callable functions
+        Input function of the Poisson-problem
+        The calling signature is ’f(x)’. Here ’x’ is a scalar
+        or array_like of ’numpy’. The return value is a scalar.
+    """
+
+    numbers_of_points_1 = []
+    errors_1 = []
+    for n in n_list:
+        A = block_matrix.BlockMatrix(1, n)
+        b = rhs(1, n, f_list[0])
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+
+        errors_1.append(compute_error(1, n, hat_u, u_list[0]))
+        numbers_of_points_1.append((n-1)**1)
+    plt.plot(numbers_of_points_1, errors_1, label='$d=1$', linestyle='--', color='blue')
+
+    numbers_of_points_2 = []
+    errors_2 = []
+    for n in n_list:
+        A = block_matrix.BlockMatrix(2, n)
+        b = rhs(2, n, f_list[1])
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+
+        errors_2.append(compute_error(2, n, hat_u, u_list[1]))
+        numbers_of_points_2.append((n-1)**2)
+    plt.plot(numbers_of_points_2, errors_2, label='$d=2$', linestyle='--', color='magenta')
+
+    numbers_of_points_3 = []
+    errors_3 = []
+    for n in n_list:
+        A = block_matrix.BlockMatrix(3, n)
+        b = rhs(3, n, f_list[2])
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+
+        errors_3.append(compute_error(3, n, hat_u, u_list[2]))
+        numbers_of_points_3.append((n-1)**3)
+    plt.plot(numbers_of_points_3, errors_3, label='$d=3$', linestyle='--', color='red')
+
+    plt.xlabel('$N$')
+    plt.ylabel('maximum of absolute error')
+    plt.legend()
+    plt.title('Maxima of absolute errors for $d=1,2,3$')
+    plt.grid()
+    plt.show()
+
+
+def plot_functions(u, f, n): #pylint: disable=invalid-name
+    """ Plots the numerical, the exact solution of our Poisson-problem (dimension d=2)
+    for a given value of n (n is the number of intersections in each dimension
+    and their absolute and their relative difference.
 
     Parameters
     ----------

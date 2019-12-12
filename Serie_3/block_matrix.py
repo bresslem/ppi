@@ -206,22 +206,20 @@ class BlockMatrix:
                 *lina.norm(lina.inv(sparse_matrix.todense()), np.inf))
 
 
-
-
-def plot_cond(n_array, d):
+def plot_cond(n_list, d):
     """
-    Plots the condition of the block matrix for a given array of n-values
+    Plots the condition of the block matrix for a given list of n-values
     for the dimension d = 1, 2, 3. N = (n-1)^d is the dimension of the block matrix.
 
     Parameters
     ----------
-    n_array (list of ints): The n-values for which to plot the condition.
+    n_list (list of ints): The n-values for which to plot the condition.
     d (int): dimension of the space
     """
     #pylint: disable=invalid-name
     numbers_of_points = []
     conditions = []
-    for n in n_array: #pylint: disable=invalid-name
+    for n in n_list: #pylint: disable=invalid-name
         conditions.append(BlockMatrix(d, n).get_cond())
         numbers_of_points.append((n-1)**d)
     plt.plot(numbers_of_points, conditions, "mo")
@@ -233,7 +231,24 @@ def plot_cond(n_array, d):
     plt.figure()
 
 
-def plot_non_zeros(n_array):
+def print_cond(n_list, d):
+    """
+    Calculates the condition of the block matrix for a given list of n-values
+    for the dimension d = 1, 2, 3. N = (n-1)^d is the dimension of the block matrix.
+
+    Parameters
+    ----------
+    n_list (list of ints): The n-values for which to plot the condition.
+    d (int): dimension of the space
+    """
+    conditions = []
+    for n in n_list:
+        matrix = BlockMatrix(d, n)
+        conditions.append(BlockMatrix(d, n).get_cond())
+    return print(conditions)
+
+
+def plot_non_zeros(n_list):
     """
     Plots the amount of non-zero elements contained in the block matrix and
     its LU-decomposition for a given array of n-values
@@ -241,7 +256,7 @@ def plot_non_zeros(n_array):
 
     Parameters
     ----------
-    n_array (list of ints): The n-values for which to plot the amount
+    n_list (list of ints): The n-values for which to plot the amount
     of non-zero elements and the total number of elements.
     """
     # pylint: disable=invalid-name
@@ -249,7 +264,7 @@ def plot_non_zeros(n_array):
         numbers_of_points = []
         non_zero = []
         non_zero_lu = []
-        for n in n_array:
+        for n in n_list:
             matrix = BlockMatrix(d, n)
             non_zero.append(matrix.eval_zeros()[0])
             non_zero_lu.append(matrix.eval_zeros_lu()[0])
