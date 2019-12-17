@@ -115,7 +115,16 @@ def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
 
         errors.append(compute_error(d, n, hat_u, u))
         numbers_of_points.append((n-1)**d)
-    plt.plot(numbers_of_points, errors, 'go--')
+
+    numbers_of_points_pow1 = [np.float_(N)**(-1) for N in n_list]
+    numbers_of_points_pow2 = [np.float_(N)**(-2) for N in n_list]
+    numbers_of_points_pow3 = [np.float_(N)**(-3) for N in n_list]
+
+    plt.loglog(numbers_of_points, numbers_of_points_pow1, label='$N$', color='lightgray')
+    plt.loglog(numbers_of_points, numbers_of_points_pow2, label='$N^2$', color='lightgray', linestyle='--')
+    plt.loglog(numbers_of_points, numbers_of_points_pow3, label='$N^3$', color='lightgray', linestyle=':')
+
+    plt.loglog(numbers_of_points, errors, 'go--')
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
     plt.title('Maxima of absolute errors for $d$ = ' + str(d))
@@ -152,7 +161,8 @@ def plot_error_list(u_list, f_list, n_list): #pylint: disable=invalid-name
 
         errors_1.append(compute_error(1, n, hat_u, u_list[0]))
         numbers_of_points_1.append((n-1)**1)
-    plt.plot(numbers_of_points_1, errors_1, label='$d=1$', linestyle='--', color='blue')
+
+    plt.loglog(numbers_of_points_1, errors_1, label='$d=1$', linestyle='--', color='blue')
 
     numbers_of_points_2 = []
     errors_2 = []
@@ -164,7 +174,7 @@ def plot_error_list(u_list, f_list, n_list): #pylint: disable=invalid-name
 
         errors_2.append(compute_error(2, n, hat_u, u_list[1]))
         numbers_of_points_2.append((n-1)**2)
-    plt.plot(numbers_of_points_2, errors_2, label='$d=2$', linestyle='--', color='magenta')
+    plt.loglog(numbers_of_points_2, errors_2, label='$d=2$', linestyle='--', color='magenta')
 
     numbers_of_points_3 = []
     errors_3 = []
@@ -176,7 +186,15 @@ def plot_error_list(u_list, f_list, n_list): #pylint: disable=invalid-name
 
         errors_3.append(compute_error(3, n, hat_u, u_list[2]))
         numbers_of_points_3.append((n-1)**3)
-    plt.plot(numbers_of_points_3, errors_3, label='$d=3$', linestyle='--', color='red')
+    plt.loglog(numbers_of_points_3, errors_3, label='$d=3$', linestyle='--', color='red')
+
+    numbers_of_points_pow1 = [np.float_(N)**(-1) for N in numbers_of_points_3]
+    numbers_of_points_pow2 = [np.float_(N)**(-2) for N in numbers_of_points_3]
+    numbers_of_points_pow3 = [np.float_(N)**(-3) for N in numbers_of_points_3]
+
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N$', color='lightgray')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^2$', color='lightgray', linestyle='--')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^3$', color='lightgray', linestyle=':')
 
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
@@ -236,7 +254,7 @@ def plot_functions(u, f, n): #pylint: disable=invalid-name
     ax2.plot_surface(X, Y, exact, cmap='viridis', edgecolor='none')
     ax2.set_title('Exact solution')
 
-    difference = abs(approx - exact)
+    difference = approx - exact
     ax3.plot_surface(X, Y, difference, cmap='viridis', edgecolor='none')
     ax3.set_title('Difference')
 

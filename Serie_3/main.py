@@ -8,6 +8,7 @@ import block_matrix
 import rhs
 import numpy as np
 import scipy as sc
+import linear_solvers
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 
@@ -77,7 +78,7 @@ def print_cond_hilbert(n_list, d):
     for n in n_list:
         h = sc.linalg.hilbert((n-1)**d)
         conditions.append(get_cond_matrix(h))
-    return print(conditions)
+    print(conditions)
 
 
 def plot_cond_hilbert(n_list, d):
@@ -97,7 +98,7 @@ def plot_cond_hilbert(n_list, d):
         h = sc.linalg.hilbert((n-1)**d)
         conditions.append(get_cond_matrix(h))
         numbers_of_points.append((n-1)**d)
-    plt.plot(numbers_of_points, conditions, "mo")
+    plt.loglog(numbers_of_points, conditions, "mo")
     plt.xlabel('$N$')
     plt.ylabel('condition of $H_N$')
     plt.title('Condition of $H_N$ for d=' + str(d) + ' ($N=(n-1)^d$)')
@@ -108,23 +109,34 @@ def plot_cond_hilbert(n_list, d):
 def main():
     """ Main function to demonstrate the functionality of our modules.
     """
-#    rhs.plot_error(u1, f1, 1, range(2, 11))
-#    rhs.plot_error(u2, f2, 2, range(2, 11))
-#    rhs.plot_error(u3, f3, 3, range(2, 11))
+    rhs.plot_error(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
+    rhs.plot_error(u2, f2, 2, np.geomspace(2, 100, num=10, dtype=int))
+    rhs.plot_error(u3, f3, 3, np.geomspace(2, 10, num=10, dtype=int))
 
-#    rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], range(2, 11))
+    # np.geomspace(2, 100, num=5, dtype=int)
+    # list = range(2, 26)
+    # print(list)
+    # rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
+    #
+    # n = 10
+    # A = block_matrix.BlockMatrix(3, n)
+    # print(1)
+    # b = rhs.rhs(3, n, f3)
+    # print(2)
+    # lu = A.get_lu()
+    # print(3)
+    # hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+    # print(rhs.compute_error(3, 37, hat_u, u3))
+    #
+    # block_matrix.plot_cond(range(2, 11), 1)
+    # plot_cond_hilbert(range(2, 11), 1)
+
+    # block_matrix.print_cond(range(2, 11), 1)
+    # print_cond_hilbert(range(2, 11), 1)
 
 
-
-    block_matrix.plot_cond(range(2, 11), 1)
-    plot_cond_hilbert(range(2, 11), 1)
-
-    block_matrix.print_cond(range(2, 11), 1)
-    print_cond_hilbert(range(2, 11), 1)
-
-
-#    block_matrix.plot_cond(range(2, 11), 2)
-#    plot_cond_hilbert(range(2, 11), 2)
+    # block_matrix.plot_cond(range(2, 26), 2)
+    # plot_cond_hilbert(range(2, 26), 2)
 
 #    block_matrix.print_cond(range(2, 11), 2)
 #    print_cond_hilbert(range(2, 11), 2)
@@ -142,10 +154,10 @@ def main():
 
 
 
-#    rhs.plot_functions(u2, f2, 5)
-#    rhs.plot_functions(u2, f2, 10)
-#    rhs.plot_functions(u2, f2, 25)
-#    rhs.plot_functions(u2, f2, 50)
+    # rhs.plot_functions(u2, f2, 5)
+    # rhs.plot_functions(u2, f2, 10)
+    # rhs.plot_functions(u2, f2, 25)
+    # rhs.plot_functions(u2, f2, 50)
 
 if __name__ == "__main__":
     main()

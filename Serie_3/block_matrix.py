@@ -147,14 +147,14 @@ class BlockMatrix:
         """
         sparse_matrix = self.get_sparse().tocsc()
         lu_decomp = splina.splu(sparse_matrix)
-
+        
         N = lu_decomp.shape[0] #pylint: disable=invalid-name
         pr = np.zeros((N, N)) #pylint: disable=invalid-name
         pr[lu_decomp.perm_r, np.arange(N)] = 1
-
+        
         pc = np.zeros((N, N)) #pylint: disable=invalid-name
         pc[np.arange(N), lu_decomp.perm_c] = 1
-
+        
         l = lu_decomp.L.tocsr() #pylint: disable=invalid-name
         u = lu_decomp.U.tocsr() #pylint: disable=invalid-name
 
@@ -222,7 +222,7 @@ def plot_cond(n_list, d):
     for n in n_list: #pylint: disable=invalid-name
         conditions.append(BlockMatrix(d, n).get_cond())
         numbers_of_points.append((n-1)**d)
-    plt.plot(numbers_of_points, conditions, "mo")
+    plt.loglog(numbers_of_points, conditions, "mo")
     plt.xlabel('$N$')
     plt.ylabel('condition of $A^{(d)}$')
     plt.title('Condition of $A^{(d)}$ for $d$ = ' + str(d))
