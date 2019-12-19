@@ -147,14 +147,14 @@ class BlockMatrix:
         """
         sparse_matrix = self.get_sparse().tocsc()
         lu_decomp = splina.splu(sparse_matrix)
-        
+
         N = lu_decomp.shape[0] #pylint: disable=invalid-name
         pr = np.zeros((N, N)) #pylint: disable=invalid-name
         pr[lu_decomp.perm_r, np.arange(N)] = 1
-        
+
         pc = np.zeros((N, N)) #pylint: disable=invalid-name
         pc[np.arange(N), lu_decomp.perm_c] = 1
-        
+
         l = lu_decomp.L.tocsr() #pylint: disable=invalid-name
         u = lu_decomp.U.tocsr() #pylint: disable=invalid-name
 
@@ -226,6 +226,57 @@ def plot_cond(n_list, d):
     plt.xlabel('$N$')
     plt.ylabel('condition of $A^{(d)}$')
     plt.title('Condition of $A^{(d)}$ for $d$ = ' + str(d))
+    plt.grid()
+    plt.show()
+    plt.figure()
+
+
+def plot_cond_list(n_list_list):
+    """
+    Plots the condition of the block matrix for a given list of n-values
+    for the dimension d = 1, 2, 3. N = (n-1)^d is the dimension of the block matrix.
+
+    Parameters
+    ----------
+    n_list (list of ints): The n-values for which to plot the condition.
+    d (int): dimension of the space
+    """
+    #pylint: disable=invalid-name
+    numbers_of_points_1 = []
+    conditions_1 = []
+    for n in n_list_list[0]: #pylint: disable=invalid-name
+        conditions_1.append(BlockMatrix(1, n).get_cond())
+        numbers_of_points_1.append((n-1)**1)
+    plt.loglog(numbers_of_points_1, conditions_1, label='$d=1$', linestyle='--', color='blue')
+
+    #pylint: disable=invalid-name
+    numbers_of_points_2 = []
+    conditions_2 = []
+    for n in n_list_list[1]: #pylint: disable=invalid-name
+        conditions_2.append(BlockMatrix(2, n).get_cond())
+        numbers_of_points_2.append((n-1)**2)
+    plt.loglog(numbers_of_points_2, conditions_2, label='$d=2$', linestyle='--', color='magenta')
+
+    #pylint: disable=invalid-name
+    numbers_of_points_3 = []
+    conditions_3 = []
+    for n in n_list_list[2]: #pylint: disable=invalid-name
+        conditions_3.append(BlockMatrix(3, n).get_cond())
+        numbers_of_points_3.append((n-1)**3)
+    plt.loglog(numbers_of_points_3, conditions_3, label='$d=3$', linestyle='--', color='red')
+
+    numbers_of_points_pow1 = [np.float_(N)**(1) for N in numbers_of_points_3]
+    numbers_of_points_pow2 = [np.float_(N)**(2) for N in numbers_of_points_3]
+    numbers_of_points_pow3 = [np.float_(N)**(3) for N in numbers_of_points_3]
+
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N$', color='lightgray')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^2$', color='lightgray', linestyle='-.')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^3$', color='lightgray', linestyle=':')
+
+    plt.xlabel('$N$')
+    plt.ylabel('condition of $A^{(d)}$')
+    plt.title('Condition of $A^{(d)}$ for $d=1,2,3$')
+    plt.legend()
     plt.grid()
     plt.show()
     plt.figure()

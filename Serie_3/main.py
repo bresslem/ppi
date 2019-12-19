@@ -109,53 +109,50 @@ def plot_cond_hilbert(n_list, d):
 def main():
     """ Main function to demonstrate the functionality of our modules.
     """
-    # rhs.plot_error(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
-    # rhs.plot_error(u2, f2, 2, np.geomspace(2, 100, num=10, dtype=int))
-    # rhs.plot_error(u3, f3, 3, np.geomspace(2, 24, num=10, dtype=int))
-
-    list = [np.geomspace(2, 10000, num=10, dtype=int), np.geomspace(2, 100, num=10, dtype=int), np.geomspace(2, 24, num=10, dtype=int)]
-    rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
-
-    # n = 10
-    # A = block_matrix.BlockMatrix(3, n)
-    # print(1)
-    # b = rhs.rhs(3, n, f3)
-    # print(2)
-    # lu = A.get_lu()
-    # print(3)
-    # hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
-    # print(rhs.compute_error(3, 37, hat_u, u3))
-    #
-    # block_matrix.plot_cond(range(2, 11), 1)
-    # plot_cond_hilbert(range(2, 11), 1)
-
-    # block_matrix.print_cond(range(2, 11), 1)
-    # print_cond_hilbert(range(2, 11), 1)
-
-
-    # block_matrix.plot_cond(range(2, 26), 2)
-    # plot_cond_hilbert(range(2, 26), 2)
-
-#    block_matrix.print_cond(range(2, 11), 2)
-#    print_cond_hilbert(range(2, 11), 2)
-
-
-#    block_matrix.plot_cond(range(2, 11), 3)
-#    plot_cond_hilbert(range(2, 11), 3)
-
-#    block_matrix.print_cond(range(2, 11), 3)
-#    print_cond_hilbert(range(2, 11), 3)
-
-
-
-#    block_matrix.plot_non_zeros(range(2, 11))
-
-
+## Lösungsplot für Bsp.funktion mit d = 2 für n = 5, 10, 25, 50
 
     # rhs.plot_functions(u2, f2, 5)
     # rhs.plot_functions(u2, f2, 10)
     # rhs.plot_functions(u2, f2, 25)
     # rhs.plot_functions(u2, f2, 50)
+
+
+## Fehler-/Konvergenzplot für d = 1, 2, 3 in getrennten Grafiken
+
+    # rhs.plot_error(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
+    # rhs.plot_error(u2, f2, 2, np.geomspace(2, 100, num=10, dtype=int))
+    # rhs.plot_error(u3, f3, 3, np.geomspace(2, 24, num=10, dtype=int))
+
+
+## Fehler-/Konvergenzplot für d = 1, 2, 3 in einer Grafik
+
+    # list = [np.geomspace(2, 10000, num=10, dtype=int), np.geomspace(2, 100, num=10, dtype=int), np.geomspace(2, 24, num=10, dtype=int)]
+    # rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
+
+
+## Konditionsplot von A^(d) für d = 1, 2, 3 in einer Grafik
+
+    # list = [np.geomspace(2, 10000, num=10, dtype=int), np.geomspace(2, 100, num=10, dtype=int), np.geomspace(2, 24, num=10, dtype=int)]
+    # block_matrix.plot_cond_list(list)
+
+
+## Konditionsprint A^(d) und Hilbertmatrix von gleicher Dimension = (n-1)^d mit d = 1, 2, 3
+
+    # block_matrix.print_cond(range(2, 11), 1)
+    # print_cond_hilbert(range(2, 11), 1)
+
+    # block_matrix.print_cond(range(2, 11), 2)
+    # print_cond_hilbert(range(2, 11), 2)
+
+    # block_matrix.print_cond(range(2, 11), 3)
+    # print_cond_hilbert(range(2, 11), 3)
+
+
+## Sparsity von A^(d) und ihrer LU-Zerlegung für d = 1, 2, 3 in getrennten Grafiken
+
+    block_matrix.plot_non_zeros(range(2, 11))
+
+
 
 if __name__ == "__main__":
     main()
