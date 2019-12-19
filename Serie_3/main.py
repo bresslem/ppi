@@ -109,15 +109,13 @@ def plot_cond_hilbert(n_list, d):
 def main():
     """ Main function to demonstrate the functionality of our modules.
     """
-    rhs.plot_error(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
-    rhs.plot_error(u2, f2, 2, np.geomspace(2, 100, num=10, dtype=int))
-    rhs.plot_error(u3, f3, 3, np.geomspace(2, 10, num=10, dtype=int))
+    # rhs.plot_error(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
+    # rhs.plot_error(u2, f2, 2, np.geomspace(2, 100, num=10, dtype=int))
+    # rhs.plot_error(u3, f3, 3, np.geomspace(2, 24, num=10, dtype=int))
 
-    # np.geomspace(2, 100, num=5, dtype=int)
-    # list = range(2, 26)
-    # print(list)
-    # rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
-    #
+    list = [np.geomspace(2, 10000, num=10, dtype=int), np.geomspace(2, 100, num=10, dtype=int), np.geomspace(2, 24, num=10, dtype=int)]
+    rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
+
     # n = 10
     # A = block_matrix.BlockMatrix(3, n)
     # print(1)

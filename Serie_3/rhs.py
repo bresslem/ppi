@@ -116,30 +116,31 @@ def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
         errors.append(compute_error(d, n, hat_u, u))
         numbers_of_points.append((n-1)**d)
 
-    numbers_of_points_pow1 = [np.float_(N)**(-1) for N in n_list]
-    numbers_of_points_pow2 = [np.float_(N)**(-2) for N in n_list]
-    numbers_of_points_pow3 = [np.float_(N)**(-3) for N in n_list]
+    numbers_of_points_pow1 = [np.float_(N)**(-1) for N in numbers_of_points]
+    numbers_of_points_pow2 = [np.float_(N)**(-2) for N in numbers_of_points]
+    numbers_of_points_pow3 = [np.float_(N)**(-3) for N in numbers_of_points]
 
-    plt.loglog(numbers_of_points, numbers_of_points_pow1, label='$N$', color='lightgray')
-    plt.loglog(numbers_of_points, numbers_of_points_pow2, label='$N^2$', color='lightgray', linestyle='--')
-    plt.loglog(numbers_of_points, numbers_of_points_pow3, label='$N^3$', color='lightgray', linestyle=':')
+    plt.loglog(numbers_of_points, numbers_of_points_pow1, label='$N^{-1}$', color='lightgray')
+    plt.loglog(numbers_of_points, numbers_of_points_pow2, label='$N^{-2}$', color='lightgray', linestyle='-.')
+    plt.loglog(numbers_of_points, numbers_of_points_pow3, label='$N^{-3}$', color='lightgray', linestyle=':')
 
     plt.loglog(numbers_of_points, errors, 'go--')
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
     plt.title('Maxima of absolute errors for $d$ = ' + str(d))
+    plt.legend()
     plt.grid()
     plt.show()
     plt.figure()
 
 
-def plot_error_list(u_list, f_list, n_list): #pylint: disable=invalid-name
+def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name
     """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
     for a given list of n-values and for the dimension d = 1, 2, 3.
 
     Parameters
     ----------
-    n_list: list of ints
+    n_list_list: list of list of ints
         The n-values for which to plot the errors.
     u_list : list of callable functions
         Solution of the Poisson-problem
@@ -153,7 +154,7 @@ def plot_error_list(u_list, f_list, n_list): #pylint: disable=invalid-name
 
     numbers_of_points_1 = []
     errors_1 = []
-    for n in n_list:
+    for n in n_list_list[0]:
         A = block_matrix.BlockMatrix(1, n)
         b = rhs(1, n, f_list[0])
         lu = A.get_lu()
@@ -166,7 +167,7 @@ def plot_error_list(u_list, f_list, n_list): #pylint: disable=invalid-name
 
     numbers_of_points_2 = []
     errors_2 = []
-    for n in n_list:
+    for n in n_list_list[1]:
         A = block_matrix.BlockMatrix(2, n)
         b = rhs(2, n, f_list[1])
         lu = A.get_lu()
@@ -178,7 +179,7 @@ def plot_error_list(u_list, f_list, n_list): #pylint: disable=invalid-name
 
     numbers_of_points_3 = []
     errors_3 = []
-    for n in n_list:
+    for n in n_list_list[2]:
         A = block_matrix.BlockMatrix(3, n)
         b = rhs(3, n, f_list[2])
         lu = A.get_lu()
@@ -192,9 +193,9 @@ def plot_error_list(u_list, f_list, n_list): #pylint: disable=invalid-name
     numbers_of_points_pow2 = [np.float_(N)**(-2) for N in numbers_of_points_3]
     numbers_of_points_pow3 = [np.float_(N)**(-3) for N in numbers_of_points_3]
 
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N$', color='lightgray')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^2$', color='lightgray', linestyle='--')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^3$', color='lightgray', linestyle=':')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N^{-1}$', color='lightgray')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^{-2}$', color='lightgray', linestyle='-.')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{-3}$', color='lightgray', linestyle=':')
 
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
