@@ -53,7 +53,7 @@ def u3(x): #pylint: disable=invalid-name
     return x[0]*np.sin(np.pi*x[0])*x[1]*np.sin(np.pi*x[1])*x[2]*np.sin(np.pi*x[2])
 
 
-def get_cond_matrix(a):
+def get_cond_matrix(a): #pylint: disable=invalid-name
         """ Computes the condition number of the matrix a.
 
         Returns
@@ -64,7 +64,7 @@ def get_cond_matrix(a):
         return (np.linalg.norm(a, np.inf)*np.linalg.norm(np.linalg.inv(a), np.inf))
 
 
-def print_cond_hilbert(n_list, d):
+def print_cond_hilbert(n_list, d): #pylint: disable=invalid-name
     """
     Calculates the condition of the Hilbert-matrix for a given list of n-values
     for the dimension d = 1, 2, 3. N = (n-1)^d is the dimension of the Hilbert-matrix.
@@ -81,7 +81,7 @@ def print_cond_hilbert(n_list, d):
     print(conditions)
 
 
-def plot_cond_hilbert(n_list, d):
+def plot_cond_hilbert(n_list, d): #pylint: disable=invalid-name
     """
     Plots the condition of the Hilbert-matrix for a given list of n-values
     for the dimension d = 1, 2, 3. N = (n-1)^d is the dimension of the Hilbert-matrix.
@@ -91,10 +91,9 @@ def plot_cond_hilbert(n_list, d):
     n_list (list of ints): The n-values for which to plot the condition.
     d (int): dimension of the space
     """
-    #pylint: disable=invalid-name
     numbers_of_points = []
     conditions = []
-    for n in n_list: #pylint: disable=invalid-name
+    for n in n_list:
         h = sc.linalg.hilbert((n-1)**d)
         conditions.append(get_cond_matrix(h))
         numbers_of_points.append((n-1)**d)
@@ -113,8 +112,7 @@ def main():
 
     # rhs.plot_functions(u2, f2, 5)
     # rhs.plot_functions(u2, f2, 10)
-    # rhs.plot_functions(u2, f2, 25)
-    # rhs.plot_functions(u2, f2, 50)
+    # rhs.plot_functions(u2, f2, 20)
 
 
 ## Fehler-/Konvergenzplot für d = 1, 2, 3 in getrennten Grafiken
@@ -126,13 +124,17 @@ def main():
 
 ## Fehler-/Konvergenzplot für d = 1, 2, 3 in einer Grafik
 
-    # list = [np.geomspace(2, 10000, num=10, dtype=int), np.geomspace(2, 100, num=10, dtype=int), np.geomspace(2, 24, num=10, dtype=int)]
+    # list = [np.geomspace(2, 10000, num=10, dtype=int),
+    #         np.geomspace(2, 100, num=10, dtype=int),
+    #         np.geomspace(2, 24, num=10, dtype=int)]
     # rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
 
 
 ## Konditionsplot von A^(d) für d = 1, 2, 3 in einer Grafik
 
-    # list = [np.geomspace(2, 10000, num=10, dtype=int), np.geomspace(2, 100, num=10, dtype=int), np.geomspace(2, 24, num=10, dtype=int)]
+    # list = [np.geomspace(2, 10000, num=10, dtype=int),
+    #         np.geomspace(2, 100, num=10, dtype=int),
+    #         np.geomspace(2, 24, num=10, dtype=int)]
     # block_matrix.plot_cond_list(list)
 
 

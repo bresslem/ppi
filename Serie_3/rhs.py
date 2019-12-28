@@ -163,8 +163,6 @@ def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name
         errors_1.append(compute_error(1, n, hat_u, u_list[0]))
         numbers_of_points_1.append((n-1)**1)
 
-    plt.loglog(numbers_of_points_1, errors_1, label='$d=1$', linestyle='--', color='blue')
-
     numbers_of_points_2 = []
     errors_2 = []
     for n in n_list_list[1]:
@@ -175,7 +173,6 @@ def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name
 
         errors_2.append(compute_error(2, n, hat_u, u_list[1]))
         numbers_of_points_2.append((n-1)**2)
-    plt.loglog(numbers_of_points_2, errors_2, label='$d=2$', linestyle='--', color='magenta')
 
     numbers_of_points_3 = []
     errors_3 = []
@@ -187,7 +184,6 @@ def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name
 
         errors_3.append(compute_error(3, n, hat_u, u_list[2]))
         numbers_of_points_3.append((n-1)**3)
-    plt.loglog(numbers_of_points_3, errors_3, label='$d=3$', linestyle='--', color='red')
 
     numbers_of_points_pow1 = [np.float_(N)**(-1) for N in numbers_of_points_3]
     numbers_of_points_pow2 = [np.float_(N)**(-2) for N in numbers_of_points_3]
@@ -196,6 +192,10 @@ def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name
     plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N^{-1}$', color='lightgray')
     plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^{-2}$', color='lightgray', linestyle='-.')
     plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{-3}$', color='lightgray', linestyle=':')
+
+    plt.loglog(numbers_of_points_1, errors_1, label='$d=1$', linestyle='--', color='blue')
+    plt.loglog(numbers_of_points_2, errors_2, label='$d=2$', linestyle='--', color='magenta')
+    plt.loglog(numbers_of_points_3, errors_3, label='$d=3$', linestyle='--', color='red')
 
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
@@ -249,13 +249,22 @@ def plot_functions(u, f, n): #pylint: disable=invalid-name
     ax3 = fig.add_subplot(223, projection='3d')
     #ax4 = fig.add_subplot(224, projection='3d')
 
+    ax1.set_xlabel('$x_1$')
+    ax1.set_ylabel('$x_2$')
+    ax1.set_zlabel('$\hat{u}(x)$')
     ax1.plot_surface(X, Y, approx, cmap='viridis', edgecolor='none')
     ax1.set_title('Approximate solution')
 
     difference = abs(approx - exact)
+    ax2.set_xlabel('$x_1$')
+    ax2.set_ylabel('$x_2$')
+    ax2.set_zlabel('$|\hat{u}(x)-u(x)|$')
     ax2.plot_surface(X, Y, difference, cmap='viridis', edgecolor='none')
     ax2.set_title('Difference')
 
+    ax3.set_xlabel('$x_1$')
+    ax3.set_ylabel('$x_2$')
+    ax3.set_zlabel('$u(x)$')
     ax3.plot_surface(X, Y, exact, cmap='viridis', edgecolor='none')
     ax3.set_title('Exact solution')
 
@@ -264,4 +273,3 @@ def plot_functions(u, f, n): #pylint: disable=invalid-name
     #ax4.set_title('Relative Difference')
 
     plt.show()
-    plt.figure()
