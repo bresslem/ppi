@@ -22,7 +22,8 @@
 
 \begin{document}
 
-\title{Lösen des Poisson-Problems mittels Finite-Differenzen-Diskretisierung und LU-Zerlegung}
+\title{Lösen des Poisson-Problems mittels Finite-Differenzen-Diskretisierung\\
+und LU-Zerlegung}
 \author{Marisa Breßler und Anne Jeschke (PPI27)}
 \date{03.01.2020}
 \maketitle
@@ -30,22 +31,45 @@
 \tableofcontents
 
 \pagebreak
-\section{Einleitung}
-Im vorherigen Bericht haben wir bereits das Verfahren vorgestellt, mit dem wir mittels Finite-Differenzen-Diskretisierung das Poisson-Problem lösen.
-Dazu haben wir ein lineares Gleichungssystem aufgestellt, dessen Lösung eine numerische Approximation der exakten analytischen Lösung des Poisson-Problems darstellt.
-In diesem Bericht möchten wir nun ein Verfahren vorstellen, mit dem wir dieses Gleichungssystem lösen können und die Ergebnisse dieses Verfahrens weiter untersuchen.
+\section{Einleitende Worte}
+In unserem Bericht  vom 29.11.2019 haben wir das Poisson-Problem vorgestellt und einen numerischen Lösungsansatz aufgezeigt, der es mittels einer Diskretisierung des Gebietes und des Laplace-Operators in das Lösen eines linearen Gleichungssystems überführt.
+Letzteres soll nun wie angekündigt durchgeführt werden.
+In dieser Arbeit wollen wir das lineare Gleichungssystem direkt lösen.
+Dazu nutzen wir die LU-Zerlegung (mit Spalten- und Zeilenpivotisierung) der ermittelten tridiagonalen Block-Matrix $A^d$.
+
+Anhand einer Beispielfunktion und den bereits im vorherigen Bericht betrachteten Fällen des Einheitsintervalls, -quadrates, -würfels (d.h. für das Gebiet ... gilt:
+...)
+wollen wir im Folgenden die Funktionalität (Genauigkeit/Fehler, Konvergenzgeschwindigkeit, Effizienz) dieses Lösungsverfahrens exemplarisch untersuchen.
+Alle im Rahmen dessen nötigen theoretischen Grundlagen finden sich in unseren vorherigen Berichten.
 
 \pagebreak
-\section{Theorie}
+\section{Untersuchungen zur Genauigkeit}
+Für unsere Untersuchungen wählen wir folgende Beispielfunktion:
+...
 
-\subsection{LU-Zerlegung}
+Gesamtfehler = Verfahrens-/Approximationsfehler + Rundungsfehler
 
+\subsection{Verfahrens-/Approximationsfehler}
+Genauigkeit der numerischen Lösung umso höher, je kleiner Intervalllänge $h=1/n$ bzw. je größer Anzahl der Intervalle (in jeder Dimension) oder der Diskretisierungspunkte
+
+beispielhaft für Fall $d=2$
+
+grafische Darstellung der Lösung
+
+selbst bei sehr grober Diskretisierung ($n=5$) Abweichung/Fehler mit Auge kaum wahrzunehmen > deswegen Differenz auch im Plot
+
+Zusammenhang: je größer $N$, desto genauer Lösung/kleiner Fehler
+
+\subsection{Rundungsfehler}
+Lösen eines linearen Gleichungssystems beschreibt mathematisches Problem
+
+Kondition einer Matrix: Maß für Abhängigkeit der Lösung eines Problems von Störung der Eingangsdaten
+
+Konditionszahl: Faktor, um den sich der Eingangsfehler maximal verstärken kann 
 
 \pagebreak
-\section{Experimente und Beobachtungen}
+\section{Untersuchungen zum Speicherplatz}
 
-\pagebreak
-\section{Auswertung}
 
 \pagebreak
 \section{Zusammenfassung und Ausblick}
