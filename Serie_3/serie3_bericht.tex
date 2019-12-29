@@ -37,28 +37,35 @@ Letzteres soll nun wie angekündigt durchgeführt werden.
 In dieser Arbeit wollen wir das lineare Gleichungssystem direkt lösen.
 Dazu nutzen wir die LU-Zerlegung (mit Spalten- und Zeilenpivotisierung) der ermittelten tridiagonalen Block-Matrix $A^d$.
 
-Anhand einer Beispielfunktion und den bereits im vorherigen Bericht betrachteten Fällen des Einheitsintervalls, -quadrates, -würfels (d.h. für das Gebiet ... gilt:
-...)
+Anhand einer Beispielfunktion und den bereits im vorherigen Bericht betrachteten Fällen des Einheitsintervalls, -quadrates, -würfels (d.h. für das Gebiet $\Omega\subset\R^d$ ($d\in\mathbb{N}$) und dessen Rand $\partial\Omega$ gilt:
+$\Omega=(0,1)^d$, $d\in\{1, 2, 3\}$ mit der Randbedingung $u \equiv 0$ auf $\partial\Omega$, wobei $u$ die gesuchte Funktion ist)
 wollen wir im Folgenden die Funktionalität (Genauigkeit/Fehler, Konvergenzgeschwindigkeit, Effizienz) dieses Lösungsverfahrens exemplarisch untersuchen.
 Alle im Rahmen dessen nötigen theoretischen Grundlagen finden sich in unseren vorherigen Berichten.
 
 \pagebreak
 \section{Untersuchungen zur Genauigkeit}
-Für unsere Untersuchungen wählen wir folgende Beispielfunktion:
-...
+Für unsere Untersuchungen wählen wir die Beispielfunktion $u: \Omega \rightarrow \mathbb{R}$, die wie folgt definiert ist:
+\[u(x) := \prod \limits_{l=1}^{d} x_l \, sin(\pi x_l)\]
+Dabei sei wie bereits erwähnt $\Omega = (0,1)^d$ und $d\in\{1, 2, 3\}$.
+Die Funktion $u$ ist die exakte Lösung des Poisson-Problems, sie wird in der Praxis gesucht. Bekannt ist lediglich die Funktion $f\in C(\Omega ; \R)$ und $\forall \, x \in\Omega$ gelte $-\Delta u(x) = f(x)$. Dementsprechend ist die Funktion $f: \Omega \rightarrow \mathbb{R}$ gegeben durch:
+\[f(x) := ... \]
 
-Gesamtfehler = Verfahrens-/Approximationsfehler + Rundungsfehler
+Die Genauigkeit unserer numerischen Lösung des Poisson-Problems -- wir nennen diese gesuchte Funktion $\hat{u}$ (denn sie ist die Approximation der exakten Lösungsfunktion $u$) -- ist abhängig von der Größenordnung der Fehler. Dabei gilt folgender Zusammenhang: Der Gesamtfehler setzt sich aus Verfahrens-/Approximationsfehler auf der einen und Rundungsfehler auf der anderen Seite zusammen. Im Folgenden wollen wir beiden Fehlerarten in Hinblick auf unser Beispiel betrachten.
 
 \subsection{Verfahrens-/Approximationsfehler}
-Genauigkeit der numerischen Lösung umso höher, je kleiner Intervalllänge $h=1/n$ bzw. je größer Anzahl der Intervalle (in jeder Dimension) oder der Diskretisierungspunkte
+numerisches Verfahren konvergiert: Genauigkeit der numerischen Lösung umso höher, je kleiner Intervalllänge $h=n^{-1}$ bzw. je größer Anzahl der Intervalle (in jeder Dimension) oder der Diskretisierungspunkte
 
 beispielhaft für Fall $d=2$
 
-grafische Darstellung der Lösung
+grafische Darstellung der Lösung (3 Grafiken für n = 5, 10, 20)
 
 selbst bei sehr grober Diskretisierung ($n=5$) Abweichung/Fehler mit Auge kaum wahrzunehmen > deswegen Differenz auch im Plot
 
 Zusammenhang: je größer $N$, desto genauer Lösung/kleiner Fehler
+
+Fehler-/Konvergenzplot (1 Grafik)
+
+Konditionsplot von $A^d$ (1 Grafik)
 
 \subsection{Rundungsfehler}
 Lösen eines linearen Gleichungssystems beschreibt mathematisches Problem
@@ -67,9 +74,11 @@ Kondition einer Matrix: Maß für Abhängigkeit der Lösung eines Problems von S
 
 Konditionszahl: Faktor, um den sich der Eingangsfehler maximal verstärken kann 
 
+Vgl. Kondition von $A^d$ und der entsprechenden Hilbertmatrix mit gleicher Dimension (Tabelle)
+
 \pagebreak
 \section{Untersuchungen zum Speicherplatz}
-
+sparsity von $A^d$ und deren LU-Zerlegung (3 Grafiken)
 
 \pagebreak
 \section{Zusammenfassung und Ausblick}

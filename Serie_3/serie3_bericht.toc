@@ -3,5 +3,5 @@
 \contentsline {section}{\numberline {2}Untersuchungen zur Genauigkeit}{3}% 
 \contentsline {subsection}{\numberline {2.1}Verfahrens-/Approximationsfehler}{3}% 
 \contentsline {subsection}{\numberline {2.2}Rundungsfehler}{3}% 
-\contentsline {section}{\numberline {3}Untersuchungen zum Speicherplatz}{4}% 
-\contentsline {section}{\numberline {4}Zusammenfassung und Ausblick}{5}% 
+\contentsline {section}{\numberline {3}Untersuchungen zum Speicherplatz}{5}% 
+\contentsline {section}{\numberline {4}Zusammenfassung und Ausblick}{6}% 
