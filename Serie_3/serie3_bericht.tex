@@ -48,22 +48,50 @@ Für unsere Untersuchungen wählen wir die Beispielfunktion $u: \Omega \rightarr
 \[u(x) := \prod \limits_{l=1}^{d} x_l \, sin(\pi x_l)\]
 Dabei sei wie bereits erwähnt $\Omega = (0,1)^d$ und $d\in\{1, 2, 3\}$.
 Die Funktion $u$ ist die exakte Lösung des Poisson-Problems, sie wird in der Praxis gesucht. Bekannt ist lediglich die Funktion $f\in C(\Omega ; \R)$ und $\forall \, x \in\Omega$ gelte $-\Delta u(x) = f(x)$. Dementsprechend ist die Funktion $f: \Omega \rightarrow \mathbb{R}$ gegeben durch:
-\[f(x) := ... \]
+\[f(x) = ... \]
 
-Die Genauigkeit unserer numerischen Lösung des Poisson-Problems -- wir nennen diese gesuchte Funktion $\hat{u}$ (denn sie ist die Approximation der exakten Lösungsfunktion $u$) -- ist abhängig von der Größenordnung der Fehler. Dabei gilt folgender Zusammenhang: Der Gesamtfehler setzt sich aus Verfahrens-/Approximationsfehler auf der einen und Rundungsfehler auf der anderen Seite zusammen. Im Folgenden wollen wir beiden Fehlerarten in Hinblick auf unser Beispiel betrachten.
+Die Genauigkeit unserer numerischen Lösung des Poisson-Problems -- wir nennen diese gesuchte Funktion $\hat{u}$ (denn sie ist die Approximation der exakten Lösungsfunktion $u$) -- ist abhängig von der Größenordnung der Fehler. Der Gesamtfehler setzt sich aus Verfahrens-/Approximationsfehler auf der einen und Rundungsfehler auf der anderen Seite zusammen\cite{tischendorf2019}. Im Folgenden wollen wir beide Fehlerarten in Hinblick auf unser Beispiel betrachten.
 
 \subsection{Verfahrens-/Approximationsfehler}
-numerisches Verfahren konvergiert: Genauigkeit der numerischen Lösung umso höher, je kleiner Intervalllänge $h=n^{-1}$ bzw. je größer Anzahl der Intervalle (in jeder Dimension) oder der Diskretisierungspunkte
+Die Genauigkeit der berechneten numerischen Approximation wird höher,je mehr Diskretisierungspunkte man wählt, d.h. je größer die Anzahl der Intervalle $n$, bzw. je kleiner die Intervalllänge $h$ ist. Es gilt $h=n^{-1}$.
 
-beispielhaft für Fall $d=2$
+Dies wird im Folgenden beispielhaft für den Fall $d=2$ dargestellt.
 
-grafische Darstellung der Lösung (3 Grafiken für n = 5, 10, 20)
+{
+  \centering
+    \includegraphics[width=0.75\textwidth]{Grafiken/3D_n=5}
+    \vspace{-0.2cm}
+    \captionof{figure}{Approximierte Lösung, exakte Lösung und deren absolute Differenz für $n = 5$}
+    \includegraphics[width=0.75\textwidth]{Grafiken/3D_n=10}
+    \vspace{-0.2cm}
+    \captionof{figure}{Approximierte Lösung, exakte Lösung und deren absolute Differenz für $n = 10$}
+    \includegraphics[width=0.75\textwidth]{Grafiken/3D_n=20}
+    \vspace{-0.2cm}
+    \captionof{figure}{Approximierte Lösung, exakte Lösung und deren absolute Differenz für $n = 20$}
+}
+\vspace{0.5cm}
 
-selbst bei sehr grober Diskretisierung ($n=5$) Abweichung/Fehler mit Auge kaum wahrzunehmen > deswegen Differenz auch im Plot
+Schon bei der sehr groben Diskretisierung mit $n=5$ kann man den Unterschied zwischen den beiden Lösungen mit bloßem Auge kaum erkennen, weshalb wir uns entschieden haben auch die absolute Differenz der beiden darzustellen.
+Wie man dort sehen kann, erreicht man durch Erhöhung der Anzahl der Intervalle eine immer genauere Approximation der exakten Lösungsfunktion. Die absolute Differenz der Approximation und der exakten Lösung hält sich in einer immer kleineren Größenordnung auf.
 
-Zusammenhang: je größer $N$, desto genauer Lösung/kleiner Fehler
+{
+  \centering
+    \includegraphics[width=0.75\textwidth]{Grafiken/loglogerr_d123_neu}
+    \vspace{-0.2cm}
+    \captionof{figure}{Konvergenzplot der maximalen Fehler in Abhängigkeit von $N$}
+}
+\vspace{0.5cm}
 
-Fehler-/Konvergenzplot (1 Grafik)
+Man kann erkennen, dass mit größerem $N$, d.h. mit mehr Diskretisierugnspunkten, der Fehler immer kleiner wird, wobei er sich bei höheren Dimensionen langsamer verkleinert.
+Für $d=1$ lässt sich in der Abbildung eine Konvergenzgeschwindigkeit von $N^{-2}$ erkennen. Für $d=2$ hingegen nur noch eine von $N^{-1}$ und bei $d=3$ von $N^{-1/2}$.
+
+{
+  \centering
+    \includegraphics[width=0.75\textwidth]{Grafiken/loglogcond_d123_neu}
+    \vspace{-0.2cm}
+    \captionof{figure}{Konvergenzplot der maximalen Fehler in Abhängigkeit von $N$}
+}
+\vspace{0.5cm}
 
 Konditionsplot von $A^d$ (1 Grafik)
 
@@ -72,7 +100,7 @@ Lösen eines linearen Gleichungssystems beschreibt mathematisches Problem
 
 Kondition einer Matrix: Maß für Abhängigkeit der Lösung eines Problems von Störung der Eingangsdaten
 
-Konditionszahl: Faktor, um den sich der Eingangsfehler maximal verstärken kann 
+Konditionszahl: Faktor, um den sich der Eingangsfehler maximal verstärken kann
 
 Vgl. Kondition von $A^d$ und der entsprechenden Hilbertmatrix mit gleicher Dimension (Tabelle)
 

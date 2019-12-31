@@ -261,11 +261,11 @@ def plot_cond_list(n_list_list): #pylint: disable=invalid-name
 
     numbers_of_points_pow1 = [np.float_(N)**(1) for N in numbers_of_points_3]
     numbers_of_points_pow2 = [np.float_(N)**(2) for N in numbers_of_points_3]
-    numbers_of_points_pow3 = [np.float_(N)**(3) for N in numbers_of_points_3]
+    numbers_of_points_pow3 = [np.float_(N)**(1/2) for N in numbers_of_points_3]
 
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N$', color='lightgray')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^2$', color='lightgray', linestyle='-.')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^3$', color='lightgray', linestyle=':')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{1/2}$', color='lightgray')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N$', color='lightgray', linestyle='-.')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^2$', color='lightgray', linestyle=':')
 
     plt.loglog(numbers_of_points_1, conditions_1, label='$d=1$', linestyle='--', color='blue')
     plt.loglog(numbers_of_points_2, conditions_2, label='$d=2$', linestyle='--', color='magenta')
