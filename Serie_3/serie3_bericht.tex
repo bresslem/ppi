@@ -103,11 +103,24 @@ Die folgende Grafik zeigt die Entwicklung der Kondition der Matrix $A^{(d)}\in\m
 Man kann beobachten, dass die Kondition mit der gleichen Geschwindigkeit steigt, mit der für das jeweilige $d \in \{ 1, 2, 3\}$ der absolute Fehler sinkt.
 (BEGRÜNDUNG?)
 
-\begin{table}[h!]
+Vergleicht man jedoch, wie in den Tabellen 1 bis 3 dargestelllt, die Kondition der Matrix $A^{(d)}$ mit der der Hilbertmatrix $H_N$ der gleichen Dimension, definiert durch
+
+\[H_N =
+\begin{pmatrix}
+  1 & \frac{1}{2} & \frac{1}{3} & \cdots & \frac{1}{N} \\
+  \frac{1}{2} & \frac{1}{3} & \frac{1}{4} & \cdots & \frac{1}{N+1} \\
+  \frac{1}{3} & \frac{1}{4} & \frac{1}{5} & \cdots & \frac{1}{N+2} \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  \frac{1}{N} & \frac{1}{N+1} & \frac{1}{N+2} & \cdots & \frac{1}{2N-1}
+\end{pmatrix}\]
+
+kann man erkennen, dass die Kodition der Matrix $A^{(d)}$ im Vergleich zur Hilbertmatrix nur ein sehr moderates Wachstum besitzt.
+
+\begin{table}[ht!]
 \centering
 \begin{tabular}{|l|l|l|}
 \hline
-\textbf{N} & $\mathbf{cond(A^{(d)})}$ & \textbf{cond(H)}   \\ \hline
+\textbf{N} & $\mathbf{cond(A^{(d)})}$ & $\mathbf{cond(H_N)}$   \\ \hline
 1          & 1.0                       & 1.0                \\ \hline
 2          & 3.0                       & 27.00000000000001  \\ \hline
 3          & 7.999999999999998         & 748.0000000000027  \\ \hline
@@ -121,11 +134,11 @@ Man kann beobachten, dass die Kondition mit der gleichen Geschwindigkeit steigt,
 \caption{Vergleich der Kondition von $A^{(1)}$ und der entsprechenden Hilbertmatrix}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[ht!]
 \centering
 \begin{tabular}{|l|l|l|}
 \hline
-\textbf{N} & $\mathbf{cond(A^{(d)})}$  & \textbf{cond(H)}       \\ \hline
+\textbf{N} & $\mathbf{cond(A^{(d)})}$  & $\mathbf{cond(H_N)}$       \\ \hline
 1          & 1.0                       & 1.0                    \\ \hline
 4          & 2.9999999999999996        & 28374.999999997388     \\ \hline
 9          & 9.000000000000002         & 1099650991701.052      \\ \hline
@@ -140,11 +153,11 @@ Man kann beobachten, dass die Kondition mit der gleichen Geschwindigkeit steigt,
 \end{table}
 
 
-\begin{table}[h!]
+\begin{table}[ht!]
 \centering
 \begin{tabular}{|l|l|l|}
 \hline
-\textbf{N} & $\mathbf{cond(A^{(d)})}$ & \textbf{cond(H)}       \\ \hline
+\textbf{N} & $\mathbf{cond(A^{(d)})}$ & $\mathbf{cond(H_N)}$       \\ \hline
 1          & 1.0                       & 1.0                    \\ \hline
 8          & 3.0000000000000004        & 33872790819.49471      \\ \hline
 27         & 9.882352941176464         & 1.6381885442111791e+19 \\ \hline
@@ -158,10 +171,27 @@ Man kann beobachten, dass die Kondition mit der gleichen Geschwindigkeit steigt,
 \caption{Vergleich der Kondition von $A^{(3)}$ und der entsprechenden Hilbertmatrix}
 \end{table}
 
-
 \pagebreak
 \section{Untersuchungen zum Speicherplatz}
-sparsity von $A^d$ und deren LU-Zerlegung (3 Grafiken)
+Für die Durchführung der Experimente haben wir die Matrizen wie schon im vorherigen Bericht beschrieben im sparse-Format gespeichert.
+Für die Matrizen $A^{(d)}$ hatten wir dort bereits ermittelt, dass sich dies schon für niedrige $n$ lohnt, da das sparse-Format sich nur die nicht-Null-Einträge merkt.
+Da für jeden nicht-Null-Eintrag drei Werte gespeichert werden müssen, lohnt es sich das sparse-Format zu nutzen, sobald weniger als ein Drittel der Einträge einer Matrix ungleich Null sind.
+In der unteren Grafik sieht man die Anzahl der nicht-Null-Einträge von $A^{(d)}$ und der zugehörigen LU-Zerlegung für $d\in\{1, 2, 3\}$ in Abhängigkeit von $N$.
+Desweiteren haben wir die eine Linie eingezeichnet, die ein Drittel der Matrix Einträge repräsentiert.
+
+{
+  \centering
+    \includegraphics[width=0.75\textwidth]{Grafiken/non-zero_d1}
+    \includegraphics[width=0.75\textwidth]{Grafiken/non-zero_d2}
+    \includegraphics[width=0.75\textwidth]{Grafiken/non-zero_d3}
+    \vspace{-0.2cm}
+    \captionof{figure}{Anzahl der nicht-Null-Einträge von $A^{(d)}$ und der LU-Zerlegung für $d\in\{1, 2, 3\}$}
+}
+\vspace{0.5cm}
+
+Für $d=1$ kann man beobachten, dass nach $N=9$ bzw. $n=10$  weniger ein Drittel der Matrixeinträge von sowohl $A^{(d)}$ als auch der LU-Zerlegung ungleich Null sind.
+Für $d=2$ gilt dies schon ab $N=25$ bzw. $n=6$ und für $d=3$ ab $N = 125$ bzw. auch für $n=6$.
+Auch für die LU-Zerlegung lohnt es sich also schon für sehr niedrige $n$ die Matrix im sparse-Format zu speichern.
 
 \pagebreak
 \section{Zusammenfassung und Ausblick}

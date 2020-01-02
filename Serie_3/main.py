@@ -124,10 +124,10 @@ def main():
 
 ## Fehler-/Konvergenzplot für d = 1, 2, 3 in einer Grafik
 
-    list = [np.geomspace(2, 10000, num=10, dtype=int),
-            np.geomspace(2, 100, num=10, dtype=int),
-            np.geomspace(2, 24, num=10, dtype=int)]
-    rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
+    # list = [np.geomspace(2, 10000, num=10, dtype=int),
+    #         np.geomspace(2, 100, num=10, dtype=int),
+    #         np.geomspace(2, 24, num=10, dtype=int)]
+    # rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
 
 
 ## Konditionsplot von A^(d) für d = 1, 2, 3 in einer Grafik
@@ -152,7 +152,7 @@ def main():
 
 ## Sparsity von A^(d) und ihrer LU-Zerlegung für d = 1, 2, 3 in getrennten Grafiken
 
-    # block_matrix.plot_non_zeros(range(2, 11))
+    block_matrix.plot_non_zeros(range(2, 8))
 
 
 

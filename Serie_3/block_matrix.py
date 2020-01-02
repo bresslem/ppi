@@ -313,14 +313,17 @@ def plot_non_zeros(n_list):
         numbers_of_points = []
         non_zero = []
         non_zero_lu = []
+        sparse_line = []
         for n in n_list:
             matrix = BlockMatrix(d, n)
             non_zero.append(matrix.eval_zeros()[0])
             non_zero_lu.append(matrix.eval_zeros_lu()[0])
             numbers_of_points.append((n-1)**d)
+            sparse_line.append((((n-1)**d)**2)/3)
         plt.plot(numbers_of_points, non_zero, "ro", label='$A^{(d)}$')
         plt.plot(numbers_of_points, non_zero_lu, "bx",
                  label='$LU$')
+        plt.plot(numbers_of_points, sparse_line, label='$N^2/3$', color='lightgray', linestyle='--')             
         plt.xlabel('$N$')
         plt.ylabel('number of non-zero elements')
         plt.title('Number of non-zero elements of $A^{(d)}$\n' +
