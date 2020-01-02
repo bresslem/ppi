@@ -42,7 +42,7 @@ $\Omega=(0,1)^d$, $d\in\{1, 2, 3\}$ mit der Randbedingung $u \equiv 0$ auf $\par
 wollen wir im Folgenden die Funktionalität (Genauigkeit/Fehler, Konvergenzgeschwindigkeit, Effizienz) dieses Lösungsverfahrens exemplarisch untersuchen.
 Alle im Rahmen dessen nötigen theoretischen Grundlagen finden sich in unseren vorherigen Berichten.
 
-\pagebreak
+
 \section{Untersuchungen zur Genauigkeit}
 Für unsere Untersuchungen wählen wir die Beispielfunktion $u: \Omega \rightarrow \mathbb{R}$, die wie folgt definiert ist:
 \[u(x) := \prod \limits_{l=1}^{d} x_l \, sin(\pi x_l)\]
@@ -85,24 +85,79 @@ Wie man dort sehen kann, erreicht man durch Erhöhung der Anzahl der Intervalle 
 Man kann erkennen, dass mit größerem $N$, d.h. mit mehr Diskretisierugnspunkten, der Fehler immer kleiner wird, wobei er sich bei höheren Dimensionen langsamer verkleinert.
 Für $d=1$ lässt sich in der Abbildung eine Konvergenzgeschwindigkeit von $N^{-2}$ erkennen. Für $d=2$ hingegen nur noch eine von $N^{-1}$ und bei $d=3$ von $N^{-1/2}$.
 
+
+\subsection{Rundungsfehler}
+Für ein mathematisches Problem gibt seine Kondition den Faktor an, um den sich ein Fehler in den Eingangsdaten maximal auf die Lösung auswirken kann.
+Die Kondition eines linearen Gleichungssystems $Ax = b$ mit regulärem $A\in\mathbb{R}$ ist gegeben durch \[cond(A) = ||A||\cdot||A^{-1}||\]
+
+Die folgende Grafik zeigt die Entwicklung der Kondition der Matrix $A^{(d)}\in\mathbb{R}^{N \times N}$ in Abhängigkeit von $N$.
+
 {
   \centering
     \includegraphics[width=0.75\textwidth]{Grafiken/loglogcond_d123_neu}
     \vspace{-0.2cm}
-    \captionof{figure}{Konvergenzplot der maximalen Fehler in Abhängigkeit von $N$}
+    \captionof{figure}{Kondition der Matrix in Abhängigkeit von $N$}
 }
 \vspace{0.5cm}
 
-Konditionsplot von $A^d$ (1 Grafik)
+Man kann beobachten, dass die Kondition mit der gleichen Geschwindigkeit steigt, mit der für das jeweilige $d \in \{ 1, 2, 3\}$ der absolute Fehler sinkt.
+(BEGRÜNDUNG?)
 
-\subsection{Rundungsfehler}
-Lösen eines linearen Gleichungssystems beschreibt mathematisches Problem
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{N} & $\mathbf{cond(A^{(d)})}$ & \textbf{cond(H)}   \\ \hline
+1          & 1.0                       & 1.0                \\ \hline
+2          & 3.0                       & 27.00000000000001  \\ \hline
+3          & 7.999999999999998         & 748.0000000000027  \\ \hline
+4          & 11.999999999999998        & 28374.999999997388 \\ \hline
+5          & 17.999999999999996        & 943655.9999999335  \\ \hline
+6          & 24.0                      & 29070279.002940644 \\ \hline
+7          & 32.0                      & 985194889.719848   \\ \hline
+8          & 40.00000000000001         & 33872790819.49471  \\ \hline
+9          & 50.0                      & 1099650991701.052  \\ \hline
+\end{tabular}
+\caption{Vergleich der Kondition von $A^{(1)}$ und der entsprechenden Hilbertmatrix}
+\end{table}
 
-Kondition einer Matrix: Maß für Abhängigkeit der Lösung eines Problems von Störung der Eingangsdaten
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{N} & $\mathbf{cond(A^{(d)})}$  & \textbf{cond(H)}       \\ \hline
+1          & 1.0                       & 1.0                    \\ \hline
+4          & 2.9999999999999996        & 28374.999999997388     \\ \hline
+9          & 9.000000000000002         & 1099650991701.052      \\ \hline
+16         & 13.333333333333334        & 2.311624234251581e+18  \\ \hline
+25         & 20.769230769230763        & 1.7424649140711887e+19 \\ \hline
+36         & 27.448275862068964        & 1.380385024104188e+19  \\ \hline
+49         & 37.264705882352935        & 3.780222548906899e+19  \\ \hline
+64         & 46.29522752497227         & 1.5982160238410445e+19 \\ \hline
+81         & 58.47874842732894         & 8.024854808108397e+19  \\ \hline
+\end{tabular}
+\caption{Vergleich der Kondition von $A^{(2)}$ und der entsprechenden Hilbertmatrix}
+\end{table}
 
-Konditionszahl: Faktor, um den sich der Eingangsfehler maximal verstärken kann
 
-Vgl. Kondition von $A^d$ und der entsprechenden Hilbertmatrix mit gleicher Dimension (Tabelle)
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{N} & $\mathbf{cond(A^{(d)})}$ & \textbf{cond(H)}       \\ \hline
+1          & 1.0                       & 1.0                    \\ \hline
+8          & 3.0000000000000004        & 33872790819.49471      \\ \hline
+27         & 9.882352941176464         & 1.6381885442111791e+19 \\ \hline
+64         & 14.526315789473696        & 1.5982160238410445e+19 \\ \hline
+125        & 23.31313131313129         & 5.942029981401014e+19  \\ \hline
+216        & 30.627549372748764        & 9.99739805300818e+20   \\ \hline
+343        & 42.176769881272705        & 9.981011731951971e+20  \\ \hline
+512        & 52.174333259988614        & 2.72516709557988e+22   \\ \hline
+729        & 66.44907705653814         & 4.0429517177716715e+21 \\ \hline
+\end{tabular}
+\caption{Vergleich der Kondition von $A^{(3)}$ und der entsprechenden Hilbertmatrix}
+\end{table}
+
 
 \pagebreak
 \section{Untersuchungen zum Speicherplatz}
