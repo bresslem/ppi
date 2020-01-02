@@ -48,7 +48,7 @@ Für unsere Untersuchungen wählen wir die Beispielfunktion $u: \Omega \rightarr
 \[u(x) := \prod \limits_{l=1}^{d} x_l \, sin(\pi x_l)\]
 Dabei sei wie bereits erwähnt $\Omega = (0,1)^d$ und $d\in\{1, 2, 3\}$.
 Die Funktion $u$ ist die exakte Lösung des Poisson-Problems, sie wird in der Praxis gesucht. Bekannt ist lediglich die Funktion $f\in C(\Omega ; \R)$ und $\forall \, x \in\Omega$ gelte $-\Delta u(x) = f(x)$. Dementsprechend ist die Funktion $f: \Omega \rightarrow \mathbb{R}$ gegeben durch:
-\[f(x) = ... \]
+\[f(x) = -\pi \sum_{l=1}^d \left((2\,cos(\pi x_l) - \pi x_l sin(\pi x_l)) \prod_{i \in \{1,...,d\}\setminus\{k\}} x_i \, sin(\pi x_i) \right) \]
 
 Die Genauigkeit unserer numerischen Lösung des Poisson-Problems -- wir nennen diese gesuchte Funktion $\hat{u}$ (denn sie ist die Approximation der exakten Lösungsfunktion $u$) -- ist abhängig von der Größenordnung der Fehler. Der Gesamtfehler setzt sich aus Verfahrens-/Approximationsfehler auf der einen und Rundungsfehler auf der anderen Seite zusammen\cite{tischendorf2019}. Im Folgenden wollen wir beide Fehlerarten in Hinblick auf unser Beispiel betrachten.
 
