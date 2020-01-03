@@ -16,3 +16,5 @@ Serie_2/serie2_bericht.aux
 *.pyc
 *.gz
 Serie_3/tmp
+*.pygstyle
+*.pygtex

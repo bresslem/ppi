@@ -108,7 +108,7 @@ def plot_cond_hilbert(n_list, d): #pylint: disable=invalid-name
 def main():
     """ Main function to demonstrate the functionality of our modules.
     """
-## Lösungsplot für Bsp.funktion mit d = 2 für n = 5, 10, 25, 50
+## Lösungsplot für Bsp.funktion mit d = 2 für n = 5, 10, 20
 
     # rhs.plot_functions(u2, f2, 5)
     # rhs.plot_functions(u2, f2, 10)

@@ -94,8 +94,6 @@ def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
 
     Parameters
     ----------
-    n_list: list of ints
-        The n-values for which to plot the errors.
     u : callable
         Solution of the Poisson-problem
         The calling signature is ’u(x)’. Here ’x’ is a scalar
@@ -104,6 +102,10 @@ def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
         Input function of the Poisson-problem
         The calling signature is ’f(x)’. Here ’x’ is a scalar
         or array_like of ’numpy’. The return value is a scalar.
+    d: int
+        Dimension of the Poisson-problem
+    n_list: list of ints
+        The n-values for which to plot the errors.
     """
     numbers_of_points = []
     errors = []
