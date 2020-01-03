@@ -72,12 +72,12 @@ Wie man dort sehen kann, erreicht man durch Erhöhung der Anzahl der Intervalle 
   \centering
     \includegraphics[width=0.75\textwidth]{Grafiken/loglogerr_d123_neu}
     \vspace{-0.2cm}
-    \captionof{figure}{Konvergenzplot der maximalen Fehler in Abhängigkeit von $N$}
+    \captionof{figure}{Konvergenzplot der maximalen absoluten Fehler in Abhängigkeit von $N$}
 }
 \vspace{0.5cm}
 
 Man kann erkennen, dass mit größerem $N$, d.h. mit mehr Diskretisierungspunkten, der Fehler immer kleiner wird, wobei er sich bei höheren Dimensionen langsamer verkleinert.
-Für $d=1$ lässt sich in der Abbildung eine quadratische Konvergenzgeschwindigkeit erkennen. Für $d=2$ hingegen nur noch eine lineare und bei $d=3$ nicht mal mehr eine lineare Konvergenzgeschwindigkeit. Dies lässt sich unter anderem zurückführen auf die Konvergenzgeschwindigkeit der zweiten finiten Differenz, die wir im ersten Bericht beischrieben haben.
+Für $d=1$ lässt sich in der Abbildung eine quadratische Konvergenzgeschwindigkeit erkennen. Für $d=2$ hingegen nur noch eine lineare und bei $d=3$ nicht mal mehr eine lineare Konvergenzgeschwindigkeit. Dies lässt sich unter anderem zurückführen auf die Konvergenzgeschwindigkeit der zweiten finiten Differenz, die wir im ersten Bericht beschrieben haben.
 
 
 \subsection{Rundungsfehler}
@@ -96,8 +96,8 @@ Die folgende Grafik zeigt die Entwicklung der Kondition der Matrix $A^{(d)}\in\m
 \vspace{0.5cm}
 
 Man kann beobachten, dass die Kondition mit der gleichen Geschwindigkeit steigt, mit der für das jeweilige $d \in \{ 1, 2, 3\}$ der absolute Fehler sinkt.
-Aufgrund der zunehmenden Größe und Dimension von $A^{(d)}$ steigt auch die Kondition mit größer werdenden $N$.
-Das der gesamte Fehler trotzdem sinkt, weißt darauf hin, dass die Rundungsfehler sich nicht sehr stark auf das Endergebnis auswirken.
+Aufgrund der zunehmenden Größe/Dimension und Regularität von $A^{(d)}$ steigt auch die Kondition mit größer werdenden $N$.
+Dass der gesamte Fehler trotzdem sinkt, weist darauf hin, dass sich die Rundungsfehler nicht sehr stark auf das Endergebnis auswirken.
 
 Vergleicht man, wie in den Tabellen 1 bis 3 dargestelllt, die Kondition der Matrix $A^{(d)}$ mit der der Hilbertmatrix $H_N$ der gleichen Dimension, definiert durch
 
@@ -116,7 +116,7 @@ kann man erkennen, dass die Kondition der Matrix $A^{(d)}$ im Vergleich zur Hilb
 \centering
 \begin{tabular}{|r|r|r|}
 \hline
-\textbf{N} & $\mathbf{cond(A^{(d)})}$ & $\mathbf{cond(H_N)}$   \\ \hline
+\textbf{N} & $\mathbf{cond(A^{(1)})}$ & $\mathbf{cond(H_N)}$   \\ \hline
 1          & 1.0                       & 1.0                \\ \hline
 2          & 3.0                       & 27.0               \\ \hline
 3          & 8.0                       & 748.0              \\ \hline
@@ -134,7 +134,7 @@ kann man erkennen, dass die Kondition der Matrix $A^{(d)}$ im Vergleich zur Hilb
 \centering
 \begin{tabular}{|r|r|r|}
 \hline
-\textbf{N} & $\mathbf{cond(A^{(d)})}$  & $\mathbf{cond(H_N)}$       \\ \hline
+\textbf{N} & $\mathbf{cond(A^{(2)})}$  & $\mathbf{cond(H_N)}$       \\ \hline
 1          & 1.0                       & 1.0                    \\ \hline
 4          & 3.0                       & 28375.0                \\ \hline
 9          & 9.0                       & 1099650991701.1        \\ \hline
@@ -153,7 +153,7 @@ kann man erkennen, dass die Kondition der Matrix $A^{(d)}$ im Vergleich zur Hilb
 \centering
 \begin{tabular}{|r|r|r|}
 \hline
-\textbf{N} & $\mathbf{cond(A^{(d)})}$ & $\mathbf{cond(H_N)}$       \\ \hline
+\textbf{N} & $\mathbf{cond(A^{(3)})}$ & $\mathbf{cond(H_N)}$       \\ \hline
 1          & 1.0                       & 1.0                    \\ \hline
 8          & 3.0                       & 33872790819.5      \\ \hline
 27         & 9.9                       & 1.6e+19 \\ \hline
@@ -189,11 +189,11 @@ Für $d=2$ gilt dies schon ab $N=25$ bzw. $n=6$ und für $d=3$ ab $N = 125$ bzw.
 Auch für die LU-Zerlegung lohnt es sich also schon für sehr niedrige $n$, die Matrix im \textit{sparse}-Format zu speichern.
 
 \section{Zusammenfassung und Ausblick}
-Im Rahmen dieser Arbeit haben wir für eine Beispielfunktion das Poisson-Problem mittels des direkten Verfahrens der LU-Zerlegung für verschiedene Schrittweiten und Dimensionen gelöst.
+Im Rahmen dieser Arbeit haben wir für eine Beispielfunktion das Poisson-Problem mittels des direkten Verfahrens des Gauß-Algorithmus mit LU-Zerlegung für verschiedene Schrittweiten und Dimensionen gelöst.
 Dabei haben wir beobachtet, dass für kleinere Schrittweiten zwar die Kondition der Matrix $A^{(d)}$ steigt, der Gesamtfehler jedoch immer kleiner wird und man eine ausreichend genaue Approximation der Lösung erreichen kann.
-Wir haben desweiteren beobachtet, dass die Kondition der Matrix $A^{(d)}$ ein bedeutend langsameres Wachstum besitzt, als die der Hilbertmatrix.
-Zu letzt haben wir außerdem Untersuchungen zur Speichernutzung unternommen und festgestellt, dass aufgrund der vielen Null-Einträge der genutzten Matrizen, die Nutzung des \textit{sparse}-Formates schon bei kleinen Intervallanzahlen lohnenswert ist.
-In zukünftigen Berichten werden wir weitere Verfahren untersuchen, die iterative Methoden nutzen, um das lineare Gleichungssystem zu lösen und betrachten, wie sich diese Verfahren auf die Effizienz und Genauigkeit der Approximation auswirken.
+Wir haben desweiteren beobachtet, dass die Kondition der Matrix $A^{(d)}$ ein bedeutend langsameres Wachstum besitzt als die der Hilbertmatrix.
+Zuletzt haben wir außerdem Untersuchungen zur Speichernutzung unternommen und festgestellt, dass aufgrund der vielen Null-Einträge der genutzten Matrizen die Nutzung des \textit{sparse}-Formates schon bei kleinen Intervallanzahlen lohnenswert ist.
+Im nächsten Bericht werden wir weitere Verfahren untersuchen, die iterative Methoden nutzen, um das lineare Gleichungssystem zu lösen, und betrachten, wie sich diese Verfahren auf die Effizienz und Genauigkeit der Approximation auswirken.
 
 \pagebreak
 
@@ -210,7 +210,7 @@ Es folgt eine kurze Anleitung zur Durchführung unserer Experimente über das an
 
 \subsection{Lösen des Poisson-Problems}
 
-Die approximierte Lösung \texttt{hat\_u} des Poisson-Problems für eine gegebene Funktion \texttt{f} als callable, eine Dimension \texttt{d} und eine Intervallanzahl \texttt{n} ermittelt man mit den folgenden Aufrufen:
+Die approximierte Lösung \texttt{hat\_u} des Poisson-Problems für eine gegebene callable Funktion \texttt{f}, eine Dimension \texttt{d} und eine Intervallanzahl \texttt{n} ermittelt man mit den folgenden Aufrufen:
 
 \begin{minted}{python}
   A = block_matrix.BlockMatrix(d, n)
@@ -221,8 +221,8 @@ Die approximierte Lösung \texttt{hat\_u} des Poisson-Problems für eine gegeben
 
 \subsection{Lösungsplot für Beispielfunktion mit d = 2}
 
-Um die 3D-Plots der approximierten Lösungsfunktion, der exakten Lösungsfunktion und derer Differenz für eine bestimmte Schrittweite auszugeben, nutzen wir die Funktion \texttt{rhs.plot\_functions(u, f, n)}.
-Hierbei ist \texttt{u} ein callable, das der exakten Lösung des Poisson-Problems entspricht, \texttt{f2} ist ein callable, für das das Problem gelöst werden soll und \texttt{n} ist die Schrittweite.
+Um die 3D-Plots der approximierten Lösungsfunktion, der exakten Lösungsfunktion und deren Differenz für eine bestimmte Schrittweite auszugeben, nutzen wir die Funktion \texttt{rhs.plot\_functions(u, f, n)}.
+Hierbei ist \texttt{u} eine callable Funktion, die der exakten Lösung des Poisson-Problems entspricht, \texttt{f2} ist eine callable Funktion, für die das Problem gelöst werden soll und \texttt{n} ist die Anzahl der Intervalle.
 Die in diesem Bericht genutzen Funktionen sind im Modul \texttt{main.py} vorgegeben als \texttt{u2} und \texttt{f2}.
 
 \begin{minted}{python}
@@ -249,7 +249,7 @@ Die in diesem Bericht genutzen Funktionen sind im Modul \texttt{main.py} vorgege
 
 Unser Modul bietet Funktionalitäten, um die Fehlerplots entweder in separaten Plots für eine Dimension oder alle drei Dimensionen in einem Plot anzeigen zu lassen.
 Um sie in separaten Plots anzuzeigen, nutzt man die Funktion \texttt{rhs.plot\_error(u, f, d, n\_list)}.
-\texttt{u} und \texttt{f} sind hierbei wieder wie oben die Funktionen des Poisson-Problems als callables, \texttt{d} ist die Dimesion als Integer und \texttt{n\_list} eine Liste von Intervallanzahlen, für die der Fehler ausgewertet werden soll.
+\texttt{u} und \texttt{f} sind hierbei wieder wie oben die Funktionen des Poisson-Problems als callables, \texttt{d} ist die Dimension als Integer und \texttt{n\_list} eine Liste von Intervallanzahlen, für die der Fehler ausgewertet werden soll.
 
 \begin{minted}{python}
   ## Fehler-/Konvergenzplot für d = 1, 2, 3 in getrennten Grafiken
@@ -259,15 +259,15 @@ Um sie in separaten Plots anzuzeigen, nutzt man die Funktion \texttt{rhs.plot\_e
       rhs.plot_error(u3, f3, 3, np.geomspace(2, 24, num=10, dtype=int))
 \end{minted}
 
-Die Funktion \texttt{rhs.plot\_error\_list(u\_list, f\_list, n\_list\_list)}, die Listen von Funktionen \texttt{u} und \texttt{f} bekommt, in aufsteigender Reihenfolge der Dimensionen 1 bis 3 und eine Liste von Listen an Intervallanzahlen für die Dimensionen 1 bis 3, zeigt alle Fehlerplots in einer Grafik an.
+Die Funktion \texttt{rhs.plot\_error\_list(u\_list, f\_list, n\_list\_list)}, der man Listen von Funktionen u und f übergibt, in aufsteigender Reihenfolge der Dimensionen 1 bis 3 und eine Liste von Listen an Intervallanzahlen für die Dimensionen 1 bis 3, zeigt alle Fehlerplots in einer Grafik an.
 
 \begin{minted}{python}
   ## Fehler-/Konvergenzplot für d = 1, 2, 3 in einer Grafik
 
-      list = [np.geomspace(2, 10000, num=10, dtype=int),
-              np.geomspace(2, 100, num=10, dtype=int),
-              np.geomspace(2, 24, num=10, dtype=int)]
-      rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
+      n_list = [np.geomspace(2, 10000, num=10, dtype=int),
+                np.geomspace(2, 100, num=10, dtype=int),
+                np.geomspace(2, 24, num=10, dtype=int)]
+      rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], n_list)
 \end{minted}
 
 \subsection{Konditionsplot}
@@ -277,16 +277,16 @@ Um die Konditionen der Matrizen $A^{(d)}$ plotten zu lassen, nutzt man die Funkt
 \begin{minted}{python}
   ## Konditionsplot von A^(d) für d = 1, 2, 3 in einer Grafik
 
-      list = [np.geomspace(2, 10000, num=10, dtype=int),
-              np.geomspace(2, 100, num=10, dtype=int),
-              np.geomspace(2, 24, num=10, dtype=int)]
-      block_matrix.plot_cond_list(list)
+      n_list = [np.geomspace(2, 10000, num=10, dtype=int),
+                np.geomspace(2, 100, num=10, dtype=int),
+                np.geomspace(2, 24, num=10, dtype=int)]
+      block_matrix.plot_cond_list(n_list)
 \end{minted}
 
 \subsection{Vergleich mit Kondition der Hilbertmatrix}
 
 Mit der Funktion \texttt{block\_matrix.print\_cond(n\_list, d)} kann man für die Intervallanzahlen in \texttt{n\_list} und die Dimension \texttt{d} die Konditionen von $A^{(d)}$ ausgeben lassen.
-Die Funktion \texttt{print\_cond\_hilbert(n\_list, d)} tut dasselbe für die entsprechende Hilbertmatrix.
+Die Funktion \texttt{print\_cond\_hilbert(n\_list, d)} macht dasselbe für die entsprechende Hilbertmatrix.
 Alternativ könnte man sich die Kondition der Hilbertmatrix auch mit \\\texttt{plot\_cond\_hilbert(n\_list, d)} als Grafik ausgeben lassen.
 
 \begin{minted}{python}
@@ -305,7 +305,7 @@ Alternativ könnte man sich die Kondition der Hilbertmatrix auch mit \\\texttt{p
 
 \subsection{Untersuchung der Sparsity}
 
-Um die Anzahl der nicht-Null-Einträge der Matrix $A^{(d)}$ und ihrer LU-Zerlegung für die drei Dimensionen plotten zu lassen, nutzt man die Funktion \\\texttt{block\_matrix.plot\_non\_zeros(n\_list)}, die wieder eine Liste von Intervallanzahlen in \texttt{n\_list} bekommt.
+Um die Anzahl der nicht-Null-Einträge der Matrix $A^{(d)}$ und ihrer LU-Zerlegung für die drei Dimensionen plotten zu lassen, nutzt man die Funktion \\\texttt{block\_matrix.plot\_non\_zeros(n\_list)}, der man wieder eine Liste von Intervallanzahlen in \texttt{n\_list} übergibt.
 
 \begin{minted}{python}
   ## Sparsity von A^(d) und ihrer LU-Zerlegung für

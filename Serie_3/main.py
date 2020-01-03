@@ -1,14 +1,16 @@
 """
 Author: Bressler_Marisa, Jeschke_Anne
-Date: 2019_12_04
+Date: 2020_01_03
 
 Main program to demonstrate the functionality of our modules.
 """
+
+#pylint: disable=no-member, unused-import
+
 import block_matrix
 import rhs
 import numpy as np
 import scipy as sc
-import linear_solvers
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 
@@ -54,14 +56,14 @@ def u3(x): #pylint: disable=invalid-name
 
 
 def get_cond_matrix(a): #pylint: disable=invalid-name
-        """ Computes the condition number of the matrix a.
+    """ Computes the condition number of the matrix a.
 
-        Returns
-        -------
-        float
-            condition number with respect to the row sum norm
-        """
-        return (np.linalg.norm(a, np.inf)*np.linalg.norm(np.linalg.inv(a), np.inf))
+    Returns
+    -------
+    float
+        condition number with respect to the row sum norm
+    """
+    return np.linalg.norm(a, np.inf)*np.linalg.norm(np.linalg.inv(a), np.inf)
 
 
 def print_cond_hilbert(n_list, d): #pylint: disable=invalid-name
@@ -75,10 +77,10 @@ def print_cond_hilbert(n_list, d): #pylint: disable=invalid-name
     d (int): dimension of the space
     """
     conditions = []
-    for n in n_list:
-        h = sc.linalg.hilbert((n-1)**d)
+    for n in n_list:    #pylint: disable=invalid-name
+        h = sc.linalg.hilbert((n-1)**d) #pylint: disable=invalid-name
         conditions.append(get_cond_matrix(h))
-    print(conditions)
+    print(conditions) #pylint: disable=superfluous-parens
 
 
 def plot_cond_hilbert(n_list, d): #pylint: disable=invalid-name
@@ -93,8 +95,8 @@ def plot_cond_hilbert(n_list, d): #pylint: disable=invalid-name
     """
     numbers_of_points = []
     conditions = []
-    for n in n_list:
-        h = sc.linalg.hilbert((n-1)**d)
+    for n in n_list: #pylint: disable=invalid-name
+        h = sc.linalg.hilbert((n-1)**d) #pylint: disable=invalid-name
         conditions.append(get_cond_matrix(h))
         numbers_of_points.append((n-1)**d)
     plt.loglog(numbers_of_points, conditions, "mo")
@@ -108,49 +110,49 @@ def plot_cond_hilbert(n_list, d): #pylint: disable=invalid-name
 def main():
     """ Main function to demonstrate the functionality of our modules.
     """
-## Lösungsplot für Bsp.funktion mit d = 2 für n = 5, 10, 20
+## Loesungsplot fuer Bsp.funktion mit d = 2 fuer n = 5, 10, 20
 
-    # rhs.plot_functions(u2, f2, 5)
-    # rhs.plot_functions(u2, f2, 10)
-    # rhs.plot_functions(u2, f2, 20)
-
-
-## Fehler-/Konvergenzplot für d = 1, 2, 3 in getrennten Grafiken
-
-    # rhs.plot_error(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
-    # rhs.plot_error(u2, f2, 2, np.geomspace(2, 100, num=10, dtype=int))
-    # rhs.plot_error(u3, f3, 3, np.geomspace(2, 24, num=10, dtype=int))
+    rhs.plot_functions(u2, f2, 5)
+    rhs.plot_functions(u2, f2, 10)
+    rhs.plot_functions(u2, f2, 20)
 
 
-## Fehler-/Konvergenzplot für d = 1, 2, 3 in einer Grafik
+# # Fehler-/Konvergenzplot fuer d = 1, 2, 3 in getrennten Grafiken
 
-    # list = [np.geomspace(2, 10000, num=10, dtype=int),
-    #         np.geomspace(2, 100, num=10, dtype=int),
-    #         np.geomspace(2, 24, num=10, dtype=int)]
-    # rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], list)
-
-
-## Konditionsplot von A^(d) für d = 1, 2, 3 in einer Grafik
-
-    # list = [np.geomspace(2, 10000, num=10, dtype=int),
-    #         np.geomspace(2, 100, num=10, dtype=int),
-    #         np.geomspace(2, 24, num=10, dtype=int)]
-    # block_matrix.plot_cond_list(list)
+    rhs.plot_error(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
+    rhs.plot_error(u2, f2, 2, np.geomspace(2, 100, num=10, dtype=int))
+    rhs.plot_error(u3, f3, 3, np.geomspace(2, 24, num=10, dtype=int))
 
 
-## Konditionsprint A^(d) und Hilbertmatrix von gleicher Dimension = (n-1)^d mit d = 1, 2, 3
+# # Fehler-/Konvergenzplot fuer d = 1, 2, 3 in einer Grafik
 
-    # block_matrix.print_cond(range(2, 11), 1)
-    # print_cond_hilbert(range(2, 11), 1)
-
-    # block_matrix.print_cond(range(2, 11), 2)
-    # print_cond_hilbert(range(2, 11), 2)
-
-    # block_matrix.print_cond(range(2, 11), 3)
-    # print_cond_hilbert(range(2, 11), 3)
+    n_list = [np.geomspace(2, 10000, num=10, dtype=int),
+              np.geomspace(2, 100, num=10, dtype=int),
+              np.geomspace(2, 24, num=10, dtype=int)]
+    rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], n_list)
 
 
-## Sparsity von A^(d) und ihrer LU-Zerlegung für d = 1, 2, 3 in getrennten Grafiken
+# # Konditionsplot von A^(d) fuer d = 1, 2, 3 in einer Grafik
+
+    n_list = [np.geomspace(2, 10000, num=10, dtype=int),
+              np.geomspace(2, 100, num=10, dtype=int),
+              np.geomspace(2, 24, num=10, dtype=int)]
+    block_matrix.plot_cond_list(n_list)
+
+
+# # Konditionsprint A^(d) und Hilbertmatrix von gleicher Dimension = (n-1)^d mit d = 1, 2, 3
+
+    block_matrix.print_cond(range(2, 11), 1)
+    print_cond_hilbert(range(2, 11), 1)
+
+    block_matrix.print_cond(range(2, 11), 2)
+    print_cond_hilbert(range(2, 11), 2)
+
+    block_matrix.print_cond(range(2, 11), 3)
+    print_cond_hilbert(range(2, 11), 3)
+
+
+## Sparsity von A^(d) und ihrer LU-Zerlegung fuer d = 1, 2, 3 in getrennten Grafiken
 
     block_matrix.plot_non_zeros(range(2, 8))
 

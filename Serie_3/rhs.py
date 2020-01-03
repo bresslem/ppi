@@ -1,24 +1,25 @@
 """
 Author: Bressler_Marisa, Jeschke_Anne
-Date: 2019_12_04
+Date: 2020_01_03
 
 Implements the right hand side vector of the system to solve the Poisson-problem.
 Also calculates and plots the error of the numerical solution of the Poisson-problem
 with respect to the row sum norm.
 """
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name, no-member, import-error, wrong-import-position
 
+from matplotlib import use
+use('qt4agg')
+import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d # pylint: disable=unused-import
 import numpy as np
 import block_matrix
 import linear_solvers
-from matplotlib import use
-#use('qt4agg')
-from mpl_toolkits import mplot3d
-import matplotlib.pyplot as plt
+
 plt.rcParams['font.size'] = 12
 
 def rhs(d, n, f): #pylint: disable=invalid-name
-    """ Computes the right-hand side vector `b` for a given function `f`.
+    """ Computes the right-hand side vector b for a given function f.
     Parameters
     ----------
     d : int
@@ -26,8 +27,8 @@ def rhs(d, n, f): #pylint: disable=invalid-name
     n : int
         Number of intervals in each dimension.
     f : callable
-        Function right-hand-side of Poisson problem. The calling signature is `f(x)`.
-        Here `x` is a scalar or array_like of `numpy`. The return value is a scalar.
+        Function right-hand-side of Poisson problem. The calling signature is f(x).
+        Here x is a scalar or array_like of numpy. The return value is a scalar.
     Returns
     -------
     numpy.ndarray
@@ -70,13 +71,13 @@ def compute_error(d, n, hat_u, u): #pylint: disable=invalid-name
         Dimension of the space
     n : int
         Number of intersections in each dimension
-    hat_u : array_like of ’numpy’
+    hat_u : array_like of numpy
             Finite difference approximation of the solution of the Poisson-problem
             at the discretization points
     u : callable
         Solution of the Poisson-problem
-        The calling signature is ’u(x)’. Here ’x’ is a scalar
-        or array_like of ’numpy’. The return value is a scalar.
+        The calling signature is u(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
 
     Returns
     -------
@@ -96,12 +97,12 @@ def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
     ----------
     u : callable
         Solution of the Poisson-problem
-        The calling signature is ’u(x)’. Here ’x’ is a scalar
-        or array_like of ’numpy’. The return value is a scalar.
+        The calling signature is u(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
     f : callable
         Input function of the Poisson-problem
-        The calling signature is ’f(x)’. Here ’x’ is a scalar
-        or array_like of ’numpy’. The return value is a scalar.
+        The calling signature is f(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
     d: int
         Dimension of the Poisson-problem
     n_list: list of ints
@@ -120,11 +121,14 @@ def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
 
     numbers_of_points_pow1 = [np.float_(N)**(-1) for N in numbers_of_points]
     numbers_of_points_pow2 = [np.float_(N)**(-2) for N in numbers_of_points]
-    numbers_of_points_pow3 = [np.float_(N)**(-3) for N in numbers_of_points]
+    numbers_of_points_pow3 = [np.float_(N)**(-1/2) for N in numbers_of_points]
 
-    plt.loglog(numbers_of_points, numbers_of_points_pow1, label='$N^{-1}$', color='lightgray')
-    plt.loglog(numbers_of_points, numbers_of_points_pow2, label='$N^{-2}$', color='lightgray', linestyle='-.')
-    plt.loglog(numbers_of_points, numbers_of_points_pow3, label='$N^{-3}$', color='lightgray', linestyle=':')
+    plt.loglog(numbers_of_points, numbers_of_points_pow3, label='$N^{-1/2}$',
+               color='lightgray', linestyle=':')
+    plt.loglog(numbers_of_points, numbers_of_points_pow1, label='$N^{-1}$',
+               color='lightgray')
+    plt.loglog(numbers_of_points, numbers_of_points_pow2, label='$N^{-2}$',
+               color='lightgray', linestyle='-.')
 
     plt.loglog(numbers_of_points, errors, 'go--')
     plt.xlabel('$N$')
@@ -136,7 +140,7 @@ def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
     plt.figure()
 
 
-def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name
+def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name, too-many-locals
     """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
     for a given list of n-values and for the dimension d = 1, 2, 3.
 
@@ -146,12 +150,12 @@ def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name
         The n-values for which to plot the errors.
     u_list : list of callable functions
         Solution of the Poisson-problem
-        The calling signature is ’u(x)’. Here ’x’ is a scalar
-        or array_like of ’numpy’. The return value is a scalar.
+        The calling signature is u(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
     f_list : list of callable functions
         Input function of the Poisson-problem
-        The calling signature is ’f(x)’. Here ’x’ is a scalar
-        or array_like of ’numpy’. The return value is a scalar.
+        The calling signature is f(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
     """
 
     numbers_of_points_1 = []
@@ -191,13 +195,19 @@ def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name
     numbers_of_points_pow2 = [np.float_(N)**(-2) for N in numbers_of_points_3]
     numbers_of_points_pow3 = [np.float_(N)**(-1/2) for N in numbers_of_points_3]
 
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{-1/2}$', color='lightgray')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N^{-1}$', color='lightgray', linestyle='-.')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^{-2}$', color='lightgray', linestyle=':')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{-1/2}$',
+               color='lightgray')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N^{-1}$',
+               color='lightgray', linestyle='-.')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^{-2}$',
+               color='lightgray', linestyle=':')
 
-    plt.loglog(numbers_of_points_1, errors_1, label='$d=1$', linestyle='--', color='blue')
-    plt.loglog(numbers_of_points_2, errors_2, label='$d=2$', linestyle='--', color='magenta')
-    plt.loglog(numbers_of_points_3, errors_3, label='$d=3$', linestyle='--', color='red')
+    plt.loglog(numbers_of_points_1, errors_1, label='$d=1$', linestyle='--',
+               color='blue')
+    plt.loglog(numbers_of_points_2, errors_2, label='$d=2$', linestyle='--',
+               color='magenta')
+    plt.loglog(numbers_of_points_3, errors_3, label='$d=3$', linestyle='--',
+               color='red')
 
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
@@ -207,7 +217,7 @@ def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name
     plt.show()
 
 
-def plot_functions(u, f, n): #pylint: disable=invalid-name
+def plot_functions(u, f, n): #pylint: disable=invalid-name, too-many-locals
     """ Plots the numerical, the exact solution of our Poisson-problem (dimension d=2)
     for a given value of n (n is the number of intersections in each dimension
     and their absolute and their relative difference.
@@ -216,12 +226,12 @@ def plot_functions(u, f, n): #pylint: disable=invalid-name
     ----------
     u : callable
         Solution of the Poisson-problem
-        The calling signature is ’u(x)’. Here ’x’ is a scalar
-        or array_like of ’numpy’. The return value is a scalar.
+        The calling signature is u(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
     f : callable
         Input function of the Poisson-problem
-        The calling signature is ’f(x)’. Here ’x’ is a scalar
-        or array_like of ’numpy’. The return value is a scalar.
+        The calling signature is f(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
     n:  int
         The n-value for which to plot the functions.
     """
@@ -229,13 +239,13 @@ def plot_functions(u, f, n): #pylint: disable=invalid-name
     y = np.linspace(0, 1, n+1)
     X, Y = np.meshgrid(x, y)
 
-    exact = u((X,Y))
+    exact = u((X, Y))
 
     A = block_matrix.BlockMatrix(2, n)
     b = rhs(2, n, f)
     lu = A.get_lu()
     hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
-    approx = np.reshape(hat_u, (-1,n-1))
+    approx = np.reshape(hat_u, (-1, n-1))
 
     vzeroes = []
     for _ in range(n-1):
@@ -253,14 +263,14 @@ def plot_functions(u, f, n): #pylint: disable=invalid-name
 
     ax1.set_xlabel('$x_1$')
     ax1.set_ylabel('$x_2$')
-    ax1.set_zlabel('$\hat{u}(x)$')
+    ax1.set_zlabel('$\hat{u}(x)$') #pylint: disable=anomalous-backslash-in-string
     ax1.plot_surface(X, Y, approx, cmap='viridis', edgecolor='none')
     ax1.set_title('Approximate solution')
 
     difference = abs(approx - exact)
     ax2.set_xlabel('$x_1$')
     ax2.set_ylabel('$x_2$')
-    ax2.set_zlabel('$|\hat{u}(x)-u(x)|$')
+    ax2.set_zlabel('$|\hat{u}(x)-u(x)|$') #pylint: disable=anomalous-backslash-in-string
     ax2.plot_surface(X, Y, difference, cmap='viridis', edgecolor='none')
     ax2.set_title('Difference')
 

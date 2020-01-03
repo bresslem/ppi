@@ -1,17 +1,20 @@
 """
 Author: Bressler_Marisa, Jeschke_Anne
-Date: 2019_12_04
+Date: 2020_01_03
 
 Creates the block matrix required to solve the discrete Poisson-problem using
 finite differences and analyzes the amount of space needed.
 Also calculates and analyzes its LU-decomposition.
 """
+
+#pylint: disable=no-member
+
 import scipy.sparse as sps
 import scipy.sparse.linalg as splina
 import scipy.linalg as lina
 import numpy as np
 from matplotlib import use
-#use('qt4agg')
+use('qt4agg')
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 
@@ -243,19 +246,19 @@ def plot_cond_list(n_list_list): #pylint: disable=invalid-name
     """
     numbers_of_points_1 = []
     conditions_1 = []
-    for n in n_list_list[0]:
+    for n in n_list_list[0]: #pylint: disable=invalid-name
         conditions_1.append(BlockMatrix(1, n).get_cond())
         numbers_of_points_1.append((n-1)**1)
 
     numbers_of_points_2 = []
     conditions_2 = []
-    for n in n_list_list[1]:
+    for n in n_list_list[1]: #pylint: disable=invalid-name
         conditions_2.append(BlockMatrix(2, n).get_cond())
         numbers_of_points_2.append((n-1)**2)
 
     numbers_of_points_3 = []
     conditions_3 = []
-    for n in n_list_list[2]:
+    for n in n_list_list[2]: #pylint: disable=invalid-name
         conditions_3.append(BlockMatrix(3, n).get_cond())
         numbers_of_points_3.append((n-1)**3)
 
@@ -263,13 +266,19 @@ def plot_cond_list(n_list_list): #pylint: disable=invalid-name
     numbers_of_points_pow2 = [np.float_(N)**(2) for N in numbers_of_points_3]
     numbers_of_points_pow3 = [np.float_(N)**(1/2) for N in numbers_of_points_3]
 
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{1/2}$', color='lightgray')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N$', color='lightgray', linestyle='-.')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^2$', color='lightgray', linestyle=':')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{1/2}$',
+               color='lightgray')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N$',
+               color='lightgray', linestyle='-.')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^2$',
+               color='lightgray', linestyle=':')
 
-    plt.loglog(numbers_of_points_1, conditions_1, label='$d=1$', linestyle='--', color='blue')
-    plt.loglog(numbers_of_points_2, conditions_2, label='$d=2$', linestyle='--', color='magenta')
-    plt.loglog(numbers_of_points_3, conditions_3, label='$d=3$', linestyle='--', color='red')
+    plt.loglog(numbers_of_points_1, conditions_1, label='$d=1$', linestyle='--',
+               color='blue')
+    plt.loglog(numbers_of_points_2, conditions_2, label='$d=2$', linestyle='--',
+               color='magenta')
+    plt.loglog(numbers_of_points_3, conditions_3, label='$d=3$', linestyle='--',
+               color='red')
 
     plt.xlabel('$N$')
     plt.ylabel('condition of $A^{(d)}$')
@@ -280,7 +289,7 @@ def plot_cond_list(n_list_list): #pylint: disable=invalid-name
     plt.figure()
 
 
-def print_cond(n_list, d):
+def print_cond(n_list, d): #pylint: disable=invalid-name
     """
     Calculates the condition of the block matrix for a given list of n-values
     for the dimension d = 1, 2, 3. N = (n-1)^d is the dimension of the block matrix.
@@ -291,10 +300,9 @@ def print_cond(n_list, d):
     d (int): dimension of the space
     """
     conditions = []
-    for n in n_list:
-        matrix = BlockMatrix(d, n)
+    for n in n_list: #pylint: disable=invalid-name
         conditions.append(BlockMatrix(d, n).get_cond())
-    return print(conditions)
+    print(conditions) #pylint: disable=superfluous-parens
 
 
 def plot_non_zeros(n_list):
@@ -323,7 +331,7 @@ def plot_non_zeros(n_list):
         plt.plot(numbers_of_points, non_zero, "ro", label='$A^{(d)}$')
         plt.plot(numbers_of_points, non_zero_lu, "bx",
                  label='$LU$')
-        plt.plot(numbers_of_points, sparse_line, label='$N^2/3$', color='lightgray', linestyle='--')             
+        plt.plot(numbers_of_points, sparse_line, label='$N^2/3$', color='lightgray', linestyle='--')
         plt.xlabel('$N$')
         plt.ylabel('number of non-zero elements')
         plt.title('Number of non-zero elements of $A^{(d)}$\n' +

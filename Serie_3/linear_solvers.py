@@ -1,6 +1,6 @@
 """
 Author: Bressler_Marisa, Jeschke_Anne
-Date: 2019_12_04
+Date: 2020_01_03
 
 Solves the given linear equation system Ax = b via forward and backward substitution
 given the LU-decomposition with full pivoting pr * A * pc = l * u.
