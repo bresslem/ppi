@@ -11,8 +11,8 @@ import sys
 import numpy as np
 import scipy as sc
 import scipy.linalg as lina
-# from matplotlib import use
-# use('qt4agg')
+import matplotlib as mpl
+# mpl.use('qt4agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 plt.rcParams['font.size'] = 12
@@ -205,32 +205,38 @@ def create_lgs(data, number_of_unknowns):
 
     return A, b
 
-def plot_result(data):
+def plot_result(data_list, labels):
     """
     Plots results of simple linear regression from the input data.
 
     Parameters
     ----------
-    data: np.ndarray
-        Input data as read from file.
+    data_list: np.ndarray
+        list of datapoints to analyze, each with different modifications.
+    labels:
+        list of descriptions of the data.
     """
-    A, b = create_lgs(data, 2)
-    c, d = solve_qr(A, b)
+    mpl.style.use('classic')
+    i = 0
+    for data in data_list:
+        A, b = create_lgs(data, 2)
+        c, d = solve_qr(A, b)
 
-    p_1 = np.linspace(75, 300, 10)
-    p_0 = c*p_1+d
+        p_1 = np.linspace(75, 300, 10)
+        p_0 = c*p_1+d
 
-    plt.plot(p_1, p_0, label='$c*p_1+d$', linestyle='-', color='blue')
-    plt.plot(A[:, 0], b, 'o', label='input data', color='magenta')
+        plt.plot(A[:, 0], b, '.', label=labels[i], color='C'+str(i))
+        plt.plot(p_1, p_0, label='%f $p_1+$ %f' %(c, d), linestyle='--', color='C'+str(i))
+        i = i+1
 
     plt.xlabel('$p_1$')
     plt.ylabel('$p_0$')
     plt.title('simple linear regression')
-    plt.legend()
+    plt.legend(loc='lower right')
     plt.grid()
     plt.show()
 
-def plot_result_multi(data):
+def plot_result_multilinear(data):
     """
     Plots results of simple linear regression from the input data.
 
@@ -251,7 +257,7 @@ def plot_result_multi(data):
 
     ax.plot_surface(X, Y, Z, label='approximation', cmap='winter', alpha=0.5)
 
-    ax.scatter3D(A[:, 0], A[:, 1], b, label='exact data points', color='magenta')
+    ax.scatter3D(A[:, 0], A[:, 1], b, label='exact data points', color='red')
 
     ax.set_xlabel('$p_1$')
     ax.set_ylabel('$p_2$')
@@ -269,10 +275,19 @@ def main():
         raise Exception('No input data given.')
 
     data = read_input(filename)
+    data_list = []
+    labels = []
+    data_list.append(data)
+    labels.append("all samples")
+    data_list.append(read_input(filename, [0, 1]))
+    labels.append("only first two")
+    data_list.append(data+data*0.05)
+    labels.append("5% error")
+    plot_result(data_list, labels)
+
     A, b = create_lgs(data, 3)
     print(solve_qr(A, b))
-    plot_result(data)
-    plot_result_multi(data)
+    plot_result_multilinear(data)
 
 
 
