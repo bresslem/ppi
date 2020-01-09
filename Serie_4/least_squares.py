@@ -5,12 +5,17 @@ Date: 2020_01_17
 Main program to demonstrate the functionality of our modules.
 """
 
-# pylint: disable=invalid-name, superfluous-parens
+# pylint: disable=invalid-name, superfluous-parens, import-error, unused-import
 
 import sys
 import numpy as np
 import scipy as sc
 import scipy.linalg as lina
+# from matplotlib import use
+# use('qt4agg')
+import matplotlib.pyplot as plt
+from mpl_toolkits import mplot3d
+plt.rcParams['font.size'] = 12
 
 def get_qr(A):
     """
@@ -198,8 +203,62 @@ def create_lgs(data, number_of_unknowns):
         A = np.append(A, [row], axis=0)
         b = np.append(b, line[0])
 
-
     return A, b
+
+def plot_result(data):
+    """
+    Plots results of simple linear regression from the input data.
+
+    Parameters
+    ----------
+    data: np.ndarray
+        Input data as read from file.
+    """
+    A, b = create_lgs(data, 2)
+    c, d = solve_qr(A, b)
+
+    p_1 = np.linspace(75, 300, 10)
+    p_0 = c*p_1+d
+
+    plt.plot(p_1, p_0, label='$c*p_1+d$', linestyle='-', color='blue')
+    plt.plot(A[:, 0], b, 'o', label='input data', color='magenta')
+
+    plt.xlabel('$p_1$')
+    plt.ylabel('$p_0$')
+    plt.title('simple linear regression')
+    plt.legend()
+    plt.grid()
+    plt.show()
+
+def plot_result_multi(data):
+    """
+    Plots results of simple linear regression from the input data.
+
+    Parameters
+    ----------
+    data: np.ndarray
+        Input data as read from file.
+    """
+    A, b = create_lgs(data, 3)
+    c, d, e = solve_qr(A, b)
+
+    x = np.linspace(75, 300, 10)
+    X, Y = np.meshgrid(x, x)
+
+    Z = c*X+d*Y+e
+
+    ax = plt.axes(projection='3d')
+
+    ax.plot_surface(X, Y, Z, label='approximation', cmap='winter', alpha=0.5)
+
+    ax.scatter3D(A[:, 0], A[:, 1], b, label='exact data points', color='magenta')
+
+    ax.set_xlabel('$p_1$')
+    ax.set_ylabel('$p_2$')
+    ax.set_zlabel('$p_0$')
+    plt.title('multilinear regression')
+    ax.grid()
+    plt.show()
 
 def main():
     """ Main function to demonstrate the functionality of our modules.
@@ -210,8 +269,10 @@ def main():
         raise Exception('No input data given.')
 
     data = read_input(filename)
-    lgs = create_lgs(data, 3)
-    print(solve_qr(lgs[0], lgs[1]))
+    A, b = create_lgs(data, 3)
+    print(solve_qr(A, b))
+    plot_result(data)
+    plot_result_multi(data)
 
 
 
