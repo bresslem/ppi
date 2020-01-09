@@ -5,7 +5,7 @@ Date: 2020_01_17
 Main program to demonstrate the functionality of our modules.
 """
 
-# pylint: disable=invalid-name, superfluous-parens, import-error, unused-import
+# pylint: disable=invalid-name, superfluous-parens, import-error, unused-import, no-member
 
 import sys
 import numpy as np
@@ -107,10 +107,13 @@ def norm_of_residuum(A, b):
     if not full_rank(A):
         raise Exception('A does not have a full column rank.')
 
-    z = np.dot(sc.transpose(get_qr(A)[0]), b).resize(A.shape[0]-A.shape[1])
-    return lina.norm(z, 2)
+    z = np.resize(np.dot(sc.transpose(get_qr(A)[0]), b), A.shape[0]-A.shape[1])
+    if z.size == 0:
+        return 0
+    else:
+        return lina.norm(z, 2)
 
-def get_cond_A(A):
+def get_cond(A):
     """
     Function to get the condition of A.
 
@@ -123,9 +126,9 @@ def get_cond_A(A):
     float
         condition of A.
     """
-    return lina.norm(A)*lina.norm(lina.inv(A))
+    return lina.norm(A, 2)*lina.norm(lina.pinv(A), 2)
 
-def get_cond_ATA(A):
+def get_cond_transposed(A):
     """
     Function to get the condition of A transposed times A.
 
@@ -138,7 +141,9 @@ def get_cond_ATA(A):
     float
         condition of A transposed times A.
     """
-    return lina.norm(np.dot(A, A.transpose()))*lina.norm(lina.inv(np.dot(A, A.transpose())))
+    ATA = np.dot(A, A.transpose())
+
+    return lina.norm(ATA, 2)*lina.norm(lina.pinv(ATA), 2)
 
 def read_input(filename, selection=[], number_of_columns=3): # pylint: disable=dangerous-default-value
     """
@@ -225,8 +230,15 @@ def plot_result(data_list, labels):
         p_1 = np.linspace(75, 300, 10)
         p_0 = c*p_1+d
 
-        plt.plot(A[:, 0], b, '.', label=labels[i], color='C'+str(i))
-        plt.plot(p_1, p_0, label='%f $p_1+$ %f' %(c, d), linestyle='--', color='C'+str(i))
+        cond_A = get_cond(A)
+        cond_ATA = get_cond_transposed(A)
+        residuum = norm_of_residuum(A, b)
+
+        plt.plot(A[:, 0], b, '.', label='Modification %d: %s' %(i, labels[i]), color='C'+str(i))
+        plt.plot(p_1, p_0, label='Linear regression of mod. %d' %i,
+                 linestyle='--', color='C'+str(i))
+        print('Modification %d: cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
+              %(i, cond_A, cond_ATA, residuum))
         i = i+1
 
     plt.xlabel('$p_1$')
@@ -245,6 +257,8 @@ def plot_result_multilinear(data):
     data: np.ndarray
         Input data as read from file.
     """
+    mpl.style.use('default')
+
     A, b = create_lgs(data, 3)
     c, d, e = solve_qr(A, b)
 
@@ -285,9 +299,18 @@ def main():
     labels.append("5% error")
     plot_result(data_list, labels)
 
-    A, b = create_lgs(data, 3)
-    print(solve_qr(A, b))
     plot_result_multilinear(data)
+
+    A, b = create_lgs(data, 3)
+    c, d, e = solve_qr(A, b)
+
+    cond_A = get_cond(A)
+    cond_ATA = get_cond_transposed(A)
+    residuum = norm_of_residuum(A, b)
+
+    print('Multilinear regression: p_0 = %f*p_1+%f*p_2+%f' %(c, d, e))
+    print('cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
+          %(cond_A, cond_ATA, residuum))
 
 
 
