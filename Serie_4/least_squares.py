@@ -107,11 +107,13 @@ def norm_of_residuum(A, b):
     if not full_rank(A):
         raise Exception('A does not have a full column rank.')
 
-    z = np.resize(np.dot(sc.transpose(get_qr(A)[0]), b), A.shape[0]-A.shape[1])
+    z = np.dot(sc.transpose(get_qr(A)[0]), b)[A.shape[1]:]
+
     if z.size == 0:
         return 0
     else:
         return lina.norm(z, 2)
+
 
 def get_cond(A):
     """
