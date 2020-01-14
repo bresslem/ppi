@@ -17,6 +17,99 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 plt.rcParams['font.size'] = 12
 
+def read_input(filename, selection=None, number_of_columns=3): # pylint: disable=dangerous-default-value
+    """
+    Function to read the input file containig the data to analyze.
+
+    Parameters
+    ----------
+    filename: string
+        Name of the file containig the data.
+    selection: optional, collection
+        collection of integers representig the datapoints to select,
+        starting with index 0.
+    number_of_columns: optional, int
+        number of columns in the input file.
+
+    Returns
+    -------
+    numpy.ndarray
+        input data
+    """
+
+    input_file = open(filename)
+
+    data = np.ndarray((0, number_of_columns))
+
+    if selection:
+        index = 0
+        for line in input_file:
+            if index in selection:
+                numbers = [list(map(float, line.rstrip().split(', ')))]
+                data = np.append(data, numbers, axis=0)
+            index = index+1
+    else:
+        for line in input_file:
+            numbers = [list(map(float, line.rstrip().split(', ')))]
+            data = np.append(data, numbers, axis=0)
+    input_file.close()
+
+    return data
+
+def create_lgs(data, number_of_unknowns):
+    """
+    Creates matrix A and right-hand-side b of the linear regression system from the input data.
+
+    Parameters
+    ----------
+    data: np.ndarray
+        Input data as read from file.
+    number_of_unknowns: int
+        number of unknowns in the lgs.
+
+    Returns
+    -------
+    numpy.ndarray
+        matrix A
+    numpy.ndarray
+        vector b
+    """
+    A = np.ndarray((0, number_of_unknowns))
+    b = np.ndarray((0))
+    for line in data:
+        row = np.append(line[1:number_of_unknowns], 1)
+        A = np.append(A, [row], axis=0)
+        b = np.append(b, line[0])
+
+    return A, b
+
+def create_lgs_p2(data):
+    """
+    Creates matrix A and right-hand-side b of the linear regression system from the input data.
+
+    Parameters
+    ----------
+    data: np.ndarray
+        Input data as read from file.
+    number_of_unknowns: int
+        number of unknowns in the lgs.
+
+    Returns
+    -------
+    numpy.ndarray
+        matrix A
+    numpy.ndarray
+        vector b
+    """
+    A = np.ndarray((0, 2))
+    b = np.ndarray((0))
+    for line in data:
+        row = np.append(line[2], 1)
+        A = np.append(A, [row], axis=0)
+        b = np.append(b, line[0])
+
+    return A, b
+
 def get_qr(A):
     """
     Function to get the QR decomposition of the input matrix.
@@ -114,7 +207,6 @@ def norm_of_residuum(A, b):
 
     return lina.norm(z, 2)
 
-
 def get_cond(A):
     """
     Function to get the condition of A.
@@ -146,98 +238,6 @@ def get_cond_transposed(A):
     ATA = np.dot(A, A.transpose())
 
     return lina.norm(ATA, 2)*lina.norm(lina.pinv(ATA), 2)
-
-def read_input(filename, selection=[], number_of_columns=3): # pylint: disable=dangerous-default-value
-    """
-    Function to read the input file containig the data to analyze.
-
-    Parameters
-    ----------
-    filename: string
-        Name of the file containig the data.
-    selection: optional, collection
-        collection of integers representig the datapoints to select,
-        starting with index 0.
-    number_of_columns: optional, int
-        number of columns in the input file.
-
-    Returns
-    -------
-    numpy.ndarray
-        input data
-    """
-    input_file = open(filename)
-
-    data = np.ndarray((0, number_of_columns))
-
-    if selection:
-        index = 0
-        for line in input_file:
-            if index in selection:
-                numbers = [list(map(float, line.rstrip().split(', ')))]
-                data = np.append(data, numbers, axis=0)
-            index = index+1
-    else:
-        for line in input_file:
-            numbers = [list(map(float, line.rstrip().split(', ')))]
-            data = np.append(data, numbers, axis=0)
-    input_file.close()
-
-    return data
-
-def create_lgs(data, number_of_unknowns):
-    """
-    Creates matrix A and right-hand-side b of the linear regression system from the input data.
-
-    Parameters
-    ----------
-    data: np.ndarray
-        Input data as read from file.
-    number_of_unknowns: int
-        number of unknowns in the lgs.
-
-    Returns
-    -------
-    numpy.ndarray
-        matrix A
-    numpy.ndarray
-        vector b
-    """
-    A = np.ndarray((0, number_of_unknowns))
-    b = np.ndarray((0))
-    for line in data:
-        row = np.append(line[1:number_of_unknowns], 1)
-        A = np.append(A, [row], axis=0)
-        b = np.append(b, line[0])
-
-    return A, b
-
-def create_lgs_p2(data):
-    """
-    Creates matrix A and right-hand-side b of the linear regression system from the input data.
-
-    Parameters
-    ----------
-    data: np.ndarray
-        Input data as read from file.
-    number_of_unknowns: int
-        number of unknowns in the lgs.
-
-    Returns
-    -------
-    numpy.ndarray
-        matrix A
-    numpy.ndarray
-        vector b
-    """
-    A = np.ndarray((0, 2))
-    b = np.ndarray((0))
-    for line in data:
-        row = np.append(line[2], 1)
-        A = np.append(A, [row], axis=0)
-        b = np.append(b, line[0])
-
-    return A, b
 
 def plot_result(data_list, labels):
     """
@@ -377,11 +377,11 @@ def main():
     labels = []
     data_list.append(data)
     labels.append("all samples")
-    # data_list.append(np.append(read_input(filename), [[480, 230, 0]], axis=0))
-    # labels.append("one big error")
-    # data_list.append(read_input(filename, [0, 1, 2, 3, 4, 5]))
-    # labels.append("only first six")
-    # plot_result(data_list, labels)
+    data_list.append(np.append(read_input(filename), [[480, 230, 0]], axis=0))
+    labels.append("one big error")
+    data_list.append(read_input(filename, [0, 1, 2, 3, 4, 5]))
+    labels.append("only first six")
+    plot_result(data_list, labels)
     plot_result_p2(data)
 
     # plot_result_multilinear(data)

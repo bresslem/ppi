@@ -1,0 +1,82 @@
+\documentclass[smallheadings]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[pdftex,svgnames,hyperref]{xcolor}
+\usepackage{listings}
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{0,0,113}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{green}{RGB}{0,150,0}
+\lstset{language=Python,
+        basicstyle=\ttfamily\small,
+        keywordstyle=\color{keywords},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{green},
+        }
+
+
+\usepackage{paralist}
+
+\newcommand{\initem}[2]{\item[\hspace{0.5em} {\normalfont\ttfamily{#1}} {\normalfont\itshape{(#2)}}]}
+\newcommand{\outitem}[1]{\item[\hspace{0.5em} \normalfont\itshape{(#1)}]}
+\newcommand{\bfpara}[1]{\noindent \textbf{#1:}\,}
+
+\title{Dokumentation zum Modul \texttt{least\_squares.py}}
+\author{Marisa Breßler und Anne Jeschke (PPI27)}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Schnittstellendokumentation computer.py}
+
+\subsection{Methoden}
+
+\subsubsection{\texttt{read\_input(filename, selection=None, number\_of\_columns=3)}}
+Diese Methode liest die Eingabe aus einer gegebenen Datei und übersetzt sie in einen mehrsimensionalen Array.
+Die Datei enthält für jede Messung eine Zeile und die Messwerte einer Messung sind in der Zeile durch Kommata getrennt.
+In unserem Fall sind es immer drei Messwerte pro Messung, dies ist jedoch variabel.
+
+\bfpara{Input}
+    \begin{compactdesc}
+		    \initem{filename}{String} Name der Eingabedatei
+        \initem{selection=None}{list of integers, optional} Liste der Zeilen, die aus der Datei gelesen werden sollen. Falls alle Zeilen gelesen werden sollen, muss dies nicht gesetzt werden.
+		\end{compactdesc}
+\bfpara{Returns}
+    \begin{compactdesc}
+		  \outitem{np.ndarray} Eingabedaten als mehrsimensionaler Array
+	  \end{compactdesc}
+
+\subsubsection{\texttt{create\_lgs(data, number\_of\_unknowns)}}
+
+\subsubsection{\texttt{create\_lgs\_p2(data)}}
+
+\subsubsection{\texttt{get\_qr(A)}}
+
+\subsubsection{\texttt{full\_rank(A)}}
+
+\subsubsection{\texttt{solve\_qr(A, b)}}
+
+\subsubsection{\texttt{norm\_of\_residuum(A, b)}}
+
+\subsubsection{\texttt{get\_cond(A)}}
+
+\subsubsection{\texttt{get\_cond\_transposed(A)}}
+
+\subsubsection{\texttt{plot\_result(data\_list, labels)}}
+
+\subsubsection{\texttt{plot\_result\_p2(data)}}
+
+\subsubsection{\texttt{plot\_result\_multilinear(data)}}
+
+
+
+\end{document}
