@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 plt.rcParams['font.size'] = 12
 
-def read_input(filename, selection=None, number_of_columns=3): # pylint: disable=dangerous-default-value
+def read_input(filename, selection=None, number_of_columns=3):
     """
     Function to read the input file containig the data to analyze.
 
@@ -351,6 +351,15 @@ def plot_result_multilinear(data):
 
     Z = c*X+d*Y+e
 
+    cond_A = get_cond(A)
+    cond_ATA = get_cond_transposed(A)
+    residuum = norm_of_residuum(A, b)
+
+    print('Multilinear regression: p_0 = %f*p_1+%f*p_2+%f' %(c, d, e))
+    print('cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
+          %(cond_A, cond_ATA, residuum))
+
+
     ax = plt.axes(projection='3d')
 
     ax.plot_surface(X, Y, Z, label='approximation', cmap='winter', alpha=0.5)
@@ -384,19 +393,7 @@ def main():
     plot_result(data_list, labels)
     plot_result_p2(data)
 
-    # plot_result_multilinear(data)
-    #
-    # A, b = create_lgs(data, 3)
-    # c, d, e = solve_qr(A, b)
-    #
-    # cond_A = get_cond(A)
-    # cond_ATA = get_cond_transposed(A)
-    # residuum = norm_of_residuum(A, b)
-    #
-    # print('Multilinear regression: p_0 = %f*p_1+%f*p_2+%f' %(c, d, e))
-    # print('cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
-    #       %(cond_A, cond_ATA, residuum))
-
+    plot_result_multilinear(data)
 
 
 if __name__ == "__main__":
