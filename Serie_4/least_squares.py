@@ -5,7 +5,7 @@ Date: 2020_01_17
 Main program to demonstrate the functionality of our modules.
 """
 
-# pylint: disable=invalid-name, superfluous-parens, import-error, unused-import, no-member
+# pylint: disable=invalid-name, import-error, unused-import, no-member
 
 import sys
 import numpy as np
@@ -111,8 +111,8 @@ def norm_of_residuum(A, b):
 
     if z.size == 0:
         return 0
-    else:
-        return lina.norm(z, 2)
+
+    return lina.norm(z, 2)
 
 
 def get_cond(A):
@@ -175,12 +175,12 @@ def read_input(filename, selection=[], number_of_columns=3): # pylint: disable=d
         for line in input_file:
             if index in selection:
                 numbers = [list(map(float, line.rstrip().split(', ')))]
-                data = np.append(data, numbers, axis = 0) #pylint: disable=bad-whitespace
+                data = np.append(data, numbers, axis=0)
             index = index+1
     else:
         for line in input_file:
             numbers = [list(map(float, line.rstrip().split(', ')))]
-            data = np.append(data, numbers, axis=0) #pylint: disable=bad-whitespace
+            data = np.append(data, numbers, axis=0)
     input_file.close()
 
     return data
@@ -207,6 +207,33 @@ def create_lgs(data, number_of_unknowns):
     b = np.ndarray((0))
     for line in data:
         row = np.append(line[1:number_of_unknowns], 1)
+        A = np.append(A, [row], axis=0)
+        b = np.append(b, line[0])
+
+    return A, b
+
+def create_lgs_p2(data):
+    """
+    Creates matrix A and right-hand-side b of the linear regression system from the input data.
+
+    Parameters
+    ----------
+    data: np.ndarray
+        Input data as read from file.
+    number_of_unknowns: int
+        number of unknowns in the lgs.
+
+    Returns
+    -------
+    numpy.ndarray
+        matrix A
+    numpy.ndarray
+        vector b
+    """
+    A = np.ndarray((0, 2))
+    b = np.ndarray((0))
+    for line in data:
+        row = np.append(line[2], 1)
         A = np.append(A, [row], axis=0)
         b = np.append(b, line[0])
 
@@ -241,11 +268,66 @@ def plot_result(data_list, labels):
                  linestyle='--', color='C'+str(i))
         print('Modification %d: cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
               %(i, cond_A, cond_ATA, residuum))
+        print('Linear regression: p_0 = %f*p_1+%f' %(c, d))
         i = i+1
 
     plt.xlabel('$p_1$')
     plt.ylabel('$p_0$')
     plt.title('simple linear regression')
+    plt.legend(loc='lower right')
+    plt.grid()
+    plt.show()
+
+def plot_result_p2(data):
+    """
+    Plots results of simple linear regression from the input data.
+
+    Parameters
+    ----------
+    data_list: np.ndarray
+        list of datapoints to analyze, each with different modifications.
+    labels:
+        list of descriptions of the data.
+    """
+    mpl.style.use('classic')
+
+    A, b = create_lgs(data, 2)
+    c, d = solve_qr(A, b)
+
+    p_1 = np.linspace(50, 350, 10)
+    p_0 = c*p_1+d
+
+    cond_A = get_cond(A)
+    cond_ATA = get_cond_transposed(A)
+    residuum = norm_of_residuum(A, b)
+
+    plt.plot(A[:, 0], b, '.', label='Data points p_1')
+    plt.plot(p_1, p_0, label='Linear regression p_1',
+             linestyle='--')
+    print('p_1: cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
+          %(cond_A, cond_ATA, residuum))
+    print('Linear regression: p_0 = %f*p_1+%f' %(c, d))
+
+    A, b = create_lgs_p2(data)
+    c, d = solve_qr(A, b)
+
+    p_0 = c*p_1+d
+
+    cond_A = get_cond(A)
+    cond_ATA = get_cond_transposed(A)
+    residuum = norm_of_residuum(A, b)
+
+    plt.plot(A[:, 0], b, '.', label='Data points p_12')
+    plt.plot(p_1, p_0, label='Linear regression p_2',
+             linestyle='--')
+    print('p_2: cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
+          %(cond_A, cond_ATA, residuum))
+    print('Linear regression: p_0 = %f*p_2+%f' %(c, d))
+
+
+    plt.xlabel('$p_1 und 2$')
+    plt.ylabel('$p_0$')
+    plt.title('simple linear regression using p_1 und p_2')
     plt.legend(loc='lower right')
     plt.grid()
     plt.show()
@@ -295,24 +377,25 @@ def main():
     labels = []
     data_list.append(data)
     labels.append("all samples")
-    data_list.append(read_input(filename, [0, 1]))
-    labels.append("only first two")
-    data_list.append(data+data*0.05)
-    labels.append("5% error")
-    plot_result(data_list, labels)
+    # data_list.append(np.append(read_input(filename), [[480, 230, 0]], axis=0))
+    # labels.append("one big error")
+    # data_list.append(read_input(filename, [0, 1, 2, 3, 4, 5]))
+    # labels.append("only first six")
+    # plot_result(data_list, labels)
+    plot_result_p2(data)
 
-    plot_result_multilinear(data)
-
-    A, b = create_lgs(data, 3)
-    c, d, e = solve_qr(A, b)
-
-    cond_A = get_cond(A)
-    cond_ATA = get_cond_transposed(A)
-    residuum = norm_of_residuum(A, b)
-
-    print('Multilinear regression: p_0 = %f*p_1+%f*p_2+%f' %(c, d, e))
-    print('cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
-          %(cond_A, cond_ATA, residuum))
+    # plot_result_multilinear(data)
+    #
+    # A, b = create_lgs(data, 3)
+    # c, d, e = solve_qr(A, b)
+    #
+    # cond_A = get_cond(A)
+    # cond_ATA = get_cond_transposed(A)
+    # residuum = norm_of_residuum(A, b)
+    #
+    # print('Multilinear regression: p_0 = %f*p_1+%f*p_2+%f' %(c, d, e))
+    # print('cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
+    #       %(cond_A, cond_ATA, residuum))
 
 
 
