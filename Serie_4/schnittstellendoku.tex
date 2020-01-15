@@ -31,7 +31,7 @@
 
 \title{Dokumentation zum Modul \texttt{least\_squares.py}}
 \author{Marisa Breßler und Anne Jeschke (PPI27)}
-\date{\today}
+\date{17.01.2020}
 
 \begin{document}
 
@@ -40,39 +40,39 @@
 
 \section{Methoden}
 
-\subsubsection{\texttt{read\_input(filename, selection=None, number\_of\_columns=3)}}
-Diese Methode liest die Eingabe aus einer gegebenen Datei und übersetzt sie in einen mehrsimensionalen Array.
+\subsection{\texttt{read\_input(filename, selection=None, number\_of\_columns=3)}}
+Diese Methode liest die Eingabe aus einer gegebenen Datei und übersetzt sie in einen mehrdimensionalen Array.
 Die Datei enthält für jede Messung eine Zeile und die Messwerte einer Messung sind in der Zeile durch Kommata getrennt.
 In unserem Fall sind es immer drei Messwerte pro Messung, dies ist jedoch variabel.
 
 \bfpara{Input}
     \begin{compactdesc}
-		    \initem{filename}{String} Name der Eingabedatei
-        \initem{selection=None}{list of integers, optional} Liste der Zeilen, die aus der Datei gelesen werden sollen. Falls alle Zeilen gelesen werden sollen, muss dies nicht gesetzt werden.
+		    \initem{filename}{string} Name der Eingabedatei
+        \initem{selection=None}{list of integers, optional} Liste der Indices der Zeilen, die aus der Datei gelesen werden sollen; falls alle Zeilen gelesen werden sollen, muss dies nicht gesetzt werden
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
-		  \outitem{np.ndarray} Eingabedaten als mehrsimensionaler Array
+		  \outitem{np.ndarray} Eingabedaten als mehrdimensionaler Array
 	  \end{compactdesc}
 
-\subsubsection{\texttt{create\_lgs(data, number\_of\_unknowns)}}
-Diese Methode erstellt ein lineares Gleichungssystem (LGS) der Form $Ax=b$ aus den Eingabedaten, d.h. eine Matrix A und einen Vektor b, für die einfache oder mehrfache lineare Regression.
-Die erste Spalte des Eingabearrays wird dabei zum Vektor b und eine variable Anzahl der restlichen Spalten plus eine Spalte Einsen zur Matrix A.
+\subsection{\texttt{create\_lgs(data, number\_of\_unknowns)}}
+Diese Methode erstellt ein lineares Gleichungssystem (LGS) der Form $Ax=b$ aus den Eingabedaten, d.h. eine Matrix $A$ und einen Vektor $b$, für die einfache oder mehrfache lineare Regression.
+Die erste Spalte des Eingabearrays wird dabei zum Vektor $b$ und eine variable Anzahl der restlichen Spalten plus eine Spalte Einsen zur Matrix $A$.
 
 \bfpara{Input}
     \begin{compactdesc}
 		    \initem{data}{np.ndarray} Eingabedaten, wie oben beschrieben
-        \initem{number\_of\_unknowns}{int} Anzahl der Spalten der Matrix A, bzw. Anzahl $n$ der unbekannten $x_1$ bis $x_n$ in der linearen Regression $p_0 = p_1 x_1+...p_{n-1} x_{n-1}+x_n$
+        \initem{number\_of\_unknowns}{int} Anzahl der Spalten der Matrix $A$ bzw. Anzahl $n$ der unbekannten $x_1$ bis $x_n$ in der linearen Regression $p_0 = p_1 x_1+...+p_{n-1} x_{n-1}+x_n$
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
-		  \outitem{np.ndarray} Matrix A des LGS
-		  \outitem{np.ndarray} Vektor b des LGS
+		  \outitem{np.ndarray} Matrix $A$ des LGS
+		  \outitem{np.ndarray} Vektor $b$ des LGS
 	  \end{compactdesc}
 
-\subsubsection{\texttt{create\_lgs\_p2(data)}}
-Diese Methode erstellt ein lineares Gleichungssystem (LGS) der Form $Ax=b$ aus den Eingabedaten, d.h. eine Matrix A und einen Vektor b, für die einfache lineare Regression der Form $p_0 = p_2 x_0 + x_1$.
-Die erste Spalte des Eingabearrays wird dabei zum Vektor b und die dritte Spalte plus eine Spalte Einsen zur Matrix A.
+\subsection{\texttt{create\_lgs\_p2(data)}}
+Diese Methode erstellt ein lineares Gleichungssystem (LGS) der Form $Ax=b$ aus den Eingabedaten, d.h. eine Matrix $A$ und einen Vektor $b$, für die einfache lineare Regression der Form $p_0 = p_2 x_1+x_2$.
+Die erste Spalte des Eingabearrays wird dabei zum Vektor $b$ und die dritte Spalte plus eine Spalte Einsen zur Matrix $A$.
 
 \bfpara{Input}
     \begin{compactdesc}
@@ -80,12 +80,12 @@ Die erste Spalte des Eingabearrays wird dabei zum Vektor b und die dritte Spalte
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
-		  \outitem{np.ndarray} Matrix A des LGS
-		  \outitem{np.ndarray} Vektor b des LGS
+		  \outitem{np.ndarray} Matrix $A$ des LGS
+		  \outitem{np.ndarray} Vektor $b$ des LGS
 	  \end{compactdesc}
 
-\subsubsection{\texttt{get\_qr(A)}}
-Diese Methode erstellt die QR-Zerlegung einer Matrix A mittels der scipy-Bibliotheksfunktion.
+\subsection{\texttt{get\_qr(A)}}
+Diese Methode stellt die QR-Zerlegung einer Matrix $A$ mittels der zugehörigen scipy-Bibliotheksfunktion zur Verfügung.
 
 \bfpara{Input}
     \begin{compactdesc}
@@ -93,124 +93,126 @@ Diese Methode erstellt die QR-Zerlegung einer Matrix A mittels der scipy-Bibliot
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
-		  \outitem{np.ndarray} Orthogonale Matrix Q der QR-Zerlegung
-		  \outitem{np.ndarray} Rechte obere Dreiecksmatrix R der QR-Zerlegung
+		  \outitem{np.ndarray} orthogonale Matrix $Q$ der QR-Zerlegung
+		  \outitem{np.ndarray} rechte bzw. obere Dreiecksmatrix $R$ der QR-Zerlegung
 	  \end{compactdesc}
 
-\subsubsection{\texttt{full\_rank(A)}}
-Diese Methode testet, ob die Eingabematrix A einen vollen Spaltenrang hat.
+\subsection{\texttt{full\_rank(A)}}
+Diese Methode testet, ob die Eingabematrix $A$ einen vollen Spaltenrang hat.
 
 \bfpara{Input}
     \begin{compactdesc}
-		    \initem{A}{np.ndarray} Matrix A
+		    \initem{A}{np.ndarray} Matrix $A$
 		\end{compactdesc}
+\pagebreak 
 \bfpara{Returns}
     \begin{compactdesc}
-		  \outitem{bool} True, wenn voller Spaltenrang. False sonst.
+		  \outitem{bool} True, wenn voller Spaltenrang; False sonst
 	  \end{compactdesc}
 
-\subsubsection{\texttt{solve\_qr(A, b)}}
+\subsection{\texttt{solve\_qr(A, b)}}
 Diese Methode löst das ggf. auch überbestimmte LGS $Ax=b$ mittels QR-Zerlegung.
 
 \bfpara{Input}
     \begin{compactdesc}
-		    \initem{A}{np.ndarray} Matrix A
-		    \initem{b}{np.ndarray} Vektor b
+		    \initem{A}{np.ndarray} Matrix $A$
+		    \initem{b}{np.ndarray} Vektor $b$
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
-		  \outitem{np.ndarray} Lösungsvektor des LGS
+		  \outitem{np.ndarray} Lösungsvektor $x$ des LGS
 	  \end{compactdesc}
 
-\subsubsection{\texttt{norm\_of\_residuum(A, b)}}
-Diese Methode ermittelt die euklidische Norm des Residuums $Ax-b$ der Lösung des LGS $Ax=b$.
+\subsection{\texttt{norm\_of\_residuum(A, b)}}
+Diese Methode ermittelt die Euklidische Norm des Residuums $Ax-b$ der Lösung des LGS $Ax=b$.
 
 \bfpara{Input}
     \begin{compactdesc}
-		    \initem{A}{np.ndarray} Matrix A
-		    \initem{b}{np.ndarray} Vektor b
+		    \initem{A}{np.ndarray} Matrix $A$
+		    \initem{b}{np.ndarray} Vektor $b$
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
-		  \outitem{float} euklidische Norm des Residuums.
+		  \outitem{float} Euklidische Norm des Residuums
 	  \end{compactdesc}
 
-\subsubsection{\texttt{get\_cond(A)}}
-Diese Methode ermittelt die Kondition der Matrix A unter der Spektralnorm.
+\subsection{\texttt{get\_cond(A)}}
+Diese Methode ermittelt die Kondition der Matrix $A$ unter der Spektralnorm.
 
 \bfpara{Input}
     \begin{compactdesc}
-		    \initem{A}{np.ndarray} Matrix A
+		    \initem{A}{np.ndarray} Matrix $A$
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
-		  \outitem{float} Kondition von A
+		  \outitem{float} Kondition von $A$
 	  \end{compactdesc}
 
-\subsubsection{\texttt{get\_cond\_transposed(A)}}
+\subsection{\texttt{get\_cond\_transposed(A)}}
 Diese Methode ermittelt die Kondition der Matrix $A^T A$ unter der Spektralnorm.
 
 \bfpara{Input}
     \begin{compactdesc}
-		    \initem{A}{np.ndarray} Matrix A
+		    \initem{A}{np.ndarray} Matrix $A$
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
 		  \outitem{float} Kondition von $A^T A$
 	  \end{compactdesc}
 
-\subsubsection{\texttt{plot\_result(data\_list, labels)}}
-Diese Methode gibt die Lösungen des Problems mittels einfacher linearen Regression der Form $p_0 = p_1 x_0 + x_1$ unter verschiedenen Modifikationen der Eingabedaten sowohl als Plot, als auch über die Konsole aus.
+\subsection{\texttt{plot\_result(data\_list, labels)}}
+Diese Methode gibt die Lösungen des Problems mittels einfacher linearer Regression der Form $p_0 = p_1 x_1+x_2$ unter verschiedenen Modifikationen der Eingabedaten sowohl als Plot als auch über die Konsole aus.
 Die ermittelten Funktionen werden ausgegeben und geplottet.
-Zu jedem LGS werden zusätzlich die Norm des Residuums und die Kondition von A und $A^T A$ ausgegeben.
+Zu jedem LGS werden zusätzlich die Norm des Residuums und die Kondition von $A$ und $A^T A$ ausgegeben.
 
+\pagebreak 
 \bfpara{Input}
     \begin{compactdesc}
-		    \initem{data\_list}{list of 2d-arrays} Liste von verschiedenen modifizierten Versionen der Eingabedaten.
-		    \initem{labels}{list of strings} Liste von Beschreibungen der verschiedenen Modifikationen. Muss die selbe Länge haben, wie data\_list.
+		    \initem{data\_list}{list of 2d-arrays} Liste von verschiedenen modifizierten Versionen der Eingabedaten
+		    \initem{labels}{list of strings} Liste von Beschreibungen der verschiedenen Modifikationen; muss dieselbe Länge haben wie data\_list
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
 		  \outitem{None} --
 	  \end{compactdesc}
 
-\subsubsection{\texttt{plot\_result\_p2(data)}}
-Diese Methode gibt die Lösungen des Problems mittels einfacher linearen Regression der Form $p_0 = p_1 x_0 + x_1$ und der Form $p_0 = p_2 x_0 + x_1$ sowohl als Plot, als auch über die Konsole aus.
+\subsection{\texttt{plot\_result\_p2(data)}}
+Diese Methode gibt die Lösungen des Problems mittels einfacher linearer Regression der Form $p_0 = p_1 x_1+x_2$ und der Form $p_0 = p_2 x_1+x_2$ sowohl als Plot als auch über die Konsole aus.
 Die ermittelten Funktionen werden ausgegeben und geplottet.
-Zu jedem LGS werden zusätzlich die Norm des Residuums und die Kondition von A und $A^T A$ ausgegeben.
+Zu jedem LGS werden zusätzlich die Norm des Residuums und die Kondition von $A$ und $A^T A$ ausgegeben.
 
 \bfpara{Input}
     \begin{compactdesc}
-		    \initem{data}{2d-array} Die Eingabedaten als 2 dimensionaler Array.
+		    \initem{data}{2d-array} Eingabedaten als zweidimensionaler Array
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
 		  \outitem{None} --
 	  \end{compactdesc}
 
-\subsubsection{\texttt{plot\_result\_multilinear(data)}}
-Diese Methode gibt die Lösung des Problems mittels linearer Mehrfachregression der Form $p_0 = p_1 x_0 +p_2 x_1 + x_2$ sowohl als Plot, als auch über die Konsole aus.
+\subsection{\texttt{plot\_result\_multilinear(data)}}
+Diese Methode gibt die Lösung des Problems mittels linearer Mehrfachregression der Form $p_0 = p_1 x_1 +p_2 x_2+x_3$ sowohl als Plot als auch über die Konsole aus.
 Die ermittelte Funktion wird ausgegeben und geplottet.
-Zu dem LGS werden zusätzlich die Norm des Residuums und die Kondition von A und $A^T A$ ausgegeben.
+Zu dem LGS werden zusätzlich die Norm des Residuums und die Kondition von $A$ und $A^T A$ ausgegeben.
 
 \bfpara{Input}
     \begin{compactdesc}
-		    \initem{data}{2d-array} Die Eingabedaten als 2 dimensionaler Array.
-		    \initem{labels}{list of strings} Liste von Beschreibungen der verschiedenen Modifikationen. Muss die selbe Länge haben, wie data\_list.
+		    \initem{data}{2d-array} Eingabedaten als zweidimensionaler Array
+		    \initem{labels}{list of strings} Liste von Beschreibungen der verschiedenen Modifikationen; muss dieselbe Länge haben wie data\_list
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
 		  \outitem{None} --
 	  \end{compactdesc}
-
+\pagebreak 
 \section{Bedienung des Hauptprogrammes}
-In \texttt{least\_squares.py} ist eine \texttt{main()} Funktion implementiert.
+In \texttt{least\_squares.py} ist eine \texttt{main()}-Funktion implementiert.
 Das Programm wird aufgerufen mittels \texttt{python3 least\_squares.py eingabedatei.txt}.
 Die Datei enthält für jede Messung eine Zeile und die Messwerte einer Messung sind in der Zeile durch Kommata getrennt.
-Unsere Beispieldatei \texttt{pegel.txt} enthält zwölf Messungen mit jeweils drei Messwerten und hat die Form:
+Unsere Beispieldatei \texttt{pegel.txt} enthält zwölf Messungen mit jeweils drei Messwerten und hat folgende Form:
 
 \begin{verbatim}
-  172, 93, 120
+  172,  93, 120
   309, 193, 258
   302, 187, 255
   283, 174, 238
@@ -224,12 +226,12 @@ Unsere Beispieldatei \texttt{pegel.txt} enthält zwölf Messungen mit jeweils dr
   230, 144, 191
 \end{verbatim}
 
-Daraufhin wird ein Plot erstellt der einfachen linearen Regression mit genau diesen Daten, einer Regression, die nur die ersten sechs Zeilen nutzt und einer, in die eine falsche Messung eingefügt wurde.
+Daraufhin wird ein Plot erstellt für die einfache lineare Regression mit genau diesen Daten, eine Regression, die nur die ersten sechs Zeilen nutzt, und einer, in die eine falsche Messung eingefügt wurde.
 Die geplotteten Funktionen werden zusätzlich ausgegeben.
-Zu jedem LGS werden zusätzlich die Norm des Residuums und die Kondition von A und $A^T A$ ausgegeben.
+Zu jedem LGS werden darüber hinaus die Euklidische Norm des Residuums und die Kondition von $A$ und $A^T A$ in der Spektralnorm ausgegeben.
 
-Daraufhin werden die Lösungen des Problems mittels einfacher linearen Regression unter der Nutzung der zweiten und im Vergleich auch unter der Nutztung der dritten Spalte der Daten sowohl als Plot, als auch über die Konsole ausgegeben.
+Daraufhin werden die Lösungen des Problems mittels einfacher linearer Regression unter Nutzung der zweiten und im Vergleich auch unter Nutzung der dritten Spalte der Daten sowohl als Plot als auch über die Konsole ausgegeben.
 
-Als letztes wird die Lösung des Problems mittels linearer Mehrfachregression der Form $p_0 = p_1 x_0 +p_2 x_1 + x_2$ sowohl als Plot, als auch über die Konsole ausgegeben.
+Schließlich wird die Lösung des Problems mittels linearer Mehrfachregression der Form $p_0 = p_1 x_1 +p_2 x_2+x_3$ sowohl als Plot als auch über die Konsole ausgegeben.
 
 \end{document}
