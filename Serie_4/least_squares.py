@@ -11,7 +11,7 @@ import sys
 import numpy as np
 import scipy as sc
 import scipy.linalg as lina
-import matplotlib as mpl
+# import matplotlib as mpl
 # mpl.use('qt4agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
@@ -239,7 +239,7 @@ def get_cond_transposed(A):
 
     return lina.norm(ATA, 2)*lina.norm(lina.pinv(ATA), 2)
 
-def plot_result(data_list, labels):
+def plot_result(data_list, labels, linestyles, markers, colors):
     """
     Plots results of simple linear regression from the input data.
 
@@ -250,7 +250,6 @@ def plot_result(data_list, labels):
     labels:
         list of descriptions of the data.
     """
-    mpl.style.use('classic')
     i = 0
     for data in data_list:
         A, b = create_lgs(data, 2)
@@ -263,9 +262,10 @@ def plot_result(data_list, labels):
         cond_ATA = get_cond_transposed(A)
         residuum = norm_of_residuum(A, b)
 
-        plt.plot(A[:, 0], b, '.', label='Modification %d: %s' %(i, labels[i]), color='C'+str(i))
+        plt.scatter(A[:, 0], b, marker=markers[i],
+                    label='Modification %d: %s' %(i, labels[i]), color=colors[i])
         plt.plot(p_1, p_0, label='Linear regression of mod. %d' %i,
-                 linestyle='--', color='C'+str(i))
+                 linestyle=linestyles[i], color=colors[i])
         print('Modification %d: cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
               %(i, cond_A, cond_ATA, residuum))
         print('Linear regression: p_0 = %f*p_1+%f' %(c, d))
@@ -273,7 +273,7 @@ def plot_result(data_list, labels):
 
     plt.xlabel('$p_1$')
     plt.ylabel('$p_0$')
-    plt.title('simple linear regression')
+    plt.title('Simple linear regression')
     plt.legend(loc='lower right')
     plt.grid()
     plt.show()
@@ -289,7 +289,6 @@ def plot_result_p2(data):
     labels:
         list of descriptions of the data.
     """
-    mpl.style.use('classic')
 
     A, b = create_lgs(data, 2)
     c, d = solve_qr(A, b)
@@ -301,9 +300,9 @@ def plot_result_p2(data):
     cond_ATA = get_cond_transposed(A)
     residuum = norm_of_residuum(A, b)
 
-    plt.plot(A[:, 0], b, '.', label='Data points p_1')
-    plt.plot(p_1, p_0, label='Linear regression p_1',
-             linestyle='--')
+    plt.scatter(A[:, 0], b, marker='o', label='Data points $p_1$', color='navy')
+    plt.plot(p_1, p_0, label='Linear regression $p_1$',
+             linestyle='--', color='navy')
     print('p_1: cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
           %(cond_A, cond_ATA, residuum))
     print('Linear regression: p_0 = %f*p_1+%f' %(c, d))
@@ -317,17 +316,17 @@ def plot_result_p2(data):
     cond_ATA = get_cond_transposed(A)
     residuum = norm_of_residuum(A, b)
 
-    plt.plot(A[:, 0], b, '.', label='Data points p_12')
-    plt.plot(p_1, p_0, label='Linear regression p_2',
-             linestyle='--')
+    plt.scatter(A[:, 0], b, marker='x', label='Data points $p_2$', color='red')
+    plt.plot(p_1, p_0, label='Linear regression $p_2$',
+             linestyle='-.', color='red')
     print('p_2: cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
           %(cond_A, cond_ATA, residuum))
     print('Linear regression: p_0 = %f*p_2+%f' %(c, d))
 
 
-    plt.xlabel('$p_1 und 2$')
+    plt.xlabel('$p_{1;2}$')
     plt.ylabel('$p_0$')
-    plt.title('simple linear regression using p_1 und p_2')
+    plt.title('Simple linear regression using $p_1$ vs. $p_2$')
     plt.legend(loc='lower right')
     plt.grid()
     plt.show()
@@ -341,7 +340,6 @@ def plot_result_multilinear(data):
     data: np.ndarray
         Input data as read from file.
     """
-    mpl.style.use('default')
 
     A, b = create_lgs(data, 3)
     c, d, e = solve_qr(A, b)
@@ -355,7 +353,7 @@ def plot_result_multilinear(data):
     cond_ATA = get_cond_transposed(A)
     residuum = norm_of_residuum(A, b)
 
-    print('Multilinear regression: p_0 = %f*p_1+%f*p_2+%f' %(c, d, e))
+    print('Linear multiple regression: p_0 = %f*p_1+%f*p_2+%f' %(c, d, e))
     print('cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
           %(cond_A, cond_ATA, residuum))
 
@@ -369,7 +367,7 @@ def plot_result_multilinear(data):
     ax.set_xlabel('$p_1$')
     ax.set_ylabel('$p_2$')
     ax.set_zlabel('$p_0$')
-    plt.title('multilinear regression')
+    plt.title('Linear multiple regression')
     ax.grid()
     plt.show()
 
@@ -388,9 +386,13 @@ def main():
     labels.append("all samples")
     data_list.append(np.append(read_input(filename), [[480, 230, 0]], axis=0))
     labels.append("one big error")
-    data_list.append(read_input(filename, [0, 1, 2, 3, 4, 5]))
+    data_list.append(read_input(filename, range(6)))
     labels.append("only first six")
-    plot_result(data_list, labels)
+    linestyles = ['-', '--', '-.']
+    markers = ['o', 'x', 's']
+    colors = ['navy', 'red', 'limegreen']
+
+    plot_result(data_list, labels, linestyles, markers, colors)
     plot_result_p2(data)
 
     plot_result_multilinear(data)

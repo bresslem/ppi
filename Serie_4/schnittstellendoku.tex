@@ -104,7 +104,7 @@ Diese Methode testet, ob die Eingabematrix $A$ einen vollen Spaltenrang hat.
     \begin{compactdesc}
 		    \initem{A}{np.ndarray} Matrix $A$
 		\end{compactdesc}
-\pagebreak 
+\pagebreak
 \bfpara{Returns}
     \begin{compactdesc}
 		  \outitem{bool} True, wenn voller Spaltenrang; False sonst
@@ -160,16 +160,19 @@ Diese Methode ermittelt die Kondition der Matrix $A^T A$ unter der Spektralnorm.
 		  \outitem{float} Kondition von $A^T A$
 	  \end{compactdesc}
 
-\subsection{\texttt{plot\_result(data\_list, labels)}}
+\subsection{\texttt{plot\_result(data\_list, labels, linestyles, markers, colors)}}
 Diese Methode gibt die Lösungen des Problems mittels einfacher linearer Regression der Form $p_0 = p_1 x_1+x_2$ unter verschiedenen Modifikationen der Eingabedaten sowohl als Plot als auch über die Konsole aus.
 Die ermittelten Funktionen werden ausgegeben und geplottet.
 Zu jedem LGS werden zusätzlich die Norm des Residuums und die Kondition von $A$ und $A^T A$ ausgegeben.
 
-\pagebreak 
+\pagebreak
 \bfpara{Input}
     \begin{compactdesc}
 		    \initem{data\_list}{list of 2d-arrays} Liste von verschiedenen modifizierten Versionen der Eingabedaten
 		    \initem{labels}{list of strings} Liste von Beschreibungen der verschiedenen Modifikationen; muss dieselbe Länge haben wie data\_list
+		    \initem{linestyles}{list of strings} Liste von Linestyles der verschiedenen Modifikationen; muss dieselbe Länge haben wie data\_list
+		    \initem{markers}{list of strings} Liste von Markern der Scatterplots der verschiedenen Modifikationen; muss dieselbe Länge haben wie data\_list
+		    \initem{colors}{list of strings} Liste von Farben der verschiedenen Modifikationen; muss dieselbe Länge haben wie data\_list
 		\end{compactdesc}
 \bfpara{Returns}
     \begin{compactdesc}
@@ -204,7 +207,7 @@ Zu dem LGS werden zusätzlich die Norm des Residuums und die Kondition von $A$ u
     \begin{compactdesc}
 		  \outitem{None} --
 	  \end{compactdesc}
-\pagebreak 
+\pagebreak
 \section{Bedienung des Hauptprogrammes}
 In \texttt{least\_squares.py} ist eine \texttt{main()}-Funktion implementiert.
 Das Programm wird aufgerufen mittels \texttt{python3 least\_squares.py eingabedatei.txt}.
