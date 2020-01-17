@@ -9,7 +9,7 @@
 \usetheme{Warsaw}
 
 \title{Hochwasserstände vorhersagen mittels Kleinste-Quadrate-Lösung}
-\author{Marisa Breßler und Anne Jeschke}
+\author{Marisa Breßler und Anne Jeschke (PPI27)}
 \date{21.01.2020}
 
 \begin{document}
@@ -31,7 +31,7 @@
 
 \section{Einleitung}
 \begin{frame} %%Eine Folie
-  \frametitle{Vorstellung des Problems} %%Folientitel
+  \frametitle{Vorstellung des Ausgleichsproblems} %%Folientitel
 
   \underline{Ziel}: in Daten Zusammenhang erkennen, um Prognosen zu erstellen
 
@@ -49,7 +49,7 @@
 
 \section{Theorie}
 \begin{frame} %%Eine Folie
-  \frametitle{Aufstellung eines Gleichungssystems} %%Folientitel
+  \frametitle{Aufstellen eines überbestimmten Gleichungssystems} %%Folientitel
   \tabcolsep=0.11cm
   \begin{table}
     \centering
@@ -92,7 +92,7 @@ $p_{0,i} = x_1 p_{1,i} + x_2 \thickspace \thickspace \forall i = 1,...,N$
 
 \begin{frame} %%Eine Folie
   \frametitle{Methode der kleinsten Quadrate} %%Folientitel
-  \underline{Gesucht}: Lösungsvektor x von $Ax=b$, s.d. $||Ax-b||_2$ minimal
+  \underline{gesucht}: Lösungsvektor $x$ von $Ax=b$, s.d. $||Ax-b||_2$ minimal
   \begin{figure}
     \centering
       \includegraphics[width=0.6\textwidth]{least_squares_example}
@@ -137,7 +137,7 @@ $p_{0,i} = x_1 p_{1,i} + x_2 \thickspace \thickspace \forall i = 1,...,N$
     \end{pmatrix}$
     , $z_1 \in \mathbb{R}^{2}$ und $z_2 \in \mathbb{R}^{N-2}$
     \pause
-    \item Löse $R_1 x = z_1$ mittels Rückwärtseliminierung
+    \item löse $R_1 x = z_1$ mittels Rückwärtseliminierung
     \pause
     \item $||Ax-b||_2 = ||z_2||_2$ ist minimal
   \end{enumerate}
@@ -145,26 +145,25 @@ $p_{0,i} = x_1 p_{1,i} + x_2 \thickspace \thickspace \forall i = 1,...,N$
 
 \section{Experimente}
 \subsection{Einfache lineare Regression}
-
 \begin{frame} %%Eine Folie
-  \frametitle{Ergebnis mit unmodifizierten Daten} %%Folientitel
+  \frametitle{Lineare Regression (unmodifizierte Daten)} %%Folientitel
 \begin{figure}
   \centering
-    \includegraphics[width=0.75\textwidth]{unmodified}
+    \includegraphics[width=0.7\textwidth]{unmodified}
     \vspace{-1em}
   \caption{Ergebnis mit unmodifizierten Daten}
 \end{figure}
 \vspace{-1em}
 \centering
-$p_0 = 1.450333p_1+30.302158$, $||Ax-b||_2=32.904232$
+$p_0 = 1.450333 p_1 + 30.302158$, $||Ax-b||_2 = 32.904232$
 
 \end{frame}
 
 \begin{frame} %%Eine Folie
-  \frametitle{Ergebnisse mit modifizierten Daten} %%Folientitel
+  \frametitle{Lineare Regression (modifizierte Daten)} %%Folientitel
   \begin{figure}
     \centering
-      \includegraphics[width=0.9\textwidth]{Linear_Regression}
+      \includegraphics[width=0.8\textwidth]{Linear_Regression}
       \vspace{-1em}
     \caption{Ergebnis mit verschiedenen modifizierten Daten}
   \end{figure}
@@ -173,23 +172,23 @@ $p_0 = 1.450333p_1+30.302158$, $||Ax-b||_2=32.904232$
 \begin{frame}
   \begin{figure}
     \centering
-      \includegraphics[width=0.8\textwidth]{Linear_Regression}
+      \includegraphics[width=0.7\textwidth]{Linear_Regression}
   \end{figure}
   \vspace{-1em}
   \centering
   \begin{tabular}{c|c|c}
     Nr. der Modifikation & $cond_2(A)$   & $||Ax-b||_2$\\ \hline
-                       0 & $820.140820$  & $32.904232$\\ \hline
+                       0 & $820.140820$  &  $32.904232$\\ \hline
                        1 & $857.010517$  & $114.146281$\\ \hline
-                       2 & $665.277296$  & $1.542414$
+                       2 & $665.277296$  &   $1.542414$
   \end{tabular}
 \end{frame}
 
 \begin{frame} %%Eine Folie
-  \frametitle{Verwendung von anderer Messung} %%Folientitel
+  \frametitle{Lineare Regression (andere Messung)} %%Folientitel
   \begin{figure}
     \centering
-      \includegraphics[width=0.9\textwidth]{Linear_Regression_p2}
+      \includegraphics[width=0.8\textwidth]{Linear_Regression_p2}
       \vspace{-1em}
     \caption{Ergebnis mit $p_1$ vs. $p_2$}
   \end{figure}
@@ -197,13 +196,13 @@ $p_0 = 1.450333p_1+30.302158$, $||Ax-b||_2=32.904232$
 \begin{frame}
   \begin{figure}
     \centering
-      \includegraphics[width=0.8\textwidth]{Linear_Regression_p2}
+      \includegraphics[width=0.75\textwidth]{Linear_Regression_p2}
   \end{figure}
   \vspace{-1em}
   \centering
   \begin{tabular}{c|c|c}
     Nr. des Pegels & $cond_2(A)$   & $||Ax-b||_2$\\ \hline
-                 1 & $820.140820$  & $32.904232$\\ \hline
+                 1 &  $820.140820$ & $32.904232$\\ \hline
                  2 & $1288.744531$ & $78.768276$
   \end{tabular}
 \end{frame}
@@ -217,14 +216,14 @@ $p_{0,i} = x_1 p_{1,i} + x_2 p_{2, i} + x_3 \thickspace \thickspace \forall i = 
   \begin{figure}
 
     \centering
-      \includegraphics[width=0.65\textwidth]{Linear_Multi_Regression}
+      \includegraphics[width=0.6\textwidth]{Linear_Multi_Regression}
       \vspace{-1em}
     \caption{Ergebnis der linearen Mehrfachregression}
   \end{figure}
   \vspace{-1em}
   \centering
 
-  $cond_2(A)=1787.633757$, $||Ax-b||_2=32.091986$
+  $cond_2(A) = 1787.633757$, $||Ax-b||_2 = 32.091986$
 
 \end{frame}
 
@@ -242,7 +241,7 @@ viel mehr Messwerte als Variablen $\Rightarrow$ QR-Zerlegung aufwändig
 
 \pause
 \begin{tabular}{c|c|c}
-  Nr. der Modifikation & $cond_2(A)$   & $cond_2(A^T A)$\\ \hline
+  Nr. der Modifikation & $cond_2(A)$    & $cond_2(A^T A)$\\ \hline
                      0 & $\approx 820$  & $\approx 672631$\\ \hline
                      1 & $\approx 857$  & $\approx 734467$\\ \hline
                      2 & $\approx 665$  & $\approx 442594$

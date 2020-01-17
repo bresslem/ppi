@@ -15,7 +15,7 @@ from matplotlib import use
 use('qt4agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
-plt.rcParams['font.size'] = 12
+plt.rcParams['font.size'] = 14
 
 def read_input(filename, selection=None, number_of_columns=3):
     """
@@ -306,9 +306,9 @@ def plot_result_p2(data):
     cond_ATA = get_cond_transposed(A)
     residuum = norm_of_residuum(A, b)
 
-    plt.scatter(A[:, 0], b, marker='o', label='Data points $p_1$', color='navy')
+    plt.scatter(A[:, 0], b, marker='s', label='Data points $p_1$', color='limegreen')
     plt.plot(p_1, p_0, label='Linear regression $p_1$',
-             linestyle='--', color='navy')
+             linestyle='-', color='limegreen')
     print('p_1: cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
           %(cond_A, cond_ATA, residuum))
     print('Linear regression: p_0 = %f*p_1+%f' %(c, d))
@@ -322,9 +322,9 @@ def plot_result_p2(data):
     cond_ATA = get_cond_transposed(A)
     residuum = norm_of_residuum(A, b)
 
-    plt.scatter(A[:, 0], b, marker='x', label='Data points $p_2$', color='red')
+    plt.scatter(A[:, 0], b, marker='^', label='Data points $p_2$', color='navy')
     plt.plot(p_1, p_0, label='Linear regression $p_2$',
-             linestyle='-.', color='red')
+             linestyle='--', color='navy')
     print('p_2: cond_2(A)=%f, cond_2(A^T A)=%f, ||Ax-b||_2=%f'
           %(cond_A, cond_ATA, residuum))
     print('Linear regression: p_0 = %f*p_2+%f' %(c, d))
@@ -395,8 +395,8 @@ def main():
     data_list.append(read_input(filename, range(6)))
     labels.append("only first six")
     linestyles = ['-', '--', '-.']
-    markers = ['o', 'x', 's']
-    colors = ['navy', 'red', 'limegreen']
+    markers = ['s', '^', 'x']
+    colors = ['limegreen', 'navy', 'red']
 
     plot_result(data_list, labels, linestyles, markers, colors)
     plot_result_p2(data)

@@ -1,0 +1,7 @@
+\babel@toc {ngerman}{}
+\beamer@sectionintoc {1}{Einleitung}{3}{0}{1}
+\beamer@sectionintoc {2}{Theorie}{4}{0}{2}
+\beamer@sectionintoc {3}{Experimente}{11}{0}{3}
+\beamer@subsectionintoc {3}{1}{Einfache lineare Regression}{11}{0}{3}
+\beamer@subsectionintoc {3}{2}{Lineare Mehrfachregression}{16}{0}{3}
+\beamer@sectionintoc {4}{Ausblick}{17}{0}{4}
