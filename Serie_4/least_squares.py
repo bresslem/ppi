@@ -11,8 +11,8 @@ import sys
 import numpy as np
 import scipy as sc
 import scipy.linalg as lina
-# import matplotlib as mpl
-# mpl.use('qt4agg')
+from matplotlib import use
+use('qt4agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 plt.rcParams['font.size'] = 12
@@ -249,6 +249,12 @@ def plot_result(data_list, labels, linestyles, markers, colors):
         list of datapoints to analyze, each with different modifications.
     labels:
         list of descriptions of the data.
+    linestyles:
+        list of linestyles
+    markers:
+        list of markers
+    colors:
+        list of colors
     """
     i = 0
     for data in data_list:
