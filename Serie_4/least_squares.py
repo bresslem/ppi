@@ -12,7 +12,7 @@ import numpy as np
 import scipy as sc
 import scipy.linalg as lina
 from matplotlib import use
-use('qt4agg')
+# use('qt4agg')
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 plt.rcParams['font.size'] = 14
@@ -141,9 +141,8 @@ def full_rank(A):
         true if A has full column rank.
     """
     R = get_qr(A)[1]
-
     for i in range(R.shape[1]):
-        if R[i, i] == 0:
+        if abs(R[i, i]) <= 10**(-10):
             return False
 
     return True
@@ -386,20 +385,21 @@ def main():
         raise Exception('No input data given.')
 
     data = read_input(filename)
-    data_list = []
-    labels = []
-    data_list.append(data)
-    labels.append("all samples")
-    data_list.append(np.append(read_input(filename), [[480, 230, 0]], axis=0))
-    labels.append("one big error")
-    data_list.append(read_input(filename, range(6)))
-    labels.append("only first six")
-    linestyles = ['-', '--', '-.']
-    markers = ['s', '^', 'x']
-    colors = ['limegreen', 'navy', 'red']
 
-    plot_result(data_list, labels, linestyles, markers, colors)
-    plot_result_p2(data)
+    # data_list = []
+    # labels = []
+    # data_list.append(data)
+    # labels.append("all samples")
+    # data_list.append(np.append(read_input(filename), [[480, 230, 0]], axis=0))
+    # labels.append("one big error")
+    # data_list.append(read_input(filename, range(6)))
+    # labels.append("only first six")
+    # linestyles = ['-', '--', '-.']
+    # markers = ['s', '^', 'x']
+    # colors = ['limegreen', 'navy', 'red']
+    #
+    # plot_result(data_list, labels, linestyles, markers, colors)
+    # plot_result_p2(data)
 
     plot_result_multilinear(data)
 
