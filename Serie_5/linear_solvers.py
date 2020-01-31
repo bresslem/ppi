@@ -93,7 +93,7 @@ def solve_cg(A, b, x0,
         iterates.append(iterates[k] + c*d)
         residuals.append(residuals[k] + c*z)
 
-        if lina.norm(residuals[k+1] - residuals[k], np.inf) < params["min_red"]:
+        if abs(lina.norm(residuals[k+1], np.inf) - lina.norm(residuals[k], np.inf)) < params["min_red"]:
             return "min_red", iterates, residuals
 
         if lina.norm(residuals[k+1], np.inf) < params["eps"]:

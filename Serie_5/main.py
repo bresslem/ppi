@@ -129,17 +129,27 @@ def main():
     #
     # print("Solution:", exact)
 
-# # Fehlerentwicklung pr Iteration
 
-    rhs.plot_iterates_error(u1, f1, 1, 10)
-    rhs.plot_iterates_error(u2, f2, 2, 10)
-    rhs.plot_iterates_error(u3, f3, 3, 10)
+    # rhs.plot_error_cond(u1, f1, 1, np.geomspace(3, 10000, num=10, dtype=int))
+    # rhs.plot_error_cond(u2, f2, 2, np.geomspace(3, 100, num=10, dtype=int))
+    # rhs.plot_error_cond(u3, f3, 3, np.geomspace(3, 24, num=10, dtype=int))
 
-# # Fehler-/Konvergenzplot fuer d = 1, 2, 3 in getrennten Grafiken
+    rhs.plot_error_eps(u1, f1, 1, np.geomspace(3, 10000, num=10, dtype=int))
+    rhs.plot_error_eps(u2, f2, 2, np.geomspace(3, 100, num=10, dtype=int))
+    rhs.plot_error_eps(u3, f3, 3, np.geomspace(3, 24, num=10, dtype=int))
 
-    rhs.plot_error_comp(u1, f1, 1, np.geomspace(3, 10000, num=10, dtype=int))
-    rhs.plot_error_comp(u2, f2, 2, np.geomspace(3, 100, num=10, dtype=int))
-    rhs.plot_error_comp(u3, f3, 3, np.geomspace(3, 24, num=10, dtype=int))
+
+# # # Fehlerentwicklung pr Iteration
+#
+#     rhs.plot_iterates_error(u1, f1, 1, 2)
+#     rhs.plot_iterates_error(u2, f2, 2, 2)
+#     rhs.plot_iterates_error(u3, f3, 3, 2)
+#
+# # # Fehler-/Konvergenzplot fuer d = 1, 2, 3 in getrennten Grafiken
+#
+#     rhs.plot_error_comp(u1, f1, 1, np.geomspace(3, 10000, num=10, dtype=int))
+#     rhs.plot_error_comp(u2, f2, 2, np.geomspace(3, 100, num=10, dtype=int))
+#     rhs.plot_error_comp(u3, f3, 3, np.geomspace(3, 24, num=10, dtype=int))
 
 # # # Fehler-/Konvergenzplot fuer d = 1, 2, 3 in getrennten Grafiken
 #
