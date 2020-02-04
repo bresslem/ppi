@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  4 FEB 2020 23:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  4 FEB 2020 23:47
 entering extended mode
 **./serie5_bericht.tex
 (serie5_bericht.tex
@@ -225,6 +225,39 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 LaTeX Info: Redefining \[ on input line 2855.
 LaTeX Info: Redefining \] on input line 2856.
 )
+(C:\Users\AJ\MiKTeX\tex/latex/mathtools\mathtools.sty
+Package: mathtools 2020/01/17 v1.23 mathematical typesetting tools
+
+(C:\Users\AJ\MiKTeX\tex/latex/tools\calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count103
+\calc@Bcount=\count104
+\calc@Adimen=\dimen113
+\calc@Bdimen=\dimen114
+\calc@Askip=\skip60
+\calc@Bskip=\skip61
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count105
+\calc@Cskip=\skip62
+)
+(C:\Users\AJ\MiKTeX\tex/latex/mathtools\mhsetup.sty
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count106
+\l_MT_multwidth_dim=\dimen115
+\origjot=\skip63
+\l_MT_shortvdotswithinadjustabove_dim=\dimen116
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen117
+\l_MT_above_intertext_sep=\dimen118
+\l_MT_below_intertext_sep=\dimen119
+\l_MT_above_shortintertext_sep=\dimen120
+\l_MT_below_shortintertext_sep=\dimen121
+)
 (C:\Users\AJ\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -242,16 +275,16 @@ Package graphics Info: Driver file: pdftex.def on input line 105.
 (C:\Users\AJ\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen113
-\Gin@req@width=\dimen114
+\Gin@req@height=\dimen122
+\Gin@req@width=\dimen123
 )
 (C:\Users\AJ\MiKTeX\tex/latex/framed\framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip60
-\fb@frw=\dimen115
-\fb@frh=\dimen116
-\FrameRule=\dimen117
-\FrameSep=\dimen118
+\OuterFrameSep=\skip64
+\fb@frw=\dimen124
+\fb@frh=\dimen125
+\FrameRule=\dimen126
+\FrameSep=\dimen127
 )
 (C:\Users\AJ\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
@@ -280,7 +313,7 @@ Class scrartcl Warning: Usage of package `tocbibind' together
 (scrartcl)              the list of figures, list of tables, bibliography,
 (scrartcl)              index and the running head.
 (scrartcl)              Nevertheless, using requested
-(scrartcl)              package `tocbibind' on input line 12.
+(scrartcl)              package `tocbibind' on input line 13.
 
 (C:\Users\AJ\MiKTeX\tex/latex/tocbibind\tocbibind.sty
 Package: tocbibind 2010/10/13 v1.5k extra ToC listings
@@ -295,33 +328,33 @@ Package: caption 2019/09/01 v3.3d Customizing captions (AR)
 (C:\Users\AJ\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2019/09/01 v1.8d caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 64.
-\captionmargin=\dimen119
-\captionmargin@=\dimen120
-\captionwidth=\dimen121
-\caption@tempdima=\dimen122
-\caption@indent=\dimen123
-\caption@parindent=\dimen124
-\caption@hangindent=\dimen125
+\captionmargin=\dimen128
+\captionmargin@=\dimen129
+\captionwidth=\dimen130
+\caption@tempdima=\dimen131
+\caption@indent=\dimen132
+\caption@parindent=\dimen133
+\caption@hangindent=\dimen134
 )
 Package caption Info: KOMA-Script document class.
-\c@caption@flags=\count103
-\c@ContinuedFloat=\count104
+\c@caption@flags=\count107
+\c@ContinuedFloat=\count108
 ) (serie5_bericht.aux)
 \openout1 = `serie5_bericht.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-Package tocbasic Info: usage of `tocbibind' detected on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+Package tocbasic Info: usage of `tocbibind' detected on input line 21.
 
 
 Package tocbasic Warning: `tocbibind' redefinition of `\listoffigures'
@@ -337,16 +370,16 @@ Package tocbasic Warning: `tocbibind' redefinition of `\listoftables'
 
 (C:\Users\AJ\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count105
-\scratchdimen=\dimen126
+\scratchcounter=\count109
+\scratchdimen=\dimen135
 \scratchbox=\box31
-\nofMPsegments=\count106
-\nofMParguments=\count107
+\nofMPsegments=\count110
+\nofMParguments=\count111
 \everyMPshowfont=\toks23
-\MPscratchCnt=\count108
-\MPscratchDim=\dimen127
-\MPnumerator=\count109
-\makeMPintoPDFobject=\count110
+\MPscratchCnt=\count112
+\MPscratchDim=\dimen136
+\MPnumerator=\count113
+\makeMPintoPDFobject=\count114
 \everyMPtoPDFconversion=\toks24
 ) (C:\Users\AJ\MiKTeX\tex/latex/oberdiek\epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -398,18 +431,18 @@ G,.JBIG2,.JB2,.eps]
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 2
-7.
+8.
 
 (C:\Users\AJ\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
 
 
 (C:\Users\AJ\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 27.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
 
 
 (C:\Users\AJ\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -422,93 +455,115 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {C:/Users/AJ/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 44--55
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--55
+Underfull \hbox (badness 10000) in paragraph at lines 64--69
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 72--74
 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 63--68
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
-<Grafiken/iterates_d1_n10.png, id=19, 462.528pt x 346.896pt>
+
+LaTeX Warning: Citation `tischendorf2019' on page 4 undefined on input line 90.
+
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 99--104
+
+ []
+
+<Grafiken/iterates_d1_n10.png, id=29, 462.528pt x 346.896pt>
 File: Grafiken/iterates_d1_n10.png Graphic file (type png)
 <use Grafiken/iterates_d1_n10.png>
-Package pdftex.def Info: Grafiken/iterates_d1_n10.png  used on input line 71.
+Package pdftex.def Info: Grafiken/iterates_d1_n10.png  used on input line 107.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
-<Grafiken/iterates_d2_n10.png, id=21, 462.528pt x 346.896pt>
+<Grafiken/iterates_d2_n10.png, id=31, 462.528pt x 346.896pt>
 File: Grafiken/iterates_d2_n10.png Graphic file (type png)
 <use Grafiken/iterates_d2_n10.png>
-Package pdftex.def Info: Grafiken/iterates_d2_n10.png  used on input line 72.
+Package pdftex.def Info: Grafiken/iterates_d2_n10.png  used on input line 108.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
-<Grafiken/iterates_d3_n10.png, id=22, 462.528pt x 346.896pt>
+<Grafiken/iterates_d3_n10.png, id=32, 462.528pt x 346.896pt>
 File: Grafiken/iterates_d3_n10.png Graphic file (type png)
 <use Grafiken/iterates_d3_n10.png>
-Package pdftex.def Info: Grafiken/iterates_d3_n10.png  used on input line 73.
+Package pdftex.def Info: Grafiken/iterates_d3_n10.png  used on input line 109.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--87
+Underfull \hbox (badness 10000) in paragraph at lines 115--123
 
  []
 
-[4 <./Grafiken/iterates_d1_n10.png> <./Grafiken/iterates_d2_n10.png> <./Grafike
-n/iterates_d3_n10.png>] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 90--92
+[5 <./Grafiken/iterates_d1_n10.png> <./Grafiken/iterates_d2_n10.png> <./Grafike
+n/iterates_d3_n10.png>] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 126--128
 
  []
 
-<Grafiken/compare.png, id=35, 462.528pt x 346.896pt>
+<Grafiken/compare.png, id=42, 462.528pt x 346.896pt>
 File: Grafiken/compare.png Graphic file (type png)
 <use Grafiken/compare.png>
-Package pdftex.def Info: Grafiken/compare.png  used on input line 95.
+Package pdftex.def Info: Grafiken/compare.png  used on input line 131.
 (pdftex.def)             Requested size: 313.69167pt x 235.27744pt.
-[6 <./Grafiken/compare.png>]
-<Grafiken/epsilon_d1.png, id=42, 462.528pt x 346.896pt>
+[7 <./Grafiken/compare.png>]
+<Grafiken/epsilon_d1.png, id=48, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d1.png Graphic file (type png)
 <use Grafiken/epsilon_d1.png>
-Package pdftex.def Info: Grafiken/epsilon_d1.png  used on input line 108.
+Package pdftex.def Info: Grafiken/epsilon_d1.png  used on input line 144.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
-<Grafiken/epsilon_d2.png, id=43, 462.528pt x 346.896pt>
+<Grafiken/epsilon_d2.png, id=49, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d2.png Graphic file (type png)
 <use Grafiken/epsilon_d2.png>
-Package pdftex.def Info: Grafiken/epsilon_d2.png  used on input line 109.
+Package pdftex.def Info: Grafiken/epsilon_d2.png  used on input line 145.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
-<Grafiken/epsilon_d3.png, id=44, 462.528pt x 346.896pt>
+<Grafiken/epsilon_d3.png, id=50, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d3.png Graphic file (type png)
 <use Grafiken/epsilon_d3.png>
-Package pdftex.def Info: Grafiken/epsilon_d3.png  used on input line 110.
+Package pdftex.def Info: Grafiken/epsilon_d3.png  used on input line 146.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
- [7 <./Grafiken/epsilon_d1.png> <./Grafiken/epsilon_d2.png> <./Grafiken/epsilon
-_d3.png>] [8] (serie5_bericht.aux) ) 
+ [8 <./Grafiken/epsilon_d1.png> <./Grafiken/epsilon_d2.png> <./Grafiken/epsilon
+_d3.png>] [9]
+No file serie5_bericht.bbl.
+(serie5_bericht.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 7778 strings out of 492453
- 130911 string characters out of 3134037
- 317748 words of memory out of 3000000
- 12026 multiletter control sequences out of 15000+200000
- 16978 words of font info for 51 fonts, out of 3000000 for 9000
+ 8340 strings out of 492453
+ 140777 string characters out of 3134037
+ 330522 words of memory out of 3000000
+ 12575 multiletter control sequences out of 15000+200000
+ 17761 words of font info for 52 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,7n,55p,10075b,358s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\AJ\AppData\Local\MiKTeX\2.9\font
-s/pk/ljfour/jknappen/ec/dpi600\ecsx1200.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2
-.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\AJ\AppData\Local\M
-iKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\AJ\AppData\
-Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx1095.pk> <C:\Users\AJ\A
-ppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx1440.pk> <C:\Use
-rs\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> 
-<C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx20
-74.pk><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/A
-J/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/AJ/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmr8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/
-Users/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on serie5_bericht.pdf (8 pages, 644034 bytes).
+ 51i,8n,55p,10075b,364s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecb
+x1095.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi
+600\ecsx1200.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen
+/ec/dpi600\ecti1095.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/j
+knappen/ec/dpi600\ecrm1095.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fonts/pk/l
+jfour/jknappen/ec/dpi600\ecsx1095.pk> <C:\Users\AJ\AppData\Local\MiKTeX\2.9\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecsx1440.pk> <C:\Users\AJ\AppData\Local\MiKTeX\
+2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\AJ\AppData\Local\
+MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx2074.pk><C:/Users/AJ/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmmi8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10
+.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/AJ/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/AJ/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmsy8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/s
+ymbols/msbm10.pfb>
+Output written on serie5_bericht.pdf (9 pages, 663583 bytes).
 PDF statistics:
- 321 PDF objects out of 1000 (max. 8388607)
+ 351 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
