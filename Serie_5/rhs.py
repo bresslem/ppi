@@ -214,20 +214,51 @@ def plot_error_eps(u, f, d, n_list):
             print(cg[0])
             errors_cg.append(lina.norm(cg[2][-1], np.inf))
             numbers_of_points.append((n-1)**d)
+        if i == 0:
+            if d == 1:
+                conv1 = [np.float_(N)**(-3/4) for N in numbers_of_points]
+                conv2 = [np.float_(N)**(-4) for N in numbers_of_points]
+                conv3 = [np.float_(N)**(-6) for N in numbers_of_points]
+
+                plt.loglog(numbers_of_points, conv1, label='$N^{-3/4}$',
+                           color='lightgray')
+                plt.loglog(numbers_of_points, conv2, label='$N^{-4}$',
+                           color='lightgray', linestyle='-.')
+                plt.loglog(numbers_of_points, conv3, label='$N^{-6}$',
+                           color='lightgray', linestyle=':')
+
+            elif d == 2:
+                conv1 = [np.float_(N)**(-1/2) for N in numbers_of_points]
+                conv2 = [np.float_(N)**(-1) for N in numbers_of_points]
+                conv3 = [np.float_(N)**(-2) for N in numbers_of_points]
+                conv4 = [np.float_(N)**(-3) for N in numbers_of_points]
+
+                plt.loglog(numbers_of_points, conv1, label='$N^{-1/2}$',
+                           color='lightgray')
+                plt.loglog(numbers_of_points, conv2, label='$N^{-1}$',
+                           color='lightgray', linestyle='--')
+                plt.loglog(numbers_of_points, conv3, label='$N^{-2}$',
+                           color='lightgray', linestyle='-.')
+                plt.loglog(numbers_of_points, conv4, label='$N^{-3}$',
+                           color='lightgray', linestyle=':')
+            else:
+                conv1 = [np.float_(N)**(-1/2) for N in numbers_of_points]
+                conv2 = [np.float_(N)**(-3/4) for N in numbers_of_points]
+                conv3 = [np.float_(N)**(-3/2) for N in numbers_of_points]
+                conv4 = [np.float_(N)**(-2) for N in numbers_of_points]
+
+                plt.loglog(numbers_of_points, conv1, label='$N^{-1/2}$',
+                           color='lightgray')
+                plt.loglog(numbers_of_points, conv2, label='$N^{-3/4}$',
+                           color='lightgray', linestyle='--')
+                plt.loglog(numbers_of_points, conv3, label='$N^{-3/2}$',
+                           color='lightgray', linestyle='-.')
+                plt.loglog(numbers_of_points, conv4, label='$N^{-2}$',
+                           color='lightgray', linestyle=':')
+
+
         plt.loglog(numbers_of_points, errors_cg, '--', marker=markers[i], label='k='+str(k))
         i = i+1
-
-    numbers_of_points_pow1 = [np.float_(N)**(-4) for N in numbers_of_points]
-    numbers_of_points_pow2 = [np.float_(N)**(-6) for N in numbers_of_points]
-    numbers_of_points_pow3 = [np.float_(N)**(-3/4) for N in numbers_of_points]
-
-    plt.loglog(numbers_of_points, numbers_of_points_pow3, label='$N^{-3/4}$',
-               color='lightgray')
-    plt.loglog(numbers_of_points, numbers_of_points_pow1, label='$N^{-4}$',
-               color='lightgray', linestyle='-.')
-    plt.loglog(numbers_of_points, numbers_of_points_pow2, label='$N^{-6}$',
-               color='lightgray', linestyle=':')
-
 
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
@@ -237,7 +268,7 @@ def plot_error_eps(u, f, d, n_list):
     plt.show()
     plt.figure()
 
-# TODO: Vergleichslinien unter die anderen. Mehr Vergleichslinien.
+# TODO: Mehr Vergleichslinien.
 
 def plot_error_cond(u, f, d, n_list):
     numbers_of_points = []
@@ -274,7 +305,7 @@ def plot_iterates_error(u, f, d, n,
 
     errors = [lina.norm(r, np.inf) for r in cg[2]]
 
-    plt.plot(range(len(errors)), errors, 'mo--')
+    plt.plot(range(len(errors)), errors, 'm.--')
     # plt.yscale('log')
     plt.xlabel('number of iteration')
     plt.ylabel('norm of residuum')

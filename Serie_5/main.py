@@ -112,58 +112,29 @@ def main():
     """ Main function to demonstrate the functionality of our modules.
     """
 
-    # n = 7
-    #
-    # A = block_matrix.BlockMatrix(1, n).get_sparse()
-    # b = rhs.rhs(1, n, f1)
-    #
-    # x0 = np.zeros(n-1)
-    # sol = linear_solvers.solve_cg(A, b, x0, dict(eps=1e-20, max_iter=1000, min_red=1e-4))
-    #
-    # print(sol[0])
-    # print(sol[1])
-    #
-    # exact = []
-    # for i in range(1, n):
-    #     exact.append(u1(i/n))
-    #
-    # print("Solution:", exact)
+# # Fehlerentwicklung pro Iteration
 
+    rhs.plot_iterates_error(u1, f1, 1, 100)
+    rhs.plot_iterates_error(u2, f2, 2, 100)
+    rhs.plot_iterates_error(u3, f3, 3, 100)
 
-    # rhs.plot_error_cond(u1, f1, 1, np.geomspace(3, 10000, num=10, dtype=int))
-    # rhs.plot_error_cond(u2, f2, 2, np.geomspace(3, 100, num=10, dtype=int))
-    # rhs.plot_error_cond(u3, f3, 3, np.geomspace(3, 24, num=10, dtype=int))
+# # Fehler-/Konvergenzplot Vergleich mit LU
+
+    rhs.plot_error_comp(u1, f1, 1, np.geomspace(3, 10000, num=10, dtype=int))
+    rhs.plot_error_comp(u2, f2, 2, np.geomspace(3, 100, num=10, dtype=int))
+    rhs.plot_error_comp(u3, f3, 3, np.geomspace(3, 24, num=10, dtype=int))
+
+# # Fehlerentwicklung für verschiedene Epsilon
 
     rhs.plot_error_eps(u1, f1, 1, np.geomspace(3, 10000, num=10, dtype=int))
     rhs.plot_error_eps(u2, f2, 2, np.geomspace(3, 100, num=10, dtype=int))
     rhs.plot_error_eps(u3, f3, 3, np.geomspace(3, 24, num=10, dtype=int))
 
-
-# # # Fehlerentwicklung pr Iteration
+# # # # Fehlerentwicklung und Kondition der Matrix
 #
-#     rhs.plot_iterates_error(u1, f1, 1, 2)
-#     rhs.plot_iterates_error(u2, f2, 2, 2)
-#     rhs.plot_iterates_error(u3, f3, 3, 2)
-#
-# # # Fehler-/Konvergenzplot fuer d = 1, 2, 3 in getrennten Grafiken
-#
-#     rhs.plot_error_comp(u1, f1, 1, np.geomspace(3, 10000, num=10, dtype=int))
-#     rhs.plot_error_comp(u2, f2, 2, np.geomspace(3, 100, num=10, dtype=int))
-#     rhs.plot_error_comp(u3, f3, 3, np.geomspace(3, 24, num=10, dtype=int))
-
-# # # Fehler-/Konvergenzplot fuer d = 1, 2, 3 in getrennten Grafiken
-#
-#     rhs.plot_error(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
-#     rhs.plot_error(u2, f2, 2, np.geomspace(2, 100, num=10, dtype=int))
-#     rhs.plot_error(u3, f3, 3, np.geomspace(2, 24, num=10, dtype=int))
-#
-#
-# # # Fehler-/Konvergenzplot fuer d = 1, 2, 3 in einer Grafik
-#
-#     n_list = [np.geomspace(2, 10000, num=10, dtype=int),
-#               np.geomspace(2, 100, num=10, dtype=int),
-#               np.geomspace(2, 24, num=10, dtype=int)]
-#     rhs.plot_error_list([u1, u2, u3], [f1, f2, f3], n_list)
+#     rhs.plot_error_cond(u1, f1, 1, np.geomspace(3, 10000, num=10, dtype=int))
+#     rhs.plot_error_cond(u2, f2, 2, np.geomspace(3, 100, num=10, dtype=int))
+#     rhs.plot_error_cond(u3, f3, 3, np.geomspace(3, 24, num=10, dtype=int))
 
 
 
