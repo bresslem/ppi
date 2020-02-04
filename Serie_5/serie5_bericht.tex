@@ -55,43 +55,64 @@ man konstruiert Abstiegsrichtungen so ..., dass Funktionswerte immer kleiner wer
 
 \pagebreak
 \section{Experimente und Beobachtungen}
+Im Folgenden wollen wir verschiedene Experimente präsentieren. 
+Da wir im Gegensatz zu unserer Arbeit vom 03.01.2020 in hiesigen Rahmen das Gleichungssystem nicht direkt mittels Gauß-Algorithmus und LU-Zerlegung, sondern iterativ mittels CG-Verfahren lösen, gilt unser Interesse der Vorstellung der neuen Methode zum Ermitteln einer Lösung des Poisson-Problems sowie der Gegenüberstellung der beiden Verfahrensweisen.  
 
-\subsection{Entwicklung des absoluten Fehlers der Iterierten}
+
+\subsection{Entwicklung des absoluten Fehlers pro Iteration}
+Während direkte Verfahren nach einer endlichen Anzahl an Rechenoperationen \glqq{die exakte Lösung}\grqq{} liefern (dabei handelt es sich in Praxis nicht um die exakte analytische Lösung, da ein Computer aufgrund seiner begrenzten Rechenleistung im Allgemeinen immer bei der Verarbeitung von Zahlen Fehler produziert), ermitteln iterative Verfahren schrittweise eine immer bessere Approximation der gesuchten Lösung. \\ 
+Diese sukzessive Annäherung an die exakte Lösung lässt sich an den folgenden drei Grafiken erkennen. 
+Diese zeigen jeweils für den ein-, den zwei- und den dreidimensionalen Fall die Entwicklung des absoluten Fehlers pro Iteration. 
+Der Graph schmiegt sich immer mehr der y-Achse an. 
+Dieses asymptotische Fehlerverhalten ist charakteristisch für iterative Verfahren. \\
+
 {
   \centering
     \includegraphics[width=0.45\textwidth]{Grafiken/iterates_d1_n10}
     \includegraphics[width=0.45\textwidth]{Grafiken/iterates_d2_n10}
     \includegraphics[width=0.45\textwidth]{Grafiken/iterates_d3_n10}
     \vspace{-0.2cm}
-    \captionof{figure}{Entwicklung des Fehlers pro Iteration für $d\in\{1, 2, 3\}$ und $n=10$}
+    \captionof{figure}{Entwicklung des absoluten Fehlers pro Iteration für $d\in\{1, 2, 3\}$ und $n=10$}
 }
 \vspace{0.5cm}
 
+Darüber hinaus ist auffallend, dass weitaus weniger als $N=(n-1)^d$ Schritte vonnöten sind, um eine sehr gute Näherungslösung zu errechnen. 
+Während wir im eindimensionalen Fall, $N=9$, bereits nach der fünften Iteration eine ausreichend genaue Lösung haben, benötigen wir im zweidimensionalen Fall, $N=81$, nur 13 und im dreidimensionalen Fall, $N=729$ lediglich eine mehr, nämlich 14 Iterationen.  
+(Die große Konvergenzgeschwindigkeit lässt sich auf die gute Kondition der tridiagonalen Blockmatrix zurückführen.) 
+Doch bei allen ist der Fehler schon nach acht Schritten nur noch sehr gering. 
+Dass unser Programm dennoch weiterrechnet, ist den Umstand geschuldet, dass noch keiner der eingegebenen Abbruchparameter zum Tragen kam. 
+Da die Rechenschritte bei direkten Verfahren wie gesagt im Voraus bekannt und begrenzt sind, bei iterativen jedoch nicht, benötigen letztere Abbruchbedingungen, die den Schleifendurchlauf des Algorithmus zum Ende bringen. 
+Unsere Implementierung der Methode der konjugierten Gradienten (CG) enthält die folgenden drei Abbruchbedingungen. 
+\glqq{eps}\grqq: Abbruch, falls die Norm des Residuums eine vorgegebene Grenze unterschreitet, \glqq{max\_iter}\grqq: Abbruch, falls eine vorgegebene Anzahl an Iterationen erreicht ist, \glqq{min\_red}\grqq: Abbruch, falls das Verfahren \glqq{feststeckt}\grqq, d.h. falls der Abstand zwischen den letzten beiden Residuen eine vorgegebene Grenze unterschreitet. ... \\
+
 \pagebreak
 \subsection{Konvergenzverhalten für ein festes Epsilon}
+gleiches Konvergenzverhalten wie LU \\
+Konvergenz abh. von Diskretisierung, nicht von Lösungsverfahren\\
+
 {
   \centering
     \includegraphics[width=0.75\textwidth]{Grafiken/compare}
     \vspace{-0.2cm}
-    \captionof{figure}{Konvergenzverhalten für $\epsilon = 10^{-8}$ für $d\in\{1, 2, 3\}$ im Vergleich zur LU Zerlegung}
+    \captionof{figure}{Vergleich Konvergenzverhalten LU und CG mit $\epsilon = 10^{-8}$ für $d\in\{1, 2, 3\}$}
 }
 \vspace{0.5cm}
 
-Konvergenz abh. von Diskretisierung, nicht von Lösungsverfahren
 
 \pagebreak
 \subsection{Konvergenzverhalten für variable Epsilon}
+
+
 {
   \centering
     \includegraphics[width=0.45\textwidth]{Grafiken/epsilon_d1}
     \includegraphics[width=0.45\textwidth]{Grafiken/epsilon_d2}
     \includegraphics[width=0.45\textwidth]{Grafiken/epsilon_d3}
     \vspace{-0.2cm}
-    \captionof{figure}{Konvergenzverhalten für $\epsilon^{(k)}=n^{-k}$ für $d\in\{1, 2, 3\}$}
+    \captionof{figure}{Konvergenzverhalten mit $\epsilon^{(k)}=n^{-k}$ für $d\in\{1, 2, 3\}$}
 }
 \vspace{0.5cm}
 
-- 0, -2 gleich
 
 \pagebreak
 \section{Abschließende Worte}
