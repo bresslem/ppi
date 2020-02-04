@@ -89,7 +89,6 @@ def compute_error(d, n, hat_u, u): #pylint: disable=invalid-name
     err = [abs(actual_u[i]-hat_u[i]) for i in range(len(actual_u))]
     return max(err)
 
-
 def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
     """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
     for a given list of n-values. N = (n-1)^d is the dimension of the block matrix.
@@ -174,7 +173,7 @@ def plot_error_comp(u, f, d, n_list): #pylint: disable=invalid-name
         cg = linear_solvers.solve_cg(A.get_sparse(), b, np.zeros((n-1)**d),
                                      params=dict(eps=1e-8, max_iter=(2*(n-1)**2*d), min_red=0))
         print(cg[0])
-        errors_cg.append(lina.norm(cg[2][-1], np.inf))
+        errors_cg.append(compute_error(d, n, cg[1][-1], u))
         numbers_of_points.append((n-1)**d)
 
     # numbers_of_points_pow1 = [np.float_(N)**(-1) for N in numbers_of_points]
@@ -188,8 +187,8 @@ def plot_error_comp(u, f, d, n_list): #pylint: disable=invalid-name
     # plt.loglog(numbers_of_points, numbers_of_points_pow2, label='$N^{-2}$',
     #            color='lightgray', linestyle='-.')
 
-    plt.loglog(numbers_of_points, errors_cg, 'go--', label='CG')
-    plt.loglog(numbers_of_points, errors_lu, 'bo--', label='LU')
+    plt.loglog(numbers_of_points, errors_cg, 'gX-', label='CG')
+    plt.loglog(numbers_of_points, errors_lu, 'r.--', label='LU')
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
     plt.title('Maxima of absolute errors for $d$ = ' + str(d))
@@ -197,6 +196,108 @@ def plot_error_comp(u, f, d, n_list): #pylint: disable=invalid-name
     plt.grid()
     plt.show()
     plt.figure()
+
+def plot_error_list_comp(u_list, f_list, n_list_list): #pylint: disable=invalid-name, too-many-locals
+    """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
+    for a given list of n-values and for the dimension d = 1, 2, 3.
+
+    Parameters
+    ----------
+    n_list_list: list of list of ints
+        The n-values for which to plot the errors.
+    u_list : list of callable functions
+        Solution of the Poisson-problem
+        The calling signature is u(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
+    f_list : list of callable functions
+        Input function of the Poisson-problem
+        The calling signature is f(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
+    """
+
+    numbers_of_points_1 = []
+    errors_1 = []
+    errors_cg1 = []
+    for n in n_list_list[0]:
+        A = block_matrix.BlockMatrix(1, n)
+        b = rhs(1, n, f_list[0])
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+
+        errors_1.append(compute_error(1, n, hat_u, u_list[0]))
+
+        cg = linear_solvers.solve_cg(A.get_sparse(), b, np.zeros((n-1)),
+                                     params=dict(eps=1e-8, max_iter=(2*(n-1)**2), min_red=0))
+        print(cg[0])
+        errors_cg1.append(compute_error(1, n, cg[1][-1], u_list[0]))
+
+        numbers_of_points_1.append((n-1)**1)
+
+    numbers_of_points_2 = []
+    errors_2 = []
+    errors_cg2 = []
+    for n in n_list_list[1]:
+        A = block_matrix.BlockMatrix(2, n)
+        b = rhs(2, n, f_list[1])
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+
+        cg = linear_solvers.solve_cg(A.get_sparse(), b, np.zeros((n-1)**2),
+                                     params=dict(eps=1e-8, max_iter=(2*(n-1)**2*2), min_red=0))
+        print(cg[0])
+        errors_cg2.append(compute_error(2, n, cg[1][-1], u_list[1]))
+
+        errors_2.append(compute_error(2, n, hat_u, u_list[1]))
+        numbers_of_points_2.append((n-1)**2)
+
+    numbers_of_points_3 = []
+    errors_3 = []
+    errors_cg3 = []
+    for n in n_list_list[2]:
+        A = block_matrix.BlockMatrix(3, n)
+        b = rhs(3, n, f_list[2])
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+
+        cg = linear_solvers.solve_cg(A.get_sparse(), b, np.zeros((n-1)**3),
+                                     params=dict(eps=1e-8, max_iter=(2*(n-1)**2*3), min_red=0))
+        print(cg[0])
+        errors_cg3.append(compute_error(3, n, cg[1][-1], u_list[2]))
+
+        errors_3.append(compute_error(3, n, hat_u, u_list[2]))
+        numbers_of_points_3.append((n-1)**3)
+
+    numbers_of_points_pow1 = [np.float_(N)**(-1) for N in numbers_of_points_3]
+    numbers_of_points_pow2 = [np.float_(N)**(-2) for N in numbers_of_points_3]
+    numbers_of_points_pow3 = [np.float_(N)**(-1/2) for N in numbers_of_points_3]
+
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{-1/2}$',
+               color='lightgray')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N^{-1}$',
+               color='lightgray', linestyle='-.')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^{-2}$',
+               color='lightgray', linestyle=':')
+
+    plt.loglog(numbers_of_points_1, errors_1, label='LU $d=1$', linestyle='-',
+               color='cornflowerblue', marker='X')
+    plt.loglog(numbers_of_points_2, errors_2, label='LU $d=2$', linestyle='-',
+               color='blue', marker='X')
+    plt.loglog(numbers_of_points_3, errors_3, label='LU $d=3$', linestyle='-',
+               color='navy', marker='X')
+
+    plt.loglog(numbers_of_points_1, errors_cg1, label='CG $d=1$', linestyle='-.',
+               color='tomato', marker='.')
+    plt.loglog(numbers_of_points_2, errors_cg2, label='CG $d=2$', linestyle='-.',
+               color='red', marker='.')
+    plt.loglog(numbers_of_points_3, errors_cg3, label='CG $d=3$', linestyle='-.',
+               color='darkred', marker='.')
+
+    plt.xlabel('$N$')
+    plt.ylabel('maximum of absolute error')
+    plt.legend()
+    plt.title('Maxima of absolute errors for $d=1,2,3$')
+    plt.grid()
+    plt.show()
 
 def plot_error_eps(u, f, d, n_list):
     k_list = [-2, 0, 2, 4, 6]
@@ -212,49 +313,40 @@ def plot_error_eps(u, f, d, n_list):
             cg = linear_solvers.solve_cg(A.get_sparse(), b, np.zeros((n-1)**d),
                                          params=dict(eps=float(n)**(-k), max_iter=(2*(n-1)**2*d), min_red=0))
             print(cg[0])
-            errors_cg.append(lina.norm(cg[2][-1], np.inf))
+            errors_cg.append(compute_error(d, n, cg[1][-1], u))
             numbers_of_points.append((n-1)**d)
         if i == 0:
             if d == 1:
-                conv1 = [np.float_(N)**(-3/4) for N in numbers_of_points]
-                conv2 = [np.float_(N)**(-4) for N in numbers_of_points]
-                conv3 = [np.float_(N)**(-6) for N in numbers_of_points]
+                conv2 = [float(N)**(-2) for N in numbers_of_points]
+                conv0 = [1 for N in numbers_of_points]
 
-                plt.loglog(numbers_of_points, conv1, label='$N^{-3/4}$',
+                plt.loglog(numbers_of_points, conv0, label='$N^0$',
                            color='lightgray')
-                plt.loglog(numbers_of_points, conv2, label='$N^{-4}$',
+                plt.loglog(numbers_of_points, conv2, label='$N^{-2}$',
                            color='lightgray', linestyle='-.')
-                plt.loglog(numbers_of_points, conv3, label='$N^{-6}$',
-                           color='lightgray', linestyle=':')
 
             elif d == 2:
-                conv1 = [np.float_(N)**(-1/2) for N in numbers_of_points]
-                conv2 = [np.float_(N)**(-1) for N in numbers_of_points]
-                conv3 = [np.float_(N)**(-2) for N in numbers_of_points]
-                conv4 = [np.float_(N)**(-3) for N in numbers_of_points]
+                conv0 = [(10*float(N))**(1/8) for N in numbers_of_points]
+                conv1 = [(10*float(N))**(-1/2) for N in numbers_of_points]
+                conv2 = [(10*float(N))**(-1) for N in numbers_of_points]
 
-                plt.loglog(numbers_of_points, conv1, label='$N^{-1/2}$',
+                plt.loglog(numbers_of_points, conv0, label='$(10N)^{1/8}$',
                            color='lightgray')
-                plt.loglog(numbers_of_points, conv2, label='$N^{-1}$',
+                plt.loglog(numbers_of_points, conv1, label='$(10N)^{-1/2}$',
                            color='lightgray', linestyle='--')
-                plt.loglog(numbers_of_points, conv3, label='$N^{-2}$',
+                plt.loglog(numbers_of_points, conv2, label='$(10N)^{-1}$',
                            color='lightgray', linestyle='-.')
-                plt.loglog(numbers_of_points, conv4, label='$N^{-3}$',
-                           color='lightgray', linestyle=':')
             else:
-                conv1 = [np.float_(N)**(-1/2) for N in numbers_of_points]
-                conv2 = [np.float_(N)**(-3/4) for N in numbers_of_points]
-                conv3 = [np.float_(N)**(-3/2) for N in numbers_of_points]
-                conv4 = [np.float_(N)**(-2) for N in numbers_of_points]
+                conv0 = [(0.000000001*float(N))**(1/8) for N in numbers_of_points]
+                conv1 = [(1000*float(N))**(-1/2) for N in numbers_of_points]
+                conv2 = [(10000*float(N))**(-1/4) for N in numbers_of_points]
 
-                plt.loglog(numbers_of_points, conv1, label='$N^{-1/2}$',
+                plt.loglog(numbers_of_points, conv0, label='$(10^{-8}N)^{1/8}$',
                            color='lightgray')
-                plt.loglog(numbers_of_points, conv2, label='$N^{-3/4}$',
+                plt.loglog(numbers_of_points, conv2, label='$(1000N)^{-1/4}$',
                            color='lightgray', linestyle='--')
-                plt.loglog(numbers_of_points, conv3, label='$N^{-3/2}$',
+                plt.loglog(numbers_of_points, conv1, label='$(10000N)^{-1/2}$',
                            color='lightgray', linestyle='-.')
-                plt.loglog(numbers_of_points, conv4, label='$N^{-2}$',
-                           color='lightgray', linestyle=':')
 
 
         plt.loglog(numbers_of_points, errors_cg, '--', marker=markers[i], label='k='+str(k))
@@ -263,12 +355,10 @@ def plot_error_eps(u, f, d, n_list):
     plt.xlabel('$N$')
     plt.ylabel('maximum of absolute error')
     plt.title('Maxima of absolute errors for $d$ = ' + str(d))
-    plt.legend()
+    plt.legend(loc='lower left')
     plt.grid()
     plt.show()
     plt.figure()
-
-# TODO: Mehr Vergleichslinien.
 
 def plot_error_cond(u, f, d, n_list):
     numbers_of_points = []
@@ -297,19 +387,20 @@ def plot_error_cond(u, f, d, n_list):
     plt.figure()
 
 def plot_iterates_error(u, f, d, n,
-             params=dict(eps=1e-8, max_iter=1000, min_red=0)):
+             params=dict(eps=1e-8, max_iter=1000, min_red=1e-4)):
     A = block_matrix.BlockMatrix(d, n).get_sparse()
     b = rhs(d, n, f)
     cg = linear_solvers.solve_cg(A, b, np.zeros((n-1)**d), params)
     print(cg[0])
 
-    errors = [lina.norm(r, np.inf) for r in cg[2]]
+    # errors = [lina.norm(r, np.inf) for r in cg[2]]
+    errors = [compute_error(d, n, sol, u) for sol in cg[1]]
 
     plt.plot(range(len(errors)), errors, 'm.--')
     # plt.yscale('log')
     plt.xlabel('number of iteration')
-    plt.ylabel('norm of residuum')
-    plt.title('Development of norm of residuum for d = %d and n = %d' %(d, n))
+    plt.ylabel('absolute error')
+    plt.title('Development of absolute error for d = %d and n = %d' %(d, n))
     plt.grid()
     plt.show()
     plt.figure()

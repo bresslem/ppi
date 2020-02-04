@@ -29,13 +29,13 @@ und CG-Verfahren}
 
 \pagebreak
 \section{Motivation}
-In unserem vorherigen Berichten haben wir das Poisson-Problem vorgestellt und einen numerischen Lösungsansatz aufgezeigt, der es durch eine Diskretisierung des Gebietes und des Laplace-Operators in das Lösen eines linearen Gleichungssystems überführt. 
-Die dabei entstehende tridiagonale Blockmatrix ist dünn besetzt, d.h. nur wenige Einträge sind ungleich Null. 
-Deswegen ist es sinnvoll, sie als sogenannte \textit{sparse}-Matrix abzuspeichern. 
-Dieser Speicherplatzvorteil geht jedoch beim Lösen des linearen Gleichungssystems mittels Gauß-Algorithmus und LU-Zerlegung verloren, da eine LU-Zerlegung einer dünn besetzten Matrix im Allgemeinen nicht dünn besetzt ist. 
+In unserem vorherigen Berichten haben wir das Poisson-Problem vorgestellt und einen numerischen Lösungsansatz aufgezeigt, der es durch eine Diskretisierung des Gebietes und des Laplace-Operators in das Lösen eines linearen Gleichungssystems überführt.
+Die dabei entstehende tridiagonale Blockmatrix ist dünn besetzt, d.h. nur wenige Einträge sind ungleich Null.
+Deswegen ist es sinnvoll, sie als sogenannte \textit{sparse}-Matrix abzuspeichern.
+Dieser Speicherplatzvorteil geht jedoch beim Lösen des linearen Gleichungssystems mittels Gauß-Algorithmus und LU-Zerlegung verloren, da eine LU-Zerlegung einer dünn besetzten Matrix im Allgemeinen nicht dünn besetzt ist.
 Aufgrund dieses Umstandes erscheint es sinnvoll, das lineare Gleichungssystem nicht direkt, sondern iterativ zu lösen.
 Solche iterativen Lösungsverfahren (wie das Gesamtschrittverfahren von Jacobi, das Einzelschrittverfahren von Gauß-Seidel, das SOR-Verfahren und das CG-Verfahren) bieten gegenüber direkten Verfahren außerdem den Vorteil, dass deren Rechenaufwand im Verhältnis zur in der Praxis für gewöhnlich sehr großen Dimension der Blockmatrix recht gering ist.
-Da das CG-Verfahrens eine heute durchaus übliche Methode zum Lösen großer linearer Gleichungssysteme darstellt, wollen wir dieses im Folgenden im Rahmen unseres bisherigen Settings (Poisson-Problem und Finite-Differenzen-Diskretisierung) vorstellen und untersuchen. 
+Da das CG-Verfahrens eine heute durchaus übliche Methode zum Lösen großer linearer Gleichungssysteme darstellt, wollen wir dieses im Folgenden im Rahmen unseres bisherigen Settings (Poisson-Problem und Finite-Differenzen-Diskretisierung) vorstellen und untersuchen.
 
 
 
@@ -56,24 +56,45 @@ man konstruiert Abstiegsrichtungen so ..., dass Funktionswerte immer kleiner wer
 \pagebreak
 \section{Experimente und Beobachtungen}
 
-
-\pagebreak
 \subsection{Entwicklung des absoluten Fehlers der Iterierten}
-
+{
+  \centering
+    \includegraphics[width=0.45\textwidth]{Grafiken/iterates_d1_n10}
+    \includegraphics[width=0.45\textwidth]{Grafiken/iterates_d2_n10}
+    \includegraphics[width=0.45\textwidth]{Grafiken/iterates_d3_n10}
+    \vspace{-0.2cm}
+    \captionof{figure}{Entwicklung des Fehlers pro Iteration für $d\in\{1, 2, 3\}$ und $n=10$}
+}
+\vspace{0.5cm}
 
 \pagebreak
 \subsection{Konvergenzverhalten für ein festes Epsilon}
+{
+  \centering
+    \includegraphics[width=0.75\textwidth]{Grafiken/compare}
+    \vspace{-0.2cm}
+    \captionof{figure}{Konvergenzverhalten für $\epsilon = 10^{-8}$ für $d\in\{1, 2, 3\}$ im Vergleich zur LU Zerlegung}
+}
+\vspace{0.5cm}
 
+Konvergenz abh. von Diskretisierung, nicht von Lösungsverfahren
 
 \pagebreak
 \subsection{Konvergenzverhalten für variable Epsilon}
+{
+  \centering
+    \includegraphics[width=0.45\textwidth]{Grafiken/epsilon_d1}
+    \includegraphics[width=0.45\textwidth]{Grafiken/epsilon_d2}
+    \includegraphics[width=0.45\textwidth]{Grafiken/epsilon_d3}
+    \vspace{-0.2cm}
+    \captionof{figure}{Konvergenzverhalten für $\epsilon^{(k)}=n^{-k}$ für $d\in\{1, 2, 3\}$}
+}
+\vspace{0.5cm}
 
-
-
+- 0, -2 gleich
 
 \pagebreak
 \section{Abschließende Worte}
-
 
 
 
