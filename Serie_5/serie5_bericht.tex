@@ -5,6 +5,7 @@
 \usepackage[ngerman]{babel}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{framed}
 \usepackage{xcolor}
@@ -41,17 +42,52 @@ Da das CG-Verfahrens eine heute durchaus übliche Methode zum Lösen großer lin
 
 \pagebreak
 \section{Theoretische Grundlagen und Algorithmus}
-iterative Verfahren bestimmen Näherungslösung, via Grenzwert an exakte Lösung \\
-\\
-für CG-Verfahren muss Matrix symmetrisch positiv definit sein \\
-ist für unsere Blockmatrix der Fall, da sie symmetrisch ist, positive Diagonalelemente besitzt und irreduzibel diagonaldominant ist (> positiv definit) \\
-\\
-während sich die anderen oben genannten iterativen Verfahren die Methode des Splitting zunutze machen, ist die Idee des CG-Verfahrens die folgende: \\
-Lösung des linearen Gleichungssystems in ein Minimierungsproblem überführen \\
-dazu wird folgende Funktion definiert: ... \\
-diese hat genau an der Stelle $x$ ihr einziges Minimum, wo auch das LGS $Ax=b$ seine Lösung hat \\
-man konstruiert Abstiegsrichtungen so ..., dass Funktionswerte immer kleiner werden \\
-...
+
+Im Gegensatz zu den bisher behandelten direkten Verfahren, die nach einer endlichen Anzahl von Rechenschritten den Lösungsvektor $x$ des linearen Gleichungssystems $Ax=b$ mit $A\in\mathbb{R}^{N\times N}$ und $b\in\mathbb{R}^N$ liefern, definiert man bei den iterativen Verfahren eine Folge $(x_k)$ von Vektoren, die bei einem beliebigen Vektor startet und deren Grenzwert für $k \to \infty$ der genaue Lösungsvektor ist.
+Man wählt dann ein $\epsilon\in\mathbb{R}$ und berechnet so viele Iterationsschritte, bis das Residuum, also der approximierte Abstand des in diesem Schritt berecheten Folgenelementes zu der exakten Lösung, kleiner als $\epsilon$ ist.
+
+Das CG-Verfahren (kurz für \textit{conjugated gradient}) ist ein Verfahren, das nur für symmetrisch positiv definite Matrizen $A$ funktioniert.
+Diese Voraussetzung wird von unserer Blockmatrix erfüllt, denn sie ist per Definition symmetrisch und irreduzibel diagonaldominant.
+
+\subsection{Idee des CG-Verfahrens}
+
+Während sich die anderen oben genannten iterativen Verfahren die Methode des Splitting zunutze machen, ist die Idee des CG-Verfahrens die Lösung des linearen Gleichungssystems in ein Minimierungsproblem zu überführen.
+
+Dazu definiert man mit dem Standardskalarprodukt $<.,.>$ die Funktion
+\begin{align*}
+  \Phi (x) &\coloneqq \frac{1}{2}<x,Ax> - <b,x>\\
+           &=\frac{1}{2}x^T Ax - x^T b
+\end{align*}
+
+Diese besitzt genau ein globales Minimum. Dieses liegt genau an der Stelle $x$, die der Lösung von $Ax=b$ entspricht. Man konstruiert also, um die Lösung von $Ax=b$zu finden, iterativ eine Folge von immer kleiner werdenden Funktionswerten von $\Phi$.\\
+
+Um das globale Minimum zu finden, sucht man ausgehend von einem Startwert zunächst nach dem Minimum entlang einer Startrichtung (eines Startgradienten).
+Von diesem Minimum aus wählt man eine neue Suchrichtung (einen neuen Gradienten), die zu allen vorherigen Suchrichtungen $A$-konjugiert, d.h. orthogonal in der $A$-Norm, ist und sucht erneut nach einem Minimum entlang dieses Gradienten.
+Dies tut man so lange, bis das Residuum kleiner oder gleich $\epsilon$ ist.
+Da es nur genau $N$ zueinander $A$-konjugierte Richtungen gibt, würde man mit dem CG-Verfahren in der Theorie nach maximal $N$ Schritten sogar die exakte Lösung finden.
+In der Praxis benötigt man jedoch den Toleranzfaktor $\epsilon$, da durch Rundungsfehler die Suchrichtungen unter Umständen nicht mehr genau orthogonal zueinander stehen und diese Garantie somit verloren geht.\\
+
+\subsection{Algorithmus}
+
+\underline{Initialisierung}: Man startet bei einem beliebigen $x_0\in\mathbb{R}^N$ und wählt einen Toleranzfaktor $\epsilon$.
+Man setzt $k\coloneqq 0$ und berechnet das Anfangsresiduum $r_0 \coloneqq Ax_0 - b$. Die erste Suchrichtung ist $d_0 = -r_0$.\\
+
+\underline{Schritt k}: Falls $||r_k||\leq \epsilon$, hat man bereits eine Lösung im Toleranzbereich gefunden und kann hier aufhören.
+
+Sonst berechnet man $c_k \coloneqq <r_k, r_k>/<Ad_k,d_k>$. Dies gibt an, wie weit man in die Suchrichtung gehen muss, um das neue Minimum zu finden.
+
+Dann gilt $x_{k+1} = x_k + c_k d_k$ und $r_{k+1} = r_k + c_k Ad_k = Ax_{k+1} - b$.
+
+Man setzt $\beta_k \coloneqq <g_{k+1},g_{k+1}>/<g_{k},g_{k}>$.
+
+Die neue zu $d_k$ $A$-konjugierte Suchrichtung ist dann $d_{k+1}\coloneqq -r_{k+1} + \beta_k d_k$.
+
+Nun setzt man $k \coloneqq k+1$ und geht erneut zu Schritt k.\\
+
+So nähert man sich Schritt für Schritt einer genauen Lösung von $Ax=b$.
+Um zu verhindern, dass der Algorithmus für sehr viele Iterationen läuft ohne, dass sich das Ergebnis signifikant verbessert, kann man zusätzliche Abbruchbedingungen definieren, wie z.B. eine minimale Reduktion des Residuums nach jedem Schritt oder eine maximale Anzahl der Iterationsschritte.
+
+\cite{tischendorf2019}
 
 \pagebreak
 \section{Experimente und Beobachtungen}
@@ -96,6 +132,8 @@ Konvergenz abh. von Diskretisierung, nicht von Lösungsverfahren
 \pagebreak
 \section{Abschließende Worte}
 
-
+\pagebreak
+\bibliographystyle{plain}
+\bibliography{serie5_literatur}
 
 \end{document}
