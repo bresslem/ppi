@@ -99,6 +99,7 @@ Da wir im Gegensatz zu unserer Arbeit vom 03.01.2020 im hiesigen Rahmen das Glei
 Während direkte Verfahren nach einer endlichen Anzahl an Rechenoperationen \glqq{die exakte Lösung}\grqq{} liefern (dabei handelt es sich in der Praxis nicht um die exakte analytische Lösung, da ein Computer aufgrund seiner begrenzten Rechenleistung im Allgemeinen immer bei der Verarbeitung von Zahlen Fehler produziert), ermitteln iterative Verfahren schrittweise eine immer bessere Approximation der gesuchten Lösung. \\ 
 Diese sukzessive Annäherung an die exakte Lösung lässt sich an den folgenden drei Grafiken (Abb. 1) erkennen. 
 Sie zeigen jeweils für den ein-, den zwei- und den dreidimensionalen Fall die Entwicklung des absoluten Fehlers pro Iteration. 
+(Startwert ist der Nullvektor.) 
 Der Graph schmiegt sich mit zunehmender Schrittzahl immer mehr der x-Achse an. 
 Dieses asymptotische Fehlerverhalten ist charakteristisch für iterative Verfahren. \\
 
@@ -132,7 +133,7 @@ Der Gauß-Algorithmus mit LU-Zerlegung und das CG-Verfahren stellen lediglich L�
 Die Methode zur Lösung des Poisson-Problems aber basiert in beiden Fällen auf einer Diskretisierung des Gebietes und des Laplace-Operators. 
 Da die Konvergenzgeschwindigkeit sowohl beim LU- als auch beim CG-Verfahren abhängig von dieser Diskretisierung ist, ist eine gleiche Konvergenzgeschwindigkeit auch nicht verwunderlich. 
 Noch immer gilt die Faustregel: Je feiner wir das Gitter wählen, desto genauer ist unsere numerische Lösung. 
-Aufgrund der zweiten finiten Differenz liegt im eindimensionalen Fall quadratische Konvergenz, im zweidimensionalen Fall lineare und im dreidimensionalen Fall sublineare Konvergenz vor. 
+Aufgrund der zweiten finiten Differenz liegt im eindimensionalen Fall quadratische Konvergenz, im zweidimensionalen Fall lineare und im dreidimensionalen Fall sublineare Konvergenz vor. \\
 
 
 {
@@ -145,7 +146,21 @@ Aufgrund der zweiten finiten Differenz liegt im eindimensionalen Fall quadratisc
 
 
 \subsection{Konvergenzverhalten für variable Epsilon}
-Im Folgenden wollen wir das Konvergenzverhalten des CG-Verfahrens für eine Variation von Epsilon-Werten untersuchen. 
+Im Folgenden wollen wir das Konvergenzverhalten des CG-Verfahrens für eine Variation von Epsilon-Werten, die von der Feinheit der Diskretisierung abhängig ist, untersuchen. 
+Es gilt $\epsilon^{(k)}=n^{-k}$, wobei $n$ wie bisher die Anzahl der Diskretisierungsintervalle in einer Dimension $d\in\{1, 2, 3\}$ angibt. \\
+In der folgenden Abbildung 3 haben wir das Konvergenzverhalten für die drei untersuchten Dimensionen und die Variation der Epsilon-Werte grafisch dargestellt. 
+Grundsätzlich sieht man, dass sich der Anstieg der Fehlerkurven mit zunehmendem $k$ immer weiter verringert. 
+Für $k=-2$ und $k=0$ ist $\epsilon^{(k)}=1$. 
+Dies bedeutet, dass das Verfahren bereits nach sehr wenigen Schritten abbricht, weil die Norm des Residuums schnell dieser Bedingung genügt. 
+Wir erhalten in diesen Fällen eine relativ grobe Approximation der exakten Lösung, die sich mit einer feineren Diskretisierung nicht verbessern lässt, sondern langsam immer schlechter wird (für die drei betrachteten Dimensionen mit etwa gleich großem Anstieg). 
+Diese Verschlechterung ist vermutlich auf die zunehmenden Rundungsfehler zurückzuführen. \\
+Für $k>0$ wird mit immer größerem $n$ bzw. $N$, d.h. mit einer immer feineren Diskretisierung hingegen eine Straffung der Abbruchbedingung bewirkt. 
+(Der Grad der Straffung hängt dabei von der Größe von $k$ ab.) 
+Daher sind die zugehörigen Graphen monoton fallend. 
+Für alle drei Dimensionen gilt, dass im Minimum für $k\geq4$ in etwa dasselbe Konvergenzverhalten wie für $\epsilon = 10^{-8}$ zu beobachten ist. 
+Daraus lässt sich schließen, dass $\epsilon = 10^{-8}$ eine durchaus geeignete Wahl für die Abbruchbedingung (Obergrenze Norm des Residuums) darstellt. 
+Für kleinere Dimensionen genügen u.U. allerdings bereits kleinere Werte für Epsilon. 
+Die Festlegung eines passenden Wertes ist dabei immer auch abhängig von der Größe des linearen Gleichungssystems, welche wiederum von der Dimension und der Feinheit der Diskretisierung bedingt wird. \\
 
 
 {
@@ -161,6 +176,21 @@ Im Folgenden wollen wir das Konvergenzverhalten des CG-Verfahrens für eine Vari
 
 \pagebreak
 \section{Abschließende Worte}
+Gegenüberstellung direkt vs. iterativ
+\\
+sehr groß Gleichungssysteme mit dünn besetzter Matrix: Erzeugen neuer Nicht-Null-Elemente verursacht hohen Aufwand bei direkten Verfahren \\
+hingegen arbeiten iterative Verfahren nach Algorithmen, die die Matrix nicht verändern, sind also deutlich anspruchsloser hinsichtlich des Speicherbedarfs \\
+\\
+Lösung des Poisson-Problem mittels Finite-Differenzen-Diskretisierung produziert dünn besetzte Blockmatrizen hoher Dimensionen > sinnvoll, iterative Lösungsverfahren zu nutzen \\
+Gleichungssystemen mit mehreren rechten Seiten Zusatzaufwand bei direkten Verfahren gering \\
+Aufwand bei iterativen Verfahren für jede neue rechte Seite oben drauf \\
+\\
+mehr Rechenoperationen bedeuten wiederum auch mehr Möglichkeiten, Fehler zu produzieren bzw. sich fortpflanzen zu lassen, insbesondere bei direkten Verfahren (ständiges Produzieren von Zwischenergebnissen und Weiterrechnen damit, Bsp. Vorwärts-/Rückwärtselimination) \\
+iterative Verfahren fangen diese Fehler mehr oder minder auf, indem sie im schlimmsten Fall lediglich mehr Zeit benötigen, um eine ausreichend genaue Näherungslösung bereitstellen zu können \\
+\\
+CG-Verfahren: \\
+gut geeignet für dünn besetzte Matrizen (z.B. hier betrachtete Poisson-Problem), Aufwand besteht hauptsächlich nur aus Matrix-Vektor-Multiplikation, für sehr große Systeme erhalten wir bereits in wenigen Schritten eine genügend genaue Approximation der exakten Lösung \\
+
 
 \pagebreak
 \bibliographystyle{plain}

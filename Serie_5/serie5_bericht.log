@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  5 FEB 2020 16:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  5 FEB 2020 18:57
 entering extended mode
 **./serie5_bericht.tex
 (serie5_bericht.tex
@@ -479,50 +479,79 @@ LaTeX Warning: Citation `tischendorf2019' on page 4 undefined on input line 90.
 
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 99--104
+Underfull \hbox (badness 10000) in paragraph at lines 99--105
 
  []
 
 <Grafiken/iterates_d1_n10.png, id=29, 462.528pt x 346.896pt>
 File: Grafiken/iterates_d1_n10.png Graphic file (type png)
 <use Grafiken/iterates_d1_n10.png>
-Package pdftex.def Info: Grafiken/iterates_d1_n10.png  used on input line 107.
+Package pdftex.def Info: Grafiken/iterates_d1_n10.png  used on input line 108.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/iterates_d2_n10.png, id=31, 462.528pt x 346.896pt>
 File: Grafiken/iterates_d2_n10.png Graphic file (type png)
 <use Grafiken/iterates_d2_n10.png>
-Package pdftex.def Info: Grafiken/iterates_d2_n10.png  used on input line 108.
+Package pdftex.def Info: Grafiken/iterates_d2_n10.png  used on input line 109.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/iterates_d3_n10.png, id=32, 462.528pt x 346.896pt>
 File: Grafiken/iterates_d3_n10.png Graphic file (type png)
 <use Grafiken/iterates_d3_n10.png>
-Package pdftex.def Info: Grafiken/iterates_d3_n10.png  used on input line 109.
+Package pdftex.def Info: Grafiken/iterates_d3_n10.png  used on input line 110.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 [5 <./Grafiken/iterates_d1_n10.png> <./Grafiken/iterates_d2_n10.png> <./Grafike
 n/iterates_d3_n10.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 129--137
+
+ []
+
 <Grafiken/compare.png, id=39, 462.528pt x 346.896pt>
 File: Grafiken/compare.png Graphic file (type png)
 <use Grafiken/compare.png>
-Package pdftex.def Info: Grafiken/compare.png  used on input line 140.
+Package pdftex.def Info: Grafiken/compare.png  used on input line 141.
 (pdftex.def)             Requested size: 313.69167pt x 235.27744pt.
- [6]
-<Grafiken/epsilon_d1.png, id=43, 462.528pt x 346.896pt>
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 149--164
+
+ []
+
+[7 <./Grafiken/compare.png>]
+<Grafiken/epsilon_d1.png, id=48, 462.528pt x 345.4506pt>
 File: Grafiken/epsilon_d1.png Graphic file (type png)
 <use Grafiken/epsilon_d1.png>
-Package pdftex.def Info: Grafiken/epsilon_d1.png  used on input line 153.
-(pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
-<Grafiken/epsilon_d2.png, id=44, 462.528pt x 346.896pt>
+Package pdftex.def Info: Grafiken/epsilon_d1.png  used on input line 168.
+(pdftex.def)             Requested size: 188.21371pt x 140.57089pt.
+<Grafiken/epsilon_d2.png, id=49, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d2.png Graphic file (type png)
 <use Grafiken/epsilon_d2.png>
-Package pdftex.def Info: Grafiken/epsilon_d2.png  used on input line 154.
+Package pdftex.def Info: Grafiken/epsilon_d2.png  used on input line 169.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
-<Grafiken/epsilon_d3.png, id=45, 462.528pt x 346.896pt>
+<Grafiken/epsilon_d3.png, id=50, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d3.png Graphic file (type png)
 <use Grafiken/epsilon_d3.png>
-Package pdftex.def Info: Grafiken/epsilon_d3.png  used on input line 155.
+Package pdftex.def Info: Grafiken/epsilon_d3.png  used on input line 170.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
- [7 <./Grafiken/compare.png> <./Grafiken/epsilon_d1.png> <./Grafiken/epsilon_d2
-.png>] [8 <./Grafiken/epsilon_d3.png>] [9]
+ [8 <./Grafiken/epsilon_d1.png> <./Grafiken/epsilon_d2.png> <./Grafiken/epsilon
+_d3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 179--193
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--193
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--193
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--193
+
+ []
+
+[9]
 No file serie5_bericht.bbl.
 (serie5_bericht.aux)
 
@@ -552,9 +581,9 @@ onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public
 iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/AJ/MiKTeX/fonts/type1
 /public/amsfonts/cm/cmsy8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb>
-Output written on serie5_bericht.pdf (9 pages, 665518 bytes).
+Output written on serie5_bericht.pdf (9 pages, 636724 bytes).
 PDF statistics:
- 352 PDF objects out of 1000 (max. 8388607)
+ 355 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
