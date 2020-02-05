@@ -114,7 +114,7 @@ def main():
 
 # # Fehlerentwicklung pro Iteration
 
-    rhs.plot_iterates_error(u1, f1, 1, 10)
+    # rhs.plot_iterates_error(u1, f1, 1, 10)
     # rhs.plot_iterates_error(u2, f2, 2, 10)
     # rhs.plot_iterates_error(u3, f3, 3, 10)
 
@@ -127,7 +127,7 @@ def main():
 
 # # Fehlerentwicklung für verschiedene Epsilon
 
-    # rhs.plot_error_eps(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
+    rhs.plot_error_eps(u1, f1, 1, np.geomspace(2, 10000, num=10, dtype=int))
     # rhs.plot_error_eps(u2, f2, 2, np.geomspace(2, 100, num=10, dtype=int))
     # rhs.plot_error_eps(u3, f3, 3, np.geomspace(2, 24, num=10, dtype=int))
 

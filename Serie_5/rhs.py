@@ -317,10 +317,10 @@ def plot_error_eps(u, f, d, n_list):
             numbers_of_points.append((n-1)**d)
         if i == 0:
             if d == 1:
+                conv0 = [(10*float(N))**(1/8) for N in numbers_of_points]
                 conv2 = [float(N)**(-2) for N in numbers_of_points]
-                conv0 = [1 for N in numbers_of_points]
 
-                plt.loglog(numbers_of_points, conv0, label='$N^0$',
+                plt.loglog(numbers_of_points, conv0, label='$(10N)^{1/8}$',
                            color='lightgray')
                 plt.loglog(numbers_of_points, conv2, label='$N^{-2}$',
                            color='lightgray', linestyle='-.')
