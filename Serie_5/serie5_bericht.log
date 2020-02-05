@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  4 FEB 2020 23:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  5 FEB 2020 16:43
 entering extended mode
 **./serie5_bericht.tex
 (serie5_bericht.tex
@@ -498,40 +498,31 @@ File: Grafiken/iterates_d3_n10.png Graphic file (type png)
 <use Grafiken/iterates_d3_n10.png>
 Package pdftex.def Info: Grafiken/iterates_d3_n10.png  used on input line 109.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--123
-
- []
-
 [5 <./Grafiken/iterates_d1_n10.png> <./Grafiken/iterates_d2_n10.png> <./Grafike
-n/iterates_d3_n10.png>] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 126--128
-
- []
-
-<Grafiken/compare.png, id=42, 462.528pt x 346.896pt>
+n/iterates_d3_n10.png>]
+<Grafiken/compare.png, id=39, 462.528pt x 346.896pt>
 File: Grafiken/compare.png Graphic file (type png)
 <use Grafiken/compare.png>
-Package pdftex.def Info: Grafiken/compare.png  used on input line 131.
+Package pdftex.def Info: Grafiken/compare.png  used on input line 140.
 (pdftex.def)             Requested size: 313.69167pt x 235.27744pt.
-[7 <./Grafiken/compare.png>]
-<Grafiken/epsilon_d1.png, id=48, 462.528pt x 346.896pt>
+ [6]
+<Grafiken/epsilon_d1.png, id=43, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d1.png Graphic file (type png)
 <use Grafiken/epsilon_d1.png>
-Package pdftex.def Info: Grafiken/epsilon_d1.png  used on input line 144.
+Package pdftex.def Info: Grafiken/epsilon_d1.png  used on input line 153.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
-<Grafiken/epsilon_d2.png, id=49, 462.528pt x 346.896pt>
+<Grafiken/epsilon_d2.png, id=44, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d2.png Graphic file (type png)
 <use Grafiken/epsilon_d2.png>
-Package pdftex.def Info: Grafiken/epsilon_d2.png  used on input line 145.
+Package pdftex.def Info: Grafiken/epsilon_d2.png  used on input line 154.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
-<Grafiken/epsilon_d3.png, id=50, 462.528pt x 346.896pt>
+<Grafiken/epsilon_d3.png, id=45, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d3.png Graphic file (type png)
 <use Grafiken/epsilon_d3.png>
-Package pdftex.def Info: Grafiken/epsilon_d3.png  used on input line 146.
+Package pdftex.def Info: Grafiken/epsilon_d3.png  used on input line 155.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
- [8 <./Grafiken/epsilon_d1.png> <./Grafiken/epsilon_d2.png> <./Grafiken/epsilon
-_d3.png>] [9]
+ [7 <./Grafiken/compare.png> <./Grafiken/epsilon_d1.png> <./Grafiken/epsilon_d2
+.png>] [8 <./Grafiken/epsilon_d3.png>] [9]
 No file serie5_bericht.bbl.
 (serie5_bericht.aux)
 
@@ -541,7 +532,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  8340 strings out of 492453
  140777 string characters out of 3134037
- 330522 words of memory out of 3000000
+ 332522 words of memory out of 3000000
  12575 multiletter control sequences out of 15000+200000
  17761 words of font info for 52 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -561,9 +552,9 @@ onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public
 iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/AJ/MiKTeX/fonts/type1
 /public/amsfonts/cm/cmsy8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb>
-Output written on serie5_bericht.pdf (9 pages, 663583 bytes).
+Output written on serie5_bericht.pdf (9 pages, 665518 bytes).
 PDF statistics:
- 351 PDF objects out of 1000 (max. 8388607)
+ 352 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
