@@ -176,20 +176,21 @@ Die Festlegung eines passenden Wertes ist dabei immer auch abhängig von der Gr�
 
 \pagebreak
 \section{Abschließende Worte}
-Gegenüberstellung direkt vs. iterativ
-\\
-sehr groß Gleichungssysteme mit dünn besetzter Matrix: Erzeugen neuer Nicht-Null-Elemente verursacht hohen Aufwand bei direkten Verfahren \\
-hingegen arbeiten iterative Verfahren nach Algorithmen, die die Matrix nicht verändern, sind also deutlich anspruchsloser hinsichtlich des Speicherbedarfs \\
-\\
-Lösung des Poisson-Problem mittels Finite-Differenzen-Diskretisierung produziert dünn besetzte Blockmatrizen hoher Dimensionen > sinnvoll, iterative Lösungsverfahren zu nutzen \\
+Beim Lösen sehr groß dimensionierter Gleichungssysteme mit dünn besetzen Matrizen kann durch das Erzeugen neuer Nicht-Null-Elemente bei direkten Verfahren hoher Aufwand entstehen.
+Wenn man die dünn besetzte Matrix des linearen Gleichungssystems den verfügbaren Speicherplatz schon voll ausreizt, zum Beispiel durch eine sehr enge Diskretisierung, dann ist es generell einfach nicht möglich neue Nicht-Null-Elemente zu speichern.
+Iterative Verfahren hingegen arbeiten mit Algorithmen, die die Matrix nicht verändern, sind also deutlich anspruchsloser hinsichtlich des Speicherbedarfs.
+
+Das Lösen des Poisson-Problem mittels Finite-Differenzen-Diskretisierung produziert dünn besetzte Blockmatrizen hoher Dimensionen, weshalb es sinnvoll ist, iterative Lösungsverfahren zu verwenden, die sich die vielen Nullelemente uz Nutze machen.
+
 Gleichungssystemen mit mehreren rechten Seiten Zusatzaufwand bei direkten Verfahren gering \\
 Aufwand bei iterativen Verfahren für jede neue rechte Seite oben drauf \\
 \\
 mehr Rechenoperationen bedeuten wiederum auch mehr Möglichkeiten, Fehler zu produzieren bzw. sich fortpflanzen zu lassen, insbesondere bei direkten Verfahren (ständiges Produzieren von Zwischenergebnissen und Weiterrechnen damit, Bsp. Vorwärts-/Rückwärtselimination) \\
 iterative Verfahren fangen diese Fehler mehr oder minder auf, indem sie im schlimmsten Fall lediglich mehr Zeit benötigen, um eine ausreichend genaue Näherungslösung bereitstellen zu können \\
-\\
-CG-Verfahren: \\
-gut geeignet für dünn besetzte Matrizen (z.B. hier betrachtete Poisson-Problem), Aufwand besteht hauptsächlich nur aus Matrix-Vektor-Multiplikation, für sehr große Systeme erhalten wir bereits in wenigen Schritten eine genügend genaue Approximation der exakten Lösung \\
+
+Das untersuchte CG-Verfahren hat sich für dünn besetzte Matrizen, wie die beim hier betrachteten Poisson-Problem, asl gut geeignet herausgestellt.
+Der Aufwand des Verfahrens besteht hauptsächlich aus Matrix-Vektor-Multiplikationen, die die \textit{sparsity} der Matrizen gut ausnutzen können.
+Selbst für sehr große Systeme haben wir bereits in wenigen Rechenschritten genügend genaue Approximationen der exakten Lösung berechnen können. 
 
 
 \pagebreak
