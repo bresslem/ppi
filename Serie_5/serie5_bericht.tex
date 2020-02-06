@@ -30,7 +30,7 @@ und CG-Verfahren}
 
 \pagebreak
 \section{Motivation}
-In unserem vorherigen Berichten haben wir das Poisson-Problem vorgestellt und einen numerischen Lösungsansatz aufgezeigt, der es durch eine Diskretisierung des Gebietes und des Laplace-Operators in das Lösen eines linearen Gleichungssystems überführt.
+In unseren vorherigen Berichten haben wir das Poisson-Problem vorgestellt und einen numerischen Lösungsansatz aufgezeigt, der es durch eine Diskretisierung des Gebietes und des Laplace-Operators in das Lösen eines linearen Gleichungssystems überführt.
 Die dabei entstehende tridiagonale Blockmatrix ist dünn besetzt, d.h. nur wenige Einträge sind ungleich Null.
 Deswegen ist es sinnvoll, sie als sogenannte \textit{sparse}-Matrix abzuspeichern.
 Dieser Speicherplatzvorteil geht jedoch beim Lösen des linearen Gleichungssystems mittels Gauß-Algorithmus und LU-Zerlegung verloren, da eine LU-Zerlegung einer dünn besetzten Matrix im Allgemeinen nicht dünn besetzt ist.
@@ -59,18 +59,18 @@ Dazu definiert man mit dem Standardskalarprodukt $<.,.>$ die Funktion
            &=\frac{1}{2}x^T Ax - x^T b
 \end{align*}
 
-Diese besitzt genau ein globales Minimum. Dieses liegt genau an der Stelle $x$, die der Lösung von $Ax=b$ entspricht. Man konstruiert also, um die Lösung von $Ax=b$zu finden, iterativ eine Folge von immer kleiner werdenden Funktionswerten von $\Phi$.\\
+Diese besitzt genau ein globales Minimum. Dieses liegt genau an der Stelle $x$, die der Lösung von $Ax=b$ entspricht. Man konstruiert also, um die Lösung von $Ax=b$ zu finden, iterativ eine Folge von immer kleiner werdenden Funktionswerten von $\Phi$.\\
 
-Um das globale Minimum zu finden, sucht man ausgehend von einem Startwert zunächst nach dem Minimum entlang einer Startrichtung (eines Startgradienten).
-Von diesem Minimum aus wählt man eine neue Suchrichtung (einen neuen Gradienten), die zu allen vorherigen Suchrichtungen $A$-konjugiert, d.h. orthogonal in der $A$-Norm, ist und sucht erneut nach einem Minimum entlang dieses Gradienten.
+Um das globale Minimum zu finden, sucht man ausgehend von einem Startwert $x_0$ zunächst nach dem Minimum entlang einer Startrichtung. Diese Startrichtung entspricht dem Gradienten von $\Phi$ an der Stelle $x_0$.
+Von diesem Minimum aus wählt man eine neue Suchrichtung (einen neuen Gradienten), die zu allen vorherigen Suchrichtungen $A$-konjugiert, d.h. orthogonal in der $A$-Norm, ist, und sucht erneut nach einem Minimum entlang dieses Gradienten.
 Dies tut man so lange, bis das Residuum kleiner oder gleich $\epsilon$ ist.
-Da es nur genau $N$ zueinander $A$-konjugierte Richtungen gibt, würde man mit dem CG-Verfahren in der Theorie nach maximal $N$ Schritten sogar die exakte Lösung finden.
+Da es nur genau $N$ zueinander $A$-konjugierte Richtungen gibt, würde man mit dem CG-Verfahren in der Theorie nach maximal $N$ Schritten sogar die exakte Lösung des Gleichungssystems finden.
 In der Praxis benötigt man jedoch den Toleranzfaktor $\epsilon$, da durch Rundungsfehler die Suchrichtungen unter Umständen nicht mehr genau orthogonal zueinander stehen und diese Garantie somit verloren geht.\\
 
 \subsection{Algorithmus}
 
 \underline{Initialisierung}: Man startet bei einem beliebigen $x_0\in\mathbb{R}^N$ und wählt einen Toleranzfaktor $\epsilon$.
-Man setzt $k\coloneqq 0$ und berechnet das Anfangsresiduum $r_0 \coloneqq Ax_0 - b$. Die erste Suchrichtung ist $d_0 = -r_0$.\\
+Man setzt $k\coloneqq 0$ und berechnet das Anfangsresiduum $r_0 \coloneqq Ax_0 - b$. Die erste Suchrichtung ist $d_0 = -r_0$, was dem Gradienten von $\Phi$ an der Stelle $x_0$ entspricht.\\
 
 \underline{Schritt k}: Falls $||r_k||\leq \epsilon$, hat man bereits eine Lösung im Toleranzbereich gefunden und kann hier aufhören.
 
@@ -91,16 +91,16 @@ Um zu verhindern, dass der Algorithmus für sehr viele Iterationen läuft ohne, 
 
 \pagebreak
 \section{Experimente und Beobachtungen}
-Im Folgenden wollen wir verschiedene Experimente präsentieren. 
-Da wir im Gegensatz zu unserer Arbeit vom 03.01.2020 im hiesigen Rahmen das Gleichungssystem nicht direkt mittels Gauß-Algorithmus und LU-Zerlegung, sondern iterativ mittels CG-Verfahren lösen, gilt unser Interesse der Vorstellung der neuen Methode zum Ermitteln einer Lösung des Poisson-Problems sowie der Gegenüberstellung der beiden Verfahrensweisen.  
+Im Folgenden wollen wir verschiedene Experimente präsentieren.
+Da wir im Gegensatz zu unserer Arbeit vom 03.01.2020 im hiesigen Rahmen das Gleichungssystem nicht direkt mittels Gauß-Algorithmus und LU-Zerlegung, sondern iterativ mittels CG-Verfahren lösen, gilt unser Interesse der Vorstellung der neuen Methode zum Ermitteln einer Lösung des Poisson-Problems sowie der Gegenüberstellung der beiden Verfahrensweisen.
 
 
 \subsection{Entwicklung des absoluten Fehlers pro Iteration}
-Während direkte Verfahren nach einer endlichen Anzahl an Rechenoperationen \glqq{die exakte Lösung}\grqq{} liefern (dabei handelt es sich in der Praxis nicht um die exakte analytische Lösung, da ein Computer aufgrund seiner begrenzten Rechenleistung im Allgemeinen immer bei der Verarbeitung von Zahlen Fehler produziert), ermitteln iterative Verfahren schrittweise eine immer bessere Approximation der gesuchten Lösung. \\ 
-Diese sukzessive Annäherung an die exakte Lösung lässt sich an den folgenden drei Grafiken (Abb. 1) erkennen. 
-Sie zeigen jeweils für den ein-, den zwei- und den dreidimensionalen Fall die Entwicklung des absoluten Fehlers pro Iteration. 
-(Startwert ist der Nullvektor.) 
-Der Graph schmiegt sich mit zunehmender Schrittzahl immer mehr der x-Achse an. 
+Während direkte Verfahren nach einer endlichen Anzahl an Rechenoperationen \glqq{die exakte Lösung}\grqq{} liefern (dabei handelt es sich in der Praxis nicht um die exakte analytische Lösung, da ein Computer aufgrund seiner begrenzten Rechenleistung im Allgemeinen immer bei der Verarbeitung von Zahlen Fehler produziert), ermitteln iterative Verfahren schrittweise eine immer bessere Approximation der gesuchten Lösung. \\
+Diese sukzessive Annäherung an die exakte Lösung lässt sich an den folgenden drei Grafiken (Abb. 1) erkennen.
+Sie zeigen jeweils für den ein-, den zwei- und den dreidimensionalen Fall die Entwicklung des absoluten Fehlers pro Iteration.
+(Startwert ist der Nullvektor.)
+Der Graph schmiegt sich mit zunehmender Schrittzahl immer mehr der x-Achse an.
 Dieses asymptotische Fehlerverhalten ist charakteristisch für iterative Verfahren. \\
 
 {
@@ -113,26 +113,26 @@ Dieses asymptotische Fehlerverhalten ist charakteristisch für iterative Verfahr
 }
 \vspace{0.5cm}
 
-Darüber hinaus ist auffallend, dass weitaus weniger als $N=(n-1)^d$ Schritte vonnöten sind, um eine sehr gute Näherungslösung zu errechnen. 
-Während wir im eindimensionalen Fall, $N=9$, bereits nach der fünften Iteration eine ausreichend genaue Lösung haben, benötigen wir im zweidimensionalen Fall, $N=81$, nur 13 und im dreidimensionalen Fall, $N=729$, lediglich eine mehr, nämlich 14 Iterationen.  
-(Die große Konvergenzgeschwindigkeit lässt sich auf die gute Kondition der tridiagonalen Blockmatrix zurückführen, die wir im vorherigen Bericht ausführlich untersucht haben.) 
-Doch bei allen ist der Fehler schon nach acht Schritten nur noch sehr gering. 
-Dass unser Programm dennoch weiterrechnet, ist dem Umstand geschuldet, dass noch keiner der eingegebenen Abbruchparameter zum Tragen kam. 
-Da die Rechenschritte bei direkten Verfahren wie gesagt im Voraus bekannt und begrenzt sind, bei iterativen jedoch nicht, benötigen letztere Abbruchbedingungen, die den Schleifendurchlauf des Algorithmus zum Ende bringen. 
-Unsere Implementierung der Methode der konjugierten Gradienten (CG) enthält die folgenden drei Abbruchbedingungen. 
-\glqq{eps}\grqq: Abbruch, falls eine ausreichend genaue Lösung gefunden wurde, d.h. falls die Norm des Residuums eine vorgegebene Grenze unterschreitet (das Residuum, das im Bildraum von der Matrix $A$ existiert, ist ein Anhaltspunkt für die Größe des Fehlers unserer Lösung für den gesuchten Vektor $x$), \glqq{max\_iter}\grqq: Abbruch, falls der vorgenommene Aufwand ausgeschöpft wurde, d.h. falls eine vorgegebene Anzahl an Iterationen erreicht ist, \glqq{min\_red}\grqq: Abbruch, falls das Verfahren \glqq{feststeckt}\grqq, d.h. falls der Abstand zwischen den letzten beiden Residuen eine vorgegebene Grenze überschreitet. 
-Dabei ist zu bemerken, dass das Greifen einer der letzten beiden Abbruchbedingungen darauf hinweist, dass das Lösungsverfahren nicht so funktioniert, wie es soll. 
-Daraufhin könnte man seine Eingabe eines Startwertes oder der Feinheit korrigieren oder u.U. auf eine ganz andere Methode zurückgreifen. 
+Darüber hinaus ist auffallend, dass weitaus weniger als $N=(n-1)^d$ Schritte vonnöten sind, um eine sehr gute Näherungslösung zu errechnen.
+Während wir im eindimensionalen Fall, $N=9$, bereits nach der fünften Iteration eine ausreichend genaue Lösung haben, benötigen wir im zweidimensionalen Fall, $N=81$, nur 13 und im dreidimensionalen Fall, $N=729$, lediglich eine mehr, nämlich 14 Iterationen.
+(Die große Konvergenzgeschwindigkeit lässt sich auf die gute Kondition der tridiagonalen Blockmatrix zurückführen, die wir im vorherigen Bericht ausführlich untersucht haben.)
+Doch bei allen ist der Fehler schon nach acht Schritten nur noch sehr gering.
+Dass unser Programm dennoch weiterrechnet, ist dem Umstand geschuldet, dass noch keiner der eingegebenen Abbruchparameter zum Tragen kam.
+Da die Rechenschritte bei direkten Verfahren wie gesagt im Voraus bekannt und begrenzt sind, bei iterativen jedoch nicht, benötigen letztere Abbruchbedingungen, die den Schleifendurchlauf des Algorithmus zum Ende bringen.
+Unsere Implementierung der Methode der konjugierten Gradienten (CG) enthält die folgenden drei Abbruchbedingungen.
+\glqq{eps}\grqq: Abbruch, falls eine ausreichend genaue Lösung gefunden wurde, d.h. falls die Norm des Residuums eine vorgegebene Grenze unterschreitet (das Residuum, das im Bildraum von der Matrix $A$ existiert, ist ein Anhaltspunkt für die Größe des Fehlers unserer Lösung für den gesuchten Vektor $x$), \glqq{max\_iter}\grqq: Abbruch, falls der vorgenommene Aufwand ausgeschöpft wurde, d.h. falls eine vorgegebene Anzahl an Iterationen erreicht ist, \glqq{min\_red}\grqq: Abbruch, falls das Verfahren \glqq{feststeckt}\grqq, d.h. falls der Abstand zwischen den letzten beiden Residuen eine vorgegebene Grenze unterschreitet.
+Dabei ist zu bemerken, dass das Greifen einer der letzten beiden Abbruchbedingungen darauf hinweist, dass das Lösungsverfahren nicht so funktioniert, wie es soll.
+Daraufhin könnte man seine Eingabe eines Startwertes oder der Feinheit korrigieren oder u.U. auf eine ganz andere Methode zurückgreifen.
 
 
 \subsection{Konvergenzverhalten für ein festes Epsilon}
-Um den Unterschied zwischen der direkten Methode mittels Gauß-Algorithmus mit LU-Zerlegung und dem CG-Verfahren zu untersuchen, erschien es uns sinnvoll, das Konvergenzverhalten beider gegenüberzustellen. 
+Um den Unterschied zwischen der direkten Methode mittels Gauß-Algorithmus mit LU-Zerlegung und dem CG-Verfahren zu untersuchen, erschien es uns sinnvoll, das Konvergenzverhalten beider gegenüberzustellen.
 Dieser Vergleich ist in der folgenden Grafik (Abb. 2) für ein festes Epsilon $\epsilon = 10^{-8}$ (Abbruchbedingung 1: eine ausreichend genaue Lösung wurde gefunden) dargestellt. \\
-Es lässt sich beobachten, dass das direkte und das iterative Verfahren für den ein-, den zwei- und den dreidimensionalen Fall das exakt selbe Konvergenzverhalten aufweisen. 
-Der Gauß-Algorithmus mit LU-Zerlegung und das CG-Verfahren stellen lediglich Lösungsverfahren zur Lösung eines linearen Gleichungssystems bereit. 
-Die Methode zur Lösung des Poisson-Problems aber basiert in beiden Fällen auf einer Diskretisierung des Gebietes und des Laplace-Operators. 
-Da die Konvergenzgeschwindigkeit sowohl beim LU- als auch beim CG-Verfahren abhängig von dieser Diskretisierung ist, ist eine gleiche Konvergenzgeschwindigkeit auch nicht verwunderlich. 
-Noch immer gilt die Faustregel: Je feiner wir das Gitter wählen, desto genauer ist unsere numerische Lösung. 
+Es lässt sich beobachten, dass das direkte und das iterative Verfahren für den ein-, den zwei- und den dreidimensionalen Fall das exakt selbe Konvergenzverhalten aufweisen.
+Der Gauß-Algorithmus mit LU-Zerlegung und das CG-Verfahren stellen lediglich Lösungsverfahren zur Lösung eines linearen Gleichungssystems bereit.
+Die Methode zur Lösung des Poisson-Problems aber basiert in beiden Fällen auf einer Diskretisierung des Gebietes und des Laplace-Operators.
+Da die Konvergenzgeschwindigkeit sowohl beim LU- als auch beim CG-Verfahren abhängig von dieser Diskretisierung ist, ist eine gleiche Konvergenzgeschwindigkeit auch nicht verwunderlich.
+Noch immer gilt die Faustregel: Je feiner wir das Gitter wählen, desto genauer ist unsere numerische Lösung.
 Aufgrund der zweiten finiten Differenz liegt im eindimensionalen Fall quadratische Konvergenz, im zweidimensionalen Fall lineare und im dreidimensionalen Fall sublineare Konvergenz vor. \\
 
 
@@ -146,20 +146,20 @@ Aufgrund der zweiten finiten Differenz liegt im eindimensionalen Fall quadratisc
 
 
 \subsection{Konvergenzverhalten für variable Epsilon}
-Im Folgenden wollen wir das Konvergenzverhalten des CG-Verfahrens für eine Variation von Epsilon-Werten, die von der Feinheit der Diskretisierung abhängig ist, untersuchen. 
+Im Folgenden wollen wir das Konvergenzverhalten des CG-Verfahrens für eine Variation von Epsilon-Werten, die von der Feinheit der Diskretisierung abhängig ist, untersuchen.
 Es gilt $\epsilon^{(k)}=n^{-k}$, wobei $n$ wie bisher die Anzahl der Diskretisierungsintervalle in einer Dimension $d\in\{1, 2, 3\}$ angibt. \\
-In der folgenden Abbildung 3 haben wir das Konvergenzverhalten für die drei untersuchten Dimensionen und die Variation der Epsilon-Werte grafisch dargestellt. 
-Grundsätzlich sieht man, dass sich der Anstieg der Fehlerkurven mit zunehmendem $k$ immer weiter verringert. 
-Für $k=-2$ und $k=0$ ist $\epsilon^{(k)}=1$. 
-Dies bedeutet, dass das Verfahren bereits nach sehr wenigen Schritten abbricht, weil die Norm des Residuums schnell dieser Bedingung genügt. 
-Wir erhalten in diesen Fällen eine relativ grobe Approximation der exakten Lösung, die sich mit einer feineren Diskretisierung nicht verbessern lässt, sondern langsam immer schlechter wird (für die drei betrachteten Dimensionen mit etwa gleich großem Anstieg). 
+In der folgenden Abbildung 3 haben wir das Konvergenzverhalten für die drei untersuchten Dimensionen und die Variation der Epsilon-Werte grafisch dargestellt.
+Grundsätzlich sieht man, dass sich der Anstieg der Fehlerkurven mit zunehmendem $k$ immer weiter verringert.
+Für $k=-2$ und $k=0$ ist $\epsilon^{(k)}\geq 1$.
+Dies bedeutet, dass das Verfahren bereits nach sehr wenigen Schritten abbricht, weil die Norm des Residuums schnell dieser Bedingung genügt.
+Wir erhalten in diesen Fällen eine relativ grobe Approximation der exakten Lösung, die sich mit einer feineren Diskretisierung nicht verbessern lässt, sondern langsam immer schlechter wird (für die drei betrachteten Dimensionen mit etwa gleich großem Anstieg).
 Diese Verschlechterung ist vermutlich auf die zunehmenden Rundungsfehler zurückzuführen. \\
-Für $k>0$ wird mit immer größerem $n$ bzw. $N$, d.h. mit einer immer feineren Diskretisierung hingegen eine Straffung der Abbruchbedingung bewirkt. 
-(Der Grad der Straffung hängt dabei von der Größe von $k$ ab.) 
-Daher sind die zugehörigen Graphen monoton fallend. 
-Für alle drei Dimensionen gilt, dass im Minimum für $k\geq4$ in etwa dasselbe Konvergenzverhalten wie für $\epsilon = 10^{-8}$ zu beobachten ist. 
-Daraus lässt sich schließen, dass $\epsilon = 10^{-8}$ eine durchaus geeignete Wahl für die Abbruchbedingung (Obergrenze Norm des Residuums) darstellt. 
-Für kleinere Dimensionen genügen u.U. allerdings bereits kleinere Werte für Epsilon. 
+Für $k>0$ wird mit immer größerem $n$ bzw. $N$, d.h. mit einer immer feineren Diskretisierung hingegen eine Straffung der Abbruchbedingung bewirkt.
+(Der Grad der Straffung hängt dabei von der Größe von $k$ ab.)
+Daher sind die zugehörigen Graphen monoton fallend.
+Für alle drei Dimensionen gilt, dass im Minimum für $k\geq4$ in etwa dasselbe Konvergenzverhalten wie für $\epsilon = 10^{-8}$ zu beobachten ist.
+Daraus lässt sich schließen, dass $\epsilon = 10^{-8}$ eine durchaus geeignete Wahl für die Abbruchbedingung (Obergrenze Norm des Residuums) darstellt.
+Für kleinere Dimensionen genügen u.U. allerdings bereits kleinere Werte für Epsilon.
 Die Festlegung eines passenden Wertes ist dabei immer auch abhängig von der Größe des linearen Gleichungssystems, welche wiederum von der Dimension und der Feinheit der Diskretisierung bedingt wird. \\
 
 
