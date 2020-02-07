@@ -36,7 +36,7 @@ Deswegen ist es sinnvoll, sie als sogenannte \textit{sparse}-Matrix abzuspeicher
 Dieser Speicherplatzvorteil geht jedoch beim Lösen des linearen Gleichungssystems mittels Gauß-Algorithmus und LU-Zerlegung verloren, da eine LU-Zerlegung einer dünn besetzten Matrix im Allgemeinen nicht dünn besetzt ist.
 Aufgrund dieses Umstandes erscheint es sinnvoll, das lineare Gleichungssystem nicht direkt, sondern iterativ zu lösen.
 Solche iterativen Lösungsverfahren (wie das Gesamtschrittverfahren von Jacobi, das Einzelschrittverfahren von Gauß-Seidel, das SOR-Verfahren und das CG-Verfahren) bieten gegenüber direkten Verfahren außerdem den Vorteil, dass deren Rechenaufwand im Verhältnis zur in der Praxis für gewöhnlich sehr großen Dimension der Blockmatrix recht gering ist.
-Da das CG-Verfahrens eine heute durchaus übliche Methode zum Lösen großer linearer Gleichungssysteme darstellt, wollen wir dieses im Folgenden im Rahmen unseres bisherigen Settings (Poisson-Problem und Finite-Differenzen-Diskretisierung) vorstellen und untersuchen.
+Da das CG-Verfahren eine heute durchaus übliche Methode zum Lösen großer linearer Gleichungssysteme darstellt, wollen wir dieses im Folgenden im Rahmen unseres bisherigen Settings (das Poisson-Problem für die Beispielfunktion aus unserem Bericht vom 03.01.2020 und einer Diskretisierung des Einheitsintervalls, -quadrats und -würfels mit finiten Differenzen) vorstellen und untersuchen.
 
 
 
@@ -94,7 +94,7 @@ Da wir im Gegensatz zu unserer Arbeit vom 03.01.2020 im hiesigen Rahmen das Glei
 
 \subsection{Entwicklung des absoluten Fehlers pro Iteration}
 Während direkte Verfahren nach einer endlichen Anzahl an Rechenoperationen \glqq{die exakte Lösung}\grqq{} liefern (dabei handelt es sich in der Praxis nicht um die exakte analytische Lösung, da ein Computer aufgrund seiner begrenzten Rechenleistung im Allgemeinen immer bei der Verarbeitung von Zahlen Fehler produziert), ermitteln iterative Verfahren schrittweise eine immer bessere Approximation der gesuchten Lösung. \\
-Diese sukzessive Annäherung an die exakte Lösung lässt sich an den folgenden drei Grafiken (Abb. 1) erkennen.
+Diese sukzessive Annäherung an die exakte Lösung lässt sich an den folgenden drei Grafiken (Abbildung 1) erkennen.
 Sie zeigen jeweils für den ein-, den zwei- und den dreidimensionalen Fall die Entwicklung des absoluten Fehlers pro Iteration.
 (Startwert ist der Nullvektor.)
 Der Graph schmiegt sich mit zunehmender Schrittzahl immer mehr der x-Achse an.
@@ -124,7 +124,8 @@ Daraufhin könnte man seine Eingabe eines Startwertes oder der Feinheit korrigie
 
 \subsection{Konvergenzverhalten für ein festes Epsilon}
 Um den Unterschied zwischen der direkten Methode mittels Gauß-Algorithmus mit LU-Zerlegung und dem CG-Verfahren zu untersuchen, erschien es uns sinnvoll, das Konvergenzverhalten beider gegenüberzustellen.
-Dieser Vergleich ist in der folgenden Grafik (Abb. 2) für ein festes Epsilon $\epsilon = 10^{-8}$ (Abbruchbedingung 1: eine ausreichend genaue Lösung wurde gefunden) dargestellt. \\
+Dieser Vergleich ist in der folgenden Grafik (Abbildung 2) für ein festes Epsilon $\epsilon = 10^{-8}$ (Abbruchbedingung 1: eine ausreichend genaue Lösung wurde gefunden) dargestellt.
+Als Vektornorm haben wir die Maximumsnorm gewählt. \\
 Es lässt sich beobachten, dass das direkte und das iterative Verfahren für den ein-, den zwei- und den dreidimensionalen Fall das exakt selbe Konvergenzverhalten aufweisen.
 Der Gauß-Algorithmus mit LU-Zerlegung und das CG-Verfahren stellen lediglich Lösungsverfahren zur Lösung eines linearen Gleichungssystems bereit.
 Die Methode zur Lösung des Poisson-Problems aber basiert in beiden Fällen auf einer Diskretisierung des Gebietes und des Laplace-Operators.
@@ -146,18 +147,19 @@ Aufgrund der zweiten finiten Differenz liegt im eindimensionalen Fall quadratisc
 Im Folgenden wollen wir das Konvergenzverhalten des CG-Verfahrens für eine Variation von Epsilon-Werten, die von der Feinheit der Diskretisierung abhängig ist, untersuchen.
 Es gilt $\epsilon^{(k)}=n^{-k}$, wobei $n$ (mit $n \geq 2$) wie bisher die Anzahl der Diskretisierungsintervalle in je einer Dimension $d\in\{1, 2, 3\}$ angibt. \\
 In der folgenden Abbildung 3 haben wir das Konvergenzverhalten für die drei untersuchten Dimensionen und die Variation der Epsilon-Werte grafisch dargestellt.
-Grundsätzlich ist zu sehen, dass sich der Anstieg der Fehlerkurven mit zunehmendem $k$ immer weiter verringert.
+Grundsätzlich ist zu sehen, dass sich der Anstieg der Fehlerkurven mit zunehmendem $k$ immer weiter im Negativen vergrößert. \\
 Für $k=-2$ und $k=0$ ist $\epsilon^{(k)}\geq 1$.
 Dies bedeutet, dass das Verfahren bereits nach sehr wenigen Schritten abbricht, weil die Norm des Residuums schnell dieser Bedingung genügt.
 Wir erhalten in diesen Fällen eine relativ grobe Approximation der exakten Lösung, die sich mit einer feineren Diskretisierung nicht verbessern lässt, sondern langsam immer schlechter wird (für die drei betrachteten Dimensionen mit etwa gleich großem Anstieg).
-Diese Verschlechterung ist vermutlich auf die zunehmenden Rundungsfehler zurückzuführen. \\
+Diese Verschlechterung ist auf die zunehmenden Rundungsfehler zurückzuführen. \\
 Für $k>0$ wird mit immer größerem $n$ bzw. $N=(n-1)^d$, d.h. mit einer immer feineren Diskretisierung hingegen eine Straffung der Abbruchbedingung bewirkt.
 (Der Grad der Straffung hängt dabei von der Größe von $k$ ab.)
-Daher sind die zugehörigen Graphen monoton fallend.
+Daher sind die zugehörigen Graphen streng monoton fallend.
+Das bedeutet, dass der maximale absolute Fehler immer geringer wird.
 Für alle drei Dimensionen gilt, dass im Minimum für $k\geq4$ in etwa dasselbe Konvergenzverhalten wie für $\epsilon = 10^{-8}$ zu beobachten ist.
-Daraus lässt sich schließen, dass $\epsilon = 10^{-8}$ eine durchaus geeignete Wahl für die Abbruchbedingung (Obergrenze Norm des Residuums) darstellt.
+Daraus lässt sich schließen, dass $\epsilon = 10^{-8}$ eine durchaus geeignete Wahl für die Abbruchbedingung (Obergrenze Maximumsnorm des Residuums) darstellt.
 Für kleinere Dimensionen allerdings genügen u.U. bereits kleinere Werte für Epsilon.
-Die Festlegung eines passenden Wertes ist dabei immer auch abhängig von der Größe des linearen Gleichungssystems, welche wiederum von der Dimension und der Feinheit der Diskretisierung bedingt wird. \\
+Die Wahl eines passenden Wertes ist dabei immer auch abhängig von der Größe des linearen Gleichungssystems, welche wiederum von der Größe der Dimension und der Feinheit der Diskretisierung bedingt wird. \\
 
 
 {
@@ -173,25 +175,27 @@ Die Festlegung eines passenden Wertes ist dabei immer auch abhängig von der Gr�
 
 \pagebreak
 \section{Abschließende Worte}
-Das Lösen des Poisson-Problems mittels Finite-Differenzen-Diskretisierung produziert eine dünn besetzte Blockmatrix hoher Dimension.
-Möchte man dieses großen Gleichungssystem mittels eines direkten Verfahrens wie dem Gauß-Algorithmus mit LU-Zerlegung lösen, würde der Speicherplatzbedarf und der Rechenaufwand durch das Erzeugen neuer Nicht-Null-Elemente rasch ansteigen.
-Auf diese Weise wäre auch eine Verfeinerung der Diskretisierung stark begrenzt.
-Iterative Verfahren (wie das in dieser Arbeit vorgestellte CG-Verfahren) hingegen arbeiten mit Algorithmen, die die Matrix nicht verändern.
+Das Lösen des Poisson-Problems mittels Finite-Differenzen-Diskretisierung produziert eine dünn besetzte Blockmatrix großer Dimension.
+Möchte man dieses große Gleichungssystem mittels eines direkten Verfahrens wie dem Gauß-Algorithmus mit LU-Zerlegung lösen, würde der Speicherplatzbedarf und der Rechenaufwand durch das Erzeugen neuer Nicht-Null-Elemente rasch ansteigen.
+Dadurch wäre auch eine Verfeinerung der Diskretisierung stark begrenzt.
+Iterative Verfahren -- wie das in dieser Arbeit vorgestellte CG-Verfahren -- hingegen arbeiten mit Algorithmen, die die Matrix nicht verändern.
 Folglich sind sie deutlich anspruchsloser hinsichtlich des Speicherplatzbedarfs.
-Darüber hinaus kommen sie auch mit weniger aufwendigen Rechenoperationen aus, bieten wiederum auch weniger Möglichkeiten, Fehler zu produzieren bzw. sich fortpflanzen zu lassen.
-Während direkte Verafhren ständig Zwischenergebnisse produzieren und damit weiterrechnen (z.B. bei der Vorwärts-/Rückwärtselimination), fangen iterative Verfahren diese Fehler mehr oder minder auf, indem sie im schlimmsten Fall lediglich mehr Zeit benötigen, um eine ausreichend genaue Näherungslösung bereitstellen zu können.
-Die Güte der Approximation wird dadurch aber nicht beeinträchtigt.\\
-
-Konvergenzgeschwindigkeit gleich, aber weniger aufwendige und anfällige Rechenoperationen, schnell gute Lösung\\
-
-Das Lösen des Poisson-Problem mittels Finite-Differenzen-Diskretisierung produziert dünn besetzte Blockmatrizen hoher Dimensionen, weshalb es sinnvoll ist, iterative Lösungsverfahren zu verwenden, die sich die vielen Nullelemente zunutze machen.\\
-
-Gleichungssystemen mit mehreren rechten Seiten Zusatzaufwand bei direkten Verfahren gering \\
-Aufwand bei iterativen Verfahren für jede neue rechte Seite oben drauf \\
-
-Das untersuchte CG-Verfahren hat sich für dünn besetzte Matrizen, wie die beim hier betrachteten Poisson-Problem, asl gut geeignet herausgestellt.
-Der Aufwand des Verfahrens besteht hauptsächlich aus Matrix-Vektor-Multiplikationen, die die \textit{sparsity} der Matrizen gut ausnutzen können.
-Selbst für sehr große Systeme haben wir bereits in wenigen Rechenschritten genügend genaue Approximationen der exakten Lösung berechnen können. 
+Darüber hinaus kommen sie auch mit weniger aufwendigen Rechenoperationen aus, bieten wiederum ebenso weniger Möglichkeiten, Fehler zu produzieren bzw. sich fortpflanzen zu lassen.
+Während direkte Verfahren ständig Zwischenergebnisse produzieren und damit weiterrechnen (z.B. bei der Vorwärts-/Rückwärtseliminierung), fangen iterative Verfahren diese Fehler sozusagen auf, indem sie im schlimmsten Fall lediglich mehr Zeit benötigen, um eine ausreichend genaue Näherungslösung liefern zu können.
+Die Güte der Approximation wird dadurch aber nicht beeinträchtigt. \\
+Durch unsere Experimente haben wir gezeigt, dass das Lösen des Poisson-Problems mittels Finite-Differenzen-Diskretisierung und Gauß-Algorithmus mit LU-Zerlegung einerseits und CG-Verfahren andererseits dieselbe Konvergenzgeschwindigkeit aufweist.
+An dieser Stelle bietet also keines der vorgestellten Verfahren (LU und CG) einen Vorteil gegenüber dem jeweils anderen.
+Allerdings wurde durch unsere Untersuchungen deutlich, dass beim CG-Verfahren weniger aufwendige und anfällige Rechenoperationen durchgeführt werden müssen.
+Bei dem Verfahren mit der LU-Zerlegung müssen Matrix-Vektor-Multiplikationen vorgenommen werden (mit i.A. nicht mehr dünn besetzten Matrizen; die Nicht-Null-Einträge der Matrizen $L$ und $U$ addieren sich in etwa zum Quadrat der Dimension $N$ der Blockmatrix $A$), zudem müssen lineare Gleichungssysteme gelöst werden.
+Beim CG-Verfahren dagegen fallen zwar auch Matrix-Vektor-Multiplikationen an, jedoch nur mit der dünn besetzten Ausgangsmatrix.
+Die \textit{sparsity} der tridiagonalen Blockmatrix wird demzufolge gut ausgenutzt.
+Den Rest der Operationen bilden einfache Multiplikationen von Skalaren und Vektoren.
+Gleichungssysteme müssen gar nicht gelöst werden.
+In der Praxis liegen vor allem sehr großdimensionale Probleme vor (auch bedingt durch die Feinheit der Diskretisierung), weshalb dieser Aufwandsunterschied stark ins Gewicht fällt.
+Ein Plus, das direkte Verfahren gegenüber iterativen haben, ist der vergleichsweise geringe Zusatzaufwand bei Gleichungssystemen mit mehreren rechten Seiten.
+Für diesen Fall sind iterative Verfahren demnach weniger gut gewappnet. \\
+Zusammenfassend lässt sich sagen, dass das in dieser Arbeit untersuchte CG-Verfahren gut für dünn besetzte Matrizen, wie beim hier betrachteten Poisson-Problem produziert, geeignet ist.
+Der Algorithmus ist stabil und stellt selbst für sehr große Systeme in nur wenigen Rechenschritten eine gute Approximation der exakten Lösung bereit. 
 
 
 \pagebreak

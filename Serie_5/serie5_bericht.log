@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  6 FEB 2020 19:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.11.2)  7 FEB 2020 14:57
 entering extended mode
 **./serie5_bericht.tex
 (serie5_bericht.tex
@@ -495,17 +495,18 @@ Package pdftex.def Info: Grafiken/iterates_d3_n10.png  used on input line 107.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 [5 <./Grafiken/iterates_d1_n10.png> <./Grafiken/iterates_d2_n10.png> <./Grafike
 n/iterates_d3_n10.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 126--134
+Underfull \hbox (badness 10000) in paragraph at lines 126--135
 
  []
 
-<Grafiken/compare.png, id=39, 462.528pt x 346.896pt>
+[6]
+<Grafiken/compare.png, id=42, 462.528pt x 346.896pt>
 File: Grafiken/compare.png Graphic file (type png)
 <use Grafiken/compare.png>
-Package pdftex.def Info: Grafiken/compare.png  used on input line 138.
+Package pdftex.def Info: Grafiken/compare.png  used on input line 139.
 (pdftex.def)             Requested size: 313.69167pt x 235.27744pt.
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 146--161
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--163
 
  []
 
@@ -513,46 +514,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 146--161
 <Grafiken/epsilon_d1.png, id=48, 462.528pt x 345.4506pt>
 File: Grafiken/epsilon_d1.png Graphic file (type png)
 <use Grafiken/epsilon_d1.png>
-Package pdftex.def Info: Grafiken/epsilon_d1.png  used on input line 165.
+Package pdftex.def Info: Grafiken/epsilon_d1.png  used on input line 167.
 (pdftex.def)             Requested size: 188.21371pt x 140.57089pt.
 <Grafiken/epsilon_d2.png, id=49, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d2.png Graphic file (type png)
 <use Grafiken/epsilon_d2.png>
-Package pdftex.def Info: Grafiken/epsilon_d2.png  used on input line 166.
+Package pdftex.def Info: Grafiken/epsilon_d2.png  used on input line 168.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
 <Grafiken/epsilon_d3.png, id=50, 462.528pt x 346.896pt>
 File: Grafiken/epsilon_d3.png Graphic file (type png)
 <use Grafiken/epsilon_d3.png>
-Package pdftex.def Info: Grafiken/epsilon_d3.png  used on input line 167.
+Package pdftex.def Info: Grafiken/epsilon_d3.png  used on input line 169.
 (pdftex.def)             Requested size: 188.21371pt x 141.15904pt.
  [8 <./Grafiken/epsilon_d1.png> <./Grafiken/epsilon_d2.png> <./Grafiken/epsilon
-_d3.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 176--184
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--186
-
- []
-
-
-Overfull \hbox (5.5223pt too wide) in paragraph at lines 187--188
-[]\T1/cmr/m/n/10.95 Das Lö-sen des Poisson-Problem mit-tels Finite-Differenzen-
-Diskretisierung pro-du-ziert dünn
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--191
-
- []
-
-[9]
+_d3.png>] [9]
 No file serie5_bericht.bbl.
 (serie5_bericht.aux)
 
@@ -582,9 +557,9 @@ onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public
 iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/AJ/MiKTeX/fonts/type1
 /public/amsfonts/cm/cmsy8.pfb><C:/Users/AJ/MiKTeX/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb>
-Output written on serie5_bericht.pdf (9 pages, 637906 bytes).
+Output written on serie5_bericht.pdf (9 pages, 640353 bytes).
 PDF statistics:
- 355 PDF objects out of 1000 (max. 8388607)
+ 358 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
