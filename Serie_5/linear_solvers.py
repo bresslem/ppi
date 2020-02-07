@@ -3,13 +3,16 @@ Author: Bressler_Marisa, Jeschke_Anne
 Date: 2020_01_03
 
 Solves the given linear equation system Ax = b via forward and backward substitution
-given the LU-decomposition with full pivoting pr * A * pc = l * u.
+given the LU-decomposition with full pivoting pr * A * pc = l * u and with CG method.
 """
+
+#pylint: disable=invalid-name, dangerous-default-value, import-error, unused-import
+
 import scipy.linalg as lina
-import scipy.sparse as sps
+import scipy.sparse
 import numpy as np
 
-def solve_lu(pr, l, u, pc, b): #pylint: disable=invalid-name
+def solve_lu(pr, l, u, pc, b):
     """ Solves the linear system Ax = b via forward and backward substitution
     given the decomposition pr * A * pc = l * u.
 
@@ -32,10 +35,10 @@ def solve_lu(pr, l, u, pc, b): #pylint: disable=invalid-name
        solution of the linear system
     """
 
-    z = lina.solve_triangular(l.toarray(), np.dot(pr.toarray(), b), #pylint: disable=invalid-name
+    z = lina.solve_triangular(l.toarray(), np.dot(pr.toarray(), b),
                               lower=True, unit_diagonal=True)
-    y = lina.solve_triangular(u.toarray(), z) #pylint: disable=invalid-name
-    x = np.dot(pc.toarray(), y) #pylint: disable=invalid-name
+    y = lina.solve_triangular(u.toarray(), z)
+    x = np.dot(pc.toarray(), y)
     return x
 
 def solve_cg(A, b, x0,
@@ -93,14 +96,14 @@ def solve_cg(A, b, x0,
         iterates.append(iterates[k] + c*d)
         residuals.append(residuals[k] + c*z)
 
-        if abs(lina.norm(residuals[k+1], np.inf) - lina.norm(residuals[k], np.inf)) < params["min_red"]:
+        if abs(lina.norm(residuals[k+1], np.inf)
+               - lina.norm(residuals[k], np.inf)) < params["min_red"]:
             return "min_red", iterates, residuals
 
         if lina.norm(residuals[k+1], np.inf) < params["eps"]:
             return "eps", iterates, residuals
 
-        d = -residuals[k+1] + (np.dot(residuals[k+1], residuals[k+1])/np.dot(residuals[k], residuals[k]))*d
+        beta = (np.dot(residuals[k+1], residuals[k+1])/np.dot(residuals[k], residuals[k]))
+        d = -residuals[k+1] + beta*d
 
     return "max_iter", iterates, residuals
-
-

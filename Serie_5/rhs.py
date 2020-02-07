@@ -6,20 +6,19 @@ Implements the right hand side vector of the system to solve the Poisson-problem
 Also calculates and plots the error of the numerical solution of the Poisson-problem
 with respect to the row sum norm.
 """
-# pylint: disable=invalid-name, no-member, import-error, wrong-import-position
+# pylint: disable=invalid-name, no-member, import-error, wrong-import-position, too-many-locals, dangerous-default-value
 
 from matplotlib import use
-# use('qt4agg')
+use('TkAgg')
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d # pylint: disable=unused-import
 import numpy as np
-import scipy.linalg as lina
 import block_matrix
 import linear_solvers
 
 plt.rcParams['font.size'] = 12
 
-def rhs(d, n, f): #pylint: disable=invalid-name
+def rhs(d, n, f):
     """ Computes the right-hand side vector b for a given function f.
     Parameters
     ----------
@@ -62,7 +61,7 @@ def rhs(d, n, f): #pylint: disable=invalid-name
             rhs_vector[i-1] = ((1/n)**2)*f(x)
     return rhs_vector
 
-def compute_error(d, n, hat_u, u): #pylint: disable=invalid-name
+def compute_error(d, n, hat_u, u):
     """ Computes the error of the numerical solution of the Poisson-problem
     with respect to the max norm.
 
@@ -89,9 +88,9 @@ def compute_error(d, n, hat_u, u): #pylint: disable=invalid-name
     err = [abs(actual_u[i]-hat_u[i]) for i in range(len(actual_u))]
     return max(err)
 
-def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
+def plot_error(u, f, d, n_list):
     """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
-    for a given list of n-values. N = (n-1)^d is the dimension of the block matrix.
+    with LU for a given list of n-values. N = (n-1)^d is the dimension of the block matrix.
 
     Parameters
     ----------
@@ -139,9 +138,86 @@ def plot_error(u, f, d, n_list): #pylint: disable=invalid-name
     plt.show()
     plt.figure()
 
-def plot_error_comp(u, f, d, n_list): #pylint: disable=invalid-name
+def plot_error_list(u_list, f_list, n_list_list):
     """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
-    for a given list of n-values. N = (n-1)^d is the dimension of the block matrix.
+    with LU for a given list of n-values and for the dimension d = 1, 2, 3.
+
+    Parameters
+    ----------
+    n_list_list: list of list of ints
+        The n-values for which to plot the errors.
+    u_list : list of callable functions
+        Solution of the Poisson-problem
+        The calling signature is u(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
+    f_list : list of callable functions
+        Input function of the Poisson-problem
+        The calling signature is f(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
+    """
+
+    numbers_of_points_1 = []
+    errors_1 = []
+    for n in n_list_list[0]:
+        A = block_matrix.BlockMatrix(1, n)
+        b = rhs(1, n, f_list[0])
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+
+        errors_1.append(compute_error(1, n, hat_u, u_list[0]))
+        numbers_of_points_1.append((n-1)**1)
+
+    numbers_of_points_2 = []
+    errors_2 = []
+    for n in n_list_list[1]:
+        A = block_matrix.BlockMatrix(2, n)
+        b = rhs(2, n, f_list[1])
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+
+        errors_2.append(compute_error(2, n, hat_u, u_list[1]))
+        numbers_of_points_2.append((n-1)**2)
+
+    numbers_of_points_3 = []
+    errors_3 = []
+    for n in n_list_list[2]:
+        A = block_matrix.BlockMatrix(3, n)
+        b = rhs(3, n, f_list[2])
+        lu = A.get_lu()
+        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
+
+        errors_3.append(compute_error(3, n, hat_u, u_list[2]))
+        numbers_of_points_3.append((n-1)**3)
+
+    numbers_of_points_pow1 = [np.float_(N)**(-1) for N in numbers_of_points_3]
+    numbers_of_points_pow2 = [np.float_(N)**(-2) for N in numbers_of_points_3]
+    numbers_of_points_pow3 = [np.float_(N)**(-1/2) for N in numbers_of_points_3]
+
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{-1/2}$',
+               color='lightgray')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N^{-1}$',
+               color='lightgray', linestyle='-.')
+    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^{-2}$',
+               color='lightgray', linestyle=':')
+
+    plt.loglog(numbers_of_points_1, errors_1, label='$d=1$', linestyle='--',
+               color='blue')
+    plt.loglog(numbers_of_points_2, errors_2, label='$d=2$', linestyle='--',
+               color='magenta')
+    plt.loglog(numbers_of_points_3, errors_3, label='$d=3$', linestyle='--',
+               color='red')
+
+    plt.xlabel('$N$')
+    plt.ylabel('maximum of absolute error')
+    plt.legend()
+    plt.title('Maxima of absolute errors for $d=1,2,3$')
+    plt.grid()
+    plt.show()
+
+def plot_error_comp(u, f, d, n_list):
+    """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
+    with LU and CG for a given list of n-values. N = (n-1)^d is the dimension of the
+    block matrix.
 
     Parameters
     ----------
@@ -197,9 +273,9 @@ def plot_error_comp(u, f, d, n_list): #pylint: disable=invalid-name
     plt.show()
     plt.figure()
 
-def plot_error_list_comp(u_list, f_list, n_list_list): #pylint: disable=invalid-name, too-many-locals
+def plot_error_list_comp(u_list, f_list, n_list_list):
     """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
-    for a given list of n-values and for the dimension d = 1, 2, 3.
+    with LU and CG for a given list of n-values and for the dimension d = 1, 2, 3.
 
     Parameters
     ----------
@@ -300,8 +376,26 @@ def plot_error_list_comp(u_list, f_list, n_list_list): #pylint: disable=invalid-
     plt.show()
 
 def plot_error_eps(u, f, d, n_list):
+    """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
+    with CG for a given list of n-values and for different values of epsilon = n^(-k).
+
+    Parameters
+    ----------
+    u : callable
+        Solution of the Poisson-problem
+        The calling signature is u(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
+    f : callable
+        Input function of the Poisson-problem
+        The calling signature is f(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
+    d: int
+        Dimension of the Poisson-problem
+    n_list: list of ints
+        The n-values for which to plot the errors.
+    """
     k_list = [-2, 0, 2, 4, 6]
-    markers = ['s','X' , 'H', '^', '.']
+    markers = ['s', 'X', 'H', '^', '.']
     i = 0
     for k in k_list:
         numbers_of_points = []
@@ -311,7 +405,9 @@ def plot_error_eps(u, f, d, n_list):
             b = rhs(d, n, f)
 
             cg = linear_solvers.solve_cg(A.get_sparse(), b, np.zeros((n-1)**d),
-                                         params=dict(eps=float(n)**(-k), max_iter=(2*(n-1)**2*d), min_red=0))
+                                         params=dict(eps=float(n)**(-k),
+                                                     max_iter=(2*(n-1)**2*d),
+                                                     min_red=0))
             print(cg[0])
             errors_cg.append(compute_error(d, n, cg[1][-1], u))
             numbers_of_points.append((n-1)**d)
@@ -360,44 +456,36 @@ def plot_error_eps(u, f, d, n_list):
     plt.show()
     plt.figure()
 
-def plot_error_cond(u, f, d, n_list):
-    numbers_of_points = []
-    errors_cg = []
-    conditions = []
-    for n in n_list:
-        A = block_matrix.BlockMatrix(d, n)
-        b = rhs(d, n, f)
-
-        conditions.append(A.get_cond())
-
-        cg = linear_solvers.solve_cg(A.get_sparse(), b, np.zeros((n-1)**d),
-                                     params=dict(eps=1e-8, max_iter=(2*(n-1)**2*d), min_red=0))
-        print(cg[0])
-        errors_cg.append(lina.norm(cg[2][-1], np.inf))
-        numbers_of_points.append((n-1)**d)
-
-    plt.loglog(numbers_of_points, conditions, "mo", label='condition')
-    plt.loglog(numbers_of_points, errors_cg, 'go--', label='CG')
-    plt.xlabel('$N$')
-    plt.ylabel('maximum of absolute error')
-    plt.title('Maxima of absolute errors for $d$ = ' + str(d))
-    plt.legend()
-    plt.grid()
-    plt.show()
-    plt.figure()
-
 def plot_iterates_error(u, f, d, n,
-             params=dict(eps=1e-8, max_iter=1000, min_red=1e-4)):
+                        params=dict(eps=1e-8,
+                                    max_iter=1000,
+                                    min_red=1e-4)):
+    """ Plots the development of absolute errors of the numerical solution of the Poisson-problem
+    with CG for the different iteration steps.
+
+    Parameters
+    ----------
+    u : callable
+        Solution of the Poisson-problem
+        The calling signature is u(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
+    f : callable
+        Input function of the Poisson-problem
+        The calling signature is f(x). Here x is a scalar
+        or array_like of numpy. The return value is a scalar.
+    d: int
+        Dimension of the Poisson-problem
+    n: int
+        Number of intervals of the discretization.
+    """
     A = block_matrix.BlockMatrix(d, n).get_sparse()
     b = rhs(d, n, f)
     cg = linear_solvers.solve_cg(A, b, np.zeros((n-1)**d), params)
     print(cg[0])
 
-    # errors = [lina.norm(r, np.inf) for r in cg[2]]
     errors = [compute_error(d, n, sol, u) for sol in cg[1]]
 
     plt.plot(range(len(errors)), errors, 'm.--')
-    # plt.yscale('log')
     plt.xlabel('number of iteration')
     plt.ylabel('absolute error')
     plt.title('Development of absolute error for d = %d and n = %d' %(d, n))
@@ -405,84 +493,7 @@ def plot_iterates_error(u, f, d, n,
     plt.show()
     plt.figure()
 
-def plot_error_list(u_list, f_list, n_list_list): #pylint: disable=invalid-name, too-many-locals
-    """ Plots the maxima of absolute errors of the numerical solution of the Poisson-problem
-    for a given list of n-values and for the dimension d = 1, 2, 3.
-
-    Parameters
-    ----------
-    n_list_list: list of list of ints
-        The n-values for which to plot the errors.
-    u_list : list of callable functions
-        Solution of the Poisson-problem
-        The calling signature is u(x). Here x is a scalar
-        or array_like of numpy. The return value is a scalar.
-    f_list : list of callable functions
-        Input function of the Poisson-problem
-        The calling signature is f(x). Here x is a scalar
-        or array_like of numpy. The return value is a scalar.
-    """
-
-    numbers_of_points_1 = []
-    errors_1 = []
-    for n in n_list_list[0]:
-        A = block_matrix.BlockMatrix(1, n)
-        b = rhs(1, n, f_list[0])
-        lu = A.get_lu()
-        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
-
-        errors_1.append(compute_error(1, n, hat_u, u_list[0]))
-        numbers_of_points_1.append((n-1)**1)
-
-    numbers_of_points_2 = []
-    errors_2 = []
-    for n in n_list_list[1]:
-        A = block_matrix.BlockMatrix(2, n)
-        b = rhs(2, n, f_list[1])
-        lu = A.get_lu()
-        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
-
-        errors_2.append(compute_error(2, n, hat_u, u_list[1]))
-        numbers_of_points_2.append((n-1)**2)
-
-    numbers_of_points_3 = []
-    errors_3 = []
-    for n in n_list_list[2]:
-        A = block_matrix.BlockMatrix(3, n)
-        b = rhs(3, n, f_list[2])
-        lu = A.get_lu()
-        hat_u = linear_solvers.solve_lu(lu[0], lu[1], lu[2], lu[3], b)
-
-        errors_3.append(compute_error(3, n, hat_u, u_list[2]))
-        numbers_of_points_3.append((n-1)**3)
-
-    numbers_of_points_pow1 = [np.float_(N)**(-1) for N in numbers_of_points_3]
-    numbers_of_points_pow2 = [np.float_(N)**(-2) for N in numbers_of_points_3]
-    numbers_of_points_pow3 = [np.float_(N)**(-1/2) for N in numbers_of_points_3]
-
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow3, label='$N^{-1/2}$',
-               color='lightgray')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow1, label='$N^{-1}$',
-               color='lightgray', linestyle='-.')
-    plt.loglog(numbers_of_points_3, numbers_of_points_pow2, label='$N^{-2}$',
-               color='lightgray', linestyle=':')
-
-    plt.loglog(numbers_of_points_1, errors_1, label='$d=1$', linestyle='--',
-               color='blue')
-    plt.loglog(numbers_of_points_2, errors_2, label='$d=2$', linestyle='--',
-               color='magenta')
-    plt.loglog(numbers_of_points_3, errors_3, label='$d=3$', linestyle='--',
-               color='red')
-
-    plt.xlabel('$N$')
-    plt.ylabel('maximum of absolute error')
-    plt.legend()
-    plt.title('Maxima of absolute errors for $d=1,2,3$')
-    plt.grid()
-    plt.show()
-
-
-def plot_functions(u, f, n): #pylint: disable=invalid-name, too-many-locals
+def plot_functions(u, f, n):
     """ Plots the numerical, the exact solution of our Poisson-problem (dimension d=2)
     for a given value of n (n is the number of intersections in each dimension
     and their absolute and their relative difference.

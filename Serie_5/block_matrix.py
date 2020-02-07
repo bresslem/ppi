@@ -7,14 +7,14 @@ finite differences and analyzes the amount of space needed.
 Also calculates and analyzes its LU-decomposition.
 """
 
-#pylint: disable=no-member
+#pylint: disable=no-member, import-error
 
 import scipy.sparse as sps
 import scipy.sparse.linalg as splina
 import scipy.linalg as lina
 import numpy as np
 from matplotlib import use
-# use('qt4agg')
+use('qt4agg')
 import matplotlib.pyplot as plt
 plt.rcParams['font.size'] = 12
 
